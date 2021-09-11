@@ -42,6 +42,7 @@ type_field:
     field_name ':' field_type;
 
 field_type:
+    'optional'?
     (
         array_field_type |
         non_array_field_type

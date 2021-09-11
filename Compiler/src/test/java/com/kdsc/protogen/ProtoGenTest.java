@@ -340,6 +340,27 @@ public class ProtoGenTest {
     }
 
     @Test
+    void allFieldTypesOptional() {
+        var testProgram = """
+            type TestNamespace.TestAllFieldTypes<T> {
+                testDoubleField : optional double
+                testFloatField : optional float
+                testInt32Field : optional int32
+                testInt64Field : optional int64
+                testBoolField : optional bool
+                testStringField : optional string
+                testByteField : optional bytes
+                testMapField : optional map<int32, int32>
+                testSetField : optional set<int32>
+                testArrayField : optional int32[]
+                testTypeField : optional TestNamespace.TestType
+                testGenericField : optional T
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
     void singleLineCommentAtTop() {
         var testProgram = """
             //Comment at top
