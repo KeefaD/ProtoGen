@@ -9,9 +9,27 @@ public class ProtoGenVisitorTest extends com.kdsc.protogen.antlr.ProtoGenBaseVis
     }
 
     @Override
-    public Object visitType(ProtoGenParser.TypeContext ctx) {
-        System.out.println("Visiting type");
-        return super.visitType(ctx);
+    public Object visitEnum_cases(ProtoGenParser.Enum_casesContext ctx) {
+        System.out.println("Visiting enum_cases");
+        return super.visitEnum_cases(ctx);
+    }
+
+    @Override
+    public Object visitEnum_name(ProtoGenParser.Enum_nameContext ctx) {
+        System.out.println("Visiting enum_name");
+        return super.visitEnum_name(ctx);
+    }
+
+    @Override
+    public Object visitProtogen_enum(ProtoGenParser.Protogen_enumContext ctx) {
+        System.out.println("Visiting protogen_enum");
+        return super.visitProtogen_enum(ctx);
+    }
+
+    @Override
+    public Object visitProtogen_type(ProtoGenParser.Protogen_typeContext ctx) {
+        System.out.println("Visiting protogen_type");
+        return super.visitProtogen_type(ctx);
     }
 
     @Override
@@ -45,9 +63,15 @@ public class ProtoGenVisitorTest extends com.kdsc.protogen.antlr.ProtoGenBaseVis
     }
 
     @Override
-    public Object visitField(ProtoGenParser.FieldContext ctx) {
-        System.out.println("Visiting field");
-        return super.visitField(ctx);
+    public Object visitField_name(ProtoGenParser.Field_nameContext ctx) {
+        System.out.println("Visiting field_name");
+        return super.visitField_name(ctx);
+    }
+
+    @Override
+    public Object visitNon_array_field_type(ProtoGenParser.Non_array_field_typeContext ctx) {
+        System.out.println("Visiting non_array_field_type");
+        return super.visitNon_array_field_type(ctx);
     }
 
     @Override
@@ -75,9 +99,9 @@ public class ProtoGenVisitorTest extends com.kdsc.protogen.antlr.ProtoGenBaseVis
     }
 
     @Override
-    public Object visitType_field_type(ProtoGenParser.Type_field_typeContext ctx) {
+    public Object visitField_type(ProtoGenParser.Field_typeContext ctx) {
         System.out.println("Visiting field_type");
-        return super.visitType_field_type(ctx);
+        return super.visitField_type(ctx);
     }
 
     @Override
@@ -92,4 +116,21 @@ public class ProtoGenVisitorTest extends com.kdsc.protogen.antlr.ProtoGenBaseVis
         return super.visitImplements_list(ctx);
     }
 
+    @Override
+    public Object visitMap_field_type(ProtoGenParser.Map_field_typeContext ctx) {
+        System.out.println("Visiting map_field_type");
+        return super.visitMap_field_type(ctx);
+    }
+
+    @Override
+    public Object visitSet_field_type(ProtoGenParser.Set_field_typeContext ctx) {
+        System.out.println("Visiting set_field_type");
+        return super.visitSet_field_type(ctx);
+    }
+
+    @Override
+    public Object visitArray_field_type(ProtoGenParser.Array_field_typeContext ctx) {
+        System.out.println("Visiting array_field_type");
+        return super.visitArray_field_type(ctx);
+    }
 }

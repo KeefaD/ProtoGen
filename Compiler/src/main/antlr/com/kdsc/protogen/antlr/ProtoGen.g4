@@ -6,12 +6,19 @@ grammar ProtoGen;
 
 file:
     (
-        type
+        protogen_type |
+        protogen_enum
     )*
     EOF;
 
-type:
+protogen_type:
     'type' namespace_name_generic_parameters implements_list? ( '{' (type_versions | type_fields)? '}' )?;
+
+protogen_enum:
+    'enum' namespace_name ( '{' enum_cases? '}' )?;
+
+enum_cases:
+    enum_name+ (',' enum_name)*;
 
 implements_list:
     ':' namespace_name_generic_parameters (',' namespace_name_generic_parameters)*;
@@ -26,14 +33,37 @@ type_fields:
     type_field+;
 
 type_field:
-    ID ':' type_field_type;
+    field_name ':' field_type;
 
-type_field_type:
+field_type:
     (
+        array_field_type |
+        non_array_field_type
+    );
+
+non_array_field_type:
+    (
+        'double' |
+        'float' |
         'int32' |
+        'int64' |
+        'bool' |
+        'string' |
+        'bytes' |
+        map_field_type |
+        set_field_type |
         namespace_name_generic_parameters |
         generic_parameter
     );
+
+map_field_type:
+    'map' '<' field_type ',' field_type '>';
+
+set_field_type:
+    'set' '<' field_type '>';
+
+array_field_type:
+    non_array_field_type ('[' ']')+;
 
 namespace_name_generic_parameters:
     namespace_name generic_parameters?;
@@ -45,28 +75,34 @@ generic_parameters:
     '<' generic_parameter (',' generic_parameter)* '>';
 
 generic_parameter:
-    ID;
+    IDENTIFIER;
 
 namespace:
-    ID;
+    IDENTIFIER;
 
 name:
-    ID;
+    IDENTIFIER;
 
-field:
-    ID;
+field_name:
+    IDENTIFIER;
 
-VN:
+enum_name:
+    IDENTIFIER;
+
+VERSION_NUMBER:
     [0-9]+;
 
-ID:
+IDENTIFIER:
     [a-zA-Z_]+[0-9a-zA-Z_]*;
 
-WS:
+WHITESPACE:
     [ \t\r\n]+ -> skip;
 
-SLC:
-    '//' .*? ('\n'|'\r')* -> skip;
+SINGLE_LINE_COMMENT:
+    '//' ~[\n\r]* -> skip;
 
-MLC:
+MULTI_LINE_COMMENT:
     '/*'.*?'*/' -> skip;
+
+UNKNOWN_CHAR:
+    .;

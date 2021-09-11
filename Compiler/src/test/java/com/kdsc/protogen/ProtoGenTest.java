@@ -3,6 +3,7 @@ package com.kdsc.protogen;
 import com.kdsc.protogen.antlr.ProtoGenLexer;
 import com.kdsc.protogen.antlr.ProtoGenParser;
 import com.kdsc.protogen.antlr.ProtoGenVisitorTest;
+import com.kdsc.protogen.antlr.errors.ProtoGenErrorListener;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.jupiter.api.Test;
@@ -15,9 +16,33 @@ import java.nio.charset.StandardCharsets;
 public class ProtoGenTest {
 
     @Test
+    void emptyFile() {
+        var testProgram = """
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void singleType() {
+        var testProgram = """
+            type TestNamespace.TestType
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void multipleTypes() {
+        var testProgram = """
+            type TestNamespace.TestType1
+            type TestNamespace.TestType2
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
     void basicTypeNoFieldsOrBraces() {
         var testProgram = """
-            type KeithsNamespace.KeithsType
+            type TestNamespace.TestType
         """;
         compileProgram(testProgram);
     }
@@ -25,7 +50,7 @@ public class ProtoGenTest {
     @Test
     void basicTypeNoFieldsWithBraces() {
         var testProgram = """
-            type KeithsNamespace.KeithsType {}
+            type TestNamespace.TestType {}
         """;
         compileProgram(testProgram);
     }
@@ -33,7 +58,7 @@ public class ProtoGenTest {
     @Test
     void basicTypeNoFieldsWithSplitBraces() {
         var testProgram = """
-            type KeithsNamespace.KeithsType {
+            type TestNamespace.TestType {
             }
         """;
         compileProgram(testProgram);
@@ -42,7 +67,7 @@ public class ProtoGenTest {
     @Test
     void basicTypeOneField() {
         var testProgram = """
-            type KeithsNamespace.KeithsType {
+            type TestNamespace.TestType {
                 testField : int32
             }
         """;
@@ -52,7 +77,7 @@ public class ProtoGenTest {
     @Test
     void basicTypeTwoFields() {
         var testProgram = """
-            type KeithsNamespace.KeithsType {
+            type TestNamespace.TestType {
                 testField1 : int32
                 testField2 : int32
             }
@@ -63,7 +88,7 @@ public class ProtoGenTest {
     @Test
     void basicTypeOneImplementsNoFieldsNoBraces() {
         var testProgram = """
-            type KeithsNamespace.KeithsType : KeithsNamespace.KeithsOtherType
+            type TestNamespace.TestType : TestNamespace.OtherType
         """;
         compileProgram(testProgram);
     }
@@ -71,7 +96,7 @@ public class ProtoGenTest {
     @Test
     void basicTypeOneImplementsNoFieldsEmptyBraces() {
         var testProgram = """
-            type KeithsNamespace.KeithsType : KeithsNamespace.KeithsOtherType {}
+            type TestNamespace.TestType : TestNamespace.OtherType {}
         """;
         compileProgram(testProgram);
     }
@@ -79,7 +104,7 @@ public class ProtoGenTest {
     @Test
     void basicTypeOneImplementsNoFieldsSplitEmptyBraces() {
         var testProgram = """
-            type KeithsNamespace.KeithsType : KeithsNamespace.KeithsOtherType {
+            type TestNamespace.TestType : TestNamespace.OtherType {
             }
         """;
         compileProgram(testProgram);
@@ -89,7 +114,7 @@ public class ProtoGenTest {
     @Test
     void basicTypeOneImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
-            type KeithsNamespace.KeithsType : KeithsNamespace.KeithsOtherType<T>
+            type TestNamespace.TestType : TestNamespace.OtherType<T>
         """;
         compileProgram(testProgram);
     }
@@ -97,7 +122,7 @@ public class ProtoGenTest {
     @Test
     void basicTypeOneImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
-            type KeithsNamespace.KeithsType : KeithsNamespace.KeithsOtherType<T> {}
+            type TestNamespace.TestType : TestNamespace.OtherType<T> {}
         """;
         compileProgram(testProgram);
     }
@@ -105,7 +130,7 @@ public class ProtoGenTest {
     @Test
     void basicTypeOneImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
-            type KeithsNamespace.KeithsType : KeithsNamespace.KeithsOtherType<T> {
+            type TestNamespace.TestType : TestNamespace.OtherType<T> {
             }
         """;
         compileProgram(testProgram);
@@ -114,9 +139,9 @@ public class ProtoGenTest {
     @Test
     void basicTypeTwoImplementsNoFieldsNoBraces() {
         var testProgram = """
-            type KeithsNamespace.KeithsType :
-                KeithsNamespace.KeithsOtherType1,
-                KeithsNamespace.KeithsOtherType2
+            type TestNamespace.TestType :
+                TestNamespace.OtherType1,
+                TestNamespace.OtherType2
         """;
         compileProgram(testProgram);
     }
@@ -124,9 +149,9 @@ public class ProtoGenTest {
     @Test
     void basicTypeTwoImplementsNoFieldsEmptyBraces() {
         var testProgram = """
-            type KeithsNamespace.KeithsType :
-                KeithsNamespace.KeithsOtherType1,
-                KeithsNamespace.KeithsOtherType2 {}
+            type TestNamespace.TestType :
+                TestNamespace.OtherType1,
+                TestNamespace.OtherType2 {}
         """;
         compileProgram(testProgram);
     }
@@ -134,9 +159,9 @@ public class ProtoGenTest {
     @Test
     void basicTypeTwoImplementsNoFieldsSplitEmptyBraces() {
         var testProgram = """
-            type KeithsNamespace.KeithsType :
-                KeithsNamespace.KeithsOtherType1,
-                KeithsNamespace.KeithsOtherType2 {
+            type TestNamespace.TestType :
+                TestNamespace.OtherType1,
+                TestNamespace.OtherType2 {
             }
         """;
         compileProgram(testProgram);
@@ -145,9 +170,9 @@ public class ProtoGenTest {
     @Test
     void basicTypeTwoImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
-            type KeithsNamespace.KeithsType :
-                KeithsNamespace.KeithsOtherType1<T>,
-                KeithsNamespace.KeithsOtherType2<T>
+            type TestNamespace.TestType :
+                TestNamespace.OtherType1<T>,
+                TestNamespace.OtherType2<T>
         """;
         compileProgram(testProgram);
     }
@@ -155,9 +180,9 @@ public class ProtoGenTest {
     @Test
     void basicTypeTwoImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
-            type KeithsNamespace.KeithsType :
-                KeithsNamespace.KeithsOtherType1<T>,
-                KeithsNamespace.KeithsOtherType2<T> {}
+            type TestNamespace.TestType :
+                TestNamespace.OtherType1<T>,
+                TestNamespace.OtherType2<T> {}
         """;
         compileProgram(testProgram);
     }
@@ -165,9 +190,9 @@ public class ProtoGenTest {
     @Test
     void basicTypeTwoImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
-            type KeithsNamespace.KeithsType :
-                KeithsNamespace.KeithsOtherType1<T>,
-                KeithsNamespace.KeithsOtherType2<T> {
+            type TestNamespace.TestType :
+                TestNamespace.OtherType1<T>,
+                TestNamespace.OtherType2<T> {
             }
         """;
         compileProgram(testProgram);
@@ -176,7 +201,7 @@ public class ProtoGenTest {
     @Test
     void basicVersionedTypeOneVersion() {
         var testProgram = """
-            type KeithsNamespace.KeithsVersionedType {
+            type TestNamespace.TestVersionedType {
                 version 1 {
                     testField : int32
                 }
@@ -188,7 +213,7 @@ public class ProtoGenTest {
     @Test
     void basicVersionedTypeTwoVersions() {
         var testProgram = """
-            type KeithsNamespace.KeithsVersionedType {
+            type TestNamespace.TestVersionedType {
                 version 1 {
                     testField : int32
                 }
@@ -203,7 +228,7 @@ public class ProtoGenTest {
     @Test
     void genericType() {
         var testProgram = """
-            type KeithsNamespace.KeithsGenericType<T> {
+            type TestNamespace.TestGenericType<T> {
                 testField : T
             }
         """;
@@ -213,7 +238,7 @@ public class ProtoGenTest {
     @Test
     void genericVersionedTypeWithSingleGenericParameters() {
         var testProgram = """
-            type KeithsNamespace.KeithsVersionedGenericType<T> {
+            type TestNamespace.TestVersionedGenericType<T> {
                 version 1 {
                     testField : int32
                 }
@@ -228,7 +253,7 @@ public class ProtoGenTest {
     @Test
     void genericVersionedTypeWithIndividualGenericParameters() {
         var testProgram = """
-            type KeithsNamespace.KeithsVersionedGenericType {
+            type TestNamespace.TestVersionedGenericType {
                 version 1 <T> {
                     testField : int32
                 }
@@ -243,11 +268,11 @@ public class ProtoGenTest {
     @Test
     void genericVersionedTypeWithIndividualGenericParametersAndDifferentOneImplements() {
         var testProgram = """
-            type KeithsNamespace.KeithsVersionedGenericType {
-                version 1 <T> : KeithsNamespace.KeithsOtherType1 {
+            type TestNamespace.TestVersionedGenericType {
+                version 1 <T> : TestNamespace.KeithsOtherType1 {
                     testField : int32
                 }
-                version 2 <T> : KeithsNamespace.KeithsOtherType2 {
+                version 2 <T> : TestNamespace.KeithsOtherType2 {
                     testField : int32
                 }
             }
@@ -258,13 +283,170 @@ public class ProtoGenTest {
     @Test
     void genericVersionedTypeWithIndividualGenericParametersAndDifferentTwoImplements() {
         var testProgram = """
-            type KeithsNamespace.KeithsVersionedGenericType {
-                version 1 <T> : KeithsNamespace.KeithsOtherType1, KeithsNamespace.KeithsOtherType2 {
+            type TestNamespace.TestVersionedGenericType {
+                version 1 <T> : TestNamespace.OtherType1, TestNamespace.OtherType2 {
                     testField : int32
                 }
-                version 2 <T> : KeithsNamespace.KeithsOtherType3<T>, KeithsNamespace.KeithsOtherType4<T> {
+                version 2 <T> : TestNamespace.OtherType3<T>, TestNamespace.OtherType4<T> {
                     testField : int32
                 }
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void allFieldTypes() {
+        var testProgram = """
+            type TestNamespace.TestAllFieldTypes<T> {
+                testDoubleField : double
+                testFloatField : float
+                testInt32Field : int32
+                testInt64Field : int64
+                testBoolField : bool
+                testStringField : string
+                testByteField : bytes
+                testMapField : map<int32, int32>
+                testSetField : set<int32>
+                testArrayField : int32[]
+                testTypeField : TestNamespace.TestType
+                testGenericField : T
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void singleLineCommentAtTop() {
+        var testProgram = """
+            //Comment at top
+            type TestNamespace.TestComment {
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void singleLineCommentInMiddle() {
+        var testProgram = """
+            type TestNamespace.TestComment {
+                //Comment in middle
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void singleLineCommentAtBottom() {
+        var testProgram = """
+            type TestNamespace.TestComment {
+            }
+            //Comment at bottom
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void singleLineCommentWithToken() {
+        var testProgram = """
+            //type int32 string bool
+            type TestNamespace.TestComment {
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void multiLineCommentAtTop() {
+        var testProgram = """
+            /*
+            Comment at top
+            */
+            type TestNamespace.TestComment {
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void multiLineCommentInMiddle() {
+        var testProgram = """
+            type TestNamespace.TestComment {
+                /*
+                Comment in middle
+                */
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void multiLineCommentAtBottom() {
+        var testProgram = """
+            type TestNamespace.TestComment {
+            }
+            /*
+            Comment at bottom
+            */
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void multiLineCommentWithToken() {
+        var testProgram = """
+            /*
+            type
+            int32
+            string bool
+            */
+            type TestNamespace.TestComment {
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void basicEmptyEnum() {
+        var testProgram = """
+            enum TestNamespace.TestEnum
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void basicEmptyEnumWithBracesOnOneLine() {
+        var testProgram = """
+            enum TestNamespace.TestEnum {}
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void basicEmptyEnumWithSplitBraces() {
+        var testProgram = """
+            enum TestNamespace.TestEnum {
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void basicEnumWithOneCase() {
+        var testProgram = """
+            enum TestNamespace.TestEnum {
+                testEnumCase
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void basicEnumWithTwoCases() {
+        var testProgram = """
+            enum TestNamespace.TestEnum {
+                testEnumCase1,
+                testEnumCase2
             }
         """;
         compileProgram(testProgram);
@@ -279,8 +461,18 @@ public class ProtoGenTest {
             var lexer = new ProtoGenLexer(antlrInputStream);
             var tokens = new CommonTokenStream(lexer);
             var parser = new ProtoGenParser(tokens);
+            parser.removeErrorListeners();
+            var errorListener = new ProtoGenErrorListener();
+            parser.addErrorListener(errorListener);
             var visitor = new ProtoGenVisitorTest();
             visitor.visit(parser.file());
+
+            if(errorListener.errorOccurred()) {
+                for(var message : errorListener.getErrors()) {
+                    System.out.println(message);
+                }
+                assert(false);
+            }
 
         } catch (IOException e) {
             e.printStackTrace();
