@@ -100,7 +100,7 @@ version_number:
     VERSION_NUMBER;
 
 VERSION_NUMBER:
-    [0-9]+;
+    [1-9][0-9]*;
 
 IDENTIFIER:
     [a-zA-Z_]+[0-9a-zA-Z_]*;
