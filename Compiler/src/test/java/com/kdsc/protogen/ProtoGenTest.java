@@ -19,7 +19,7 @@ public class ProtoGenTest {
     void emptyFile() {
         var testProgram = """
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class ProtoGenTest {
         var testProgram = """
             type TestNamespace.TestType
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class ProtoGenTest {
             type TestNamespace.TestType1
             type TestNamespace.TestType2
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -44,7 +44,7 @@ public class ProtoGenTest {
         var testProgram = """
             type TestNamespace.TestType
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class ProtoGenTest {
         var testProgram = """
             type TestNamespace.TestType {}
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -61,7 +61,7 @@ public class ProtoGenTest {
             type TestNamespace.TestType {
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -71,7 +71,7 @@ public class ProtoGenTest {
                 testField : int32
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class ProtoGenTest {
                 testField2 : int32
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class ProtoGenTest {
         var testProgram = """
             type TestNamespace.TestType : TestNamespace.OtherType
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class ProtoGenTest {
         var testProgram = """
             type TestNamespace.TestType : TestNamespace.OtherType {}
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -107,7 +107,7 @@ public class ProtoGenTest {
             type TestNamespace.TestType : TestNamespace.OtherType {
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
 
@@ -116,7 +116,7 @@ public class ProtoGenTest {
         var testProgram = """
             type TestNamespace.TestType : TestNamespace.OtherType<T>
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -124,7 +124,7 @@ public class ProtoGenTest {
         var testProgram = """
             type TestNamespace.TestType : TestNamespace.OtherType<T> {}
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -133,7 +133,7 @@ public class ProtoGenTest {
             type TestNamespace.TestType : TestNamespace.OtherType<T> {
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -143,7 +143,7 @@ public class ProtoGenTest {
                 TestNamespace.OtherType1,
                 TestNamespace.OtherType2
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -153,7 +153,7 @@ public class ProtoGenTest {
                 TestNamespace.OtherType1,
                 TestNamespace.OtherType2 {}
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -164,7 +164,7 @@ public class ProtoGenTest {
                 TestNamespace.OtherType2 {
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -174,7 +174,7 @@ public class ProtoGenTest {
                 TestNamespace.OtherType1<T>,
                 TestNamespace.OtherType2<T>
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -184,7 +184,7 @@ public class ProtoGenTest {
                 TestNamespace.OtherType1<T>,
                 TestNamespace.OtherType2<T> {}
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -195,7 +195,7 @@ public class ProtoGenTest {
                 TestNamespace.OtherType2<T> {
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -205,7 +205,7 @@ public class ProtoGenTest {
                 version 1 {}
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -217,7 +217,7 @@ public class ProtoGenTest {
                 }
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -232,7 +232,7 @@ public class ProtoGenTest {
                 }
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -242,7 +242,7 @@ public class ProtoGenTest {
                 testField : T
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -257,7 +257,7 @@ public class ProtoGenTest {
                 }
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -270,7 +270,7 @@ public class ProtoGenTest {
                 }
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -285,7 +285,7 @@ public class ProtoGenTest {
                 }
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -300,7 +300,7 @@ public class ProtoGenTest {
                 }
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -315,7 +315,7 @@ public class ProtoGenTest {
                 }
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -336,7 +336,7 @@ public class ProtoGenTest {
                 testGenericField : T
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -357,7 +357,47 @@ public class ProtoGenTest {
                 testGenericField : optional T
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void recursiveMaps() {
+        var testProgram = """
+            type TestNamespace.TestRecursiveMaps{
+                testRecursiveMap : map<map<int32, int32>, map<int32, int32>>
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void recursiveSets() {
+        var testProgram = """
+            type TestNamespace.TestRecursiveSet {
+                testRecursiveSet : set<set<int32>>
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void recursiveMultiDimensionalArray() {
+        var testProgram = """
+            type TestNamespace.TestMultiDimensionalArray {
+                testMultiDimensionalArray : int32[][][]
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void recursiveNestedMapSetArray() {
+        var testProgram = """
+            type TestNamespace.TestMultiDimensionalArray {
+                testNestedMapSetArray : map<set<int[][]>, set<int32[][]>>
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -367,7 +407,7 @@ public class ProtoGenTest {
             type TestNamespace.TestComment {
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -377,7 +417,7 @@ public class ProtoGenTest {
                 //Comment in middle
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -387,7 +427,7 @@ public class ProtoGenTest {
             }
             //Comment at bottom
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -397,7 +437,7 @@ public class ProtoGenTest {
             type TestNamespace.TestComment {
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -409,7 +449,7 @@ public class ProtoGenTest {
             type TestNamespace.TestComment {
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -421,7 +461,7 @@ public class ProtoGenTest {
                 */
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -433,7 +473,7 @@ public class ProtoGenTest {
             Comment at bottom
             */
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -447,7 +487,7 @@ public class ProtoGenTest {
             type TestNamespace.TestComment {
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -455,7 +495,7 @@ public class ProtoGenTest {
         var testProgram = """
             enum TestNamespace.TestEnum
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -463,7 +503,7 @@ public class ProtoGenTest {
         var testProgram = """
             enum TestNamespace.TestEnum {}
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -472,7 +512,7 @@ public class ProtoGenTest {
             enum TestNamespace.TestEnum {
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -482,7 +522,7 @@ public class ProtoGenTest {
                 testEnumCase
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -493,7 +533,7 @@ public class ProtoGenTest {
                 testEnumCase2
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -505,7 +545,7 @@ public class ProtoGenTest {
                 }
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -522,7 +562,7 @@ public class ProtoGenTest {
                 }
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -537,10 +577,10 @@ public class ProtoGenTest {
                 }
             }
         """;
-        compileProgram(testProgram);
+        compileProgramAndCheckNoParserErrors(testProgram);
     }
 
-    void compileProgram(String testProgram) {
+    void compileProgramAndCheckNoParserErrors(String testProgram) {
 
         var inputStream = new ByteArrayInputStream(testProgram.getBytes(StandardCharsets.UTF_8));
 
