@@ -48,7 +48,7 @@ field:
 field_type:
     'optional'?
     (
-        array_field_type |
+        array |
         non_array_field_type
     );
 
@@ -64,19 +64,24 @@ non_array_field_type:
         'decimal' |
         'date' |
         'datetime' |
-        map_field_type |
-        set_field_type |
+        'localdatetime' |
+        map |
+        set |
+        value_or_error |
         namespace_name_generic_parameters_without_bounds |
         generic_parameter_without_bounds
     );
 
-map_field_type:
+map:
     'map' '<' field_type ',' field_type '>';
 
-set_field_type:
+set:
     'set' '<' field_type '>';
 
-array_field_type:
+value_or_error:
+    'valueorerror' '<' field_type '>';
+
+array:
     non_array_field_type ('[' ']')+;
 
 namespace_name_generic_parameters_with_bounds:

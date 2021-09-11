@@ -83,24 +83,6 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     }
 
     @Override
-    public Object visitMap_field_type(ProtoGenParser.Map_field_typeContext ctx) {
-        System.out.println("Visiting map_field_type");
-        return super.visitMap_field_type(ctx);
-    }
-
-    @Override
-    public Object visitSet_field_type(ProtoGenParser.Set_field_typeContext ctx) {
-        System.out.println("Visiting set_field_type");
-        return super.visitSet_field_type(ctx);
-    }
-
-    @Override
-    public Object visitArray_field_type(ProtoGenParser.Array_field_typeContext ctx) {
-        System.out.println("Visiting array_field_type");
-        return super.visitArray_field_type(ctx);
-    }
-
-    @Override
     public Object visitEnum_version(ProtoGenParser.Enum_versionContext ctx) {
         System.out.println("Visiting enum_version");
         return super.visitEnum_version(ctx);
@@ -184,4 +166,27 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
         return super.visitVersions(ctx);
     }
 
+    @Override
+    public Object visitArray(ProtoGenParser.ArrayContext ctx) {
+        System.out.println("Visiting array");
+        return super.visitArray(ctx);
+    }
+
+    @Override
+    public Object visitMap(ProtoGenParser.MapContext ctx) {
+        System.out.println("Visiting map");
+        return super.visitMap(ctx);
+    }
+
+    @Override
+    public Object visitSet(ProtoGenParser.SetContext ctx) {
+        System.out.println("Visiting set");
+        return super.visitSet(ctx);
+    }
+
+    @Override
+    public Object visitValue_or_error(ProtoGenParser.Value_or_errorContext ctx) {
+        System.out.println("Visiting value_or_error");
+        return super.visitValue_or_error(ctx);
+    }
 }

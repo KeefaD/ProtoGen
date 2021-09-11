@@ -30,6 +30,7 @@ public class GeneralTests  extends BaseParserTest {
                 testDatetimeField : optional datetime
                 testMapField : optional map<int32, int32>
                 testSetField : optional set<int32>
+                testValueOrErrorField : optional  valueorerror<int32>
                 testArrayField : optional int32[]
                 testTypeField : optional TestNamespace.TestType
                 testGenericField : optional T
@@ -49,6 +50,7 @@ public class GeneralTests  extends BaseParserTest {
                 testDatetimeField : optional datetime
                 testMapField : optional map<int32, int32>
                 testSetField : optional set<int32>
+                testValueOrErrorField : optional  valueorerror<int32>
                 testArrayField : optional int32[]
                 testKeyField : optional TestNamespace.TestKey
                 testGenericField : optional T
