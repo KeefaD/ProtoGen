@@ -15,7 +15,7 @@ public class ProtoGen {
     public static void main(String[] args) {
 
 
-        var testProgram = "value keith";
+        var testProgram = "type keithsnamespace.keithstype";
 
         var inputStream = new ByteArrayInputStream(testProgram.getBytes(StandardCharsets.UTF_8));
 

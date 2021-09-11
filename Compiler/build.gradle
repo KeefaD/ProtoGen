@@ -24,7 +24,6 @@ application {
 }
 
 generateGrammarSource {
-    maxHeapSize = "64m"
     arguments += ["-visitor", "-long-messages"]
 }
 
