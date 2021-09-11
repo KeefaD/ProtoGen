@@ -2,7 +2,7 @@ package com.kdsc.protogen.antlr.parser;
 
 import com.kdsc.protogen.antlr.ProtoGenLexer;
 import com.kdsc.protogen.antlr.ProtoGenParser;
-import com.kdsc.protogen.antlr.ProtoGenVisitorTest;
+import com.kdsc.protogen.antlr.ProtoGenVisitorImplementation;
 import com.kdsc.protogen.antlr.errors.ProtoGenErrorListener;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -25,8 +25,8 @@ public abstract class BaseParserTest {
             parser.removeErrorListeners();
             var errorListener = new ProtoGenErrorListener();
             parser.addErrorListener(errorListener);
-            var visitor = new ProtoGenVisitorTest();
-            visitor.visit(parser.file());
+            var visitor = new ProtoGenVisitorImplementation();
+            var node = visitor.visit(parser.file());
 
             if(errorListener.errorOccurred()) {
                 for(var message : errorListener.getErrors()) {
@@ -34,6 +34,8 @@ public abstract class BaseParserTest {
                 }
                 assert(false);
             }
+
+            System.out.println(node);
 
         } catch (IOException e) {
             e.printStackTrace();

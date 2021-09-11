@@ -1,5 +1,6 @@
-package com.kdsc.protogen.antlr.parser;
+package com.kdsc.protogen.antlr.parser.happypath;
 
+import com.kdsc.protogen.antlr.parser.BaseParserTest;
 import org.junit.jupiter.api.Test;
 
 public class EnumTests  extends BaseParserTest {

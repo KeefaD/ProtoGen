@@ -3,7 +3,7 @@ package com.kdsc.protogen;
 
 import com.kdsc.protogen.antlr.ProtoGenLexer;
 import com.kdsc.protogen.antlr.ProtoGenParser;
-import com.kdsc.protogen.antlr.ProtoGenVisitorTest;
+import com.kdsc.protogen.antlr.ProtoGenVisitorImplementation;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 
@@ -24,7 +24,7 @@ public class ProtoGen {
             var lexer = new ProtoGenLexer(antlrInputStream);
             var tokens = new CommonTokenStream(lexer);
             var parser = new ProtoGenParser(tokens);
-            var visitor = new ProtoGenVisitorTest();
+            var visitor = new ProtoGenVisitorImplementation();
             visitor.visit(parser.file());
 
         } catch (IOException e) {

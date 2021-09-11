@@ -1,11 +1,18 @@
 package com.kdsc.protogen.antlr;
 
-public class ProtoGenVisitorTest extends com.kdsc.protogen.antlr.ProtoGenBaseVisitor<Object> {
+import com.kdsc.protogen.parsetree.FileNode;
+import com.kdsc.protogen.parsetree.ProtoGenTypeNode;
+
+import java.util.stream.Collectors;
+
+public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.ProtoGenBaseVisitor<Object> {
 
     @Override
     public Object visitFile(ProtoGenParser.FileContext ctx) {
         System.out.println("Visiting file");
-        return super.visitFile(ctx);
+        return new FileNode(
+            ctx.protogen_type().stream().map(t -> (ProtoGenTypeNode) visitProtogen_type(t)).collect(Collectors.toList())
+        );
     }
 
     @Override
@@ -29,7 +36,8 @@ public class ProtoGenVisitorTest extends com.kdsc.protogen.antlr.ProtoGenBaseVis
     @Override
     public Object visitProtogen_type(ProtoGenParser.Protogen_typeContext ctx) {
         System.out.println("Visiting protogen_type");
-        return super.visitProtogen_type(ctx);
+        return new ProtoGenTypeNode(
+        );
     }
 
     @Override
