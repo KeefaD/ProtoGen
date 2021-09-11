@@ -1,0 +1,33 @@
+plugins {
+    id 'application'
+}
+
+plugins {
+    id 'antlr'
+}
+
+group 'com.kdsc.protogen'
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    antlr "org.antlr:antlr4:4.5"
+}
+
+application {
+    mainClass.set("com.kdsc.protogen.ProtoGen")
+}
+
+generateGrammarSource {
+    maxHeapSize = "64m"
+    arguments += ["-visitor", "-long-messages"]
+}
+
+test {
+    useJUnitPlatform()
+}
