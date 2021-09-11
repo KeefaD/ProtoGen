@@ -1,4 +1,4 @@
-package com.kdsc.protogen;
+package com.kdsc.protogen.antlr.parser;
 
 import org.junit.jupiter.api.Test;
 

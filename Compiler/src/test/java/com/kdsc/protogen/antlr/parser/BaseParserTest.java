@@ -1,4 +1,4 @@
-package com.kdsc.protogen;
+package com.kdsc.protogen.antlr.parser;
 
 import com.kdsc.protogen.antlr.ProtoGenLexer;
 import com.kdsc.protogen.antlr.ProtoGenParser;

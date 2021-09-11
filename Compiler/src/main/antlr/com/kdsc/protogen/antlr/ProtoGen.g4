@@ -7,12 +7,16 @@ grammar ProtoGen;
 file:
     (
         protogen_type |
+        protogen_key |
         protogen_enum
     )*
     EOF;
 
 protogen_type:
-    'type' namespace_name_generic_parameters_with_bounds implements_list? ( '{' (type_versions | type_fields)? '}' )?;
+    'type' namespace_name_generic_parameters_with_bounds implements_list? ( '{' (versions | fields)? '}' )?;
+
+protogen_key:
+    'key' namespace_name_generic_parameters_with_bounds implements_list? ( '{' (versions | fields)? '}' )?;
 
 protogen_enum:
     'enum' namespace_name ( '{' (enum_versions | enum_cases)? '}' )?;
@@ -29,16 +33,16 @@ enum_cases:
 implements_list:
     ':' namespace_name_generic_parameters_without_bounds (',' namespace_name_generic_parameters_without_bounds)*;
 
-type_versions:
-    type_version+;
+versions:
+    version+;
 
-type_version:
-    'version' version_number generic_parameters_with_bounds? implements_list? ( '{' type_fields? '}' )?;
+version:
+    'version' version_number generic_parameters_with_bounds? implements_list? ( '{' fields? '}' )?;
 
-type_fields:
-    type_field+;
+fields:
+    field+;
 
-type_field:
+field:
     field_name ':' field_type;
 
 field_type:

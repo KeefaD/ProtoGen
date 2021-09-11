@@ -33,24 +33,6 @@ public class ProtoGenVisitorTest extends com.kdsc.protogen.antlr.ProtoGenBaseVis
     }
 
     @Override
-    public Object visitType_version(ProtoGenParser.Type_versionContext ctx) {
-        System.out.println("Visiting version");
-        return super.visitType_version(ctx);
-    }
-
-    @Override
-    public Object visitType_fields(ProtoGenParser.Type_fieldsContext ctx) {
-        System.out.println("Visiting fields");
-        return super.visitType_fields(ctx);
-    }
-
-    @Override
-    public Object visitType_field(ProtoGenParser.Type_fieldContext ctx) {
-        System.out.println("Visiting field");
-        return super.visitType_field(ctx);
-    }
-
-    @Override
     public Object visitNamespace_name(ProtoGenParser.Namespace_nameContext ctx) {
         System.out.println("Visiting namespace_name");
         return super.visitNamespace_name(ctx);
@@ -84,12 +66,6 @@ public class ProtoGenVisitorTest extends com.kdsc.protogen.antlr.ProtoGenBaseVis
     public Object visitField_type(ProtoGenParser.Field_typeContext ctx) {
         System.out.println("Visiting field_type");
         return super.visitField_type(ctx);
-    }
-
-    @Override
-    public Object visitType_versions(ProtoGenParser.Type_versionsContext ctx) {
-        System.out.println("Visiting type_versions");
-        return super.visitType_versions(ctx);
     }
 
     @Override
@@ -169,4 +145,35 @@ public class ProtoGenVisitorTest extends com.kdsc.protogen.antlr.ProtoGenBaseVis
         System.out.println("Visiting namespace_name_generic_parameters_without_bounds");
         return super.visitNamespace_name_generic_parameters_without_bounds(ctx);
     }
+
+    @Override
+    public Object visitField(ProtoGenParser.FieldContext ctx) {
+        System.out.println("Visiting field");
+        return super.visitField(ctx);
+    }
+
+    @Override
+    public Object visitFields(ProtoGenParser.FieldsContext ctx) {
+        System.out.println("Visiting fields");
+        return super.visitFields(ctx);
+    }
+
+    @Override
+    public Object visitProtogen_key(ProtoGenParser.Protogen_keyContext ctx) {
+        System.out.println("Visiting protogen_key");
+        return super.visitProtogen_key(ctx);
+    }
+
+    @Override
+    public Object visitVersion(ProtoGenParser.VersionContext ctx) {
+        System.out.println("Visiting version");
+        return super.visitVersion(ctx);
+    }
+
+    @Override
+    public Object visitVersions(ProtoGenParser.VersionsContext ctx) {
+        System.out.println("Visiting versions");
+        return super.visitVersions(ctx);
+    }
+
 }
