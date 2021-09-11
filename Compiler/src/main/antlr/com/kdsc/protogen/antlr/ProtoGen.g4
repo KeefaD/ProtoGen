@@ -12,7 +12,7 @@ file:
     EOF;
 
 protogen_type:
-    'type' namespace_name_generic_parameters implements_list? ( '{' (type_versions | type_fields)? '}' )?;
+    'type' namespace_name_generic_parameters_with_bounds implements_list? ( '{' (type_versions | type_fields)? '}' )?;
 
 protogen_enum:
     'enum' namespace_name ( '{' (enum_versions | enum_cases)? '}' )?;
@@ -27,13 +27,13 @@ enum_cases:
     enum_name+ (enum_name)*;
 
 implements_list:
-    ':' namespace_name_generic_parameters (',' namespace_name_generic_parameters)*;
+    ':' namespace_name_generic_parameters_without_bounds (',' namespace_name_generic_parameters_without_bounds)*;
 
 type_versions:
     type_version+;
 
 type_version:
-    'version' version_number generic_parameters? implements_list? ( '{' type_fields? '}' )?;
+    'version' version_number generic_parameters_with_bounds? implements_list? ( '{' type_fields? '}' )?;
 
 type_fields:
     type_field+;
@@ -48,6 +48,7 @@ field_type:
         non_array_field_type
     );
 
+//Need to add decimal, date, datetime
 non_array_field_type:
     (
         'double' |
@@ -59,8 +60,8 @@ non_array_field_type:
         'bytes' |
         map_field_type |
         set_field_type |
-        namespace_name_generic_parameters |
-        generic_parameter
+        namespace_name_generic_parameters_without_bounds |
+        generic_parameter_without_bounds
     );
 
 map_field_type:
@@ -72,16 +73,25 @@ set_field_type:
 array_field_type:
     non_array_field_type ('[' ']')+;
 
-namespace_name_generic_parameters:
-    namespace_name generic_parameters?;
+namespace_name_generic_parameters_with_bounds:
+    namespace_name generic_parameters_with_bounds?;
+
+namespace_name_generic_parameters_without_bounds:
+    namespace_name generic_parameters_without_bounds?;
 
 namespace_name:
     (namespace '.')+ name;
 
-generic_parameters:
-    '<' generic_parameter (',' generic_parameter)* '>';
+generic_parameters_with_bounds:
+    '<' generic_parameter_with_bounds (',' generic_parameter_with_bounds)* '>';
 
-generic_parameter:
+generic_parameters_without_bounds:
+    '<' generic_parameter_without_bounds (',' generic_parameter_without_bounds)* '>';
+
+generic_parameter_with_bounds:
+    IDENTIFIER (':' namespace_name_generic_parameters_without_bounds)? ('&' namespace_name_generic_parameters_without_bounds)*;
+
+generic_parameter_without_bounds:
     IDENTIFIER;
 
 namespace:

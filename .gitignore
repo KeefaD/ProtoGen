@@ -57,3 +57,9 @@ hs_err_pid*
 /.gradle/checksums/sha1-checksums.bin
 /Compiler/build/reports/tests/test/css/style.css
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.ProtoGenTest.xml
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.EnumTests.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.GeneralTests.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.TypeTests.html
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.EnumTests.xml
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.GeneralTests.xml
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.TypeTests.xml

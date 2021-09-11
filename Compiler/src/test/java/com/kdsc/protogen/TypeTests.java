@@ -1,27 +1,8 @@
 package com.kdsc.protogen;
 
-import com.kdsc.protogen.antlr.ProtoGenLexer;
-import com.kdsc.protogen.antlr.ProtoGenParser;
-import com.kdsc.protogen.antlr.ProtoGenVisitorTest;
-import com.kdsc.protogen.antlr.errors.ProtoGenErrorListener;
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-
-
-public class ProtoGenTest {
-
-    @Test
-    void emptyFile() {
-        var testProgram = """
-        """;
-        compileProgramAndCheckNoParserErrors(testProgram);
-    }
-
+public class TypeTests extends BaseParserTest {
     @Test
     void singleType() {
         var testProgram = """
@@ -109,7 +90,6 @@ public class ProtoGenTest {
         """;
         compileProgramAndCheckNoParserErrors(testProgram);
     }
-
 
     @Test
     void basicTypeOneImplementsNoFieldsNoBracesGenericParameter() {
@@ -246,9 +226,59 @@ public class ProtoGenTest {
     }
 
     @Test
+    void genericTypeWithBounds() {
+        var testProgram = """
+            type TestNamespace.TestGenericType<T : TestNamespace.TestType> {
+                testField : T
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericTypeWithTwoBounds() {
+        var testProgram = """
+            type TestNamespace.TestGenericType<T : TestNamespace.TestType1 & TestNamespace.TestType2 > {
+                testField : T
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
     void genericVersionedTypeWithSingleGenericParameters() {
         var testProgram = """
             type TestNamespace.TestVersionedGenericType<T> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericVersionedTypeWithSingleGenericParametersWithBounds() {
+        var testProgram = """
+            type TestNamespace.TestVersionedGenericType<T : TestNamespace.TestType> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericVersionedTypeWithSingleGenericParametersWithTwoBounds() {
+        var testProgram = """
+            type TestNamespace.TestVersionedGenericType<T : TestNamespace.TestType1 & TestNamespace.TestType2> {
                 version 1 {
                     testField : int32
                 }
@@ -292,10 +322,40 @@ public class ProtoGenTest {
     void genericVersionedTypeWithIndividualGenericParametersAndDifferentOneImplements() {
         var testProgram = """
             type TestNamespace.TestVersionedGenericType {
-                version 1 <T> : TestNamespace.KeithsOtherType1 {
+                version 1 <T> : TestNamespace.OtherType1 {
                     testField : int32
                 }
-                version 2 <T> : TestNamespace.KeithsOtherType2 {
+                version 2 <T> : TestNamespace.OtherType2 {
+                    testField : int32
+                }
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericVersionedTypeWithIndividualGenericParametersAndDifferentOneImplementsWithOneBounds() {
+        var testProgram = """
+            type TestNamespace.TestVersionedGenericType {
+                version 1 <T : TestNamespace.TestType> : TestNamespace.OtherType1 {
+                    testField : int32
+                }
+                version 2 <T : TestNamespace.TestType> : TestNamespace.TestType, TestNamespace.OtherType2 {
+                    testField : int32
+                }
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericVersionedTypeWithIndividualGenericParametersAndDifferentOneImplementsWithTwoBounds() {
+        var testProgram = """
+            type TestNamespace.TestVersionedGenericType {
+                version 1 <T : TestNamespace.TestType1 & TestNamespace.TestType2> : TestNamespace.OtherType1 {
+                    testField : int32
+                }
+                version 2 <T : TestNamespace.TestType1 & TestNamespace.TestType2> : TestNamespace.TestType, TestNamespace.OtherType2 {
                     testField : int32
                 }
             }
@@ -489,122 +549,4 @@ public class ProtoGenTest {
         """;
         compileProgramAndCheckNoParserErrors(testProgram);
     }
-
-    @Test
-    void basicEmptyEnum() {
-        var testProgram = """
-            enum TestNamespace.TestEnum
-        """;
-        compileProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void basicEmptyEnumWithBracesOnOneLine() {
-        var testProgram = """
-            enum TestNamespace.TestEnum {}
-        """;
-        compileProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void basicEmptyEnumWithSplitBraces() {
-        var testProgram = """
-            enum TestNamespace.TestEnum {
-            }
-        """;
-        compileProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void basicEnumWithOneCase() {
-        var testProgram = """
-            enum TestNamespace.TestEnum {
-                testEnumCase
-            }
-        """;
-        compileProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void basicEnumWithTwoCases() {
-        var testProgram = """
-            enum TestNamespace.TestEnum {
-                testEnumCase1
-                testEnumCase2
-            }
-        """;
-        compileProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void versionedEnumWithOneCase() {
-        var testProgram = """
-            enum TestNamespace.TestEnum {
-                version 1 {
-                    testEnumCase
-                }
-            }
-        """;
-        compileProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void versionedEnumWithTwoCases() {
-        var testProgram = """
-            enum TestNamespace.TestEnum {
-                version 1 {
-                    testEnumCase1
-                    testEnumCase2
-                }
-                version 2 {
-                    testEnumCase1
-                    testEnumCase2
-                }
-            }
-        """;
-        compileProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void versionedEnumWithTwoCasesOneEmpty() {
-        var testProgram = """
-            enum TestNamespace.TestEnum {
-                version 1 {
-                    test EnumCase1
-                    testEnumCase2
-                }
-                version 2 {
-                }
-            }
-        """;
-        compileProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    void compileProgramAndCheckNoParserErrors(String testProgram) {
-
-        var inputStream = new ByteArrayInputStream(testProgram.getBytes(StandardCharsets.UTF_8));
-
-        try {
-            var antlrInputStream = new ANTLRInputStream(inputStream);
-            var lexer = new ProtoGenLexer(antlrInputStream);
-            var tokens = new CommonTokenStream(lexer);
-            var parser = new ProtoGenParser(tokens);
-            parser.removeErrorListeners();
-            var errorListener = new ProtoGenErrorListener();
-            parser.addErrorListener(errorListener);
-            var visitor = new ProtoGenVisitorTest();
-            visitor.visit(parser.file());
-
-            if(errorListener.errorOccurred()) {
-                for(var message : errorListener.getErrors()) {
-                    System.out.println(message);
-                }
-                assert(false);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

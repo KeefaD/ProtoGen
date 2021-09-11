@@ -33,12 +33,6 @@ public class ProtoGenVisitorTest extends com.kdsc.protogen.antlr.ProtoGenBaseVis
     }
 
     @Override
-    public Object visitNamespace_name_generic_parameters(ProtoGenParser.Namespace_name_generic_parametersContext ctx) {
-        System.out.println("Visiting namespace_name_generic_parameters");
-        return super.visitNamespace_name_generic_parameters(ctx);
-    }
-
-    @Override
     public Object visitType_version(ProtoGenParser.Type_versionContext ctx) {
         System.out.println("Visiting version");
         return super.visitType_version(ctx);
@@ -72,18 +66,6 @@ public class ProtoGenVisitorTest extends com.kdsc.protogen.antlr.ProtoGenBaseVis
     public Object visitNon_array_field_type(ProtoGenParser.Non_array_field_typeContext ctx) {
         System.out.println("Visiting non_array_field_type");
         return super.visitNon_array_field_type(ctx);
-    }
-
-    @Override
-    public Object visitGeneric_parameters(ProtoGenParser.Generic_parametersContext ctx) {
-        System.out.println("Visiting generic parameters");
-        return super.visitGeneric_parameters(ctx);
-    }
-
-    @Override
-    public Object visitGeneric_parameter(ProtoGenParser.Generic_parameterContext ctx) {
-        System.out.println("Visiting generic parameter");
-        return super.visitGeneric_parameter(ctx);
     }
 
     @Override
@@ -152,4 +134,39 @@ public class ProtoGenVisitorTest extends com.kdsc.protogen.antlr.ProtoGenBaseVis
         return super.visitVersion_number(ctx);
     }
 
+    @Override
+    public Object visitGeneric_parameter_with_bounds(ProtoGenParser.Generic_parameter_with_boundsContext ctx) {
+        System.out.println("Visiting generic_parameter_with_bounds");
+        return super.visitGeneric_parameter_with_bounds(ctx);
+    }
+
+    @Override
+    public Object visitGeneric_parameter_without_bounds(ProtoGenParser.Generic_parameter_without_boundsContext ctx) {
+        System.out.println("Visiting generic_parameter_without_bounds");
+        return super.visitGeneric_parameter_without_bounds(ctx);
+    }
+
+    @Override
+    public Object visitGeneric_parameters_with_bounds(ProtoGenParser.Generic_parameters_with_boundsContext ctx) {
+        System.out.println("Visiting generic_parameters_with_bounds");
+        return super.visitGeneric_parameters_with_bounds(ctx);
+    }
+
+    @Override
+    public Object visitGeneric_parameters_without_bounds(ProtoGenParser.Generic_parameters_without_boundsContext ctx) {
+        System.out.println("Visiting generic_parameters_without_bounds");
+        return super.visitGeneric_parameters_without_bounds(ctx);
+    }
+
+    @Override
+    public Object visitNamespace_name_generic_parameters_with_bounds(ProtoGenParser.Namespace_name_generic_parameters_with_boundsContext ctx) {
+        System.out.println("Visiting namespace_name_generic_parameters_with_bounds");
+        return super.visitNamespace_name_generic_parameters_with_bounds(ctx);
+    }
+
+    @Override
+    public Object visitNamespace_name_generic_parameters_without_bounds(ProtoGenParser.Namespace_name_generic_parameters_without_boundsContext ctx) {
+        System.out.println("Visiting namespace_name_generic_parameters_without_bounds");
+        return super.visitNamespace_name_generic_parameters_without_bounds(ctx);
+    }
 }
