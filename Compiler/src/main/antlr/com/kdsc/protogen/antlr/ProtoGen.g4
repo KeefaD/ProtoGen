@@ -52,7 +52,6 @@ field_type:
         non_array_field_type
     );
 
-//Need to add decimal, date, datetime
 non_array_field_type:
     (
         'double' |
@@ -62,6 +61,9 @@ non_array_field_type:
         'bool' |
         'string' |
         'bytes' |
+        'decimal' |
+        'date' |
+        'datetime' |
         map_field_type |
         set_field_type |
         namespace_name_generic_parameters_without_bounds |

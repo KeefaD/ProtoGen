@@ -390,6 +390,9 @@ public class KeyTests extends BaseParserTest {
                 testBoolField : bool
                 testStringField : string
                 testByteField : bytes
+                testDecimalField : decimal
+                testDateField : date
+                testDatetimeField : datetime
                 testMapField : map<int32, int32>
                 testSetField : set<int32>
                 testArrayField : int32[]
@@ -411,12 +414,23 @@ public class KeyTests extends BaseParserTest {
                 testBoolField : optional bool
                 testStringField : optional string
                 testByteField : optional bytes
+                testDecimalField : optional decimal
+                testDateField : optional date
+                testDatetimeField : optional datetime
                 testMapField : optional map<int32, int32>
                 testSetField : optional set<int32>
                 testArrayField : optional int32[]
                 testKeyField : optional TestNamespace.TestKey
                 testGenericField : optional T
             }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void allFieldKeysOptionalOneLine() {
+        var testProgram = """
+            key TestNamespace.TestAllFieldTypes<T> { testDoubleField : optional double testFloatField : optional float testInt32Field : optional int32 testInt64Field : optional int64 testBoolField : optional bool testStringField : optional string testByteField : optional bytes testDecimalField : optional decimal testDateField : optional date testDatetimeField : optional datetime testMapField : optional map<int32, int32> testSetField : optional set<int32> testArrayField : optional int32[] testTypeField : optional TestNamespace.TestType testGenericField : optional T }
         """;
         compileProgramAndCheckNoParserErrors(testProgram);
     }
