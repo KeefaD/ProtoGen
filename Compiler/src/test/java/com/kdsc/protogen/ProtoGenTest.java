@@ -199,6 +199,16 @@ public class ProtoGenTest {
     }
 
     @Test
+    void basicVersionedTypeEmptyVersion() {
+        var testProgram = """
+            type TestNamespace.TestVersionedType {
+                version 1 {}
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
     void basicVersionedTypeOneVersion() {
         var testProgram = """
             type TestNamespace.TestVersionedType {
@@ -242,6 +252,19 @@ public class ProtoGenTest {
                 version 1 {
                     testField : int32
                 }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void genericVersionedTypeWithSingleGenericParametersAndOneEmptyVersion() {
+        var testProgram = """
+            type TestNamespace.TestVersionedGenericType<T> {
+                version 1 {}
                 version 2 {
                     testField : int32
                 }
@@ -445,8 +468,52 @@ public class ProtoGenTest {
     void basicEnumWithTwoCases() {
         var testProgram = """
             enum TestNamespace.TestEnum {
-                testEnumCase1,
+                testEnumCase1
                 testEnumCase2
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void versionedEnumWithOneCase() {
+        var testProgram = """
+            enum TestNamespace.TestEnum {
+                version 1 {
+                    testEnumCase
+                }
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void versionedEnumWithTwoCases() {
+        var testProgram = """
+            enum TestNamespace.TestEnum {
+                version 1 {
+                    testEnumCase1
+                    testEnumCase2
+                }
+                version 2 {
+                    testEnumCase1
+                    testEnumCase2
+                }
+            }
+        """;
+        compileProgram(testProgram);
+    }
+
+    @Test
+    void versionedEnumWithTwoCasesOneEmpty() {
+        var testProgram = """
+            enum TestNamespace.TestEnum {
+                version 1 {
+                    test EnumCase1
+                    testEnumCase2
+                }
+                version 2 {
+                }
             }
         """;
         compileProgram(testProgram);

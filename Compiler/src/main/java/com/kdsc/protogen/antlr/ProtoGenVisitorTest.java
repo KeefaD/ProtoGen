@@ -133,4 +133,23 @@ public class ProtoGenVisitorTest extends com.kdsc.protogen.antlr.ProtoGenBaseVis
         System.out.println("Visiting array_field_type");
         return super.visitArray_field_type(ctx);
     }
+
+    @Override
+    public Object visitEnum_version(ProtoGenParser.Enum_versionContext ctx) {
+        System.out.println("Visiting enum_version");
+        return super.visitEnum_version(ctx);
+    }
+
+    @Override
+    public Object visitEnum_versions(ProtoGenParser.Enum_versionsContext ctx) {
+        System.out.println("Visiting enum_versions");
+        return super.visitEnum_versions(ctx);
+    }
+
+    @Override
+    public Object visitVersion_number(ProtoGenParser.Version_numberContext ctx) {
+        System.out.println("Visiting version_number");
+        return super.visitVersion_number(ctx);
+    }
+
 }

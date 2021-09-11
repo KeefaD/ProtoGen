@@ -15,10 +15,16 @@ protogen_type:
     'type' namespace_name_generic_parameters implements_list? ( '{' (type_versions | type_fields)? '}' )?;
 
 protogen_enum:
-    'enum' namespace_name ( '{' enum_cases? '}' )?;
+    'enum' namespace_name ( '{' (enum_versions | enum_cases)? '}' )?;
+
+enum_versions:
+    enum_version+;
+
+enum_version:
+    'version' version_number ( '{' enum_cases? '}' )?;
 
 enum_cases:
-    enum_name+ (',' enum_name)*;
+    enum_name+ (enum_name)*;
 
 implements_list:
     ':' namespace_name_generic_parameters (',' namespace_name_generic_parameters)*;
@@ -27,7 +33,7 @@ type_versions:
     type_version+;
 
 type_version:
-    'version' VN generic_parameters? implements_list? ( '{' type_fields '}' )?;
+    'version' version_number generic_parameters? implements_list? ( '{' type_fields? '}' )?;
 
 type_fields:
     type_field+;
@@ -88,6 +94,9 @@ field_name:
 
 enum_name:
     IDENTIFIER;
+
+version_number:
+    VERSION_NUMBER;
 
 VERSION_NUMBER:
     [0-9]+;
