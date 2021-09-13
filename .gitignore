@@ -66,3 +66,8 @@ hs_err_pid*
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.antlr.parser.happypath.GeneralTests.xml
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.antlr.parser.happypath.KeyTests.xml
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.antlr.parser.happypath.TypeTests.xml
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.antlr.parser.happypath.KeyInterfaceTests.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.antlr.parser.happypath.TypeInterfaceTests.html
+/.idea/inspectionProfiles/Project_Default.xml
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.antlr.parser.happypath.KeyInterfaceTests.xml
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.antlr.parser.happypath.TypeInterfaceTests.xml
