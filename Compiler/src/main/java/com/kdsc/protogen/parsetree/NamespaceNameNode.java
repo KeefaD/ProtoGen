@@ -8,10 +8,13 @@ public class NamespaceNameNode extends BaseParseTreeNode {
     private final NameNode nameNode;
 
     public NamespaceNameNode(
+        long line,
+        long charPosition,
         List<NamespaceNode> namespaceNodes,
         NameNode nameNode
     )
     {
+        super(line, charPosition);
         this.namespaceNodes = namespaceNodes;
         this.nameNode = nameNode;
     }

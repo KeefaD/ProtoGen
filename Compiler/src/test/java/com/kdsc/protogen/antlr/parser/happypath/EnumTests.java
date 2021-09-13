@@ -10,7 +10,7 @@ public class EnumTests  extends BaseParserTest {
         var testProgram = """
             enum TestNamespace.TestEnum
         """;
-        compileProgramAndCheckNoParserErrors(testProgram);
+        compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -18,7 +18,7 @@ public class EnumTests  extends BaseParserTest {
         var testProgram = """
             enum TestNamespace.TestEnum {}
         """;
-        compileProgramAndCheckNoParserErrors(testProgram);
+        compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class EnumTests  extends BaseParserTest {
             enum TestNamespace.TestEnum {
             }
         """;
-        compileProgramAndCheckNoParserErrors(testProgram);
+        compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class EnumTests  extends BaseParserTest {
                 testEnumCase
             }
         """;
-        compileProgramAndCheckNoParserErrors(testProgram);
+        compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class EnumTests  extends BaseParserTest {
                 testEnumCase2
             }
         """;
-        compileProgramAndCheckNoParserErrors(testProgram);
+        compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class EnumTests  extends BaseParserTest {
                 }
             }
         """;
-        compileProgramAndCheckNoParserErrors(testProgram);
+        compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class EnumTests  extends BaseParserTest {
                 }
             }
         """;
-        compileProgramAndCheckNoParserErrors(testProgram);
+        compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
@@ -92,6 +92,6 @@ public class EnumTests  extends BaseParserTest {
                 }
             }
         """;
-        compileProgramAndCheckNoParserErrors(testProgram);
+        compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 }

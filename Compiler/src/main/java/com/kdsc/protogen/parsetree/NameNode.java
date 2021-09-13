@@ -4,7 +4,12 @@ public class NameNode extends BaseParseTreeNode {
 
     private final String name;
 
-    public NameNode(String name) {
+    public NameNode(
+        long line,
+        long charPosition,
+        String name
+    ) {
+        super(line, charPosition);
         this.name = name;
     }
 

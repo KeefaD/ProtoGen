@@ -8,9 +8,12 @@ public class GenericParameterWithBoundsNode extends BaseParseTreeNode {
     private final List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes;
 
     public GenericParameterWithBoundsNode(
+        long line,
+        long charPosition,
         String identifier,
         List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes
     ) {
+        super(line, charPosition);
         this.identifier = identifier;
         this.namespaceNameGenericParametersWithoutBoundsNodes = namespaceNameGenericParametersWithoutBoundsNodes;
     }

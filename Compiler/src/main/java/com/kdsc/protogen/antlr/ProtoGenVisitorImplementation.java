@@ -13,6 +13,8 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     @Override
     public Object visitFile(ProtoGenParser.FileContext ctx) {
         return new FileNode(
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
             ctx.protogen_type().stream().map(t -> (ProtoGenTypeNode) visit(t)).collect(Collectors.toList())
         );
     }
@@ -35,6 +37,8 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     @Override
     public Object visitProtogen_type(ProtoGenParser.Protogen_typeContext ctx) {
         return new ProtoGenTypeNode(
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
             ctx.children.stream().map(ParseTree::getText).collect(Collectors.toList()).contains(INTERFACE),
             (NamespaceNameGenericParametersWithBoundsNode) visit(ctx.namespace_name_generic_parameters_with_bounds()),
             ctx.implements_list() == null ? Optional.empty() : Optional.of((ImplementsListNode) visit(ctx.implements_list()))
@@ -44,6 +48,8 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     @Override
     public Object visitNamespace_name(ProtoGenParser.Namespace_nameContext ctx) {
         return new NamespaceNameNode(
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
             ctx.namespace().stream().map(nn -> (NamespaceNode) visit(nn)).collect(Collectors.toList()),
             (NameNode)visit(ctx.name())
         );
@@ -62,6 +68,8 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     @Override
     public Object visitName(ProtoGenParser.NameContext ctx) {
         return new NameNode(
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
             ctx.IDENTIFIER().getText()
         );
     }
@@ -69,6 +77,8 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     @Override
     public Object visitNamespace(ProtoGenParser.NamespaceContext ctx) {
         return new NamespaceNode(
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
             ctx.IDENTIFIER().getText()
         );
     }
@@ -81,6 +91,8 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     @Override
     public Object visitImplements_list(ProtoGenParser.Implements_listContext ctx) {
         return new ImplementsListNode(
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
             ctx.namespace_name_generic_parameters_without_bounds().stream().map(nngpwb -> (NamespaceNameGenericParametersWithoutBoundsNode) visit(nngpwb)).collect(Collectors.toList())
         );
     }
@@ -103,6 +115,8 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     @Override
     public Object visitGeneric_parameter_with_bounds(ProtoGenParser.Generic_parameter_with_boundsContext ctx) {
         return new GenericParameterWithBoundsNode(
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
             ctx.IDENTIFIER().getText(),
             ctx.namespace_name_generic_parameters_without_bounds().stream().map(nngpwb -> (NamespaceNameGenericParametersWithoutBoundsNode) visit(nngpwb)).collect(Collectors.toList())
         );
@@ -111,6 +125,8 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     @Override
     public Object visitGeneric_parameter_without_bounds(ProtoGenParser.Generic_parameter_without_boundsContext ctx) {
         return new GenericParameterWithoutBoundsNode(
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
             ctx.IDENTIFIER().getText()
         );
     }
@@ -118,6 +134,8 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     @Override
     public Object visitGeneric_parameters_with_bounds(ProtoGenParser.Generic_parameters_with_boundsContext ctx) {
         return new GenericParametersWithBoundsNode(
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
             ctx.generic_parameter_with_bounds().stream().map(gpwb -> (GenericParameterWithBoundsNode) visit(gpwb)).collect(Collectors.toList())
         );
     }
@@ -125,6 +143,8 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     @Override
     public Object visitGeneric_parameters_without_bounds(ProtoGenParser.Generic_parameters_without_boundsContext ctx) {
         return new GenericParametersWithoutBoundsNode(
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
             ctx.generic_parameter_without_bounds().stream().map(gpwb -> (GenericParameterWithoutBoundsNode) visit(gpwb)).collect(Collectors.toList())
         );
     }
@@ -132,6 +152,8 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     @Override
     public Object visitNamespace_name_generic_parameters_with_bounds(ProtoGenParser.Namespace_name_generic_parameters_with_boundsContext ctx) {
         return new NamespaceNameGenericParametersWithBoundsNode(
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
             (NamespaceNameNode) visit(ctx.namespace_name()),
             ctx.generic_parameters_with_bounds() == null ? Optional.empty() : Optional.of((GenericParametersWithBoundsNode) visit(ctx.generic_parameters_with_bounds()))
         );
@@ -140,6 +162,8 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     @Override
     public Object visitNamespace_name_generic_parameters_without_bounds(ProtoGenParser.Namespace_name_generic_parameters_without_boundsContext ctx) {
         return new NamespaceNameGenericParametersWithoutBoundsNode(
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
             (NamespaceNameNode) visit(ctx.namespace_name()),
             ctx.generic_parameters_without_bounds() == null ? Optional.empty() : Optional.of((GenericParametersWithoutBoundsNode) visit(ctx.generic_parameters_without_bounds()))
         );

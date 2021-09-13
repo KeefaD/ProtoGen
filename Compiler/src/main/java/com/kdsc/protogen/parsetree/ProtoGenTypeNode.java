@@ -9,10 +9,13 @@ public class ProtoGenTypeNode extends BaseParseTreeNode {
     private Optional<ImplementsListNode> implementsListNode;
 
     public ProtoGenTypeNode(
+        long line,
+        long charPosition,
         boolean isInterface,
         NamespaceNameGenericParametersWithBoundsNode namespaceNameGenericParametersWithBoundsNode,
         Optional<ImplementsListNode> implementsListNode
     ) {
+        super(line, charPosition);
         this.isInterface = isInterface;
         this.namespaceNameGenericParametersWithBoundsNode = namespaceNameGenericParametersWithBoundsNode;
         this.implementsListNode = implementsListNode;

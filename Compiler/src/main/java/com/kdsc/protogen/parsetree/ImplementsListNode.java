@@ -7,8 +7,11 @@ public class ImplementsListNode extends BaseParseTreeNode {
     private final List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes;
 
     public ImplementsListNode(
+        long line,
+        long charPosition,
         List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes
     ) {
+        super(line, charPosition);
         this.namespaceNameGenericParametersWithoutBoundsNodes = namespaceNameGenericParametersWithoutBoundsNodes;
     }
 

@@ -9,11 +9,14 @@ import java.util.List;
 
 public class ProtoGenErrorListener extends BaseErrorListener {
 
-    private List<String> errors = new ArrayList<>();
+    public static final String PARSER_ERROR_MESSAGE = "PROTOGEN PARSER ERROR at line:%d char:%d with msg:%s";
+
+    private final List<String> errors = new ArrayList<>();
+
 
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
-        errors.add("line " + line + " char " + charPositionInLine + " " + msg);
+        errors.add(PARSER_ERROR_MESSAGE.formatted(line, charPositionInLine, msg));
     }
 
     public boolean errorOccurred() {
