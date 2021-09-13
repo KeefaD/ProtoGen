@@ -7,8 +7,11 @@ public class FileNode extends BaseParseTreeNode {
     private final List<ProtoGenTypeNode> protoGenTypeNodes;
 
     public FileNode(
+        long line,
+        long charPosition,
         List<ProtoGenTypeNode> protoGenTypeNodes
     ) {
+        super(line, charPosition);
         this.protoGenTypeNodes = protoGenTypeNodes;
     }
 

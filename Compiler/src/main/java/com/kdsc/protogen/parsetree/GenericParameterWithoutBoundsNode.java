@@ -5,8 +5,11 @@ public class GenericParameterWithoutBoundsNode extends BaseParseTreeNode {
     private final String identifier;
 
     public GenericParameterWithoutBoundsNode(
+        long line,
+        long charPosition,
         String identifier
     ) {
+        super(line, charPosition);
         this.identifier = identifier;
     }
 

@@ -11,14 +11,16 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public abstract class BaseParserTest {
 
-    protected void compileProgramAndCheckNoParserErrors(String testProgram) {
+    protected void compileTestProgramAndCheckNoParserErrors(String testProgram) {
 
         System.out.println("//Test Program");
         System.out.println(testProgram);
-        System.out.println();
 
         var inputStream = new ByteArrayInputStream(testProgram.getBytes(StandardCharsets.UTF_8));
 
@@ -37,7 +39,7 @@ public abstract class BaseParserTest {
                 for(var message : errorListener.getErrors()) {
                     System.out.println(message);
                 }
-                assert(false);
+                fail("Expected test program to compile without error");
             }
 
             System.out.println("//Parse Tree");
@@ -46,5 +48,39 @@ public abstract class BaseParserTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    protected List<String> compileTestProgramReturnParserErrors(String testProgram) {
+        System.out.println("//Test Program");
+        System.out.println(testProgram);
+
+        var inputStream = new ByteArrayInputStream(testProgram.getBytes(StandardCharsets.UTF_8));
+
+        var errorListener = new ProtoGenErrorListener();
+
+        try {
+            var antlrInputStream = new ANTLRInputStream(inputStream);
+            var lexer = new ProtoGenLexer(antlrInputStream);
+            var tokens = new CommonTokenStream(lexer);
+            var parser = new ProtoGenParser(tokens);
+            parser.removeErrorListeners();
+            parser.addErrorListener(errorListener);
+            var visitor = new ProtoGenVisitorImplementation();
+            visitor.visit(parser.file());
+
+            System.out.println("//Error Messages");
+            if(!errorListener.errorOccurred()) {
+                System.out.println("None".indent(4));
+            }
+
+            for(var message : errorListener.getErrors()) {
+                System.out.println(message.indent(4));
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return errorListener.getErrors();
     }
 }

@@ -8,9 +8,12 @@ public class NamespaceNameGenericParametersWithBoundsNode extends BaseParseTreeN
     private final Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode;
 
     public NamespaceNameGenericParametersWithBoundsNode(
+        long line,
+        long charPosition,
         NamespaceNameNode namespaceNameNode,
         Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode
     ) {
+        super(line, charPosition);
         this.namespaceNameNode = namespaceNameNode;
         this.genericParametersWithBoundsNode = genericParametersWithBoundsNode;
     }

@@ -7,8 +7,11 @@ public class GenericParametersWithoutBoundsNode extends BaseParseTreeNode {
     private final List<GenericParameterWithoutBoundsNode> genericParameterWithoutBoundsNodes;
 
     public GenericParametersWithoutBoundsNode(
+        long line,
+        long charPosition,
         List<GenericParameterWithoutBoundsNode> genericParameterWithoutBoundsNodes
     ) {
+        super(line, charPosition);
         this.genericParameterWithoutBoundsNodes = genericParameterWithoutBoundsNodes;
     }
 

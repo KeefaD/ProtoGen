@@ -7,7 +7,21 @@ public abstract class BaseParseTreeNode {
 
     protected static final int INDENTATION_SPACE_COUNT = 4;
 
-    public abstract String toFormattedString(int indentationLevel);
+    private final long line;
+    private final long charPosition;
+
+    public BaseParseTreeNode(long line, long charPosition) {
+        this.line = line;
+        this.charPosition = charPosition;
+    }
+
+    public long getLine() {
+        return line;
+    }
+
+    public long getCharPosition() {
+        return charPosition;
+    }
 
     protected String oneIndent() {
         return IntStream.range(0, INDENTATION_SPACE_COUNT).mapToObj(counter -> " ").collect(Collectors.joining());
@@ -17,4 +31,6 @@ public abstract class BaseParseTreeNode {
     public String toString() {
         return toFormattedString(0);
     }
+
+    public abstract String toFormattedString(int indentationLevel);
 }
