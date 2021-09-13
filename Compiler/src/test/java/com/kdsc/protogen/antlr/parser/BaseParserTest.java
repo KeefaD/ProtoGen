@@ -4,6 +4,7 @@ import com.kdsc.protogen.antlr.ProtoGenLexer;
 import com.kdsc.protogen.antlr.ProtoGenParser;
 import com.kdsc.protogen.antlr.ProtoGenVisitorImplementation;
 import com.kdsc.protogen.antlr.errors.ProtoGenErrorListener;
+import com.kdsc.protogen.parsetree.FileNode;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 
@@ -14,6 +15,10 @@ import java.nio.charset.StandardCharsets;
 public abstract class BaseParserTest {
 
     protected void compileProgramAndCheckNoParserErrors(String testProgram) {
+
+        System.out.println("//Test Program");
+        System.out.println(testProgram);
+        System.out.println();
 
         var inputStream = new ByteArrayInputStream(testProgram.getBytes(StandardCharsets.UTF_8));
 
@@ -26,7 +31,7 @@ public abstract class BaseParserTest {
             var errorListener = new ProtoGenErrorListener();
             parser.addErrorListener(errorListener);
             var visitor = new ProtoGenVisitorImplementation();
-            var node = visitor.visit(parser.file());
+            var node = (FileNode) visitor.visit(parser.file());
 
             if(errorListener.errorOccurred()) {
                 for(var message : errorListener.getErrors()) {
@@ -35,7 +40,8 @@ public abstract class BaseParserTest {
                 assert(false);
             }
 
-            System.out.println(node);
+            System.out.println("//Parse Tree");
+            System.out.println(node.toFormattedString(1));
 
         } catch (IOException e) {
             e.printStackTrace();

@@ -4,9 +4,11 @@ import java.util.List;
 
 public class FileNode extends BaseParseTreeNode {
 
-    private List<ProtoGenTypeNode> protoGenTypeNodes;
+    private final List<ProtoGenTypeNode> protoGenTypeNodes;
 
-    public FileNode(List<ProtoGenTypeNode> protoGenTypeNodes) {
+    public FileNode(
+        List<ProtoGenTypeNode> protoGenTypeNodes
+    ) {
         this.protoGenTypeNodes = protoGenTypeNodes;
     }
 
@@ -14,8 +16,10 @@ public class FileNode extends BaseParseTreeNode {
     public String toFormattedString(int indentationLevel) {
         var stringBuffer = new StringBuffer();
         stringBuffer.append("//FileNode\n");
-        protoGenTypeNodes.forEach(pgtn -> stringBuffer.append(pgtn.toFormattedString(indentationLevel + 1)));
+        if(null != protoGenTypeNodes) {
+            protoGenTypeNodes.forEach(pgtn -> stringBuffer.append(pgtn.toFormattedString(1)));
+        }
         var outputString = stringBuffer.toString();
-        return outputString.indent(indentationLevel * indentationSpaceCount);
+        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
 }

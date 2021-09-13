@@ -8,18 +8,22 @@ file:
     (
         protogen_type |
         protogen_key |
-        protogen_enum
+        protogen_enum |
+        protogen_one_of
     )*
     EOF;
 
 protogen_type:
-    'type' namespace_name_generic_parameters_with_bounds implements_list? ( '{' (versions | fields)? '}' )?;
+    'type' 'interface'? namespace_name_generic_parameters_with_bounds implements_list? ( '{' (versions | fields)? '}' )?;
 
 protogen_key:
-    'key' namespace_name_generic_parameters_with_bounds implements_list? ( '{' (versions | fields)? '}' )?;
+    'key' 'interface'? namespace_name_generic_parameters_with_bounds implements_list? ( '{' (versions | fields)? '}' )?;
 
 protogen_enum:
     'enum' namespace_name ( '{' (enum_versions | enum_cases)? '}' )?;
+
+protogen_one_of:
+    'oneof' namespace_name ( '{' (enum_versions | enum_cases)? '}' )?;
 
 enum_versions:
     enum_version+;

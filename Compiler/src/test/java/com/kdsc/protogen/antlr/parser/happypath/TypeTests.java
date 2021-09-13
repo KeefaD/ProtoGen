@@ -14,6 +14,14 @@ public class TypeTests extends BaseParserTest {
     }
 
     @Test
+    void singleTypeNestedNamespace() {
+        var testProgram = """
+            type TestNamespace.TestNestedNamespace.TestType
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
     void multipleTypes() {
         var testProgram = """
             type TestNamespace.TestType1
@@ -221,6 +229,46 @@ public class TypeTests extends BaseParserTest {
     void genericType() {
         var testProgram = """
             type TestNamespace.TestGenericType<T> {
+                testField : T
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericTypeWithImplements() {
+        var testProgram = """
+            type TestNamespace.TestGenericType<T> : TestNamespace.TestImplements {
+                testField : T
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericTypeWithImplementsGeneric() {
+        var testProgram = """
+            type TestNamespace.TestGenericType<T> : TestNamespace.TestImplements<T> {
+                testField : T
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericTypeWithTwoImplements() {
+        var testProgram = """
+            type TestNamespace.TestGenericType<T> : TestNamespace.TestImplements1, TestNamespace.TestImplements2 {
+                testField : T
+            }
+        """;
+        compileProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericTypeWithTwoImplementsGeneric() {
+        var testProgram = """
+            type TestNamespace.TestGenericType<T> : TestNamespace.TestImplements1<T>, TestNamespace.TestImplements2<T> {
                 testField : T
             }
         """;
