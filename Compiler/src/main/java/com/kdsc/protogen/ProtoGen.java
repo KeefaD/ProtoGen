@@ -24,7 +24,7 @@ public class ProtoGen {
             var lexer = new ProtoGenLexer(antlrInputStream);
             var tokens = new CommonTokenStream(lexer);
             var parser = new ProtoGenParser(tokens);
-            var visitor = new ProtoGenVisitorImplementation();
+            var visitor = new ProtoGenVisitorImplementation("NA");
             visitor.visit(parser.file());
 
         } catch (IOException e) {

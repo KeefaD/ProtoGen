@@ -8,26 +8,27 @@ public class NamespaceNameNode extends BaseParseTreeNode {
     private final NameNode nameNode;
 
     public NamespaceNameNode(
+        String sourceFileName,
         long line,
         long charPosition,
         List<NamespaceNode> namespaceNodes,
         NameNode nameNode
     )
     {
-        super(line, charPosition);
+        super(sourceFileName, line, charPosition);
         this.namespaceNodes = namespaceNodes;
         this.nameNode = nameNode;
     }
 
     @Override
     public String toFormattedString(int indentationLevel) {
-        var stringBuffer = new StringBuffer();
-        stringBuffer.append("//NamespaceNameNode\n");
+        var stringBuilder = new StringBuilder();
+        stringBuilder.append("//NamespaceNameNode\n");
         if(null != namespaceNodes) {
-            namespaceNodes.forEach(pgtn -> stringBuffer.append(pgtn.toFormattedString(1)));
+            namespaceNodes.forEach(pgtn -> stringBuilder.append(pgtn.toFormattedString(1)));
         }
-        stringBuffer.append(nameNode.toFormattedString(1));
-        var outputString = stringBuffer.toString();
+        stringBuilder.append(nameNode.toFormattedString(1));
+        var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
 

@@ -17,7 +17,7 @@ public class UnhappyPathGeneralTests extends BaseParserTest {
         var parserErrors = compileTestProgramReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(parserErrors.size(), 1, "Unexpected parser errors size");
-        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(1, 4, "extraneous input 'a' expecting {<EOF>, 'type', 'key', 'enum', 'oneof'}"));
+        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 4, "extraneous input 'a' expecting {<EOF>, 'type', 'key', 'enum', 'oneof'}"));
     }
 
     @Test
@@ -28,7 +28,7 @@ public class UnhappyPathGeneralTests extends BaseParserTest {
         var parserErrors = compileTestProgramReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(parserErrors.size(), 1, "Unexpected parser errors size");
-        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(1, 4, "mismatched input 'ttype' expecting {<EOF>, 'type', 'key', 'enum', 'oneof'}"));
+        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 4, "mismatched input 'ttype' expecting {<EOF>, 'type', 'key', 'enum', 'oneof'}"));
     }
 
     @Test
@@ -39,7 +39,7 @@ public class UnhappyPathGeneralTests extends BaseParserTest {
         var parserErrors = compileTestProgramReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(parserErrors.size(), 1, "Unexpected parser errors size");
-        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(2, 0, "mismatched input '<EOF>' expecting '.'"));
+        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 2, 0, "mismatched input '<EOF>' expecting '.'"));
     }
 
     @Test
@@ -50,7 +50,7 @@ public class UnhappyPathGeneralTests extends BaseParserTest {
         var parserErrors = compileTestProgramReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(parserErrors.size(), 1, "Unexpected parser errors size");
-        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(1, 18, "mismatched input '{' expecting '.'"));
+        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 18, "mismatched input '{' expecting '.'"));
     }
 
 }

@@ -19,16 +19,19 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public abstract class BaseParserTest {
 
+    public static final String DUMMY_SOURCE_FILE_NAME = "UnitTest";
+
     protected void compileTestProgramAndCheckNoParserErrors(String testProgram) {
 
         System.out.println("//Test Program");
         System.out.println(testProgram);
 
-        var errorListener = new ProtoGenErrorListener();
+        //TODO:KMD Not keen on having this source file name in to places
+        var errorListener = new ProtoGenErrorListener(DUMMY_SOURCE_FILE_NAME);
 
         var parseTree = compileTestProgramAndReturnParseTree(errorListener, testProgram);
 
-        var visitor = new ProtoGenVisitorImplementation();
+        var visitor = new ProtoGenVisitorImplementation(DUMMY_SOURCE_FILE_NAME);
         var node = (FileNode) visitor.visit(parseTree);
 
         if(errorListener.errorOccurred()) {
@@ -48,7 +51,7 @@ public abstract class BaseParserTest {
         System.out.println("//Test Program");
         System.out.println(testProgram);
 
-        var errorListener = new ProtoGenErrorListener();
+        var errorListener = new ProtoGenErrorListener(DUMMY_SOURCE_FILE_NAME);
 
         compileTestProgramAndReturnParseTree(errorListener, testProgram);
 

@@ -7,10 +7,12 @@ public abstract class BaseParseTreeNode {
 
     protected static final int INDENTATION_SPACE_COUNT = 4;
 
+    private final String sourceFileName;
     private final long line;
     private final long charPosition;
 
-    public BaseParseTreeNode(long line, long charPosition) {
+    public BaseParseTreeNode(String sourceFileName, long line, long charPosition) {
+        this.sourceFileName = sourceFileName;
         this.line = line;
         this.charPosition = charPosition;
     }

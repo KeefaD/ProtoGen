@@ -5,11 +5,12 @@ public class NamespaceNode extends BaseParseTreeNode {
     private final String namespace;
 
     public NamespaceNode(
+        String sourceFileName,
         long line,
         long charPosition,
         String namespace
     ) {
-        super(line, charPosition);
+        super(sourceFileName, line, charPosition);
         this.namespace = namespace;
     }
 

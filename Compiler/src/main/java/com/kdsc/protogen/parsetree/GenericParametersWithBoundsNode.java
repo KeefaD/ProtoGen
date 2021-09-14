@@ -7,22 +7,23 @@ public class GenericParametersWithBoundsNode extends BaseParseTreeNode {
     private final List<GenericParameterWithBoundsNode> genericParameterWithBoundsNodes;
 
     public GenericParametersWithBoundsNode(
+        String sourceFileName,
         long line,
         long charPosition,
         List<GenericParameterWithBoundsNode> genericParameterWithBoundsNodes
     ) {
-        super(line, charPosition);
+        super(sourceFileName, line, charPosition);
         this.genericParameterWithBoundsNodes = genericParameterWithBoundsNodes;
     }
 
     @Override
     public String toFormattedString(int indentationLevel) {
-        var stringBuffer = new StringBuffer();
-        stringBuffer.append("//GenericParametersWithBoundsNode\n");
+        var stringBuilder = new StringBuilder();
+        stringBuilder.append("//GenericParametersWithBoundsNode\n");
         if(null != genericParameterWithBoundsNodes) {
-            genericParameterWithBoundsNodes.forEach(gpwb -> stringBuffer.append(gpwb.toFormattedString(1)));
+            genericParameterWithBoundsNodes.forEach(gpwb -> stringBuilder.append(gpwb.toFormattedString(1)));
         }
-        var outputString = stringBuffer.toString();
+        var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
 }

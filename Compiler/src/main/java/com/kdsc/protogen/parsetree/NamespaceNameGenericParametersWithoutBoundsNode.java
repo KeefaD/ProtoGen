@@ -8,23 +8,24 @@ public class NamespaceNameGenericParametersWithoutBoundsNode extends BaseParseTr
     private final Optional<GenericParametersWithoutBoundsNode> genericParametersWithoutBoundsNode;
 
     public NamespaceNameGenericParametersWithoutBoundsNode(
+        String sourceFileName,
         long line,
         long charPosition,
         NamespaceNameNode namespaceNameNode,
         Optional<GenericParametersWithoutBoundsNode> genericParametersWithoutBoundsNode
     ) {
-        super(line, charPosition);
+        super(sourceFileName, line, charPosition);
         this.namespaceNameNode = namespaceNameNode;
         this.genericParametersWithoutBoundsNode = genericParametersWithoutBoundsNode;
     }
 
     @Override
     public String toFormattedString(int indentationLevel) {
-        var stringBuffer = new StringBuffer();
-        stringBuffer.append("//NamespaceNameGenericParametersWithoutBoundsNode\n");
-        stringBuffer.append(namespaceNameNode.toFormattedString(1));
-        genericParametersWithoutBoundsNode.ifPresent(parametersWithoutBoundsNode -> stringBuffer.append(parametersWithoutBoundsNode.toFormattedString(1)));
-        var outputString = stringBuffer.toString();
+        var stringBuilder = new StringBuilder();
+        stringBuilder.append("//NamespaceNameGenericParametersWithoutBoundsNode\n");
+        stringBuilder.append(namespaceNameNode.toFormattedString(1));
+        genericParametersWithoutBoundsNode.ifPresent(parametersWithoutBoundsNode -> stringBuilder.append(parametersWithoutBoundsNode.toFormattedString(1)));
+        var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
 }

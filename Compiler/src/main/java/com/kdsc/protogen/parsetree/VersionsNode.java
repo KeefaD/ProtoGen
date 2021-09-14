@@ -1,27 +1,28 @@
 package com.kdsc.protogen.parsetree;
 
 import java.util.List;
+import java.util.Optional;
 
-public class FileNode extends BaseParseTreeNode {
+public class VersionsNode extends BaseParseTreeNode {
 
-    private final List<ProtoGenTypeNode> protoGenTypeNodes;
+    private final Optional<List<VersionNode>> versionNodes;
 
-    public FileNode(
+    public VersionsNode(
         String sourceFileName,
         long line,
         long charPosition,
-        List<ProtoGenTypeNode> protoGenTypeNodes
+        Optional<List<VersionNode>> versionNodes
     ) {
         super(sourceFileName, line, charPosition);
-        this.protoGenTypeNodes = protoGenTypeNodes;
+        this.versionNodes = versionNodes;
     }
 
     @Override
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//FileNode\n");
-        if(null != protoGenTypeNodes) {
-            protoGenTypeNodes.forEach(pgtn -> stringBuilder.append(pgtn.toFormattedString(1)));
+        stringBuilder.append("//VersionsNode\n");
+        if(null != versionNodes && versionNodes.isPresent()) {
+            versionNodes.get().forEach(vn -> stringBuilder.append(vn.toFormattedString(1)));
         }
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
