@@ -2,7 +2,7 @@ package com.kdsc.protogen.parsetree;
 
 import java.util.Optional;
 
-public class ProtoGenEnumNode extends BaseParseTreeNode {
+public class ProtoGenEnumNode extends BaseNode {
 
     private NamespaceNameNode namespaceNameNode;
     private Optional<EnumVersionsNode> enumVersionsNode;

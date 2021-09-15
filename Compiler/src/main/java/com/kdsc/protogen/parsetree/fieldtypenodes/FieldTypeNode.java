@@ -1,10 +1,11 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-import com.kdsc.protogen.parsetree.BaseParseTreeNode;
+import com.kdsc.protogen.parsetree.BaseNode;
 
+import java.util.Objects;
 import java.util.Optional;
 
-public class FieldTypeNode extends BaseParseTreeNode {
+public class FieldTypeNode extends BaseNode {
 
     private final boolean optional;
     private final Optional<ArrayFieldTypeNode> arrayFieldTypeNode;
@@ -19,9 +20,23 @@ public class FieldTypeNode extends BaseParseTreeNode {
         Optional<NonArrayFieldTypeNode> nonArrayFieldTypeNode
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(arrayFieldTypeNode);
+        Objects.requireNonNull(nonArrayFieldTypeNode);
         this.optional = optional;
         this.arrayFieldTypeNode = arrayFieldTypeNode;
         this.nonArrayFieldTypeNode = nonArrayFieldTypeNode;
+    }
+
+    public boolean isOptional() {
+        return optional;
+    }
+
+    public Optional<ArrayFieldTypeNode> getArrayFieldTypeNode() {
+        return arrayFieldTypeNode;
+    }
+
+    public Optional<NonArrayFieldTypeNode> getNonArrayFieldTypeNode() {
+        return nonArrayFieldTypeNode;
     }
 
     @Override

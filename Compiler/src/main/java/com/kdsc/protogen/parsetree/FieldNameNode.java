@@ -1,6 +1,10 @@
 package com.kdsc.protogen.parsetree;
 
-public class FieldNameNode extends BaseParseTreeNode {
+import com.kdsc.protogen.utils.Strings;
+
+import java.util.Objects;
+
+public class FieldNameNode extends BaseNode {
 
     private final String fieldName;
 
@@ -11,7 +15,13 @@ public class FieldNameNode extends BaseParseTreeNode {
         String fieldName
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(fieldName);
+        Strings.requireNonBlank(fieldName);
         this.fieldName = fieldName;
+    }
+
+    public String getFieldName() {
+        return fieldName;
     }
 
     @Override

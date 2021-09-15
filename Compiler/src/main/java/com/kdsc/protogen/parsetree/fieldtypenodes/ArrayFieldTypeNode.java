@@ -1,8 +1,8 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-import com.kdsc.protogen.parsetree.BaseParseTreeNode;
+import com.kdsc.protogen.parsetree.BaseNode;
 
-public class ArrayFieldTypeNode extends BaseParseTreeNode {
+public class ArrayFieldTypeNode extends BaseNode {
 
     private final NonArrayFieldTypeNode nonArrayFieldTypeNode;
     private final long dimensions;

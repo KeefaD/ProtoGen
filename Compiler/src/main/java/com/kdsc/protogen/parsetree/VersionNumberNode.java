@@ -1,6 +1,6 @@
 package com.kdsc.protogen.parsetree;
 
-public class VersionNumberNode extends BaseParseTreeNode {
+public class VersionNumberNode extends BaseNode {
 
     private final long versionNumber;
 
@@ -12,6 +12,10 @@ public class VersionNumberNode extends BaseParseTreeNode {
     ) {
         super(sourceFileName, line, charPosition);
         this.versionNumber = versionNumber;
+    }
+
+    public long getVersionNumber() {
+        return versionNumber;
     }
 
     @Override

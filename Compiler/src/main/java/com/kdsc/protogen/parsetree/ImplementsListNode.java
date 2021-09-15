@@ -2,7 +2,7 @@ package com.kdsc.protogen.parsetree;
 
 import java.util.List;
 
-public class ImplementsListNode extends BaseParseTreeNode {
+public class ImplementsListNode extends BaseNode {
 
     private final List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes;
 

@@ -3,7 +3,7 @@ package com.kdsc.protogen.parsetree;
 import java.util.List;
 import java.util.Optional;
 
-public class VersionsNode extends BaseParseTreeNode {
+public class VersionsNode extends BaseNode {
 
     private final Optional<List<VersionNode>> versionNodes;
 

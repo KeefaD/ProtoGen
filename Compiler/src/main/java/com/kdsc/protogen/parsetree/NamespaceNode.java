@@ -1,6 +1,6 @@
 package com.kdsc.protogen.parsetree;
 
-public class NamespaceNode extends BaseParseTreeNode {
+public class NamespaceNode extends BaseNode {
 
     private final String namespace;
 

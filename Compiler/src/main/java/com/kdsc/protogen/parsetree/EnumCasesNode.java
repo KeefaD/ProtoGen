@@ -1,27 +1,33 @@
 package com.kdsc.protogen.parsetree;
 
 import java.util.List;
+import java.util.Objects;
 
-public class EnumCasesNode extends BaseParseTreeNode {
+public class EnumCasesNode extends BaseNode {
 
-    private final List<EnumNameNode> enumCasesNodes;
+    private final List<EnumNameNode> enumNameNodes;
 
     public EnumCasesNode(
         String sourceFileName,
         long line,
         long charPosition,
-        List<EnumNameNode> enumCasesNodes
+        List<EnumNameNode> enumNameNodes
     ) {
         super(sourceFileName, line, charPosition);
-        this.enumCasesNodes = enumCasesNodes;
+        this.enumNameNodes = enumNameNodes;
+        Objects.requireNonNull(enumNameNodes);
+    }
+
+    public List<EnumNameNode> getEnumNameNodes() {
+        return enumNameNodes;
     }
 
     @Override
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//EnumCasesNode\n");
-        if(null != enumCasesNodes) {
-            enumCasesNodes.forEach(ecn -> stringBuilder.append(ecn.toFormattedString(1)));
+        if(null != enumNameNodes) {
+            enumNameNodes.forEach(ecn -> stringBuilder.append(ecn.toFormattedString(1)));
         }
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);

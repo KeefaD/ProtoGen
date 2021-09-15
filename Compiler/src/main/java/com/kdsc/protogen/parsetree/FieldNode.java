@@ -2,7 +2,9 @@ package com.kdsc.protogen.parsetree;
 
 import com.kdsc.protogen.parsetree.fieldtypenodes.FieldTypeNode;
 
-public class FieldNode extends BaseParseTreeNode {
+import java.util.Objects;
+
+public class FieldNode extends BaseNode {
 
     private final FieldNameNode fieldNameNode;
     private final FieldTypeNode fieldTypeNode;
@@ -15,8 +17,18 @@ public class FieldNode extends BaseParseTreeNode {
         FieldTypeNode fieldTypeNode
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(fieldNameNode);
+        Objects.requireNonNull(fieldTypeNode);
         this.fieldNameNode = fieldNameNode;
         this.fieldTypeNode = fieldTypeNode;
+    }
+
+    public FieldNameNode getFieldNameNode() {
+        return fieldNameNode;
+    }
+
+    public FieldTypeNode getFieldTypeNode() {
+        return fieldTypeNode;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package com.kdsc.protogen.parsetree;
 
-public class NameNode extends BaseParseTreeNode {
+public class NameNode extends BaseNode {
 
     private final String name;
 

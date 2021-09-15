@@ -2,7 +2,7 @@ package com.kdsc.protogen.parsetree;
 
 import java.util.List;
 
-public class NamespaceNameNode extends BaseParseTreeNode {
+public class NamespaceNameNode extends BaseNode {
 
     private final List<NamespaceNode> namespaceNodes;
     private final NameNode nameNode;

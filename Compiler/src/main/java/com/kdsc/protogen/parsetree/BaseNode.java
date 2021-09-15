@@ -1,9 +1,13 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.utils.Numbers;
+import com.kdsc.protogen.utils.Strings;
+
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public abstract class BaseParseTreeNode {
+public abstract class BaseNode {
 
     protected static final int INDENTATION_SPACE_COUNT = 4;
 
@@ -11,7 +15,11 @@ public abstract class BaseParseTreeNode {
     private final long line;
     private final long charPosition;
 
-    public BaseParseTreeNode(String sourceFileName, long line, long charPosition) {
+    public BaseNode(String sourceFileName, long line, long charPosition) {
+        Objects.requireNonNull(sourceFileName);
+        Strings.requireNonBlank(sourceFileName);
+        Numbers.requireZeroOrGreater(line);
+        Numbers.requireZeroOrGreater(charPosition);
         this.sourceFileName = sourceFileName;
         this.line = line;
         this.charPosition = charPosition;

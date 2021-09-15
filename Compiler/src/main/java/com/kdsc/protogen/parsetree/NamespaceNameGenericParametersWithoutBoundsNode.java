@@ -2,7 +2,7 @@ package com.kdsc.protogen.parsetree;
 
 import java.util.Optional;
 
-public class NamespaceNameGenericParametersWithoutBoundsNode extends BaseParseTreeNode {
+public class NamespaceNameGenericParametersWithoutBoundsNode extends BaseNode {
 
     private final NamespaceNameNode namespaceNameNode;
     private final Optional<GenericParametersWithoutBoundsNode> genericParametersWithoutBoundsNode;

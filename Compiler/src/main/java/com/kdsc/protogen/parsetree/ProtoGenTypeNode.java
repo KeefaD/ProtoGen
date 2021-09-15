@@ -2,7 +2,7 @@ package com.kdsc.protogen.parsetree;
 
 import java.util.Optional;
 
-public class ProtoGenTypeNode extends BaseParseTreeNode {
+public class ProtoGenTypeNode extends BaseNode {
 
     private boolean isInterface;
     private NamespaceNameGenericParametersWithBoundsNode namespaceNameGenericParametersWithBoundsNode;

@@ -1,6 +1,6 @@
 package com.kdsc.protogen.parsetree;
 
-public class GenericParameterWithoutBoundsNode extends BaseParseTreeNode {
+public class GenericParameterWithoutBoundsNode extends BaseNode {
 
     private final String identifier;
 

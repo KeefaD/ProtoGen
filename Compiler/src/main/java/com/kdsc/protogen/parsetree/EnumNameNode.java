@@ -1,6 +1,10 @@
 package com.kdsc.protogen.parsetree;
 
-public class EnumNameNode extends BaseParseTreeNode {
+import com.kdsc.protogen.utils.Strings;
+
+import java.util.Objects;
+
+public class EnumNameNode extends BaseNode {
 
     private final String enumName;
 
@@ -11,13 +15,19 @@ public class EnumNameNode extends BaseParseTreeNode {
         String enumName
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(enumName);
+        Strings.requireNonBlank(enumName);
         this.enumName = enumName;
+    }
+
+    public String getEnumName() {
+        return enumName;
     }
 
     @Override
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//EnumCaseNode\n");
+        stringBuilder.append("//EnumNameNode\n");
         stringBuilder.append(oneIndent() + "EnumName : " + enumName);
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);

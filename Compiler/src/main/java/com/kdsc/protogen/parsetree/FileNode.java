@@ -2,7 +2,7 @@ package com.kdsc.protogen.parsetree;
 
 import java.util.List;
 
-public class FileNode extends BaseParseTreeNode {
+public class FileNode extends BaseNode {
 
     private final List<ProtoGenTypeNode> protoGenTypeNodes;
     private final List<ProtoGenKeyNode> protoGenKeyNodes;

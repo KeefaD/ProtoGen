@@ -3,7 +3,7 @@ package com.kdsc.protogen.parsetree;
 import java.util.List;
 import java.util.Optional;
 
-public class FieldsNode extends BaseParseTreeNode {
+public class FieldsNode extends BaseNode {
 
     private final Optional<List<FieldNode>> fieldNodes;
 

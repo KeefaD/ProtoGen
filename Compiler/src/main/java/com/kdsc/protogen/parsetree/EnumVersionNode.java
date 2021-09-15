@@ -1,8 +1,9 @@
 package com.kdsc.protogen.parsetree;
 
+import java.util.Objects;
 import java.util.Optional;
 
-public class EnumVersionNode extends BaseParseTreeNode {
+public class EnumVersionNode extends BaseNode {
 
     private final VersionNumberNode versionNumberNode;
     private final Optional<EnumCasesNode> enumCasesNode;
@@ -15,8 +16,18 @@ public class EnumVersionNode extends BaseParseTreeNode {
         Optional<EnumCasesNode> enumCasesNode
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(versionNumberNode);
+        Objects.requireNonNull(enumCasesNode);
         this.versionNumberNode = versionNumberNode;
         this.enumCasesNode = enumCasesNode;
+    }
+
+    public VersionNumberNode getVersionNumberNode() {
+        return versionNumberNode;
+    }
+
+    public Optional<EnumCasesNode> getEnumCasesNode() {
+        return enumCasesNode;
     }
 
     @Override
