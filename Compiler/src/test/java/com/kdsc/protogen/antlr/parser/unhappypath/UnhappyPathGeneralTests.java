@@ -17,7 +17,7 @@ public class UnhappyPathGeneralTests extends BaseParserTest {
         var parserErrors = compileTestProgramReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(parserErrors.size(), 1, "Unexpected parser errors size");
-        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 4, "extraneous input 'a' expecting {<EOF>, 'type', 'key', 'enum', 'oneof'}"));
+        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 4, "extraneous input 'a' expecting {<EOF>, 'type', 'key', 'enum'}"));
     }
 
     @Test
@@ -28,7 +28,7 @@ public class UnhappyPathGeneralTests extends BaseParserTest {
         var parserErrors = compileTestProgramReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(parserErrors.size(), 1, "Unexpected parser errors size");
-        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 4, "mismatched input 'ttype' expecting {<EOF>, 'type', 'key', 'enum', 'oneof'}"));
+        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 4, "mismatched input 'ttype' expecting {<EOF>, 'type', 'key', 'enum'}"));
     }
 
     @Test
@@ -51,6 +51,30 @@ public class UnhappyPathGeneralTests extends BaseParserTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(parserErrors.size(), 1, "Unexpected parser errors size");
         assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 18, "mismatched input '{' expecting '.'"));
+    }
+
+    @Test
+    void mismatchedBraces() {
+        var testProgram = """
+            type TestNamespace.TestType {
+        """;
+        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        assertNotNull(parserErrors, "Parser errors are unexpectedly null");
+        assertEquals(parserErrors.size(), 1, "Unexpected parser errors size");
+        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 2, 0, "no viable alternative at input '<EOF>'"));
+    }
+
+    @Test
+    void mismatchedSquareBracketsForArray() {
+        var testProgram = """
+            type TestNamespace.TestType {
+                testArray : int32[
+            }
+        """;
+        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        assertNotNull(parserErrors, "Parser errors are unexpectedly null");
+        assertEquals(parserErrors.size(), 1, "Unexpected parser errors size");
+        assertEquals(parserErrors.get(0), ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 3, 4, "missing ']' at '}'"));
     }
 
 }

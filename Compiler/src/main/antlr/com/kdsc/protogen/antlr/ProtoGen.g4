@@ -8,8 +8,7 @@ file:
     (
         protogen_type |
         protogen_key |
-        protogen_enum |
-        protogen_one_of
+        protogen_enum
     )*
     EOF;
 
@@ -21,9 +20,6 @@ protogen_key:
 
 protogen_enum:
     'enum' namespace_name ( '{' (enum_versions | enum_cases)? '}' )?;
-
-protogen_one_of:
-    'oneof' namespace_name ( '{' (enum_versions | enum_cases)? '}' )?;
 
 enum_versions:
     enum_version+;
@@ -52,7 +48,7 @@ field:
 field_type:
     'optional'?
     (
-        array |
+        array_field_type |
         non_array_field_type
     );
 
@@ -72,8 +68,8 @@ non_array_field_type:
         map |
         set |
         value_or_error |
-        namespace_name_generic_parameters_without_bounds |
-        generic_parameter_without_bounds
+        object_field_type |
+        generic_object_field_type
     );
 
 map:
@@ -85,8 +81,14 @@ set:
 value_or_error:
     'valueorerror' '<' field_type '>';
 
-array:
+array_field_type:
     non_array_field_type ('[' ']')+;
+
+object_field_type:
+    namespace_name_generic_parameters_without_bounds;
+
+generic_object_field_type:
+    generic_parameter_without_bounds;
 
 namespace_name_generic_parameters_with_bounds:
     namespace_name generic_parameters_with_bounds?;

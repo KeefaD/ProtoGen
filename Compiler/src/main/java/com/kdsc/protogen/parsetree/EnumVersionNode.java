@@ -2,29 +2,29 @@ package com.kdsc.protogen.parsetree;
 
 import java.util.Optional;
 
-public class VersionNode extends BaseParseTreeNode {
+public class EnumVersionNode extends BaseParseTreeNode {
 
     private final VersionNumberNode versionNumberNode;
-    private final Optional<FieldsNode> fieldsNode;
+    private final Optional<EnumCasesNode> enumCasesNode;
 
-    public VersionNode(
+    public EnumVersionNode(
         String sourceFileName,
         long line,
         long charPosition,
         VersionNumberNode versionNumberNode,
-        Optional<FieldsNode> fieldsNode
+        Optional<EnumCasesNode> enumCasesNode
     ) {
         super(sourceFileName, line, charPosition);
         this.versionNumberNode = versionNumberNode;
-        this.fieldsNode = fieldsNode;
+        this.enumCasesNode = enumCasesNode;
     }
 
     @Override
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//VersionNode\n");
+        stringBuilder.append("//EnumVersionNode\n");
         stringBuilder.append(versionNumberNode.toFormattedString(1));
-        fieldsNode.ifPresent(fieldsNode -> stringBuilder.append(fieldsNode.toFormattedString(1)));
+        enumCasesNode.ifPresent(ecn -> stringBuilder.append(ecn.toFormattedString(1)));
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

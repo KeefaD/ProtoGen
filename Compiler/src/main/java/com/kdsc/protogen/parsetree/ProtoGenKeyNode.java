@@ -2,7 +2,7 @@ package com.kdsc.protogen.parsetree;
 
 import java.util.Optional;
 
-public class ProtoGenTypeNode extends BaseParseTreeNode {
+public class ProtoGenKeyNode extends BaseParseTreeNode {
 
     private boolean isInterface;
     private NamespaceNameGenericParametersWithBoundsNode namespaceNameGenericParametersWithBoundsNode;
@@ -10,7 +10,7 @@ public class ProtoGenTypeNode extends BaseParseTreeNode {
     private Optional<VersionsNode> versionsNode;
     private Optional<FieldsNode> fieldsNode;
 
-    public ProtoGenTypeNode(
+    public ProtoGenKeyNode(
         String sourceFileName,
         long line,
         long charPosition,
@@ -31,7 +31,7 @@ public class ProtoGenTypeNode extends BaseParseTreeNode {
     @Override
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//ProtoGenTypeNode\n");
+        stringBuilder.append("//ProtoGenKeyNode\n");
         stringBuilder.append(oneIndent() + "IsInterface : " + isInterface + "\n");
         stringBuilder.append(namespaceNameGenericParametersWithBoundsNode.toFormattedString(1) + "\n");
         implementsListNode.ifPresent(listNode -> stringBuilder.append(listNode.toFormattedString(1)));
