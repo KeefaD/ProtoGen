@@ -1,4 +1,4 @@
-package com.kdsc.protogen.parsetree;
+package com.kdsc.protogen.parsetree.fieldtypenodes;
 
 public class MapFieldTypeNode extends NonArrayFieldTypeNode {
 

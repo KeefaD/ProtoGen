@@ -1,6 +1,7 @@
 package com.kdsc.protogen.antlr;
 
 import com.kdsc.protogen.parsetree.*;
+import com.kdsc.protogen.parsetree.fieldtypenodes.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.Optional;

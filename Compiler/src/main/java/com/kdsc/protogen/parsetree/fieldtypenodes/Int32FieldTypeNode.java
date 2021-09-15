@@ -1,8 +1,8 @@
-package com.kdsc.protogen.parsetree;
+package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-public class Int64FieldTypeNode extends NonArrayFieldTypeNode {
+public class Int32FieldTypeNode extends NonArrayFieldTypeNode {
 
-    public Int64FieldTypeNode(
+    public Int32FieldTypeNode(
         String sourceFileName,
         long line,
         long charPosition
@@ -13,7 +13,7 @@ public class Int64FieldTypeNode extends NonArrayFieldTypeNode {
     @Override
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//Int64FieldTypeNode\n");
+        stringBuilder.append("//Int32FieldTypeNode\n");
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

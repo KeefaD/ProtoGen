@@ -1,4 +1,6 @@
-package com.kdsc.protogen.parsetree;
+package com.kdsc.protogen.parsetree.fieldtypenodes;
+
+import com.kdsc.protogen.parsetree.BaseParseTreeNode;
 
 import java.util.Optional;
 

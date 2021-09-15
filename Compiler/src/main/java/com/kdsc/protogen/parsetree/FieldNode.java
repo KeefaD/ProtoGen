@@ -1,5 +1,7 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.parsetree.fieldtypenodes.FieldTypeNode;
+
 public class FieldNode extends BaseParseTreeNode {
 
     private final FieldNameNode fieldNameNode;

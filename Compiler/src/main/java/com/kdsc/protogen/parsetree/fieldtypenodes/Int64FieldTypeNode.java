@@ -1,8 +1,8 @@
-package com.kdsc.protogen.parsetree;
+package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-public class LocalDatetimeFieldTypeNode extends NonArrayFieldTypeNode {
+public class Int64FieldTypeNode extends NonArrayFieldTypeNode {
 
-    public LocalDatetimeFieldTypeNode(
+    public Int64FieldTypeNode(
         String sourceFileName,
         long line,
         long charPosition
@@ -13,7 +13,7 @@ public class LocalDatetimeFieldTypeNode extends NonArrayFieldTypeNode {
     @Override
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//LocalDatetimeFieldTypeNode\n");
+        stringBuilder.append("//Int64FieldTypeNode\n");
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

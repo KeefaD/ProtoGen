@@ -1,8 +1,8 @@
-package com.kdsc.protogen.parsetree;
+package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-public class BoolFieldTypeNode extends NonArrayFieldTypeNode {
+public class DateFieldTypeNode extends NonArrayFieldTypeNode {
 
-    public BoolFieldTypeNode(
+    public DateFieldTypeNode(
         String sourceFileName,
         long line,
         long charPosition
@@ -13,7 +13,7 @@ public class BoolFieldTypeNode extends NonArrayFieldTypeNode {
     @Override
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//BoolFieldTypeNode\n");
+        stringBuilder.append("//DateFieldTypeNode\n");
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

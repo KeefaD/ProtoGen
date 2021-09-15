@@ -1,5 +1,7 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.parsetree.fieldtypenodes.NonArrayFieldTypeNode;
+
 public class GenericObjectFieldTypeNode extends NonArrayFieldTypeNode {
 
     private final GenericParameterWithoutBoundsNode genericParameterWithoutBoundsNode;

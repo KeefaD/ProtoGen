@@ -1,8 +1,8 @@
-package com.kdsc.protogen.parsetree;
+package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-public class DoubleFieldTypeNode extends NonArrayFieldTypeNode {
+public class BoolFieldTypeNode extends NonArrayFieldTypeNode {
 
-    public DoubleFieldTypeNode(
+    public BoolFieldTypeNode(
         String sourceFileName,
         long line,
         long charPosition
@@ -13,7 +13,7 @@ public class DoubleFieldTypeNode extends NonArrayFieldTypeNode {
     @Override
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//DoubleFieldTypeNode\n");
+        stringBuilder.append("//BoolFieldTypeNode\n");
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

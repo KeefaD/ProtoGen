@@ -1,4 +1,7 @@
-package com.kdsc.protogen.parsetree;
+package com.kdsc.protogen.parsetree.fieldtypenodes;
+
+import com.kdsc.protogen.parsetree.NamespaceNameGenericParametersWithoutBoundsNode;
+import com.kdsc.protogen.parsetree.fieldtypenodes.NonArrayFieldTypeNode;
 
 public class ObjectFieldTypeNode extends NonArrayFieldTypeNode {
 
