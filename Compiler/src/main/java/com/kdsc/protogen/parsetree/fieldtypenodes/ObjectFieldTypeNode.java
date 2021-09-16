@@ -1,7 +1,8 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
 import com.kdsc.protogen.parsetree.NamespaceNameGenericParametersWithoutBoundsNode;
-import com.kdsc.protogen.parsetree.fieldtypenodes.NonArrayFieldTypeNode;
+
+import java.util.Objects;
 
 public class ObjectFieldTypeNode extends NonArrayFieldTypeNode {
 
@@ -14,7 +15,12 @@ public class ObjectFieldTypeNode extends NonArrayFieldTypeNode {
         NamespaceNameGenericParametersWithoutBoundsNode namespaceNameGenericParametersWithoutBoundsNode
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(namespaceNameGenericParametersWithoutBoundsNode);
         this.namespaceNameGenericParametersWithoutBoundsNode = namespaceNameGenericParametersWithoutBoundsNode;
+    }
+
+    public NamespaceNameGenericParametersWithoutBoundsNode getNamespaceNameGenericParametersWithoutBoundsNode() {
+        return namespaceNameGenericParametersWithoutBoundsNode;
     }
 
     @Override

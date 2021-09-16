@@ -1,5 +1,6 @@
 package com.kdsc.protogen.parsetree;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class VersionNode extends BaseNode {
@@ -15,8 +16,18 @@ public class VersionNode extends BaseNode {
         Optional<FieldsNode> fieldsNode
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(versionNumberNode);
+        Objects.requireNonNull(fieldsNode);
         this.versionNumberNode = versionNumberNode;
         this.fieldsNode = fieldsNode;
+    }
+
+    public VersionNumberNode getVersionNumberNode() {
+        return versionNumberNode;
+    }
+
+    public Optional<FieldsNode> getFieldsNode() {
+        return fieldsNode;
     }
 
     @Override

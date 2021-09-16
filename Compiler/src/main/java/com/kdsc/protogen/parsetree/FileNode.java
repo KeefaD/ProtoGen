@@ -1,6 +1,7 @@
 package com.kdsc.protogen.parsetree;
 
 import java.util.List;
+import java.util.Objects;
 
 public class FileNode extends BaseNode {
 
@@ -17,9 +18,24 @@ public class FileNode extends BaseNode {
         List<ProtoGenEnumNode> protoGenEnumNodes
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(protoGenTypeNodes);
+        Objects.requireNonNull(protoGenKeyNodes);
+        Objects.requireNonNull(protoGenEnumNodes);
         this.protoGenTypeNodes = protoGenTypeNodes;
         this.protoGenKeyNodes = protoGenKeyNodes;
         this.protoGenEnumNodes = protoGenEnumNodes;
+    }
+
+    public List<ProtoGenTypeNode> getProtoGenTypeNodes() {
+        return protoGenTypeNodes;
+    }
+
+    public List<ProtoGenKeyNode> getProtoGenKeyNodes() {
+        return protoGenKeyNodes;
+    }
+
+    public List<ProtoGenEnumNode> getProtoGenEnumNodes() {
+        return protoGenEnumNodes;
     }
 
     @Override

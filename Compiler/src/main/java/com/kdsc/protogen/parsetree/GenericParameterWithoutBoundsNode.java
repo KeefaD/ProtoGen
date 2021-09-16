@@ -1,5 +1,9 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.utils.parameterchecking.Strings;
+
+import java.util.Objects;
+
 public class GenericParameterWithoutBoundsNode extends BaseNode {
 
     private final String identifier;
@@ -11,7 +15,13 @@ public class GenericParameterWithoutBoundsNode extends BaseNode {
         String identifier
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(identifier);
+        Strings.requireNonBlank(identifier);
         this.identifier = identifier;
+    }
+
+    public String getIdentifier() {
+        return identifier;
     }
 
     @Override

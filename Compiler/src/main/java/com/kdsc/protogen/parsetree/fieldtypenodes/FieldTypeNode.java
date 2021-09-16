@@ -1,6 +1,7 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
 import com.kdsc.protogen.parsetree.BaseNode;
+import com.kdsc.protogen.utils.parameterchecking.Optionals;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +23,7 @@ public class FieldTypeNode extends BaseNode {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(arrayFieldTypeNode);
         Objects.requireNonNull(nonArrayFieldTypeNode);
+        Optionals.requireOne(arrayFieldTypeNode, nonArrayFieldTypeNode);
         this.optional = optional;
         this.arrayFieldTypeNode = arrayFieldTypeNode;
         this.nonArrayFieldTypeNode = nonArrayFieldTypeNode;

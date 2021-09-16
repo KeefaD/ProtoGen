@@ -363,7 +363,7 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
             sourceFileName,
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
-            ctx.field() == null ? Optional.empty() : Optional.of(ctx.field().stream().map(vn -> (FieldNode) visit(vn)).collect(Collectors.toList()))
+            ctx.field().stream().map(vn -> (FieldNode) visit(vn)).collect(Collectors.toList())
         );
     }
 
@@ -384,7 +384,7 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
             sourceFileName,
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
-            ctx.version() == null ? Optional.empty() : Optional.of(ctx.version().stream().map(vn -> (VersionNode) visit(vn)).collect(Collectors.toList()))
+            ctx.version().stream().map(vn -> (VersionNode) visit(vn)).collect(Collectors.toList())
         );
     }
 
@@ -434,21 +434,21 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     public Object visitArray_field_type(ProtoGenParser.Array_field_typeContext ctx) {
 
         var openSquareBracketCount = ctx
-                .children
-                .stream()
-                .map(ParseTree::getText)
-                .filter(t -> t != null && t.equals(OPEN_SQUARE_BRACKET))
-                .count();
+            .children
+            .stream()
+            .map(ParseTree::getText)
+            .filter(t -> t != null && t.equals(OPEN_SQUARE_BRACKET))
+            .count();
 
         var closeSquareBracketCount = ctx
-                .children
-                .stream()
-                .map(ParseTree::getText)
-                .filter(t -> t != null && t.equals(CLOSE_SQUARE_BRACKET))
-                .count();
+            .children
+            .stream()
+            .map(ParseTree::getText)
+            .filter(t -> t != null && t.equals(CLOSE_SQUARE_BRACKET))
+            .count();
 
         if(openSquareBracketCount != closeSquareBracketCount) {
-            throw new RuntimeException("Opening and closing square brackets don't match for array opening count "  + openSquareBracketCount + " closing count " + closeSquareBracketCount);
+            throw new RuntimeException("Opening and closing square brackets count doesn't match for array, opening count "  + openSquareBracketCount + " closing count " + closeSquareBracketCount);
         }
 
         return new ArrayFieldTypeNode(

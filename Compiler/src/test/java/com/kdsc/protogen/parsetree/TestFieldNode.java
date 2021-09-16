@@ -87,6 +87,7 @@ public class TestFieldNode extends BaseTestNode {
                 FieldName : FieldName
             //FieldTypeNode
                 Optional : false
+                //BoolFieldTypeNode
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }

@@ -3,7 +3,7 @@ package com.kdsc.protogen.antlr.parser.happypath;
 import com.kdsc.protogen.antlr.parser.BaseParserTest;
 import org.junit.jupiter.api.Test;
 
-public class TypeTests extends BaseParserTest {
+public class TestTypes extends BaseParserTest {
 
     @Test
     void singleType() {

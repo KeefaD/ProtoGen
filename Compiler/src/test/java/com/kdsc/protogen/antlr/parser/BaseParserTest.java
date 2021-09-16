@@ -26,7 +26,7 @@ public abstract class BaseParserTest {
         System.out.println("//Test Program");
         System.out.println(testProgram);
 
-        //TODO:KMD Not keen on having this source file name in to places
+        //TODO:KMD Not keen on having this source file name in two places
         var errorListener = new ProtoGenErrorListener(DUMMY_SOURCE_FILE_NAME);
 
         var parseTree = compileTestProgramAndReturnParseTree(errorListener, testProgram);

@@ -1,6 +1,9 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.utils.parameterchecking.Strings;
+
 import java.util.List;
+import java.util.Objects;
 
 public class GenericParameterWithBoundsNode extends BaseNode {
 
@@ -15,8 +18,19 @@ public class GenericParameterWithBoundsNode extends BaseNode {
         List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(identifier);
+        Strings.requireNonBlank(identifier);
+        Objects.requireNonNull(namespaceNameGenericParametersWithoutBoundsNodes);
         this.identifier = identifier;
         this.namespaceNameGenericParametersWithoutBoundsNodes = namespaceNameGenericParametersWithoutBoundsNodes;
+    }
+
+    public String getIdentifier() {
+        return identifier;
+    }
+
+    public List<NamespaceNameGenericParametersWithoutBoundsNode> getNamespaceNameGenericParametersWithoutBoundsNodes() {
+        return namespaceNameGenericParametersWithoutBoundsNodes;
     }
 
     @Override

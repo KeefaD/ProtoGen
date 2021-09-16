@@ -1,6 +1,7 @@
 package com.kdsc.protogen.parsetree;
 
 import java.util.List;
+import java.util.Objects;
 
 public class GenericParametersWithBoundsNode extends BaseNode {
 
@@ -13,7 +14,12 @@ public class GenericParametersWithBoundsNode extends BaseNode {
         List<GenericParameterWithBoundsNode> genericParameterWithBoundsNodes
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(genericParameterWithBoundsNodes);
         this.genericParameterWithBoundsNodes = genericParameterWithBoundsNodes;
+    }
+
+    public List<GenericParameterWithBoundsNode> getGenericParameterWithBoundsNodes() {
+        return genericParameterWithBoundsNodes;
     }
 
     @Override

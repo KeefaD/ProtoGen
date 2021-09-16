@@ -1,5 +1,7 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
+import java.util.Objects;
+
 public class MapFieldTypeNode extends NonArrayFieldTypeNode {
 
     private final FieldTypeNode keyFieldTypeNode;
@@ -13,8 +15,18 @@ public class MapFieldTypeNode extends NonArrayFieldTypeNode {
         FieldTypeNode valueFieldTypeNode
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(keyFieldTypeNode);
+        Objects.requireNonNull(valueFieldTypeNode);
         this.keyFieldTypeNode = keyFieldTypeNode;
         this.valueFieldTypeNode = valueFieldTypeNode;
+    }
+
+    public FieldTypeNode getKeyFieldTypeNode() {
+        return keyFieldTypeNode;
+    }
+
+    public FieldTypeNode getValueFieldTypeNode() {
+        return valueFieldTypeNode;
     }
 
     @Override

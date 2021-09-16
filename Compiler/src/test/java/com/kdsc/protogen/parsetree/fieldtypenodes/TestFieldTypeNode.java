@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestFieldTypeNode extends BaseTestNode {
 
-    //TODO:KMD Prevent both array and non array field time nodes being populated or empty at the same time
     @Test
     public void testCreate() {
         new FieldTypeNode(
@@ -19,7 +18,7 @@ public class TestFieldTypeNode extends BaseTestNode {
             BaseTestNode.charPosition,
             false,
             Optional.empty(),
-            Optional.empty()
+            Optional.of(TestBoolFieldTypeNode.createTestNode())
         );
     }
 
@@ -67,7 +66,7 @@ public class TestFieldTypeNode extends BaseTestNode {
     public void testGetters() {
         var optional = true;
         Optional<ArrayFieldTypeNode> arrayFieldTypeNodes = Optional.empty();
-        Optional<NonArrayFieldTypeNode> nonArrayFieldTypeNodes = Optional.empty();
+        Optional<NonArrayFieldTypeNode> nonArrayFieldTypeNodes = Optional.of(TestBoolFieldTypeNode.createTestNode());
         @SuppressWarnings("ConstantConditions") var node = new FieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
@@ -90,11 +89,12 @@ public class TestFieldTypeNode extends BaseTestNode {
             BaseTestNode.charPosition,
             false,
             Optional.empty(),
-            Optional.empty()
+            Optional.of(TestBoolFieldTypeNode.createTestNode())
         );
         var expectedToStringOutput = """
         //FieldTypeNode
             Optional : false
+            //BoolFieldTypeNode
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
@@ -106,7 +106,7 @@ public class TestFieldTypeNode extends BaseTestNode {
             BaseTestNode.charPosition,
             false,
             Optional.empty(),
-            Optional.empty()
+            Optional.of(TestBoolFieldTypeNode.createTestNode())
         );
     }
 

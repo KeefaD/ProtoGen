@@ -3,62 +3,62 @@ package com.kdsc.protogen.antlr.parser.happypath;
 import com.kdsc.protogen.antlr.parser.BaseParserTest;
 import org.junit.jupiter.api.Test;
 
-public class KeyInterfaceTests extends BaseParserTest {
+public class TestTypeInterfaces extends BaseParserTest {
 
     @Test
-    void singleKeyInterface() {
+    void singleTypeInterface() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface
+            type interface TestNamespace.TestTypeInterface
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void singleKeyInterfaceNestedNamespace() {
+    void singleTypeInterfaceNestedNamespace() {
         var testProgram = """
-            key interface TestNamespace.TestNestedNamespace.TestKeyInterface
+            type interface TestNamespace.TestNestedNamespace.TestTypeInterface
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void multipleKeyInterfaces() {
+    void multipleTypeInterfaces() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface1
-            key interface TestNamespace.TestKeyInterface2
+            type interface TestNamespace.TestTypeInterface1
+            type interface TestNamespace.TestTypeInterface2
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceNoFieldsOrBraces() {
+    void basicTypeInterfaceNoFieldsOrBraces() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface
+            type interface TestNamespace.TestTypeInterface
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceNoFieldsWithBraces() {
+    void basicTypeInterfaceNoFieldsWithBraces() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface {}
+            type interface TestNamespace.TestTypeInterface {}
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceNoFieldsWithSplitBraces() {
+    void basicTypeInterfaceNoFieldsWithSplitBraces() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface {
+            type interface TestNamespace.TestTypeInterface {
             }
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceOneField() {
+    void basicTypeInterfaceOneField() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface {
+            type interface TestNamespace.TestTypeInterface {
                 testField : int32
             }
         """;
@@ -66,9 +66,9 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void basicKeyInterfaceTwoFields() {
+    void basicTypeInterfaceTwoFields() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface {
+            type interface TestNamespace.TestTypeInterface {
                 testField1 : int32
                 testField2 : int32
             }
@@ -77,121 +77,121 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void basicKeyInterfaceOneImplementsNoFieldsNoBraces() {
+    void basicTypeInterfaceOneImplementsNoFieldsNoBraces() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface : TestNamespace.OtherKeyInterface
+            type interface TestNamespace.TestTypeInterface : TestNamespace.OtherTypeInterface
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceOneImplementsNoFieldsEmptyBraces() {
+    void basicTypeInterfaceOneImplementsNoFieldsEmptyBraces() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface : TestNamespace.OtherKeyInterface {}
+            type interface TestNamespace.TestTypeInterface : TestNamespace.OtherTypeInterface {}
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceOneImplementsNoFieldsSplitEmptyBraces() {
+    void basicTypeInterfaceOneImplementsNoFieldsSplitEmptyBraces() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface : TestNamespace.OtherKeyInterface {
+            type interface TestNamespace.TestTypeInterface : TestNamespace.OtherTypeInterface {
             }
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceOneImplementsNoFieldsNoBracesGenericParameter() {
+    void basicTypeInterfaceOneImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface : TestNamespace.OtherKeyInterface<T>
+            type interface TestNamespace.TestTypeInterface : TestNamespace.OtherTypeInterface<T>
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceOneImplementsNoFieldsEmptyBracesGenericParameter() {
+    void basicTypeInterfaceOneImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface : TestNamespace.OtherKeyInterface<T> {}
+            type interface TestNamespace.TestTypeInterface : TestNamespace.OtherTypeInterface<T> {}
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceOneImplementsNoFieldsSplitEmptyBracesGenericParameter() {
+    void basicTypeInterfaceOneImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface : TestNamespace.OtherKeyInterface<T> {
+            type interface TestNamespace.TestTypeInterface : TestNamespace.OtherTypeInterface<T> {
             }
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceTwoImplementsNoFieldsNoBraces() {
+    void basicTypeInterfaceTwoImplementsNoFieldsNoBraces() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface :
-                TestNamespace.OtherKeyInterface1,
-                TestNamespace.OtherKeyInterface2
+            type interface TestNamespace.TestTypeInterface :
+                TestNamespace.OtherTypeInterface1,
+                TestNamespace.OtherTypeInterface2
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceTwoImplementsNoFieldsEmptyBraces() {
+    void basicTypeInterfaceTwoImplementsNoFieldsEmptyBraces() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface :
-                TestNamespace.OtherKeyInterface1,
-                TestNamespace.OtherKeyInterface2 {}
+            type interface TestNamespace.TestTypeInterface :
+                TestNamespace.OtherTypeInterface1,
+                TestNamespace.OtherTypeInterface2 {}
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceTwoImplementsNoFieldsSplitEmptyBraces() {
+    void basicTypeInterfaceTwoImplementsNoFieldsSplitEmptyBraces() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface :
-                TestNamespace.OtherKeyInterface1,
-                TestNamespace.OtherKeyInterface2 {
+            type interface TestNamespace.TestTypeInterface :
+                TestNamespace.OtherTypeInterface1,
+                TestNamespace.OtherTypeInterface2 {
             }
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceTwoImplementsNoFieldsNoBracesGenericParameter() {
+    void basicTypeInterfaceTwoImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface :
-                TestNamespace.OtherKeyInterface1<T>,
-                TestNamespace.OtherKeyInterface2<T>
+            type interface TestNamespace.TestTypeInterface :
+                TestNamespace.OtherTypeInterface1<T>,
+                TestNamespace.OtherTypeInterface2<T>
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceTwoImplementsNoFieldsEmptyBracesGenericParameter() {
+    void basicTypeInterfaceTwoImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface :
-                TestNamespace.OtherKeyInterface1<T>,
-                TestNamespace.OtherKeyInterface2<T> {}
+            type interface TestNamespace.TestTypeInterface :
+                TestNamespace.OtherTypeInterface1<T>,
+                TestNamespace.OtherTypeInterface2<T> {}
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicKeyInterfaceTwoImplementsNoFieldsSplitEmptyBracesGenericParameter() {
+    void basicTypeInterfaceTwoImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
-            key interface TestNamespace.TestKeyInterface :
-                TestNamespace.OtherKeyInterface1<T>,
-                TestNamespace.OtherKeyInterface2<T> {
+            type interface TestNamespace.TestTypeInterface :
+                TestNamespace.OtherTypeInterface1<T>,
+                TestNamespace.OtherTypeInterface2<T> {
             }
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
 
     @Test
-    void basicVersionedKeyInterfaceEmptyVersion() {
+    void basicVersionedTypeInterfaceEmptyVersion() {
         var testProgram = """
-            key interface TestNamespace.TestVersionedKeyInterface {
+            type interface TestNamespace.TestVersionedTypeInterface {
                 version 1 {}
             }
         """;
@@ -199,9 +199,9 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void basicVersionedKeyInterfaceOneVersion() {
+    void basicVersionedTypeInterfaceOneVersion() {
         var testProgram = """
-            key interface TestNamespace.TestVersionedKeyInterface {
+            type interface TestNamespace.TestVersionedTypeInterface {
                 version 1 {
                     testField : int32
                 }
@@ -211,94 +211,9 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void basicVersionedKeyInterfaceTwoVersions() {
+    void basicVersionedTypeInterfaceTwoVersions() {
         var testProgram = """
-            key interface TestNamespace.TestVersionedKeyInterface {
-                version 1 {
-                    testField : int32
-                }
-                version 2 {
-                    testField : int32
-                }
-            }
-        """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void genericKeyInterface() {
-        var testProgram = """
-            key interface TestNamespace.TestGenericKeyInterface<T> {
-                testField : T
-            }
-        """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void genericKeyInterfaceWithImplements() {
-        var testProgram = """
-            key interface TestNamespace.TestGenericKeyInterface<T> : TestNamespace.TestImplementsInterface {
-                testField : T
-            }
-        """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void genericKeyInterfaceWithImplementsGeneric() {
-        var testProgram = """
-            key interface TestNamespace.TestGenericKeyInterface<T> : TestNamespace.TestImplementsInterface<T> {
-                testField : T
-            }
-        """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void genericKeyInterfaceWithTwoImplements() {
-        var testProgram = """
-            key interface TestNamespace.TestGenericKeyInterface<T> : TestNamespace.TestImplementsInterface1, TestNamespace.TestImplementsInterface2 {
-                testField : T
-            }
-        """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void genericKeyInterfaceWithTwoImplementsGeneric() {
-        var testProgram = """
-            key interface TestNamespace.TestGenericKeyInterface<T> : TestNamespace.TestImplementsInterface1<T>, TestNamespace.TestImplementsInterface2<T> {
-                testField : T
-            }
-        """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void genericKeyInterfaceWithBounds() {
-        var testProgram = """
-            key interface TestNamespace.TestGenericKeyInterface<T : TestNamespace.TestKeyInterface> {
-                testField : T
-            }
-        """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void genericKeyInterfaceWithTwoBounds() {
-        var testProgram = """
-            key interface TestNamespace.TestGenericKeyInterface<T : TestNamespace.TestKeyInterface1 & TestNamespace.TestKeyInterface2 > {
-                testField : T
-            }
-        """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
-    }
-
-    @Test
-    void genericVersionedKeyInterfaceWithSingleGenericParameters() {
-        var testProgram = """
-            key interface TestNamespace.TestVersionedGenericKeyInterface<T> {
+            type interface TestNamespace.TestVersionedTypeInterface {
                 version 1 {
                     testField : int32
                 }
@@ -311,9 +226,79 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void genericVersionedKeyInterfaceWithSingleGenericParametersWithBounds() {
+    void genericTypeInterface() {
         var testProgram = """
-            key interface TestNamespace.TestVersionedGenericKeyInterface<T : TestNamespace.TestKeyInterface> {
+            type interface TestNamespace.TestGenericTypeInterface<T> {
+                testField : T
+            }
+        """;
+        compileTestProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericTypeInterfaceWithImplements() {
+        var testProgram = """
+            type interface TestNamespace.TestGenericTypeInterface<T> : TestNamespace.TestImplementsInterface {
+                testField : T
+            }
+        """;
+        compileTestProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericTypeInterfaceWithImplementsGeneric() {
+        var testProgram = """
+            type interface TestNamespace.TestGenericTypeInterface<T> : TestNamespace.TestImplementsInterface<T> {
+                testField : T
+            }
+        """;
+        compileTestProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericTypeInterfaceWithTwoImplements() {
+        var testProgram = """
+            type interface TestNamespace.TestGenericTypeInterface<T> : TestNamespace.TestImplementsInterface1, TestNamespace.TestImplementsInterface2 {
+                testField : T
+            }
+        """;
+        compileTestProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericTypeInterfaceWithTwoImplementsGeneric() {
+        var testProgram = """
+            type interface TestNamespace.TestGenericTypeInterface<T> : TestNamespace.TestImplementsInterface1<T>, TestNamespace.TestImplementsInterface2<T> {
+                testField : T
+            }
+        """;
+        compileTestProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericTypeInterfaceWithBounds() {
+        var testProgram = """
+            type interface TestNamespace.TestGenericTypeInterface<T : TestNamespace.TestTypeInterface> {
+                testField : T
+            }
+        """;
+        compileTestProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericTypeInterfaceWithTwoBounds() {
+        var testProgram = """
+            type interface TestNamespace.TestGenericTypeInterface<T : TestNamespace.TestTypeInterface1 & TestNamespace.TestTypeInterface2 > {
+                testField : T
+            }
+        """;
+        compileTestProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericVersionedTypeInterfaceWithSingleGenericParameters() {
+        var testProgram = """
+            type interface TestNamespace.TestVersionedGenericTypeInterface<T> {
                 version 1 {
                     testField : int32
                 }
@@ -326,9 +311,9 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void genericVersionedKeyInterfaceWithSingleGenericParametersWithTwoBounds() {
+    void genericVersionedTypeInterfaceWithSingleGenericParametersWithBounds() {
         var testProgram = """
-            key interface TestNamespace.TestVersionedGenericKeyInterface<T : TestNamespace.TestKeyInterface1 & TestNamespace.TestKeyInterface2> {
+            type interface TestNamespace.TestVersionedGenericTypeInterface<T : TestNamespace.TestTypeInterface> {
                 version 1 {
                     testField : int32
                 }
@@ -341,9 +326,24 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void genericVersionedKeyInterfaceWithSingleGenericParametersAndOneEmptyVersion() {
+    void genericVersionedTypeInterfaceWithSingleGenericParametersWithTwoBounds() {
         var testProgram = """
-            key interface TestNamespace.TestVersionedGenericKeyInterface<T> {
+            type interface TestNamespace.TestVersionedGenericTypeInterface<T : TestNamespace.TestTypeInterface1 & TestNamespace.TestTypeInterface2> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        compileTestProgramAndCheckNoParserErrors(testProgram);
+    }
+
+    @Test
+    void genericVersionedTypeInterfaceWithSingleGenericParametersAndOneEmptyVersion() {
+        var testProgram = """
+            type interface TestNamespace.TestVersionedGenericTypeInterface<T> {
                 version 1 {}
                 version 2 {
                     testField : int32
@@ -354,9 +354,9 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void genericVersionedKeyInterfaceWithIndividualGenericParameters() {
+    void genericVersionedTypeInterfaceWithIndividualGenericParameters() {
         var testProgram = """
-            key interface TestNamespace.TestVersionedGenericKeyInterface {
+            type interface TestNamespace.TestVersionedGenericTypeInterface {
                 version 1 <T> {
                     testField : int32
                 }
@@ -369,13 +369,13 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void genericVersionedKeyInterfaceWithIndividualGenericParametersAndDifferentOneImplements() {
+    void genericVersionedTypeInterfaceWithIndividualGenericParametersAndDifferentOneImplements() {
         var testProgram = """
-            key interface TestNamespace.TestVersionedGenericKeyInterface {
-                version 1 <T> : TestNamespace.OtherKeyInterface1 {
+            type interface TestNamespace.TestVersionedGenericTypeInterface {
+                version 1 <T> : TestNamespace.OtherTypeInterface1 {
                     testField : int32
                 }
-                version 2 <T> : TestNamespace.OtherKeyInterface2 {
+                version 2 <T> : TestNamespace.OtherTypeInterface2 {
                     testField : int32
                 }
             }
@@ -384,13 +384,13 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void genericVersionedKeyInterfaceWithIndividualGenericParametersAndDifferentOneImplementsWithOneBounds() {
+    void genericVersionedTypeInterfaceWithIndividualGenericParametersAndDifferentOneImplementsWithOneBounds() {
         var testProgram = """
-            key interface TestNamespace.TestVersionedGenericKeyInterface {
-                version 1 <T : TestNamespace.TestKeyInterface> : TestNamespace.OtherKeyInterface1 {
+            type interface TestNamespace.TestVersionedGenericTypeInterface {
+                version 1 <T : TestNamespace.TestTypeInterface> : TestNamespace.OtherTypeInterface1 {
                     testField : int32
                 }
-                version 2 <T : TestNamespace.TestKeyInterface> : TestNamespace.TestKeyInterface, TestNamespace.OtherKeyInterface2 {
+                version 2 <T : TestNamespace.TestTypeInterface> : TestNamespace.TestTypeInterface, TestNamespace.OtherTypeInterface2 {
                     testField : int32
                 }
             }
@@ -399,13 +399,13 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void genericVersionedKeyInterfaceWithIndividualGenericParametersAndDifferentOneImplementsWithTwoBounds() {
+    void genericVersionedTypeInterfaceWithIndividualGenericParametersAndDifferentOneImplementsWithTwoBounds() {
         var testProgram = """
-            key interface TestNamespace.TestVersionedGenericKeyInterface {
-                version 1 <T : TestNamespace.TestKeyInterface1 & TestNamespace.TestKeyInterface2> : TestNamespace.OtherKeyInterface1 {
+            type interface TestNamespace.TestVersionedGenericTypeInterface {
+                version 1 <T : TestNamespace.TestTypeInterface1 & TestNamespace.TestTypeInterface2> : TestNamespace.OtherTypeInterface1 {
                     testField : int32
                 }
-                version 2 <T : TestNamespace.TestKeyInterface1 & TestNamespace.TestKeyInterface2> : TestNamespace.TestKeyInterface, TestNamespace.OtherKeyInterface2 {
+                version 2 <T : TestNamespace.TestTypeInterface1 & TestNamespace.TestTypeInterface2> : TestNamespace.TestTypeInterface, TestNamespace.OtherTypeInterface2 {
                     testField : int32
                 }
             }
@@ -414,13 +414,13 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void genericVersionedKeyInterfaceWithIndividualGenericParametersAndDifferentTwoImplements() {
+    void genericVersionedTypeInterfaceWithIndividualGenericParametersAndDifferentTwoImplements() {
         var testProgram = """
-            key interface TestNamespace.TestVersionedGenericKeyInterface {
-                version 1 <T> : TestNamespace.OtherKeyInterface1, TestNamespace.OtherKeyInterface2 {
+            type interface TestNamespace.TestVersionedGenericTypeInterface {
+                version 1 <T> : TestNamespace.OtherTypeInterface1, TestNamespace.OtherTypeInterface2 {
                     testField : int32
                 }
-                version 2 <T> : TestNamespace.OtherKeyInterface3<T>, TestNamespace.OtherKeyInterface4<T> {
+                version 2 <T> : TestNamespace.OtherTypeInterface3<T>, TestNamespace.OtherTypeInterface4<T> {
                     testField : int32
                 }
             }
@@ -429,9 +429,9 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void allFieldKeyInterfaces() {
+    void allFieldTypeInterfaces() {
         var testProgram = """
-            key interface TestNamespace.TestAllFieldKeyInterfaces<T> {
+            type interface TestNamespace.TestAllFieldTypeInterfaces<T> {
                 testDoubleField : double
                 testFloatField : float
                 testInt32Field : int32
@@ -444,9 +444,9 @@ public class KeyInterfaceTests extends BaseParserTest {
                 testDatetimeField : datetime
                 testMapField : map<int32, int32>
                 testSetField : set<int32>
-                testValueOrError : valueorerror<int32>
+                testValueOrErrorField : valueorerror<int32>
                 testArrayField : int32[]
-                testKeyInterfaceField : TestNamespace.TestKeyInterface
+                testTypeInterfaceField : TestNamespace.TestTypeInterface
                 testGenericField : T
             }
         """;
@@ -454,9 +454,9 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void allFieldKeyInterfacesOptional() {
+    void allFieldTypeInterfacesOptional() {
         var testProgram = """
-            key interface TestNamespace.TestAllFieldKeyInterfaces<T> {
+            type interface TestNamespace.TestAllFieldTypeInterfaces<T> {
                 testDoubleField : optional double
                 testFloatField : optional float
                 testInt32Field : optional int32
@@ -469,9 +469,9 @@ public class KeyInterfaceTests extends BaseParserTest {
                 testDatetimeField : optional datetime
                 testMapField : optional map<int32, int32>
                 testSetField : optional set<int32>
-                testValueOrError : optional valueorerror<int32>
+                testValueOrErrorField : optional  valueorerror<int32>
                 testArrayField : optional int32[]
-                testKeyInterfaceField : optional TestNamespace.TestKeyInterface
+                testTypeInterfaceField : optional TestNamespace.TestTypeInterface
                 testGenericField : optional T
             }
         """;
@@ -479,9 +479,9 @@ public class KeyInterfaceTests extends BaseParserTest {
     }
 
     @Test
-    void allFieldKeyInterfacesOptionalOneLine() {
+    void allFieldTypeInterfacesOptionalOneLine() {
         var testProgram = """
-            key interface TestNamespace.TestAllFieldTypes<T> { testDoubleField : optional double testFloatField : optional float testInt32Field : optional int32 testInt64Field : optional int64 testBoolField : optional bool testStringField : optional string testByteField : optional bytes testDecimalField : optional decimal testDateField : optional date testDatetimeField : optional datetime testMapField : optional map<int32, int32> testSetField : optional set<int32> testArrayField : optional int32[] testTypeField : optional TestNamespace.TestType testGenericField : optional T }
+            type interface TestNamespace.TestAllFieldTypeInterfaces<T> { testDoubleField : optional double testFloatField : optional float testInt32Field : optional int32 testInt64Field : optional int64 testBoolField : optional bool testStringField : optional string testByteField : optional bytes testDecimalField : optional decimal testDateField : optional date testDatetimeField : optional datetime testMapField : optional map<int32, int32> testSetField : optional set<int32> testArrayField : optional int32[] testTypeInterfaceField : optional TestNamespace.TestTypeInterface testGenericField : optional T }
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
     }
@@ -489,7 +489,7 @@ public class KeyInterfaceTests extends BaseParserTest {
     @Test
     void recursiveMaps() {
         var testProgram = """
-            key interface TestNamespace.TestRecursiveMaps{
+            type interface TestNamespace.TestRecursiveMaps{
                 testRecursiveMap : map<map<int32, int32>, map<int32, int32>>
             }
         """;
@@ -499,7 +499,7 @@ public class KeyInterfaceTests extends BaseParserTest {
     @Test
     void recursiveSets() {
         var testProgram = """
-            key interface TestNamespace.TestRecursiveSet {
+            type interface TestNamespace.TestRecursiveSet {
                 testRecursiveSet : set<set<int32>>
             }
         """;
@@ -509,7 +509,7 @@ public class KeyInterfaceTests extends BaseParserTest {
     @Test
     void recursiveMultiDimensionalArray() {
         var testProgram = """
-            key interface TestNamespace.TestMultiDimensionalArray {
+            type interface TestNamespace.TestMultiDimensionalArray {
                 testMultiDimensionalArray : int32[][][]
             }
         """;
@@ -519,7 +519,7 @@ public class KeyInterfaceTests extends BaseParserTest {
     @Test
     void recursiveNestedMapSetArray() {
         var testProgram = """
-            key interface TestNamespace.TestMultiDimensionalArray {
+            type interface TestNamespace.TestMultiDimensionalArray {
                 testNestedMapSetArray : map<set<int[][]>, set<int32[][]>>
             }
         """;
@@ -530,7 +530,7 @@ public class KeyInterfaceTests extends BaseParserTest {
     void singleLineCommentAtTop() {
         var testProgram = """
             //Comment at top
-            key interface TestNamespace.TestComment {
+            type interface TestNamespace.TestComment {
             }
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
@@ -539,7 +539,7 @@ public class KeyInterfaceTests extends BaseParserTest {
     @Test
     void singleLineCommentInMiddle() {
         var testProgram = """
-            key interface TestNamespace.TestComment {
+            type interface TestNamespace.TestComment {
                 //Comment in middle
             }
         """;
@@ -549,7 +549,7 @@ public class KeyInterfaceTests extends BaseParserTest {
     @Test
     void singleLineCommentAtBottom() {
         var testProgram = """
-            key interface TestNamespace.TestComment {
+            type interface TestNamespace.TestComment {
             }
             //Comment at bottom
         """;
@@ -559,8 +559,8 @@ public class KeyInterfaceTests extends BaseParserTest {
     @Test
     void singleLineCommentWithToken() {
         var testProgram = """
-            //type int32 string bool
-            key interface TestNamespace.TestComment {
+            //type interface int32 string bool
+            type interface TestNamespace.TestComment {
             }
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
@@ -572,7 +572,7 @@ public class KeyInterfaceTests extends BaseParserTest {
             /*
             Comment at top
             */
-            key interface TestNamespace.TestComment {
+            type interface TestNamespace.TestComment {
             }
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);
@@ -581,7 +581,7 @@ public class KeyInterfaceTests extends BaseParserTest {
     @Test
     void multiLineCommentInMiddle() {
         var testProgram = """
-            key interface TestNamespace.TestComment {
+            type interface TestNamespace.TestComment {
                 /*
                 Comment in middle
                 */
@@ -593,7 +593,7 @@ public class KeyInterfaceTests extends BaseParserTest {
     @Test
     void multiLineCommentAtBottom() {
         var testProgram = """
-            key interface TestNamespace.TestComment {
+            type interface TestNamespace.TestComment {
             }
             /*
             Comment at bottom
@@ -606,11 +606,11 @@ public class KeyInterfaceTests extends BaseParserTest {
     void multiLineCommentWithToken() {
         var testProgram = """
             /*
-            type
+            type interface
             int32
             string bool
             */
-            key interface TestNamespace.TestComment {
+            type TestNamespace.TestComment {
             }
         """;
         compileTestProgramAndCheckNoParserErrors(testProgram);

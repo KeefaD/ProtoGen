@@ -1,6 +1,7 @@
 package com.kdsc.protogen.parsetree;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ImplementsListNode extends BaseNode {
 
@@ -13,7 +14,12 @@ public class ImplementsListNode extends BaseNode {
         List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(namespaceNameGenericParametersWithoutBoundsNodes);
         this.namespaceNameGenericParametersWithoutBoundsNodes = namespaceNameGenericParametersWithoutBoundsNodes;
+    }
+
+    public List<NamespaceNameGenericParametersWithoutBoundsNode> getNamespaceNameGenericParametersWithoutBoundsNodes() {
+        return namespaceNameGenericParametersWithoutBoundsNodes;
     }
 
     @Override

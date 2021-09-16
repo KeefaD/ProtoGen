@@ -1,5 +1,6 @@
 package com.kdsc.protogen.parsetree;
 
+import java.util.Objects;
 import java.util.Optional;
 
 public class NamespaceNameGenericParametersWithBoundsNode extends BaseNode {
@@ -15,8 +16,18 @@ public class NamespaceNameGenericParametersWithBoundsNode extends BaseNode {
         Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(namespaceNameNode);
+        Objects.requireNonNull(genericParametersWithBoundsNode);
         this.namespaceNameNode = namespaceNameNode;
         this.genericParametersWithBoundsNode = genericParametersWithBoundsNode;
+    }
+
+    public NamespaceNameNode getNamespaceNameNode() {
+        return namespaceNameNode;
+    }
+
+    public Optional<GenericParametersWithBoundsNode> getGenericParametersWithBoundsNode() {
+        return genericParametersWithBoundsNode;
     }
 
     @Override

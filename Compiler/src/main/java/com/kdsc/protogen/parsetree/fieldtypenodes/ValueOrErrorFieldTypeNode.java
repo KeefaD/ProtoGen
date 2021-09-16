@@ -1,7 +1,6 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-import com.kdsc.protogen.parsetree.fieldtypenodes.FieldTypeNode;
-import com.kdsc.protogen.parsetree.fieldtypenodes.NonArrayFieldTypeNode;
+import java.util.Objects;
 
 public class ValueOrErrorFieldTypeNode extends NonArrayFieldTypeNode {
 
@@ -14,7 +13,12 @@ public class ValueOrErrorFieldTypeNode extends NonArrayFieldTypeNode {
         FieldTypeNode entryFieldTypeNode
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(entryFieldTypeNode);
         this.entryFieldTypeNode = entryFieldTypeNode;
+    }
+
+    public FieldTypeNode getEntryFieldTypeNode() {
+        return entryFieldTypeNode;
     }
 
     @Override

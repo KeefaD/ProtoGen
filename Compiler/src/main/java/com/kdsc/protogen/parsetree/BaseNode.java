@@ -1,7 +1,7 @@
 package com.kdsc.protogen.parsetree;
 
-import com.kdsc.protogen.utils.Numbers;
-import com.kdsc.protogen.utils.Strings;
+import com.kdsc.protogen.utils.parameterchecking.Numbers;
+import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
 import java.util.stream.Collectors;

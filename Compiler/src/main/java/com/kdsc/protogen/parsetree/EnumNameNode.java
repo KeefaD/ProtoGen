@@ -1,6 +1,6 @@
 package com.kdsc.protogen.parsetree;
 
-import com.kdsc.protogen.utils.Strings;
+import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
 

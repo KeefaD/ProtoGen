@@ -1,6 +1,9 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.utils.parameterchecking.Lists;
+
 import java.util.List;
+import java.util.Objects;
 
 public class NamespaceNameNode extends BaseNode {
 
@@ -16,8 +19,19 @@ public class NamespaceNameNode extends BaseNode {
     )
     {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(namespaceNodes);
+        Lists.requireAtLeastOne(namespaceNodes);
+        Objects.requireNonNull(nameNode);
         this.namespaceNodes = namespaceNodes;
         this.nameNode = nameNode;
+    }
+
+    public List<NamespaceNode> getNamespaceNodes() {
+        return namespaceNodes;
+    }
+
+    public NameNode getNameNode() {
+        return nameNode;
     }
 
     @Override

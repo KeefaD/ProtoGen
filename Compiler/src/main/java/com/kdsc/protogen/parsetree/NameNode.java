@@ -1,5 +1,9 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.utils.parameterchecking.Strings;
+
+import java.util.Objects;
+
 public class NameNode extends BaseNode {
 
     private final String name;
@@ -11,7 +15,13 @@ public class NameNode extends BaseNode {
         String name
     ) {
         super(sourceFileName, line, charPosition);
+        Objects.requireNonNull(name);
+        Strings.requireNonBlank(name);
         this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
