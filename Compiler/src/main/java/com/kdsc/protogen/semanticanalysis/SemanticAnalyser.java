@@ -18,7 +18,7 @@ public class SemanticAnalyser {
 
         checkRedefinitionOfObject(returnSemanticErrors, fileNodes);
 
-        var typesNodes = fileNodes
+        var typeNodes = fileNodes
             .stream()
             .flatMap(fn -> fn.getProtoGenTypeNodes().stream())
             .collect(Collectors.toMap(tn -> ParseTreeUtils.getNamespaceNameString(tn.getNamespaceNameNode()), tn -> tn, (tn1, tn2) -> tn1));
@@ -33,6 +33,7 @@ public class SemanticAnalyser {
             .flatMap(fn -> fn.getProtoGenEnumNodes().stream())
             .collect(Collectors.toMap(en -> ParseTreeUtils.getNamespaceNameString(en.getNamespaceNameNode()), en -> en, (en1, en2) -> en2));
 
+        checkTypes(returnSemanticErrors, typeNodes);
         checkEnums(returnSemanticErrors, enumNodes);
 
         return returnSemanticErrors
@@ -68,6 +69,54 @@ public class SemanticAnalyser {
                         semanticErrors.add(createSemanticError(REDEFINITION_OF_OBJECT, tln, namespaceNameAsString));
                     } else {
                         topLevelObjectNamespaceNamesAsString.add(namespaceNameAsString);
+                    }
+                }
+            );
+    }
+
+    private static void checkTypes(List<SemanticError> semanticErrors, Map<String, ProtoGenTypeNode> typeNodeMap) {
+        typeNodeMap
+            .values()
+            .forEach(tn -> checkType(semanticErrors, typeNodeMap, tn));
+    }
+
+    private static void checkType(List<SemanticError> semanticErrors, Map<String, ProtoGenTypeNode> typeNodeMap, ProtoGenTypeNode typeNode) {
+
+        //TODO:KMD Generic parameters and bounds
+        //TODO:KMD Inheritance loop
+
+        if(typeNode.getImplementsListNode().isPresent()) {
+            typeNode
+                .getImplementsListNode()
+                .get()
+                .getNamespaceNameGenericParametersWithoutBoundsNodes()
+                .forEach(
+                    nngp -> {
+                        var namespaceNameAsString = ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode());
+                        if(!typeNodeMap.containsKey(namespaceNameAsString)) {
+                            semanticErrors.add(createSemanticError(TYPE_REFERS_TO_NON_EXISTENT_TYPE_IN_IMPLEMENTS_LIST, nngp, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), namespaceNameAsString));
+                        }
+                    }
+                );
+        }
+
+        var versions = typeNode
+            .getVersionsNode()
+            .stream()
+            .flatMap(vn -> vn.getVersionNodes().stream())
+            .sorted(Comparator.comparing(vn -> vn.getVersionNumberNode().getVersionNumber()))
+            .collect(Collectors.toList());
+
+        var versionNumbersSet = new HashSet<Long>();
+        versions
+            .stream()
+            .map(VersionNode::getVersionNumberNode)
+            .forEach(
+                vn -> {
+                    if(versionNumbersSet.contains(vn.getVersionNumber())) {
+                        semanticErrors.add(createSemanticError(REDEFINITION_OF_TYPE_VERSION, vn, vn.getVersionNumber()));
+                    } else {
+                        versionNumbersSet.add(vn.getVersionNumber());
                     }
                 }
             );

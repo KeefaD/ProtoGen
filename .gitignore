@@ -196,3 +196,5 @@ hs_err_pid*
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.semanticanalysis.TestSemanticError.xml
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.semanticanalysis.TestSemanticErrorFactory.xml
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.semanticanalysis.TestSemanticErrorType.xml
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.semanticanalysis.TestSemanticAnalyserTypes.html
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.semanticanalysis.TestSemanticAnalyserTypes.xml

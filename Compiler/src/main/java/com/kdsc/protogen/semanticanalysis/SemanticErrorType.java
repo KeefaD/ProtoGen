@@ -7,7 +7,9 @@ public enum SemanticErrorType {
 
     REDEFINITION_OF_OBJECT(1, "Redefinition of object %s"),
     REDEFINITION_OF_ENUM_VERSION(2, "Redefinition of enum version %d"),
-    REDEFINITION_OF_ENUM_CASE(3, "Redefinition of enum case %s");
+    REDEFINITION_OF_ENUM_CASE(3, "Redefinition of enum case %s"),
+    REDEFINITION_OF_TYPE_VERSION(4, "Redefinition of type version %d"),
+    TYPE_REFERS_TO_NON_EXISTENT_TYPE_IN_IMPLEMENTS_LIST(5, "Type %s refers to non existent type %s in implements list");
 
     private final long number;
     private final String message;
@@ -24,7 +26,7 @@ public enum SemanticErrorType {
     }
 
     public String getMessage(Object... arguments) {
-        return String.format(message, arguments);
+        return message.formatted(arguments);
     }
 
 }
