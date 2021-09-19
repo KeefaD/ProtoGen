@@ -12,8 +12,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 public class ProtoGen {
-    public static void main(String[] args) {
-
+    public static void main(String... args) {
 
         var testProgram = "type keithsnamespace.keithstype";
 
@@ -30,7 +29,6 @@ public class ProtoGen {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         System.out.println("I will rule the world");
     }

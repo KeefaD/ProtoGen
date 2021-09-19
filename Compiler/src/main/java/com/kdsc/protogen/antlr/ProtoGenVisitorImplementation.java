@@ -395,6 +395,8 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
             (VersionNumberNode) visit(ctx.version_number()),
+            ctx.generic_parameters_with_bounds() == null ? Optional.empty() : Optional.of((GenericParametersWithBoundsNode) visit(ctx.generic_parameters_with_bounds())),
+            ctx.implements_list() == null ? Optional.empty() : Optional.of((ImplementsListNode) visit(ctx.implements_list())),
             ctx.fields() == null ? Optional.empty() : Optional.of((FieldsNode) visit(ctx.fields()))
         );
     }

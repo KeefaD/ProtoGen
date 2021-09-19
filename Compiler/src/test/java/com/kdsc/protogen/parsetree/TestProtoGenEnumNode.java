@@ -59,6 +59,18 @@ public class TestProtoGenEnumNode extends BaseTestNode {
                 null
             )
         );
+
+        assertThrows(IllegalArgumentException.class,
+            () ->
+            new ProtoGenEnumNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                TestNamespaceNameNode.createTestNode(),
+                Optional.of(TestEnumVersionsNode.createTestNode()),
+                Optional.of(TestEnumCasesNode.createTestNode())
+            )
+        );
     }
 
     @Test

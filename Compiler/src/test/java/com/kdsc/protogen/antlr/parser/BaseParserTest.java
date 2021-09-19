@@ -21,7 +21,7 @@ public abstract class BaseParserTest {
 
     public static final String DUMMY_SOURCE_FILE_NAME = "UnitTest";
 
-    protected void compileTestProgramAndCheckNoParserErrors(String testProgram) {
+    protected FileNode compileTestProgramAndCheckNoParserErrors(String testProgram) {
 
         System.out.println("//Test Program");
         System.out.println(testProgram);
@@ -32,7 +32,7 @@ public abstract class BaseParserTest {
         var parseTree = compileTestProgramAndReturnParseTree(errorListener, testProgram);
 
         var visitor = new ProtoGenVisitorImplementation(DUMMY_SOURCE_FILE_NAME);
-        var node = (FileNode) visitor.visit(parseTree);
+        var fileNode = (FileNode) visitor.visit(parseTree);
 
         if(errorListener.errorOccurred()) {
             for(var message : errorListener.getErrors()) {
@@ -42,8 +42,9 @@ public abstract class BaseParserTest {
         }
 
         System.out.println("//Parse Tree");
-        System.out.println(node.toFormattedString(1));
+        System.out.println(fileNode.toFormattedString(1));
 
+        return fileNode;
     }
 
     protected List<String> compileTestProgramReturnParserErrors(String testProgram) {

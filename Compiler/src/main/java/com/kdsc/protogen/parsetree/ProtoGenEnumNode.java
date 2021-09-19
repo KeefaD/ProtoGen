@@ -1,9 +1,13 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.parsetree.commoninterfaces.HasNamespaceName;
+import com.kdsc.protogen.parsetree.commoninterfaces.TopLevelObject;
+import com.kdsc.protogen.utils.parameterchecking.Optionals;
+
 import java.util.Objects;
 import java.util.Optional;
 
-public class ProtoGenEnumNode extends BaseNode {
+public class ProtoGenEnumNode extends BaseNode implements TopLevelObject, HasNamespaceName {
 
     private NamespaceNameNode namespaceNameNode;
     private Optional<EnumVersionsNode> enumVersionsNode;
@@ -17,10 +21,12 @@ public class ProtoGenEnumNode extends BaseNode {
         Optional<EnumVersionsNode> enumVersionsNode,
         Optional<EnumCasesNode> enumCasesNode
     ) {
+        //TODO:KMD Also need to make all lists immutable
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(namespaceNameNode);
         Objects.requireNonNull(enumVersionsNode);
         Objects.requireNonNull(enumCasesNode);
+        Optionals.requireAtMostOne(enumVersionsNode, enumCasesNode);
         this.namespaceNameNode = namespaceNameNode;
         this.enumVersionsNode = enumVersionsNode;
         this.enumCasesNode = enumCasesNode;

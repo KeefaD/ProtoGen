@@ -169,3 +169,16 @@ hs_err_pid*
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.utils.parameterchecking.TestStrings.xml
 /Compiler/build/reports/tests/test/classes/com.kdsc.protogen.parsetree.fieldtypenodes.TestGenericObjectFieldTypeNode.html
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.parsetree.fieldtypenodes.TestGenericObjectFieldTypeNode.xml
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.parsetree.fieldtypenodes.TestEnumFieldTypeNode.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.parsetree.fieldtypenodes.TestKeyFieldTypeNode.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.parsetree.fieldtypenodes.TestTypeFieldTypeNode.html
+/Compiler/build/reports/tests/test/packages/com.kdsc.protogen.parsetreepostprocessing.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.parsetreepostprocessing.TestUndetectableNodeReplacerWithEnums.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.parsetreepostprocessing.TestUndetectableNodeReplacerWithKeys.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.parsetreepostprocessing.TestUndetectableNodeReplacerWithTypes.html
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.parsetree.fieldtypenodes.TestEnumFieldTypeNode.xml
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.parsetree.fieldtypenodes.TestKeyFieldTypeNode.xml
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.parsetree.fieldtypenodes.TestTypeFieldTypeNode.xml
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.parsetreepostprocessing.TestUndetectableNodeReplacerWithEnums.xml
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.parsetreepostprocessing.TestUndetectableNodeReplacerWithKeys.xml
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.parsetreepostprocessing.TestUndetectableNodeReplacerWithTypes.xml

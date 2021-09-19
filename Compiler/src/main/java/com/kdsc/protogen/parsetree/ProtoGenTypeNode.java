@@ -1,9 +1,12 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.parsetree.commoninterfaces.HasNamespaceName;
+import com.kdsc.protogen.parsetree.commoninterfaces.TopLevelObject;
+
 import java.util.Objects;
 import java.util.Optional;
 
-public class ProtoGenTypeNode extends BaseNode {
+public class ProtoGenTypeNode extends BaseNode implements TopLevelObject, HasNamespaceName {
 
     private boolean isInterface;
     private NamespaceNameGenericParametersWithBoundsNode namespaceNameGenericParametersWithBoundsNode;
@@ -51,6 +54,10 @@ public class ProtoGenTypeNode extends BaseNode {
 
     public Optional<FieldsNode> getFieldsNode() {
         return fieldsNode;
+    }
+
+    public NamespaceNameNode getNamespaceNameNode() {
+        return namespaceNameGenericParametersWithBoundsNode.getNamespaceNameNode();
     }
 
     @Override

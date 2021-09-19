@@ -60,4 +60,14 @@ public class TestEnumVersionsNode extends BaseTestNode {
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
+
+    public static EnumVersionsNode createTestNode() {
+        return new EnumVersionsNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition,
+            Collections.emptyList()
+        );
+    }
+
 }

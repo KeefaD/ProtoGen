@@ -25,6 +25,10 @@ public abstract class BaseNode {
         this.charPosition = charPosition;
     }
 
+    public String getSourceFileName() {
+        return sourceFileName;
+    }
+
     public long getLine() {
         return line;
     }

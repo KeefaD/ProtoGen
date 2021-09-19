@@ -58,4 +58,13 @@ public class TestEnumCasesNode extends BaseTestNode {
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
+
+    public static EnumCasesNode createTestNode() {
+        return new EnumCasesNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition,
+            Collections.emptyList()
+        );
+    }
 }
