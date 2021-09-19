@@ -26,9 +26,7 @@ public class ImplementsListNode extends BaseNode {
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//ImplementsListNode\n");
-        if(null != namespaceNameGenericParametersWithoutBoundsNodes) {
-            namespaceNameGenericParametersWithoutBoundsNodes.forEach(gpwb -> stringBuilder.append(gpwb.toFormattedString(1)));
-        }
+        namespaceNameGenericParametersWithoutBoundsNodes.forEach(gpwb -> stringBuilder.append(gpwb.toFormattedString(1)));
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

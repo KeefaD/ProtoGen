@@ -42,15 +42,9 @@ public class FileNode extends BaseNode {
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//FileNode\n");
-        if(null != protoGenTypeNodes) {
-            protoGenTypeNodes.forEach(pgtn -> stringBuilder.append(pgtn.toFormattedString(1)));
-        }
-        if(null != protoGenKeyNodes) {
-            protoGenKeyNodes.forEach(pgkn -> stringBuilder.append(pgkn.toFormattedString(1)));
-        }
-        if(null != protoGenEnumNodes) {
-            protoGenEnumNodes.forEach(pgkn -> stringBuilder.append(pgkn.toFormattedString(1)));
-        }
+        protoGenTypeNodes.forEach(pgtn -> stringBuilder.append(pgtn.toFormattedString(1)));
+        protoGenKeyNodes.forEach(pgkn -> stringBuilder.append(pgkn.toFormattedString(1)));
+        protoGenEnumNodes.forEach(pgkn -> stringBuilder.append(pgkn.toFormattedString(1)));
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

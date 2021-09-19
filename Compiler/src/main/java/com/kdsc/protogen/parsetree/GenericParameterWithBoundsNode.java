@@ -38,9 +38,7 @@ public class GenericParameterWithBoundsNode extends BaseNode {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//GenericParameterWithBoundsNode\n");
         stringBuilder.append(oneIndent() + "Identifier : " + identifier + "\n");
-        if(null != namespaceNameGenericParametersWithoutBoundsNodes) {
-            namespaceNameGenericParametersWithoutBoundsNodes.forEach(nngpwbn -> stringBuilder.append(nngpwbn.toFormattedString(1)));
-        }
+        namespaceNameGenericParametersWithoutBoundsNodes.forEach(nngpwbn -> stringBuilder.append(nngpwbn.toFormattedString(1)));
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

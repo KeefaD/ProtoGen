@@ -38,9 +38,7 @@ public class NamespaceNameNode extends BaseNode {
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//NamespaceNameNode\n");
-        if(null != namespaceNodes) {
-            namespaceNodes.forEach(pgtn -> stringBuilder.append(pgtn.toFormattedString(1)));
-        }
+        namespaceNodes.forEach(pgtn -> stringBuilder.append(pgtn.toFormattedString(1)));
         stringBuilder.append(nameNode.toFormattedString(1));
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);

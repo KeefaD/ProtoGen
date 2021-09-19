@@ -26,10 +26,7 @@ public class EnumVersionsNode extends BaseNode {
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//EnumVersionsNode\n");
-        //TODO:KMD Don't need any of these null checks any more
-        if(null != enumVersionNodes) {
-            enumVersionNodes.forEach(evn -> stringBuilder.append(evn.toFormattedString(1)));
-        }
+        enumVersionNodes.forEach(evn -> stringBuilder.append(evn.toFormattedString(1)));
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

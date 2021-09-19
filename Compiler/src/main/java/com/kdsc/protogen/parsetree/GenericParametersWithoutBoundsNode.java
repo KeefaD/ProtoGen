@@ -26,9 +26,7 @@ public class GenericParametersWithoutBoundsNode extends BaseNode {
     public String toFormattedString(int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//GenericParametersWithoutBoundsNode\n");
-        if(null != genericParameterWithoutBoundsNodes) {
-            genericParameterWithoutBoundsNodes.forEach(gpwb -> stringBuilder.append(gpwb.toFormattedString(1)));
-        }
+        genericParameterWithoutBoundsNodes.forEach(gpwb -> stringBuilder.append(gpwb.toFormattedString(1)));
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
