@@ -111,4 +111,15 @@ public class TestProtoGenEnumNode extends BaseTestNode {
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
+
+    public static ProtoGenEnumNode createTestNode() {
+        return new ProtoGenEnumNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition,
+            TestNamespaceNameNode.createTestNode(),
+            Optional.empty(),
+            Optional.empty()
+        );
+    }
 }

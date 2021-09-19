@@ -185,3 +185,14 @@ hs_err_pid*
 /Compiler/build/reports/tests/test/packages/com.kdsc.protogen.parsetree.utils.html
 /Compiler/build/reports/tests/test/classes/com.kdsc.protogen.parsetree.utils.TestParseTreeUtils.html
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.parsetree.utils.TestParseTreeUtils.xml
+/Compiler/build/reports/tests/test/packages/com.kdsc.protogen.semanticanalysis.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.semanticanalysis.TestSemanticAnalyserEnums.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.semanticanalysis.TestSemanticAnalyserRedefinitionOfObjects.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.semanticanalysis.TestSemanticError.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.semanticanalysis.TestSemanticErrorFactory.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.semanticanalysis.TestSemanticErrorType.html
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.semanticanalysis.TestSemanticAnalyserEnums.xml
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.semanticanalysis.TestSemanticAnalyserRedefinitionOfObjects.xml
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.semanticanalysis.TestSemanticError.xml
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.semanticanalysis.TestSemanticErrorFactory.xml
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.semanticanalysis.TestSemanticErrorType.xml

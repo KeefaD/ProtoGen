@@ -44,7 +44,7 @@ public class TestEnumVersionsNode extends BaseTestNode {
             BaseTestNode.charPosition,
             enumVersionNode
         );
-        assertEquals(enumVersionNode, node.getEnumVersionNode(), "Created and retrieved objects don't match");
+        assertEquals(enumVersionNode, node.getEnumVersionNodes(), "Created and retrieved objects don't match");
     }
 
     @Test

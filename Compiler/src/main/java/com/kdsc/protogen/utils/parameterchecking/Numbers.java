@@ -7,4 +7,10 @@ public class Numbers {
             throw new IllegalArgumentException("Require number to be zero or greater");
         }
     }
+
+    public static void requireOneOrGreater(long inputNumber) {
+        if(inputNumber < 1) {
+            throw new IllegalArgumentException("Require number to be one or greater");
+        }
+    }
 }
