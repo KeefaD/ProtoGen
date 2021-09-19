@@ -8,10 +8,10 @@ public class EnumCasesNode extends BaseNode {
     private final List<EnumNameNode> enumNameNodes;
 
     public EnumCasesNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        List<EnumNameNode> enumNameNodes
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final List<EnumNameNode> enumNameNodes
     ) {
         super(sourceFileName, line, charPosition);
         this.enumNameNodes = enumNameNodes;
@@ -23,7 +23,7 @@ public class EnumCasesNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//EnumCasesNode\n");
         enumNameNodes.forEach(ecn -> stringBuilder.append(ecn.toFormattedString(1)));

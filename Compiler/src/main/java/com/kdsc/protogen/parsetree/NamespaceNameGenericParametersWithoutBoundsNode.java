@@ -9,11 +9,11 @@ public class NamespaceNameGenericParametersWithoutBoundsNode extends BaseNode {
     private final Optional<GenericParametersWithoutBoundsNode> genericParametersWithoutBoundsNode;
 
     public NamespaceNameGenericParametersWithoutBoundsNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        NamespaceNameNode namespaceNameNode,
-        Optional<GenericParametersWithoutBoundsNode> genericParametersWithoutBoundsNode
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final NamespaceNameNode namespaceNameNode,
+        final Optional<GenericParametersWithoutBoundsNode> genericParametersWithoutBoundsNode
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(namespaceNameNode);
@@ -31,7 +31,7 @@ public class NamespaceNameGenericParametersWithoutBoundsNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//NamespaceNameGenericParametersWithoutBoundsNode\n");
         stringBuilder.append(namespaceNameNode.toFormattedString(1));

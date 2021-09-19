@@ -13,12 +13,12 @@ public class FieldTypeNode extends BaseNode {
     private final Optional<NonArrayFieldTypeNode> nonArrayFieldTypeNode;
 
     public FieldTypeNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        boolean optional,
-        Optional<ArrayFieldTypeNode> arrayFieldTypeNode,
-        Optional<NonArrayFieldTypeNode> nonArrayFieldTypeNode
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final boolean optional,
+        final Optional<ArrayFieldTypeNode> arrayFieldTypeNode,
+        final Optional<NonArrayFieldTypeNode> nonArrayFieldTypeNode
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(arrayFieldTypeNode);
@@ -42,7 +42,7 @@ public class FieldTypeNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//FieldTypeNode\n");
         stringBuilder.append(oneIndent() + "Optional : " + optional + "\n");

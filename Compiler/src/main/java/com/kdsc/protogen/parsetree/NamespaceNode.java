@@ -9,10 +9,10 @@ public class NamespaceNode extends BaseNode {
     private final String namespace;
 
     public NamespaceNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        String namespace
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final String namespace
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(namespace);
@@ -25,7 +25,7 @@ public class NamespaceNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//NamespaceNode\n");
         stringBuilder.append(oneIndent() + "Namespace : " + namespace);

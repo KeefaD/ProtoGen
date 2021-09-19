@@ -15,14 +15,14 @@ public class ProtoGenKeyNode extends BaseNode implements TopLevelObject, HasName
     private Optional<FieldsNode> fieldsNode;
 
     public ProtoGenKeyNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        boolean isInterface,
-        NamespaceNameGenericParametersWithBoundsNode namespaceNameGenericParametersWithBoundsNode,
-        Optional<ImplementsListNode> implementsListNode,
-        Optional<VersionsNode> versionsNode,
-        Optional<FieldsNode> fieldsNode
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final boolean isInterface,
+        final NamespaceNameGenericParametersWithBoundsNode namespaceNameGenericParametersWithBoundsNode,
+        final Optional<ImplementsListNode> implementsListNode,
+        final Optional<VersionsNode> versionsNode,
+        final Optional<FieldsNode> fieldsNode
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(namespaceNameGenericParametersWithBoundsNode);
@@ -61,7 +61,7 @@ public class ProtoGenKeyNode extends BaseNode implements TopLevelObject, HasName
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//ProtoGenKeyNode\n");
         stringBuilder.append(oneIndent() + "IsInterface : " + isInterface + "\n");

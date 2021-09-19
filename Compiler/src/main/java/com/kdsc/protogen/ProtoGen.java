@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
 public class ProtoGen {
-    public static void main(String... args) {
+    public static void main(final String... args) {
 
         var testProgram = "type keithsnamespace.keithstype";
 

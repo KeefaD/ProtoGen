@@ -9,10 +9,10 @@ public class ObjectFieldTypeNode extends NonArrayFieldTypeNode {
     private final NamespaceNameGenericParametersWithoutBoundsNode namespaceNameGenericParametersWithoutBoundsNode;
 
     public ObjectFieldTypeNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        NamespaceNameGenericParametersWithoutBoundsNode namespaceNameGenericParametersWithoutBoundsNode
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final NamespaceNameGenericParametersWithoutBoundsNode namespaceNameGenericParametersWithoutBoundsNode
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(namespaceNameGenericParametersWithoutBoundsNode);
@@ -24,7 +24,7 @@ public class ObjectFieldTypeNode extends NonArrayFieldTypeNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//ObjectFieldTypeNode\n");
         stringBuilder.append(namespaceNameGenericParametersWithoutBoundsNode.toFormattedString(1));

@@ -9,10 +9,10 @@ public class GenericObjectFieldTypeNode extends NonArrayFieldTypeNode {
     private final GenericParameterWithoutBoundsNode genericParameterWithoutBoundsNode;
 
     public GenericObjectFieldTypeNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        GenericParameterWithoutBoundsNode genericParameterWithoutBoundsNode
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final GenericParameterWithoutBoundsNode genericParameterWithoutBoundsNode
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(genericParameterWithoutBoundsNode);
@@ -24,7 +24,7 @@ public class GenericObjectFieldTypeNode extends NonArrayFieldTypeNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//GenericObjectFieldTypeNode\n");
         stringBuilder.append(genericParameterWithoutBoundsNode.toFormattedString(1));

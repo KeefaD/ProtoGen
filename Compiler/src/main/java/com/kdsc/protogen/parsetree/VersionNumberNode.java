@@ -5,10 +5,10 @@ public class VersionNumberNode extends BaseNode {
     private final long versionNumber;
 
     public VersionNumberNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        long versionNumber
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final long versionNumber
     ) {
         super(sourceFileName, line, charPosition);
         this.versionNumber = versionNumber;
@@ -19,7 +19,7 @@ public class VersionNumberNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//VersionNumberNode\n");
         stringBuilder.append(oneIndent() + "VersionNumber : " + versionNumber);

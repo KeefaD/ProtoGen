@@ -15,7 +15,7 @@ public abstract class BaseNode {
     private final long line;
     private final long charPosition;
 
-    public BaseNode(String sourceFileName, long line, long charPosition) {
+    public BaseNode(final String sourceFileName, final long line, final long charPosition) {
         Objects.requireNonNull(sourceFileName);
         Strings.requireNonBlank(sourceFileName);
         Numbers.requireZeroOrGreater(line);
@@ -46,5 +46,5 @@ public abstract class BaseNode {
         return toFormattedString(0);
     }
 
-    public abstract String toFormattedString(int indentationLevel);
+    public abstract String toFormattedString(final int indentationLevel);
 }

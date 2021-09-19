@@ -10,12 +10,12 @@ public class FileNode extends BaseNode {
     private final List<ProtoGenEnumNode> protoGenEnumNodes;
 
     public FileNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        List<ProtoGenTypeNode> protoGenTypeNodes,
-        List<ProtoGenKeyNode> protoGenKeyNodes,
-        List<ProtoGenEnumNode> protoGenEnumNodes
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final List<ProtoGenTypeNode> protoGenTypeNodes,
+        final List<ProtoGenKeyNode> protoGenKeyNodes,
+        final List<ProtoGenEnumNode> protoGenEnumNodes
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(protoGenTypeNodes);
@@ -39,7 +39,7 @@ public class FileNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//FileNode\n");
         protoGenTypeNodes.forEach(pgtn -> stringBuilder.append(pgtn.toFormattedString(1)));

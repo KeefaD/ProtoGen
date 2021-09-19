@@ -9,11 +9,11 @@ public class EnumVersionNode extends BaseNode {
     private final Optional<EnumCasesNode> enumCasesNode;
 
     public EnumVersionNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        VersionNumberNode versionNumberNode,
-        Optional<EnumCasesNode> enumCasesNode
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final VersionNumberNode versionNumberNode,
+        final Optional<EnumCasesNode> enumCasesNode
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(versionNumberNode);
@@ -31,7 +31,7 @@ public class EnumVersionNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//EnumVersionNode\n");
         stringBuilder.append(versionNumberNode.toFormattedString(1));

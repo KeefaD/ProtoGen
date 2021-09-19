@@ -7,10 +7,10 @@ public class ValueOrErrorFieldTypeNode extends NonArrayFieldTypeNode {
     private final FieldTypeNode entryFieldTypeNode;
 
     public ValueOrErrorFieldTypeNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        FieldTypeNode entryFieldTypeNode
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final FieldTypeNode entryFieldTypeNode
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(entryFieldTypeNode);
@@ -22,7 +22,7 @@ public class ValueOrErrorFieldTypeNode extends NonArrayFieldTypeNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//ValueOrErrorFieldTypeNode\n");
         stringBuilder.append(oneIndent() + "//Entry\n");

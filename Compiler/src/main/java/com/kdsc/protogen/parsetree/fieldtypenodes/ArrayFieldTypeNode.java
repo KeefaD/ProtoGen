@@ -10,11 +10,11 @@ public class ArrayFieldTypeNode extends BaseNode {
     private final long dimensions;
 
     public ArrayFieldTypeNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        NonArrayFieldTypeNode nonArrayFieldTypeNode,
-        long dimensions
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final NonArrayFieldTypeNode nonArrayFieldTypeNode,
+        final long dimensions
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(nonArrayFieldTypeNode);
@@ -31,7 +31,7 @@ public class ArrayFieldTypeNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//ArrayFieldTypeNode\n");
         stringBuilder.append(nonArrayFieldTypeNode.toFormattedString(1));

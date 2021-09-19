@@ -9,10 +9,10 @@ public class FieldNameNode extends BaseNode {
     private final String fieldName;
 
     public FieldNameNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        String fieldName
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final String fieldName
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(fieldName);
@@ -25,7 +25,7 @@ public class FieldNameNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//FieldNameNode\n");
         stringBuilder.append(oneIndent() + "FieldName : " + fieldName + "\n");

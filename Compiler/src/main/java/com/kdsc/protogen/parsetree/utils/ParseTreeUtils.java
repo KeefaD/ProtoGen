@@ -9,7 +9,7 @@ public class ParseTreeUtils {
 
     public static final String DELIMITER = ".";
 
-    public static String getNamespaceNameString(NamespaceNameNode namespaceNameNode) {
+    public static String getNamespaceNameString(final NamespaceNameNode namespaceNameNode) {
         var returnString = namespaceNameNode
             .getNamespaceNodes()
             .stream()

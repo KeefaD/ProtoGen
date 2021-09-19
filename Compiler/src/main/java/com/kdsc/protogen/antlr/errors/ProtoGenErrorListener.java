@@ -9,17 +9,17 @@ import java.util.List;
 
 public class ProtoGenErrorListener extends BaseErrorListener {
 
-    public static final String PARSER_ERROR_MESSAGE = "PROTOGEN PARSER ERROR in:%s at line:%d char:%d with msg:%s";
+    public static final String PARSER_ERROR_MESSAGE = "PROTOGEN PARSER ERROR in file:%s at line:%d char:%d with msg:%s";
 
     private final String sourceFileName;
     private final List<String> errors = new ArrayList<>();
 
-    public ProtoGenErrorListener(String sourceFileName) {
+    public ProtoGenErrorListener(final String sourceFileName) {
         this.sourceFileName = sourceFileName;
     }
 
     @Override
-    public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol, int line, int charPositionInLine, String msg, RecognitionException e) {
+    public void syntaxError(final Recognizer<?, ?> recognizer, final Object offendingSymbol, final int line, final int charPositionInLine, final String msg, final RecognitionException e) {
         errors.add(PARSER_ERROR_MESSAGE.formatted(sourceFileName, line, charPositionInLine, msg));
     }
 

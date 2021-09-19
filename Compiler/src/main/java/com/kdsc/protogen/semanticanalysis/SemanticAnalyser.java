@@ -12,7 +12,7 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 
 public class SemanticAnalyser {
 
-    public static List<SemanticError> runSemanticAnalysis(List<FileNode> fileNodes) {
+    public static List<SemanticError> runSemanticAnalysis(final List<FileNode> fileNodes) {
 
         var returnSemanticErrors = new ArrayList<SemanticError>();
 
@@ -46,7 +46,7 @@ public class SemanticAnalyser {
             .collect(Collectors.toList());
     }
 
-    private static void checkRedefinitionOfObject(List<SemanticError> semanticErrors, List<FileNode> fileNodes) {
+    private static void checkRedefinitionOfObject(final List<SemanticError> semanticErrors, final List<FileNode> fileNodes) {
 
         var topLevelObjects = fileNodes
             .stream()
@@ -74,13 +74,13 @@ public class SemanticAnalyser {
             );
     }
 
-    private static void checkTypes(List<SemanticError> semanticErrors, Map<String, ProtoGenTypeNode> typeNodeMap) {
+    private static void checkTypes(final List<SemanticError> semanticErrors, final Map<String, ProtoGenTypeNode> typeNodeMap) {
         typeNodeMap
             .values()
             .forEach(tn -> checkType(semanticErrors, typeNodeMap, tn));
     }
 
-    private static void checkType(List<SemanticError> semanticErrors, Map<String, ProtoGenTypeNode> typeNodeMap, ProtoGenTypeNode typeNode) {
+    private static void checkType(final List<SemanticError> semanticErrors, final Map<String, ProtoGenTypeNode> typeNodeMap, final ProtoGenTypeNode typeNode) {
 
         //TODO:KMD Generic parameters and bounds
         //TODO:KMD Inheritance loop
@@ -122,13 +122,13 @@ public class SemanticAnalyser {
             );
     }
 
-    private static void checkEnums(List<SemanticError> semanticErrors, Map<String, ProtoGenEnumNode> enumNodeMap) {
+    private static void checkEnums(final List<SemanticError> semanticErrors, final Map<String, ProtoGenEnumNode> enumNodeMap) {
         enumNodeMap
             .values()
             .forEach(en -> checkEnum(semanticErrors, en));
     }
 
-    private static void checkEnum(List<SemanticError> semanticErrors, ProtoGenEnumNode enumNode) {
+    private static void checkEnum(final List<SemanticError> semanticErrors, final ProtoGenEnumNode enumNode) {
         var versions = enumNode
             .getEnumVersionsNode()
             .stream()
@@ -158,7 +158,7 @@ public class SemanticAnalyser {
         if(enumNode.getEnumCasesNode().isPresent()) checkEnumCases(semanticErrors, enumNode.getEnumCasesNode().get());
     }
 
-    private static void checkEnumCases(List<SemanticError> semanticErrors, EnumCasesNode enumCasesNode) {
+    private static void checkEnumCases(final List<SemanticError> semanticErrors, final EnumCasesNode enumCasesNode) {
         var enumNameSet = new HashSet<String>();
         enumCasesNode
             .getEnumNameNodes()

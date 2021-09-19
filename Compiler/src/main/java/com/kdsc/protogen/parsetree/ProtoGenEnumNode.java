@@ -14,12 +14,12 @@ public class ProtoGenEnumNode extends BaseNode implements TopLevelObject, HasNam
     private Optional<EnumCasesNode> enumCasesNode;
 
     public ProtoGenEnumNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        NamespaceNameNode namespaceNameNode,
-        Optional<EnumVersionsNode> enumVersionsNode,
-        Optional<EnumCasesNode> enumCasesNode
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final NamespaceNameNode namespaceNameNode,
+        final Optional<EnumVersionsNode> enumVersionsNode,
+        final Optional<EnumCasesNode> enumCasesNode
     ) {
         //TODO:KMD Also need to make all lists immutable
         super(sourceFileName, line, charPosition);
@@ -45,7 +45,7 @@ public class ProtoGenEnumNode extends BaseNode implements TopLevelObject, HasNam
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//ProtoGenEnumNode\n");
         stringBuilder.append(namespaceNameNode.toFormattedString(1));

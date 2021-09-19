@@ -9,10 +9,10 @@ public class NameNode extends BaseNode {
     private final String name;
 
     public NameNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        String name
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final String name
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(name);
@@ -25,7 +25,7 @@ public class NameNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//NameNode\n");
         stringBuilder.append(oneIndent() + "Name : " + name);

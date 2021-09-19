@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public class Optionals {
 
-    public static void requireOne(Optional<?>... optionals) {
+    public static void requireOne(final Optional<?>... optionals) {
         if(optionals == null) {
             throw new NullPointerException("Optionals var args is null");
         }
@@ -18,7 +18,7 @@ public class Optionals {
         }
     }
 
-    public static void requireAtMostOne(Optional<?>... optionals) {
+    public static void requireAtMostOne(final Optional<?>... optionals) {
         if(optionals == null) {
             throw new NullPointerException("Optionals var args is null");
         }

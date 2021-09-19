@@ -11,13 +11,13 @@ public class VersionNode extends BaseNode {
     private final Optional<FieldsNode> fieldsNode;
 
     public VersionNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        VersionNumberNode versionNumberNode,
-        Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode,
-        Optional<ImplementsListNode> implementsListNode,
-        Optional<FieldsNode> fieldsNode
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final VersionNumberNode versionNumberNode,
+        final Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode,
+        final Optional<ImplementsListNode> implementsListNode,
+        final Optional<FieldsNode> fieldsNode
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(versionNumberNode);
@@ -47,7 +47,7 @@ public class VersionNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//VersionNode\n");
         stringBuilder.append(versionNumberNode.toFormattedString(1));

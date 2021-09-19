@@ -5,15 +5,15 @@ import com.kdsc.protogen.parsetree.BaseNode;
 public abstract class NonArrayFieldTypeNode extends BaseNode {
 
     public NonArrayFieldTypeNode(
-        String sourceFileName,
-        long line,
-        long charPosition
+        final String sourceFileName,
+        final long line,
+        final long charPosition
     ) {
         super(sourceFileName, line, charPosition);
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//NonArrayFieldTypeNode\n");
         var outputString = stringBuilder.toString();

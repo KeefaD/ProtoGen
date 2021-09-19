@@ -11,11 +11,11 @@ public class NamespaceNameNode extends BaseNode {
     private final NameNode nameNode;
 
     public NamespaceNameNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        List<NamespaceNode> namespaceNodes,
-        NameNode nameNode
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final List<NamespaceNode> namespaceNodes,
+        final NameNode nameNode
     )
     {
         super(sourceFileName, line, charPosition);
@@ -35,7 +35,7 @@ public class NamespaceNameNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//NamespaceNameNode\n");
         namespaceNodes.forEach(pgtn -> stringBuilder.append(pgtn.toFormattedString(1)));

@@ -8,10 +8,10 @@ public class GenericParametersWithoutBoundsNode extends BaseNode {
     private final List<GenericParameterWithoutBoundsNode> genericParameterWithoutBoundsNodes;
 
     public GenericParametersWithoutBoundsNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        List<GenericParameterWithoutBoundsNode> genericParameterWithoutBoundsNodes
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final List<GenericParameterWithoutBoundsNode> genericParameterWithoutBoundsNodes
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(genericParameterWithoutBoundsNodes);
@@ -23,7 +23,7 @@ public class GenericParametersWithoutBoundsNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//GenericParametersWithoutBoundsNode\n");
         genericParameterWithoutBoundsNodes.forEach(gpwb -> stringBuilder.append(gpwb.toFormattedString(1)));

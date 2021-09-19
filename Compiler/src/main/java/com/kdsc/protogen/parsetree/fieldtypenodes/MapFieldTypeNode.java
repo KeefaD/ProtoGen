@@ -8,11 +8,11 @@ public class MapFieldTypeNode extends NonArrayFieldTypeNode {
     private final FieldTypeNode valueFieldTypeNode;
 
     public MapFieldTypeNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        FieldTypeNode keyFieldTypeNode,
-        FieldTypeNode valueFieldTypeNode
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final FieldTypeNode keyFieldTypeNode,
+        final FieldTypeNode valueFieldTypeNode
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(keyFieldTypeNode);
@@ -30,7 +30,7 @@ public class MapFieldTypeNode extends NonArrayFieldTypeNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//MapFieldTypeNode\n");
         stringBuilder.append(oneIndent() + "//Key\n");

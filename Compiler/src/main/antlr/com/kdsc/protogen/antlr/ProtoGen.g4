@@ -21,6 +21,15 @@ protogen_key:
 protogen_enum:
     'enum' namespace_name ( '{' (enum_versions | enum_cases)? '}' )?;
 
+implements_list:
+    ':' namespace_name_generic_parameters_without_bounds (',' namespace_name_generic_parameters_without_bounds)*;
+
+versions:
+    version+;
+
+version:
+    'version' version_number generic_parameters_with_bounds? implements_list? ( '{' fields? '}' )?;
+
 enum_versions:
     enum_version+;
 
@@ -30,14 +39,20 @@ enum_version:
 enum_cases:
     enum_name+ (enum_name)*;
 
-implements_list:
-    ':' namespace_name_generic_parameters_without_bounds (',' namespace_name_generic_parameters_without_bounds)*;
+namespace_name_generic_parameters_with_bounds:
+    namespace_name generic_parameters_with_bounds?;
 
-versions:
-    version+;
+namespace_name_generic_parameters_without_bounds:
+    namespace_name generic_parameters_without_bounds?;
 
-version:
-    'version' version_number generic_parameters_with_bounds? implements_list? ( '{' fields? '}' )?;
+namespace_name:
+    (namespace '.')+ name;
+
+generic_parameters_with_bounds:
+    '<' generic_parameter_with_bounds (',' generic_parameter_with_bounds)* '>';
+
+generic_parameters_without_bounds:
+    '<' generic_parameter_without_bounds (',' generic_parameter_without_bounds)* '>';
 
 fields:
     field+;
@@ -89,21 +104,6 @@ object_field_type:
 
 generic_object_field_type:
     generic_parameter_without_bounds;
-
-namespace_name_generic_parameters_with_bounds:
-    namespace_name generic_parameters_with_bounds?;
-
-namespace_name_generic_parameters_without_bounds:
-    namespace_name generic_parameters_without_bounds?;
-
-namespace_name:
-    (namespace '.')+ name;
-
-generic_parameters_with_bounds:
-    '<' generic_parameter_with_bounds (',' generic_parameter_with_bounds)* '>';
-
-generic_parameters_without_bounds:
-    '<' generic_parameter_without_bounds (',' generic_parameter_without_bounds)* '>';
 
 generic_parameter_with_bounds:
     IDENTIFIER (':' namespace_name_generic_parameters_without_bounds)? ('&' namespace_name_generic_parameters_without_bounds)*;

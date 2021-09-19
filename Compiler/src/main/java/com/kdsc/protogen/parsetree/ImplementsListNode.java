@@ -8,10 +8,10 @@ public class ImplementsListNode extends BaseNode {
     private final List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes;
 
     public ImplementsListNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(namespaceNameGenericParametersWithoutBoundsNodes);
@@ -23,7 +23,7 @@ public class ImplementsListNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//ImplementsListNode\n");
         namespaceNameGenericParametersWithoutBoundsNodes.forEach(gpwb -> stringBuilder.append(gpwb.toFormattedString(1)));

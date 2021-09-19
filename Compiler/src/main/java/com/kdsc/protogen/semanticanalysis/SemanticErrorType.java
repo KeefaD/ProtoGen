@@ -14,7 +14,7 @@ public enum SemanticErrorType {
     private final long number;
     private final String message;
 
-    SemanticErrorType(long number, String message) {
+    SemanticErrorType(final long number, final String message) {
         Numbers.requireOneOrGreater(number);
         Strings.requireNonBlank(message);
         this.number = number;
@@ -25,7 +25,7 @@ public enum SemanticErrorType {
         return number;
     }
 
-    public String getMessage(Object... arguments) {
+    public String getMessage(final Object... arguments) {
         return message.formatted(arguments);
     }
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Lists {
 
-    public static void requireAtLeastOne(List<?> inputList) {
+    public static void requireAtLeastOne(final List<?> inputList) {
         if(inputList == null) {
             throw new NullPointerException("inputList args is null");
         }

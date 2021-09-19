@@ -9,9 +9,9 @@ public class KeyFieldTypeNode extends NonArrayFieldTypeNode {
     private final NamespaceNameGenericParametersWithoutBoundsNode namespaceNameGenericParametersWithoutBoundsNode;
 
     public KeyFieldTypeNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
         NamespaceNameGenericParametersWithoutBoundsNode namespaceNameGenericParametersWithoutBoundsNode
     ) {
         super(sourceFileName, line, charPosition);
@@ -24,7 +24,7 @@ public class KeyFieldTypeNode extends NonArrayFieldTypeNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//KeyFieldTypeNode\n");
         stringBuilder.append(namespaceNameGenericParametersWithoutBoundsNode.toFormattedString(1));

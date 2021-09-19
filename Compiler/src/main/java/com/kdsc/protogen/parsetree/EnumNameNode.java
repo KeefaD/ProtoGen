@@ -9,10 +9,10 @@ public class EnumNameNode extends BaseNode {
     private final String enumName;
 
     public EnumNameNode(
-        String sourceFileName,
-        long line,
-        long charPosition,
-        String enumName
+        final String sourceFileName,
+        final long line,
+        final long charPosition,
+        final String enumName
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(enumName);
@@ -25,7 +25,7 @@ public class EnumNameNode extends BaseNode {
     }
 
     @Override
-    public String toFormattedString(int indentationLevel) {
+    public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//EnumNameNode\n");
         stringBuilder.append(oneIndent() + "EnumName : " + enumName);
