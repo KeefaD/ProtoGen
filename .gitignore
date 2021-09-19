@@ -182,3 +182,6 @@ hs_err_pid*
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.parsetreepostprocessing.TestUndetectableNodeReplacerWithEnums.xml
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.parsetreepostprocessing.TestUndetectableNodeReplacerWithKeys.xml
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.parsetreepostprocessing.TestUndetectableNodeReplacerWithTypes.xml
+/Compiler/build/reports/tests/test/packages/com.kdsc.protogen.parsetree.utils.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.parsetree.utils.TestParseTreeUtils.html
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.parsetree.utils.TestParseTreeUtils.xml
