@@ -9,7 +9,11 @@ public enum SemanticErrorType {
     REDEFINITION_OF_ENUM_VERSION(2, "Redefinition of enum version %d"),
     REDEFINITION_OF_ENUM_CASE(3, "Redefinition of enum case %s"),
     REDEFINITION_OF_TYPE_VERSION(4, "Redefinition of type version %d"),
-    TYPE_REFERS_TO_NON_EXISTENT_TYPE_IN_IMPLEMENTS_LIST(5, "Type %s refers to non existent type %s in implements list");
+    TYPE_REFERS_TO_NON_EXISTENT_TYPE_IN_IMPLEMENTS_LIST(5, "Type %s refers to non existent type %s in implements list"),
+    REDEFINITION_OF_GENERIC_PARAMETER(6, "Type %s redefines generic parameter %s"),
+    GENERIC_PARAMETER_BOUNDS_REFERS_TO_NON_EXISTENT_TYPE(7, "Generic parameter bounds for type parameter %s refers to non existent type %s"),
+    GENERIC_PARAMETER_BOUNDS_REFERS_TO_TYPE_MULTIPLE_TIMES(8, "Generic parameter bounds for type parameter %s refers to non type %s more than once"),
+    GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE(9, "Generic parameter %s has not been defined in type %s");
 
     private final long number;
     private final String message;
@@ -30,3 +34,4 @@ public enum SemanticErrorType {
     }
 
 }
+

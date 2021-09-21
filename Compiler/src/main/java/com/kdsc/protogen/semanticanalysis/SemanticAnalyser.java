@@ -85,6 +85,49 @@ public class SemanticAnalyser {
         //TODO:KMD Generic parameters and bounds
         //TODO:KMD Inheritance loop
 
+        var genericParameters = typeNode
+            .getNamespaceNameGenericParametersWithBoundsNode()
+            .getGenericParametersWithBoundsNode()
+            .stream()
+            .flatMap(gpwb -> gpwb.getGenericParameterWithBoundsNodes().stream())
+            .collect(Collectors.toList());
+
+        var genericParametersSet = new HashSet<String>();
+        genericParameters
+            .forEach(
+                gp -> {
+                    if(genericParametersSet.contains(gp.getIdentifier())) {
+                        semanticErrors.add(createSemanticError(REDEFINITION_OF_GENERIC_PARAMETER, gp, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), gp.getIdentifier()));
+                    } else {
+                        genericParametersSet.add(gp.getIdentifier());
+                    }
+                }
+            );
+
+        typeNode
+            .getNamespaceNameGenericParametersWithBoundsNode()
+            .getGenericParametersWithBoundsNode()
+            .stream()
+            .flatMap(gpwb -> gpwb.getGenericParameterWithBoundsNodes().stream())
+            .forEach(
+                gpwb -> {
+                    var namespaceNameAsStringSet = new HashSet<String>();
+                    gpwb
+                        .getNamespaceNameGenericParametersWithoutBoundsNodes()
+                        .forEach(
+                            nngpwb -> {
+                                if(!typeNodeMap.containsKey(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode()))) {
+                                    semanticErrors.add(createSemanticError(GENERIC_PARAMETER_BOUNDS_REFERS_TO_NON_EXISTENT_TYPE, nngpwb, gpwb.getIdentifier(), ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())));
+                                } else if(namespaceNameAsStringSet.contains(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode()))) {
+                                    semanticErrors.add(createSemanticError(GENERIC_PARAMETER_BOUNDS_REFERS_TO_TYPE_MULTIPLE_TIMES, nngpwb, gpwb.getIdentifier(), ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())));
+                                } else {
+                                    namespaceNameAsStringSet.add(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode()));
+                                }
+                            }
+                        );
+                }
+            );
+
         if(typeNode.getImplementsListNode().isPresent()) {
             typeNode
                 .getImplementsListNode()
@@ -96,9 +139,22 @@ public class SemanticAnalyser {
                         if(!typeNodeMap.containsKey(namespaceNameAsString)) {
                             semanticErrors.add(createSemanticError(TYPE_REFERS_TO_NON_EXISTENT_TYPE_IN_IMPLEMENTS_LIST, nngp, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), namespaceNameAsString));
                         }
+                        nngp
+                            .getGenericParametersWithoutBoundsNode()
+                            .stream()
+                            .flatMap(nngpwb -> nngpwb.getGenericParameterWithoutBoundsNodes().stream())
+                            .forEach(
+                                gpwb -> {
+                                    if(!genericParametersSet.contains(gpwb.getIdentifier())) {
+                                        semanticErrors.add(createSemanticError(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE, gpwb, gpwb.getIdentifier(), ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode())));
+                                    }
+                                }
+                            );
                     }
                 );
         }
+
+        //TODO:KMD Test number and types of generic parameters
 
         var versions = typeNode
             .getVersionsNode()
