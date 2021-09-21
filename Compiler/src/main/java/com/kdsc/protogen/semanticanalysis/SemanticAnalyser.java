@@ -82,7 +82,6 @@ public class SemanticAnalyser {
 
     private static void checkType(final List<SemanticError> semanticErrors, final Map<String, ProtoGenTypeNode> typeNodeMap, final ProtoGenTypeNode typeNode) {
 
-        //TODO:KMD Generic parameters and bounds
         //TODO:KMD Inheritance loop
 
         var genericParameters = typeNode
@@ -139,19 +138,7 @@ public class SemanticAnalyser {
                         if(!typeNodeMap.containsKey(namespaceNameAsString)) {
                             semanticErrors.add(createSemanticError(TYPE_REFERS_TO_NON_EXISTENT_TYPE_IN_IMPLEMENTS_LIST, nngp, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), namespaceNameAsString));
                         } else {
-                            var numberOfGenericParametersOnImplementsListDefinition = nngp.getGenericParametersWithoutBoundsNode().isPresent()
-                                ? nngp.getGenericParametersWithoutBoundsNode().get().getGenericParameterWithoutBoundsNodes().size()
-                                : 0;
-
-                            var implementsTypeDefinition = typeNodeMap.get(namespaceNameAsString);
-                            var numberOfGenericParametersOnTypeDefinition = implementsTypeDefinition.getNamespaceNameGenericParametersWithBoundsNode().getGenericParametersWithBoundsNode().isPresent()
-                                ? implementsTypeDefinition.getNamespaceNameGenericParametersWithBoundsNode().getGenericParametersWithBoundsNode().get().getGenericParameterWithBoundsNodes().size()
-                                : 0;
-
-                            if(numberOfGenericParametersOnImplementsListDefinition != numberOfGenericParametersOnTypeDefinition) {
-                                semanticErrors.add(createSemanticError(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION, nngp, numberOfGenericParametersOnImplementsListDefinition, ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode()), numberOfGenericParametersOnTypeDefinition));
-                            }
-                            //TODO:KMD Check bounds match
+                            checkGenericParameters(semanticErrors, typeNodeMap, typeNode, nngp);
                         }
                         nngp
                             .getGenericParametersWithoutBoundsNode()
@@ -203,6 +190,26 @@ public class SemanticAnalyser {
                     }
                 }
             );
+    }
+
+    private static void checkGenericParameters(final List<SemanticError> semanticErrors, final Map<String, ProtoGenTypeNode> typeNodeMap, final ProtoGenTypeNode typeNode, final NamespaceNameGenericParametersWithoutBoundsNode implementsTypeNamespaceNameGenericParametersWithoutBoundsNode) {
+
+        var numberOfGenericParametersOnImplementsListDefinition = implementsTypeNamespaceNameGenericParametersWithoutBoundsNode.getGenericParametersWithoutBoundsNode().isPresent()
+            ? implementsTypeNamespaceNameGenericParametersWithoutBoundsNode.getGenericParametersWithoutBoundsNode().get().getGenericParameterWithoutBoundsNodes().size()
+            : 0;
+
+        var implementsTypeDefinition = typeNodeMap.get(ParseTreeUtils.getNamespaceNameString(implementsTypeNamespaceNameGenericParametersWithoutBoundsNode.getNamespaceNameNode()));
+        var numberOfGenericParametersOnTypeDefinition = implementsTypeDefinition.getNamespaceNameGenericParametersWithBoundsNode().getGenericParametersWithBoundsNode().isPresent()
+            ? implementsTypeDefinition.getNamespaceNameGenericParametersWithBoundsNode().getGenericParametersWithBoundsNode().get().getGenericParameterWithBoundsNodes().size()
+            : 0;
+
+        if(numberOfGenericParametersOnImplementsListDefinition != numberOfGenericParametersOnTypeDefinition) {
+            semanticErrors.add(createSemanticError(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION, implementsTypeNamespaceNameGenericParametersWithoutBoundsNode, numberOfGenericParametersOnImplementsListDefinition, ParseTreeUtils.getNamespaceNameString(implementsTypeNamespaceNameGenericParametersWithoutBoundsNode.getNamespaceNameNode()), numberOfGenericParametersOnTypeDefinition));
+        } else {
+            if(numberOfGenericParametersOnImplementsListDefinition > 0) {
+                //TODO:KMD Check all the bounds
+            }
+        }
     }
 
     private static void checkEnums(final List<SemanticError> semanticErrors, final Map<String, ProtoGenEnumNode> enumNodeMap) {
