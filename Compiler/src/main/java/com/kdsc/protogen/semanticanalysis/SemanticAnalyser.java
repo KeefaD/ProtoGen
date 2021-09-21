@@ -167,8 +167,6 @@ public class SemanticAnalyser {
                     }
                 );
 
-
-
             var nonInterfaceTypeNodes = typeNode
                 .getImplementsListNode()
                 .stream()
@@ -184,8 +182,6 @@ public class SemanticAnalyser {
                     );
             }
         }
-
-        //TODO:KMD Test number and types of generic parameters
 
         var versions = typeNode
             .getVersionsNode()
