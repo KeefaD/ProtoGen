@@ -237,7 +237,7 @@ public class TestSemanticAnalyserTypes extends BaseParserTest {
     @Test
     public void testGenericParameterHasNotBeenDefinedInTypeOnce() {
         var testProgram = """
-            type TestNamespace.Type1
+            type TestNamespace.Type1<T>
             type TestNamespace.Type<T> : TestNamespace.Type1<T2>
         """;
         var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
@@ -255,7 +255,7 @@ public class TestSemanticAnalyserTypes extends BaseParserTest {
     @Test
     public void testGenericParameterHasNotBeenDefinedInTypeOnceDouble() {
         var testProgram = """
-            type TestNamespace.Type1
+            type TestNamespace.Type1<T1, T2>
             type TestNamespace.Type<T> : TestNamespace.Type1<T2, T3>
         """;
         var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
@@ -278,8 +278,8 @@ public class TestSemanticAnalyserTypes extends BaseParserTest {
     @Test
     public void testGenericParameterHasNotBeenDefinedInTypeTwice() {
         var testProgram = """
-            type TestNamespace.Type1
-            type TestNamespace.Type2
+            type TestNamespace.Type1<T>
+            type interface TestNamespace.Type2<T>
             type TestNamespace.Type<T> : TestNamespace.Type1<T2>, TestNamespace.Type2<T2>
         """;
         var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
@@ -302,8 +302,8 @@ public class TestSemanticAnalyserTypes extends BaseParserTest {
     @Test
     public void testGenericParameterHasNotBeenDefinedInTypeTwiceDouble() {
         var testProgram = """
-            type TestNamespace.Type1
-            type TestNamespace.Type2
+            type TestNamespace.Type1<T1, T2>
+            type interface TestNamespace.Type2<T1, T2>
             type TestNamespace.Type<T> : TestNamespace.Type1<T2, T3>, TestNamespace.Type2<T2, T4>
         """;
         var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
@@ -329,6 +329,208 @@ public class TestSemanticAnalyserTypes extends BaseParserTest {
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 86, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T4", "TestNamespace.Type")),
             semanticErrors.get(3).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testMoreThanOneNonInterfaceTypeInImplementsListTwo() {
+        var testProgram = """
+            type TestNamespace.Type1
+            type TestNamespace.Type2
+            type TestNamespace.Type : TestNamespace.Type1, TestNamespace.Type2
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 30, MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE.getMessage("TestNamespace.Type", "TestNamespace.Type1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 51, MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE.getMessage("TestNamespace.Type", "TestNamespace.Type2")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testMoreThanOneNonInterfaceTypeInImplementsListThree() {
+        var testProgram = """
+            type TestNamespace.Type1
+            type TestNamespace.Type2
+            type TestNamespace.Type3
+            type TestNamespace.Type : TestNamespace.Type1, TestNamespace.Type2, TestNamespace.Type3
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(3, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 30, MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE.getMessage("TestNamespace.Type", "TestNamespace.Type1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 51, MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE.getMessage("TestNamespace.Type", "TestNamespace.Type2")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 72, MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE.getMessage("TestNamespace.Type", "TestNamespace.Type3")),
+            semanticErrors.get(2).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionZeroOnDefinitionOneInImplementsList() {
+        var testProgram = """
+            type TestNamespace.Type1
+            type TestNamespace.Type<T> : TestNamespace.Type1<T>
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 33, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage(1, "TestNamespace.Type1", 0)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionOneOnDefinitionZeroInImplementsList() {
+        var testProgram = """
+            type TestNamespace.Type1<T>
+            type TestNamespace.Type<T> : TestNamespace.Type1
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 33, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage(0, "TestNamespace.Type1", 1)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionTwoOnDefinitionZeroInImplementsList() {
+        var testProgram = """
+            type TestNamespace.Type1<T1, T2>
+            type TestNamespace.Type<T> : TestNamespace.Type1
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 33, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage(0, "TestNamespace.Type1", 2)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionThreeOnDefinitionTwoInImplementsList() {
+        var testProgram = """
+            type TestNamespace.Type1<T1, T2, T3>
+            type TestNamespace.Type<T1, T2> : TestNamespace.Type1<T1, T2>
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 38, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage(2, "TestNamespace.Type1", 3)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionZeroOnDefinitionOneInImplementsListSecondImplements() {
+        var testProgram = """
+            type interface TestNamespace.Type1
+            type TestNamespace.Type2
+            type TestNamespace.Type<T> : TestNamespace.Type1, TestNamespace.Type2<T>
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 54, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage(1, "TestNamespace.Type2", 0)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionOneOnDefinitionZeroInImplementsListSecondImplements() {
+        var testProgram = """
+            type interface TestNamespace.Type1<T>
+            type TestNamespace.Type2<T>
+            type TestNamespace.Type<T> : TestNamespace.Type1<T>, TestNamespace.Type2
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), DUMMY_SOURCE_FILE_NAME, 3,57, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage(0, "TestNamespace.Type2", 1)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionTwoOnDefinitionZeroInImplementsListSecondImplements() {
+        var testProgram = """
+            type interface TestNamespace.Type1<T1, T2>
+            type TestNamespace.Type2<T1, T2>
+            type TestNamespace.Type<T1, T2> : TestNamespace.Type1<T1, T2>, TestNamespace.Type2
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 67, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage(0, "TestNamespace.Type2", 2)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionThreeOnDefinitionTwoInImplementsListSecondImplements() {
+        var testProgram = """
+            type interface TestNamespace.Type1<T1, T2, T3>
+            type TestNamespace.Type2<T1, T2, T3>
+            type TestNamespace.Type<T1, T2, T3> : TestNamespace.Type1<T1, T2, T3>, TestNamespace.Type2<T1, T2>
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 75, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage(2, "TestNamespace.Type2", 3)),
+            semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
     }
