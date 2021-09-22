@@ -35,6 +35,32 @@ public class TestArrayFieldTypeNode extends BaseTestNode {
     }
 
     @Test
+    public void testZeroOrNegativeDimensionsInConstructor() {
+
+        assertThrows(IllegalArgumentException.class,
+            () ->
+            new ArrayFieldTypeNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                TestBoolFieldTypeNode.createTestNode(),
+                0
+            )
+        );
+
+        assertThrows(IllegalArgumentException.class,
+            () ->
+            new ArrayFieldTypeNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                TestBoolFieldTypeNode.createTestNode(),
+                -1
+            )
+        );
+    }
+
+    @Test
     public void testGetters() {
         var nonArrayFieldTypeNode = TestBoolFieldTypeNode.createTestNode();
         var dimensions = 1;

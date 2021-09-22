@@ -7,11 +7,11 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestNamespaceNameGenericParametersWithoutBoundsNode extends BaseTestNode {
+public class TestNamespaceNameGenericParametersNode extends BaseTestNode {
 
     @Test
     public void testCreate() {
-        new NamespaceNameGenericParametersWithoutBoundsNode(
+        new NamespaceNameGenericParametersNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
@@ -25,7 +25,7 @@ public class TestNamespaceNameGenericParametersWithoutBoundsNode extends BaseTes
 
         assertThrows(NullPointerException.class,
             () ->
-            new NamespaceNameGenericParametersWithoutBoundsNode(
+            new NamespaceNameGenericParametersNode(
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
@@ -36,7 +36,7 @@ public class TestNamespaceNameGenericParametersWithoutBoundsNode extends BaseTes
 
         assertThrows(NullPointerException.class,
             () ->
-            new NamespaceNameGenericParametersWithoutBoundsNode(
+            new NamespaceNameGenericParametersNode(
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
@@ -49,21 +49,21 @@ public class TestNamespaceNameGenericParametersWithoutBoundsNode extends BaseTes
     @Test
     public void testGetters() {
         var name = TestNamespaceNameNode.createTestNode();
-        Optional<GenericParametersWithoutBoundsNode> genericParametersWithoutBounds = Optional.empty();
-        var node = new NamespaceNameGenericParametersWithoutBoundsNode(
+        Optional<GenericParametersNode> genericParameters = Optional.empty();
+        var node = new NamespaceNameGenericParametersNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
             name,
-            genericParametersWithoutBounds
+            genericParameters
         );
         assertEquals(name, node.getNamespaceNameNode(), "Created and retrieved objects don't match");
-        assertEquals(genericParametersWithoutBounds, node.getGenericParametersWithoutBoundsNode(), "Created and retrieved objects don't match");
+        assertEquals(genericParameters, node.getGenericParametersNode(), "Created and retrieved objects don't match");
     }
 
     @Test
     public void testToString() {
-        var node = new NamespaceNameGenericParametersWithoutBoundsNode(
+        var node = new NamespaceNameGenericParametersNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
@@ -71,7 +71,7 @@ public class TestNamespaceNameGenericParametersWithoutBoundsNode extends BaseTes
             Optional.empty()
         );
         var expectedToStringOutput = """
-        //NamespaceNameGenericParametersWithoutBoundsNode
+        //NamespaceNameGenericParametersNode
             //NamespaceNameNode
                 //NamespaceNode
                     Namespace : Namespace
@@ -81,8 +81,8 @@ public class TestNamespaceNameGenericParametersWithoutBoundsNode extends BaseTes
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
 
-    public static NamespaceNameGenericParametersWithoutBoundsNode createTestNode() {
-        return new NamespaceNameGenericParametersWithoutBoundsNode(
+    public static NamespaceNameGenericParametersNode createTestNode() {
+        return new NamespaceNameGenericParametersNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,

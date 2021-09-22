@@ -1,6 +1,8 @@
 package com.kdsc.protogen.semanticanalysis;
 
 import com.kdsc.protogen.parsetree.*;
+import com.kdsc.protogen.parsetree.commoninterfaces.AllowableOutputFieldTypeNode;
+import com.kdsc.protogen.parsetree.fieldtypenodes.*;
 import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
 
 import java.util.*;
@@ -10,6 +12,7 @@ import java.util.stream.Stream;
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorFactory.createSemanticError;
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 
+//TODO:KMD This needs to check for any ObjectFieldTypeNodes in the parse tree as this means the type cannot be found
 public class SemanticAnalyser {
 
     public static List<SemanticError> runSemanticAnalysis(final List<FileNode> fileNodes) {
@@ -112,7 +115,7 @@ public class SemanticAnalyser {
                 gpwb -> {
                     var namespaceNameAsStringSet = new HashSet<String>();
                     gpwb
-                        .getNamespaceNameGenericParametersWithoutBoundsNodes()
+                        .getNamespaceNameGenericParametersNodes()
                         .forEach(
                             nngpwb -> {
                                 if(!typeNodeMap.containsKey(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode()))) {
@@ -131,7 +134,7 @@ public class SemanticAnalyser {
             typeNode
                 .getImplementsListNode()
                 .get()
-                .getNamespaceNameGenericParametersWithoutBoundsNodes()
+                .getNamespaceNameGenericParametersNodes()
                 .forEach(
                     nngp -> {
                         var namespaceNameAsString = ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode());
@@ -140,14 +143,20 @@ public class SemanticAnalyser {
                         } else {
                             checkGenericParameters(semanticErrors, typeNodeMap, typeNode, nngp);
                         }
-                        nngp
-                            .getGenericParametersWithoutBoundsNode()
+                        var usedGenericParameterIdentifiers = nngp
+                            .getGenericParametersNode()
                             .stream()
-                            .flatMap(nngpwb -> nngpwb.getGenericParameterWithoutBoundsNodes().stream())
+                            .flatMap(gp -> gp.getFieldTypeNodes().stream())
+                            .flatMap(ftn -> Stream.of(ftn.getArrayFieldTypeNode().stream(), ftn.getNonArrayFieldTypeNode().stream()))
+                            .flatMap(s -> s)
+                            .map(ftn -> (AllowableOutputFieldTypeNode) ftn)
+                            .flatMap(uftn -> GetGenericParameters(uftn).stream())
+                            .collect(Collectors.toList());
+                        usedGenericParameterIdentifiers
                             .forEach(
-                                gpwb -> {
-                                    if(!genericParametersSet.contains(gpwb.getIdentifier())) {
-                                        semanticErrors.add(createSemanticError(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE, gpwb, gpwb.getIdentifier(), ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode())));
+                                i -> {
+                                    if(!genericParametersSet.contains(i.getGenericParameterNode().getIdentifier())) {
+                                        semanticErrors.add(createSemanticError(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE, i, i.getGenericParameterNode().getIdentifier(), ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode())));
                                     }
                                 }
                             );
@@ -157,7 +166,7 @@ public class SemanticAnalyser {
             var nonInterfaceTypeNodes = typeNode
                 .getImplementsListNode()
                 .stream()
-                .flatMap(iln -> iln.getNamespaceNameGenericParametersWithoutBoundsNodes().stream())
+                .flatMap(iln -> iln.getNamespaceNameGenericParametersNodes().stream())
                 .filter(nngpwb -> typeNodeMap.containsKey(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())))
                 .filter(nngpwb -> !typeNodeMap.get(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())).isInterface())
                 .collect(Collectors.toList());
@@ -192,19 +201,51 @@ public class SemanticAnalyser {
             );
     }
 
-    private static void checkGenericParameters(final List<SemanticError> semanticErrors, final Map<String, ProtoGenTypeNode> typeNodeMap, final ProtoGenTypeNode typeNode, final NamespaceNameGenericParametersWithoutBoundsNode implementsTypeNamespaceNameGenericParametersWithoutBoundsNode) {
+    private static List<GenericObjectFieldTypeNode> GetGenericParameters(AllowableOutputFieldTypeNode allowableOutputFieldTypeNode) {
+        var foundGenericParameters = new ArrayList<GenericObjectFieldTypeNode>();
+        GetGenericParametersRecurse(foundGenericParameters, allowableOutputFieldTypeNode);
+        return foundGenericParameters;
+    }
 
-        var numberOfGenericParametersOnImplementsListDefinition = implementsTypeNamespaceNameGenericParametersWithoutBoundsNode.getGenericParametersWithoutBoundsNode().isPresent()
-            ? implementsTypeNamespaceNameGenericParametersWithoutBoundsNode.getGenericParametersWithoutBoundsNode().get().getGenericParameterWithoutBoundsNodes().size()
+    private static void GetGenericParametersRecurse(List<GenericObjectFieldTypeNode> foundGenericObjectFieldTypeNodes, AllowableOutputFieldTypeNode allowableOutputFieldTypeNode) {
+        if(allowableOutputFieldTypeNode instanceof GenericObjectFieldTypeNode genericObjectFieldTypeNode) {
+            foundGenericObjectFieldTypeNodes.add(genericObjectFieldTypeNode);
+        }
+        if(allowableOutputFieldTypeNode instanceof ArrayFieldTypeNode arrayFieldTypeNode) {
+            GetGenericParametersRecurse(foundGenericObjectFieldTypeNodes, arrayFieldTypeNode.getNonArrayFieldTypeNodeAsAllowableOutputFieldTypeNode());
+        }
+        if(allowableOutputFieldTypeNode instanceof MapFieldTypeNode mapFieldTypeNode) {
+            GetGenericParametersRecurse(foundGenericObjectFieldTypeNodes, mapFieldTypeNode.getKeyFieldTypeNodeAsAllowableOutputFieldTypeNode());
+            GetGenericParametersRecurse(foundGenericObjectFieldTypeNodes, mapFieldTypeNode.getValueFieldTypeNodeAsAllowableOutputFieldTypeNode());
+        }
+        if(allowableOutputFieldTypeNode instanceof SetFieldTypeNode setFieldTypeNode) {
+            GetGenericParametersRecurse(foundGenericObjectFieldTypeNodes, setFieldTypeNode.getEntryFieldTypeNodeAsAllowableOutputFieldTypeNode());
+        }
+        if(allowableOutputFieldTypeNode instanceof ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode) {
+            GetGenericParametersRecurse(foundGenericObjectFieldTypeNodes, valueOrErrorFieldTypeNode.getEntryFieldTypeNodeAsAllowableOutputFieldTypeNode());
+        }
+    }
+
+    private static void checkGenericParameters(final List<SemanticError> semanticErrors, final Map<String, ProtoGenTypeNode> typeNodeMap, final ProtoGenTypeNode typeNode, final NamespaceNameGenericParametersNode implementsTypeNamespaceNameGenericParametersNode) {
+
+        var numberOfGenericParametersOnImplementsListDefinition = implementsTypeNamespaceNameGenericParametersNode.getGenericParametersNode().isPresent()
+            ? implementsTypeNamespaceNameGenericParametersNode
+                .getGenericParametersNode()
+                .get()
+                .getFieldTypeNodes()
+                .stream()
+                .flatMap(ftn -> Stream.of(ftn.getArrayFieldTypeNode().stream(), ftn.getNonArrayFieldTypeNode().stream()))
+                .flatMap(s -> s)
+                .count()
             : 0;
 
-        var implementsTypeDefinition = typeNodeMap.get(ParseTreeUtils.getNamespaceNameString(implementsTypeNamespaceNameGenericParametersWithoutBoundsNode.getNamespaceNameNode()));
+        var implementsTypeDefinition = typeNodeMap.get(ParseTreeUtils.getNamespaceNameString(implementsTypeNamespaceNameGenericParametersNode.getNamespaceNameNode()));
         var numberOfGenericParametersOnTypeDefinition = implementsTypeDefinition.getNamespaceNameGenericParametersWithBoundsNode().getGenericParametersWithBoundsNode().isPresent()
             ? implementsTypeDefinition.getNamespaceNameGenericParametersWithBoundsNode().getGenericParametersWithBoundsNode().get().getGenericParameterWithBoundsNodes().size()
             : 0;
 
         if(numberOfGenericParametersOnImplementsListDefinition != numberOfGenericParametersOnTypeDefinition) {
-            semanticErrors.add(createSemanticError(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION, implementsTypeNamespaceNameGenericParametersWithoutBoundsNode, numberOfGenericParametersOnImplementsListDefinition, ParseTreeUtils.getNamespaceNameString(implementsTypeNamespaceNameGenericParametersWithoutBoundsNode.getNamespaceNameNode()), numberOfGenericParametersOnTypeDefinition));
+            semanticErrors.add(createSemanticError(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION, implementsTypeNamespaceNameGenericParametersNode, ParseTreeUtils.getNamespaceNameString(implementsTypeNamespaceNameGenericParametersNode.getNamespaceNameNode()), numberOfGenericParametersOnImplementsListDefinition, numberOfGenericParametersOnTypeDefinition));
         } else {
             if(numberOfGenericParametersOnImplementsListDefinition > 0) {
                 //TODO:KMD Check all the bounds

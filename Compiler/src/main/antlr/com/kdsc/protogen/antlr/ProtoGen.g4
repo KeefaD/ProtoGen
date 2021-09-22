@@ -22,7 +22,7 @@ protogen_enum:
     'enum' namespace_name ( '{' (enum_versions | enum_cases)? '}' )?;
 
 implements_list:
-    ':' namespace_name_generic_parameters_without_bounds (',' namespace_name_generic_parameters_without_bounds)*;
+    ':' namespace_name_generic_parameters (',' namespace_name_generic_parameters)*;
 
 versions:
     version+;
@@ -42,8 +42,8 @@ enum_cases:
 namespace_name_generic_parameters_with_bounds:
     namespace_name generic_parameters_with_bounds?;
 
-namespace_name_generic_parameters_without_bounds:
-    namespace_name generic_parameters_without_bounds?;
+namespace_name_generic_parameters:
+    namespace_name generic_parameters?;
 
 namespace_name:
     (namespace '.')+ name;
@@ -51,8 +51,8 @@ namespace_name:
 generic_parameters_with_bounds:
     '<' generic_parameter_with_bounds (',' generic_parameter_with_bounds)* '>';
 
-generic_parameters_without_bounds:
-    '<' generic_parameter_without_bounds (',' generic_parameter_without_bounds)* '>';
+generic_parameters:
+    '<' field_type (',' field_type)* '>';
 
 fields:
     field+;
@@ -100,15 +100,15 @@ array_field_type:
     non_array_field_type ('[' ']')+;
 
 object_field_type:
-    namespace_name_generic_parameters_without_bounds;
+    namespace_name_generic_parameters;
 
 generic_object_field_type:
-    generic_parameter_without_bounds;
+    generic_parameter;
 
 generic_parameter_with_bounds:
-    IDENTIFIER (':' namespace_name_generic_parameters_without_bounds)? ('&' namespace_name_generic_parameters_without_bounds)*;
+    IDENTIFIER (':' namespace_name_generic_parameters)? ('&' namespace_name_generic_parameters)*;
 
-generic_parameter_without_bounds:
+generic_parameter:
     IDENTIFIER;
 
 namespace:

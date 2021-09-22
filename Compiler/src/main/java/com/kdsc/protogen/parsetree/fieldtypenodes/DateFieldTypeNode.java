@@ -1,6 +1,8 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-public class DateFieldTypeNode extends NonArrayFieldTypeNode {
+import com.kdsc.protogen.parsetree.commoninterfaces.AllowableOutputFieldTypeNode;
+
+public class DateFieldTypeNode extends NonArrayFieldTypeNode implements AllowableOutputFieldTypeNode {
 
     public DateFieldTypeNode(
         final String sourceFileName,

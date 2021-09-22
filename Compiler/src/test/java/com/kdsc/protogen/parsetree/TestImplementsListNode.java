@@ -36,14 +36,14 @@ public class TestImplementsListNode extends BaseTestNode {
 
     @Test
     public void testGetters() {
-        List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes = Collections.emptyList();
+        List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes = Collections.emptyList();
         var node = new ImplementsListNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-                namespaceNameGenericParametersWithoutBoundsNodes
+                namespaceNameGenericParametersNodes
         );
-        assertEquals(namespaceNameGenericParametersWithoutBoundsNodes, node.getNamespaceNameGenericParametersWithoutBoundsNodes(), "Created and retrieved objects don't match");
+        assertEquals(namespaceNameGenericParametersNodes, node.getNamespaceNameGenericParametersNodes(), "Created and retrieved objects don't match");
     }
 
     @Test

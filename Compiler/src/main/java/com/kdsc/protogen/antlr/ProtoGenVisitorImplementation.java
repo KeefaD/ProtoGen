@@ -89,7 +89,7 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
             sourceFileName,
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
-            ctx.namespace_name_generic_parameters_without_bounds().stream().map(nngpwb -> (NamespaceNameGenericParametersWithoutBoundsNode) visit(nngpwb)).collect(Collectors.toList())
+            ctx.namespace_name_generic_parameters().stream().map(nngpwb -> (NamespaceNameGenericParametersNode) visit(nngpwb)).collect(Collectors.toList())
         );
     }
 
@@ -159,13 +159,13 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     }
 
     @Override
-    public Object visitNamespace_name_generic_parameters_without_bounds(final ProtoGenParser.Namespace_name_generic_parameters_without_boundsContext ctx) {
-        return new NamespaceNameGenericParametersWithoutBoundsNode(
+    public Object visitNamespace_name_generic_parameters(final ProtoGenParser.Namespace_name_generic_parametersContext ctx) {
+        return new NamespaceNameGenericParametersNode(
             sourceFileName,
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
             (NamespaceNameNode) visit(ctx.namespace_name()),
-            ctx.generic_parameters_without_bounds() == null ? Optional.empty() : Optional.of((GenericParametersWithoutBoundsNode) visit(ctx.generic_parameters_without_bounds()))
+            ctx.generic_parameters() == null ? Optional.empty() : Optional.of((GenericParametersNode) visit(ctx.generic_parameters()))
         );
     }
 
@@ -191,12 +191,12 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     }
 
     @Override
-    public Object visitGeneric_parameters_without_bounds(final ProtoGenParser.Generic_parameters_without_boundsContext ctx) {
-        return new GenericParametersWithoutBoundsNode(
+    public Object visitGeneric_parameters(final ProtoGenParser.Generic_parametersContext ctx) {
+        return new GenericParametersNode(
             sourceFileName,
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
-            ctx.generic_parameter_without_bounds().stream().map(gpwb -> (GenericParameterWithoutBoundsNode) visit(gpwb)).collect(Collectors.toList())
+            ctx.field_type().stream().map(gpwb -> (FieldTypeNode) visit(gpwb)).collect(Collectors.toList())
         );
     }
 
@@ -397,7 +397,7 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
             sourceFileName,
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
-            (NamespaceNameGenericParametersWithoutBoundsNode) visit(ctx.namespace_name_generic_parameters_without_bounds())
+            (NamespaceNameGenericParametersNode) visit(ctx.namespace_name_generic_parameters())
         );
     }
 
@@ -407,7 +407,7 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
             sourceFileName,
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
-            (GenericParameterWithoutBoundsNode) visit(ctx.generic_parameter_without_bounds())
+            (GenericParameterNode) visit(ctx.generic_parameter())
         );
     }
 
@@ -418,13 +418,13 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
             ctx.IDENTIFIER().getText(),
-            ctx.namespace_name_generic_parameters_without_bounds().stream().map(nngpwb -> (NamespaceNameGenericParametersWithoutBoundsNode) visit(nngpwb)).collect(Collectors.toList())
+            ctx.namespace_name_generic_parameters().stream().map(nngpwb -> (NamespaceNameGenericParametersNode) visit(nngpwb)).collect(Collectors.toList())
         );
     }
 
     @Override
-    public Object visitGeneric_parameter_without_bounds(final ProtoGenParser.Generic_parameter_without_boundsContext ctx) {
-        return new GenericParameterWithoutBoundsNode(
+    public Object visitGeneric_parameter(final ProtoGenParser.Generic_parameterContext ctx) {
+        return new GenericParameterNode(
             sourceFileName,
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),

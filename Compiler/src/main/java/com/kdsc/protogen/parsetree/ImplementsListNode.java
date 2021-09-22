@@ -5,28 +5,28 @@ import java.util.Objects;
 
 public class ImplementsListNode extends BaseNode {
 
-    private final List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes;
+    private final List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes;
 
     public ImplementsListNode(
         final String sourceFileName,
         final long line,
         final long charPosition,
-        final List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes
+        final List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes
     ) {
         super(sourceFileName, line, charPosition);
-        Objects.requireNonNull(namespaceNameGenericParametersWithoutBoundsNodes);
-        this.namespaceNameGenericParametersWithoutBoundsNodes = namespaceNameGenericParametersWithoutBoundsNodes;
+        Objects.requireNonNull(namespaceNameGenericParametersNodes);
+        this.namespaceNameGenericParametersNodes = namespaceNameGenericParametersNodes;
     }
 
-    public List<NamespaceNameGenericParametersWithoutBoundsNode> getNamespaceNameGenericParametersWithoutBoundsNodes() {
-        return namespaceNameGenericParametersWithoutBoundsNodes;
+    public List<NamespaceNameGenericParametersNode> getNamespaceNameGenericParametersNodes() {
+        return namespaceNameGenericParametersNodes;
     }
 
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//ImplementsListNode\n");
-        namespaceNameGenericParametersWithoutBoundsNodes.forEach(gpwb -> stringBuilder.append(gpwb.toFormattedString(1)));
+        namespaceNameGenericParametersNodes.forEach(gpwb -> stringBuilder.append(gpwb.toFormattedString(1)));
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

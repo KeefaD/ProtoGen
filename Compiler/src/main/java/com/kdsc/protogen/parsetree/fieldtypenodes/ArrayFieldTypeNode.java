@@ -1,10 +1,12 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
 import com.kdsc.protogen.parsetree.BaseNode;
+import com.kdsc.protogen.parsetree.commoninterfaces.AllowableOutputFieldTypeNode;
+import com.kdsc.protogen.utils.parameterchecking.Numbers;
 
 import java.util.Objects;
 
-public class ArrayFieldTypeNode extends BaseNode {
+public class ArrayFieldTypeNode extends BaseNode implements AllowableOutputFieldTypeNode {
 
     private final NonArrayFieldTypeNode nonArrayFieldTypeNode;
     private final long dimensions;
@@ -18,12 +20,18 @@ public class ArrayFieldTypeNode extends BaseNode {
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(nonArrayFieldTypeNode);
+        Numbers.requireOneOrGreater(dimensions);
         this.nonArrayFieldTypeNode = nonArrayFieldTypeNode;
         this.dimensions = dimensions;
     }
 
     public NonArrayFieldTypeNode getNonArrayFieldTypeNode() {
         return nonArrayFieldTypeNode;
+    }
+
+    //TODO:KMD Needs test
+    public AllowableOutputFieldTypeNode getNonArrayFieldTypeNodeAsAllowableOutputFieldTypeNode() {
+        return (AllowableOutputFieldTypeNode) nonArrayFieldTypeNode;
     }
 
     public long getDimensions() {

@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestGenericParameterWithoutBoundsNode extends BaseTestNode {
+public class TestGenericParameterNode extends BaseTestNode {
 
     @Test
     public void testCreate() {
-        new GenericParameterWithoutBoundsNode(
+        new GenericParameterNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
@@ -22,7 +22,7 @@ public class TestGenericParameterWithoutBoundsNode extends BaseTestNode {
 
         assertThrows(NullPointerException.class,
             () ->
-                new GenericParameterWithoutBoundsNode(
+                new GenericParameterNode(
                     BaseTestNode.fileName,
                     BaseTestNode.line,
                     BaseTestNode.charPosition,
@@ -32,7 +32,7 @@ public class TestGenericParameterWithoutBoundsNode extends BaseTestNode {
 
         assertThrows(IllegalArgumentException.class,
             () ->
-            new GenericParameterWithoutBoundsNode(
+            new GenericParameterNode(
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
@@ -45,7 +45,7 @@ public class TestGenericParameterWithoutBoundsNode extends BaseTestNode {
     @Test
     public void testGetters() {
         var identifier = "T";
-        var node = new GenericParameterWithoutBoundsNode(
+        var node = new GenericParameterNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
@@ -56,21 +56,21 @@ public class TestGenericParameterWithoutBoundsNode extends BaseTestNode {
 
     @Test
     public void testToString() {
-        var node = new GenericParameterWithoutBoundsNode(
+        var node = new GenericParameterNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
             "T"
         );
         var expectedToStringOutput = """
-        //GenericParameterWithoutBoundsNode
+        //GenericParameterNode
             Identifier : T
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
 
-    public static GenericParameterWithoutBoundsNode createTestNode() {
-        return new GenericParameterWithoutBoundsNode(
+    public static GenericParameterNode createTestNode() {
+        return new GenericParameterNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,

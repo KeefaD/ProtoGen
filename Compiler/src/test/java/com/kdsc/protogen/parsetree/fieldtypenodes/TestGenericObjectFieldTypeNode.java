@@ -1,9 +1,8 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
 import com.kdsc.protogen.parsetree.BaseTestNode;
-import com.kdsc.protogen.parsetree.GenericParametersWithoutBoundsNode;
-import com.kdsc.protogen.parsetree.TestGenericParameterWithoutBoundsNode;
-import com.kdsc.protogen.parsetree.TestNamespaceNameGenericParametersWithoutBoundsNode;
+import com.kdsc.protogen.parsetree.TestGenericParameterNode;
+import com.kdsc.protogen.parsetree.TestNamespaceNameGenericParametersNode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,7 +16,7 @@ public class TestGenericObjectFieldTypeNode extends BaseTestNode {
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            TestGenericParameterWithoutBoundsNode.createTestNode()
+            TestGenericParameterNode.createTestNode()
         );
     }
 
@@ -38,14 +37,14 @@ public class TestGenericObjectFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testGetters() {
-        var namespaceNameGenericParametersWithoutBoundsNode = TestGenericParameterWithoutBoundsNode.createTestNode();
+        var namespaceNameGenericParametersNode = TestGenericParameterNode.createTestNode();
         var node = new GenericObjectFieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            namespaceNameGenericParametersWithoutBoundsNode
+            namespaceNameGenericParametersNode
         );
-        assertEquals(namespaceNameGenericParametersWithoutBoundsNode, node.getGenericParameterWithoutBoundsNode(), "Created and retrieved objects don't match");
+        assertEquals(namespaceNameGenericParametersNode, node.getGenericParameterNode(), "Created and retrieved objects don't match");
     }
 
     @Test
@@ -54,11 +53,11 @@ public class TestGenericObjectFieldTypeNode extends BaseTestNode {
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            TestNamespaceNameGenericParametersWithoutBoundsNode.createTestNode()
+            TestNamespaceNameGenericParametersNode.createTestNode()
         );
         var expectedToStringOutput = """
         //ObjectFieldTypeNode
-            //NamespaceNameGenericParametersWithoutBoundsNode
+            //NamespaceNameGenericParametersNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : Namespace

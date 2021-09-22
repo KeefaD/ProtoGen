@@ -61,16 +61,16 @@ public class TestGenericParameterWithBoundsNode extends BaseTestNode {
     @Test
     public void testGetters() {
         var identifier = "T";
-        List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes = Collections.emptyList();
+        List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes = Collections.emptyList();
         var node = new GenericParameterWithBoundsNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
             identifier,
-            namespaceNameGenericParametersWithoutBoundsNodes
+                namespaceNameGenericParametersNodes
         );
         assertEquals(identifier, node.getIdentifier(), "Created and retrieved objects don't match");
-        assertEquals(namespaceNameGenericParametersWithoutBoundsNodes, node.getNamespaceNameGenericParametersWithoutBoundsNodes(), "Created and retrieved objects don't match");
+        assertEquals(namespaceNameGenericParametersNodes, node.getNamespaceNameGenericParametersNodes(), "Created and retrieved objects don't match");
     }
 
     @Test

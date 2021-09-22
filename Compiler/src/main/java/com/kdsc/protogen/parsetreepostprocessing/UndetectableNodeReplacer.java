@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 //TODO:KMD This could probably be made more generic, I so wish Java had proper generics without type erasure
+//TODO:KMD This is not replacing nodes for versions, bit of a gap here
 public class UndetectableNodeReplacer {
 
     public static List<FileNode> replaceUndetectableNodes(final List<FileNode> fileNodes) {
@@ -83,10 +84,62 @@ public class UndetectableNodeReplacer {
             protoGenTypeNode.getCharPosition(),
             protoGenTypeNode.isInterface(),
             protoGenTypeNode.getNamespaceNameGenericParametersWithBoundsNode(),
-            protoGenTypeNode.getImplementsListNode(),
+            replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenTypeNode.getImplementsListNode()),
             protoGenTypeNode.getVersionsNode(),
             replaceUndetectableNodesForFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenTypeNode.getFieldsNode())
         );
+    }
+
+    private static Optional<ImplementsListNode> replaceUndetectableNodesForOptionalImplementsListNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final Optional<ImplementsListNode> implementsListNode) {
+        return implementsListNode.isEmpty() ? Optional.empty() : Optional.of(replaceUndetectableNodesForImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, implementsListNode.get()));
+    }
+
+    private static ImplementsListNode replaceUndetectableNodesForImplementsListNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final ImplementsListNode implementsListNode) {
+        return new ImplementsListNode(
+            implementsListNode.getSourceFileName(),
+            implementsListNode.getLine(),
+            implementsListNode.getCharPosition(),
+            replaceUndetectableNodesForNamespaceNameGenericParametersNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, implementsListNode.getNamespaceNameGenericParametersNodes())
+        );
+    }
+
+
+    private static List<NamespaceNameGenericParametersNode> replaceUndetectableNodesForNamespaceNameGenericParametersNodes(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes) {
+        return namespaceNameGenericParametersNodes
+            .stream()
+            .map(nngpn -> replaceUndetectableNodesForNamespaceNameGenericParametersNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, nngpn))
+            .collect(Collectors.toList());
+    }
+
+
+    private static NamespaceNameGenericParametersNode replaceUndetectableNodesForNamespaceNameGenericParametersNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final NamespaceNameGenericParametersNode namespaceNameGenericParametersNode) {
+        return new NamespaceNameGenericParametersNode(
+            namespaceNameGenericParametersNode.getSourceFileName(),
+            namespaceNameGenericParametersNode.getLine(),
+            namespaceNameGenericParametersNode.getCharPosition(),
+            namespaceNameGenericParametersNode.getNamespaceNameNode(),
+            replaceUndetectableNodesForOptionalGenericParametersNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, namespaceNameGenericParametersNode.getGenericParametersNode())
+        );
+    }
+
+    private static Optional<GenericParametersNode> replaceUndetectableNodesForOptionalGenericParametersNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final Optional<GenericParametersNode> genericParametersNode) {
+        return genericParametersNode.isEmpty() ? Optional.empty() : Optional.of(replaceUndetectableNodesForGenericParametersNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, genericParametersNode.get()));
+    }
+
+    private static GenericParametersNode replaceUndetectableNodesForGenericParametersNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final GenericParametersNode genericParametersNode) {
+        return new GenericParametersNode(
+            genericParametersNode.getSourceFileName(),
+            genericParametersNode.getLine(),
+            genericParametersNode.getCharPosition(),
+            replaceUndetectableNodesForFieldTypeNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, genericParametersNode.getFieldTypeNodes())
+        );
+    }
+
+    private static List<FieldTypeNode> replaceUndetectableNodesForFieldTypeNodes(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final List<FieldTypeNode> fieldTypeNodes) {
+        return fieldTypeNodes
+            .stream()
+            .map(ftn -> replaceUndetectableNodesForFieldTypeNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, ftn))
+            .collect(Collectors.toList());
     }
 
     private static List<ProtoGenKeyNode> replaceUndetectableNodesForProtoGenKeyNodes(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final List<ProtoGenKeyNode> keyNodes) {
@@ -103,7 +156,7 @@ public class UndetectableNodeReplacer {
             protoGenKeyNode.getCharPosition(),
             protoGenKeyNode.isInterface(),
             protoGenKeyNode.getNamespaceNameGenericParametersWithBoundsNode(),
-            protoGenKeyNode.getImplementsListNode(),
+            replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenKeyNode.getImplementsListNode()),
             protoGenKeyNode.getVersionsNode(),
             replaceUndetectableNodesForFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenKeyNode.getFieldsNode())
         );
@@ -169,28 +222,28 @@ public class UndetectableNodeReplacer {
     private static NonArrayFieldTypeNode replaceUndetectableNodesForNonArrayFieldTypeNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
 
         if(nonArrayFieldTypeNode instanceof ObjectFieldTypeNode objectFieldTypeNode) {
-            if(typesToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameGenericParametersWithoutBoundsNode().getNamespaceNameNode()))) {
+            if(typesToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()))) {
                 return new TypeFieldTypeNode(
                     nonArrayFieldTypeNode.getSourceFileName(),
                     nonArrayFieldTypeNode.getLine(),
                     nonArrayFieldTypeNode.getCharPosition(),
-                    objectFieldTypeNode.getNamespaceNameGenericParametersWithoutBoundsNode()
+                    objectFieldTypeNode.getNamespaceNameGenericParametersNode()
                 );
             }
-            if(keysToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameGenericParametersWithoutBoundsNode().getNamespaceNameNode()))) {
+            if(keysToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()))) {
                 return new KeyFieldTypeNode(
                     nonArrayFieldTypeNode.getSourceFileName(),
                     nonArrayFieldTypeNode.getLine(),
                     nonArrayFieldTypeNode.getCharPosition(),
-                    objectFieldTypeNode.getNamespaceNameGenericParametersWithoutBoundsNode()
+                    objectFieldTypeNode.getNamespaceNameGenericParametersNode()
                 );
             }
-            if(enumsToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameGenericParametersWithoutBoundsNode().getNamespaceNameNode()))) {
+            if(enumsToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()))) {
                 return new EnumFieldTypeNode(
                     nonArrayFieldTypeNode.getSourceFileName(),
                     nonArrayFieldTypeNode.getLine(),
                     nonArrayFieldTypeNode.getCharPosition(),
-                    objectFieldTypeNode.getNamespaceNameGenericParametersWithoutBoundsNode()
+                    objectFieldTypeNode.getNamespaceNameGenericParametersNode()
                 );
             }
         }
@@ -210,7 +263,7 @@ public class UndetectableNodeReplacer {
                 nonArrayFieldTypeNode.getSourceFileName(),
                 nonArrayFieldTypeNode.getLine(),
                 nonArrayFieldTypeNode.getCharPosition(),
-                replaceUndetectableNodesForFieldTypeNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, setFieldTypeNode.getEntryFieldTypeNode())
+                replaceUndetectableNodesForFieldTypeNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, setFieldTypeNode.getFieldTypeNode())
             );
         }
 
@@ -219,7 +272,7 @@ public class UndetectableNodeReplacer {
                 nonArrayFieldTypeNode.getSourceFileName(),
                 nonArrayFieldTypeNode.getLine(),
                 nonArrayFieldTypeNode.getCharPosition(),
-                replaceUndetectableNodesForFieldTypeNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, valueOrErrorFieldTypeNode.getEntryFieldTypeNode())
+                replaceUndetectableNodesForFieldTypeNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, valueOrErrorFieldTypeNode.getFieldTypeNode())
             );
         }
 

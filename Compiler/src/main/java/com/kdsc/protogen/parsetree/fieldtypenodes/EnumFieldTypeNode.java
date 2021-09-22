@@ -1,33 +1,34 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-import com.kdsc.protogen.parsetree.NamespaceNameGenericParametersWithoutBoundsNode;
+import com.kdsc.protogen.parsetree.NamespaceNameGenericParametersNode;
+import com.kdsc.protogen.parsetree.commoninterfaces.AllowableOutputFieldTypeNode;
 
 import java.util.Objects;
 
-public class EnumFieldTypeNode extends NonArrayFieldTypeNode {
+public class EnumFieldTypeNode extends NonArrayFieldTypeNode implements AllowableOutputFieldTypeNode {
 
-    private final NamespaceNameGenericParametersWithoutBoundsNode namespaceNameGenericParametersWithoutBoundsNode;
+    private final NamespaceNameGenericParametersNode namespaceNameGenericParametersNode;
 
     public EnumFieldTypeNode(
         final String sourceFileName,
         final long line,
         final long charPosition,
-        final NamespaceNameGenericParametersWithoutBoundsNode namespaceNameGenericParametersWithoutBoundsNode
+        final NamespaceNameGenericParametersNode namespaceNameGenericParametersNode
     ) {
         super(sourceFileName, line, charPosition);
-        Objects.requireNonNull(namespaceNameGenericParametersWithoutBoundsNode);
-        this.namespaceNameGenericParametersWithoutBoundsNode = namespaceNameGenericParametersWithoutBoundsNode;
+        Objects.requireNonNull(namespaceNameGenericParametersNode);
+        this.namespaceNameGenericParametersNode = namespaceNameGenericParametersNode;
     }
 
-    public NamespaceNameGenericParametersWithoutBoundsNode getNamespaceNameGenericParametersWithoutBoundsNode() {
-        return namespaceNameGenericParametersWithoutBoundsNode;
+    public NamespaceNameGenericParametersNode getNamespaceNameGenericParametersNode() {
+        return namespaceNameGenericParametersNode;
     }
 
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//EnumFieldTypeNode\n");
-        stringBuilder.append(namespaceNameGenericParametersWithoutBoundsNode.toFormattedString(1));
+        stringBuilder.append(namespaceNameGenericParametersNode.toFormattedString(1));
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

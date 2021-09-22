@@ -4,11 +4,11 @@ import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
 
-public class GenericParameterWithoutBoundsNode extends BaseNode {
+public class GenericParameterNode extends BaseNode {
 
     private final String identifier;
 
-    public GenericParameterWithoutBoundsNode(
+    public GenericParameterNode(
         final String sourceFileName,
         final long line,
         final long charPosition,
@@ -27,7 +27,7 @@ public class GenericParameterWithoutBoundsNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//GenericParameterWithoutBoundsNode\n");
+        stringBuilder.append("//GenericParameterNode\n");
         stringBuilder.append(oneIndent() + "Identifier : " + identifier + "\n");
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);

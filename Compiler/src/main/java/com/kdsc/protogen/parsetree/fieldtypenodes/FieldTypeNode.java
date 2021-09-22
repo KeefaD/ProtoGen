@@ -1,6 +1,7 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
 import com.kdsc.protogen.parsetree.BaseNode;
+import com.kdsc.protogen.parsetree.commoninterfaces.AllowableOutputFieldTypeNode;
 import com.kdsc.protogen.utils.parameterchecking.Optionals;
 
 import java.util.Objects;
@@ -39,6 +40,18 @@ public class FieldTypeNode extends BaseNode {
 
     public Optional<NonArrayFieldTypeNode> getNonArrayFieldTypeNode() {
         return nonArrayFieldTypeNode;
+    }
+
+    //TODO:KMD Needs test
+    public AllowableOutputFieldTypeNode getAllowableOutputFieldTypeNode() {
+        if(arrayFieldTypeNode.isPresent() && nonArrayFieldTypeNode.isPresent()) {
+            throw new RuntimeException("FieldTypeNode should not be able to have ArrayFieldTypeNode and NonArrayFieldTypeNode set at the same time");
+        }
+        if(arrayFieldTypeNode.isEmpty() && nonArrayFieldTypeNode.isEmpty()) {
+            throw new RuntimeException("FieldTypeNode should have either ArrayFieldTypeNode or NonArrayFieldTypeNode set");
+        }
+        if(arrayFieldTypeNode.isPresent()) return arrayFieldTypeNode.get();
+        return (AllowableOutputFieldTypeNode) nonArrayFieldTypeNode.get();
     }
 
     @Override

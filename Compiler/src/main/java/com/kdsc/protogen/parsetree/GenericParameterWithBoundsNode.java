@@ -8,29 +8,29 @@ import java.util.Objects;
 public class GenericParameterWithBoundsNode extends BaseNode {
 
     private final String identifier;
-    private final List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes;
+    private final List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes;
 
     public GenericParameterWithBoundsNode(
         final String sourceFileName,
         final long line,
         final long charPosition,
         final String identifier,
-        final List<NamespaceNameGenericParametersWithoutBoundsNode> namespaceNameGenericParametersWithoutBoundsNodes
+        final List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(identifier);
         Strings.requireNonBlank(identifier);
-        Objects.requireNonNull(namespaceNameGenericParametersWithoutBoundsNodes);
+        Objects.requireNonNull(namespaceNameGenericParametersNodes);
         this.identifier = identifier;
-        this.namespaceNameGenericParametersWithoutBoundsNodes = namespaceNameGenericParametersWithoutBoundsNodes;
+        this.namespaceNameGenericParametersNodes = namespaceNameGenericParametersNodes;
     }
 
     public String getIdentifier() {
         return identifier;
     }
 
-    public List<NamespaceNameGenericParametersWithoutBoundsNode> getNamespaceNameGenericParametersWithoutBoundsNodes() {
-        return namespaceNameGenericParametersWithoutBoundsNodes;
+    public List<NamespaceNameGenericParametersNode> getNamespaceNameGenericParametersNodes() {
+        return namespaceNameGenericParametersNodes;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class GenericParameterWithBoundsNode extends BaseNode {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//GenericParameterWithBoundsNode\n");
         stringBuilder.append(oneIndent() + "Identifier : " + identifier + "\n");
-        namespaceNameGenericParametersWithoutBoundsNodes.forEach(nngpwbn -> stringBuilder.append(nngpwbn.toFormattedString(1)));
+        namespaceNameGenericParametersNodes.forEach(nngpwbn -> stringBuilder.append(nngpwbn.toFormattedString(1)));
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

@@ -1,7 +1,7 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
 import com.kdsc.protogen.parsetree.BaseTestNode;
-import com.kdsc.protogen.parsetree.TestNamespaceNameGenericParametersWithoutBoundsNode;
+import com.kdsc.protogen.parsetree.TestNamespaceNameGenericParametersNode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,7 +15,7 @@ public class TestObjectFieldTypeNode extends BaseTestNode {
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            TestNamespaceNameGenericParametersWithoutBoundsNode.createTestNode()
+            TestNamespaceNameGenericParametersNode.createTestNode()
         );
     }
 
@@ -36,14 +36,14 @@ public class TestObjectFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testGetters() {
-        var namespaceNameGenericParametersWithoutBoundsNode = TestNamespaceNameGenericParametersWithoutBoundsNode.createTestNode();
+        var namespaceNameGenericParametersNode = TestNamespaceNameGenericParametersNode.createTestNode();
         var node = new ObjectFieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            namespaceNameGenericParametersWithoutBoundsNode
+            namespaceNameGenericParametersNode
         );
-        assertEquals(namespaceNameGenericParametersWithoutBoundsNode, node.getNamespaceNameGenericParametersWithoutBoundsNode(), "Created and retrieved objects don't match");
+        assertEquals(namespaceNameGenericParametersNode, node.getNamespaceNameGenericParametersNode(), "Created and retrieved objects don't match");
     }
 
     @Test
@@ -52,11 +52,11 @@ public class TestObjectFieldTypeNode extends BaseTestNode {
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            TestNamespaceNameGenericParametersWithoutBoundsNode.createTestNode()
+            TestNamespaceNameGenericParametersNode.createTestNode()
         );
         var expectedToStringOutput = """
         //ObjectFieldTypeNode
-            //NamespaceNameGenericParametersWithoutBoundsNode
+            //NamespaceNameGenericParametersNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : Namespace
