@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 //TODO:KMD This could probably be made more generic, I so wish Java had proper generics without type erasure
-//TODO:KMD This is not replacing nodes for versions, bit of a gap here
 public class UndetectableNodeReplacer {
 
     public static List<FileNode> replaceUndetectableNodes(final List<FileNode> fileNodes) {
@@ -85,8 +84,40 @@ public class UndetectableNodeReplacer {
             protoGenTypeNode.isInterface(),
             protoGenTypeNode.getNamespaceNameGenericParametersWithBoundsNode(),
             replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenTypeNode.getImplementsListNode()),
-            protoGenTypeNode.getVersionsNode(),
-            replaceUndetectableNodesForFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenTypeNode.getFieldsNode())
+            replaceUndetectableNodesForOptionalVersionsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenTypeNode.getVersionsNode()),
+            replaceUndetectableNodesForOptionalFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenTypeNode.getFieldsNode())
+        );
+    }
+
+    private static Optional<VersionsNode> replaceUndetectableNodesForOptionalVersionsNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final Optional<VersionsNode> versionsNode) {
+        return versionsNode.isEmpty() ? Optional.empty() : Optional.of(replaceUndetectableNodesForVersionsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, versionsNode.get()));
+    }
+
+    private static VersionsNode replaceUndetectableNodesForVersionsNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final VersionsNode versionsNode) {
+        return new VersionsNode(
+            versionsNode.getSourceFileName(),
+            versionsNode.getLine(),
+            versionsNode.getCharPosition(),
+            replaceUndetectableNodesForVersionNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, versionsNode.getVersionNodes())
+        );
+    }
+
+    private static List<VersionNode> replaceUndetectableNodesForVersionNodes(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final List<VersionNode> versionNodes) {
+        return versionNodes
+            .stream()
+            .map(vn -> replaceUndetectableNodesForVersionNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, vn))
+            .collect(Collectors.toList());
+    }
+
+    private static VersionNode replaceUndetectableNodesForVersionNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final VersionNode versionNode) {
+        return new VersionNode(
+            versionNode.getSourceFileName(),
+            versionNode.getLine(),
+            versionNode.getCharPosition(),
+            versionNode.getVersionNumberNode(),
+            versionNode.getGenericParametersWithBoundsNode(),
+            replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, versionNode.getImplementsListNode()),
+            replaceUndetectableNodesForOptionalFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, versionNode.getFieldsNode())
         );
     }
 
@@ -102,7 +133,6 @@ public class UndetectableNodeReplacer {
             replaceUndetectableNodesForNamespaceNameGenericParametersNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, implementsListNode.getNamespaceNameGenericParametersNodes())
         );
     }
-
 
     private static List<NamespaceNameGenericParametersNode> replaceUndetectableNodesForNamespaceNameGenericParametersNodes(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes) {
         return namespaceNameGenericParametersNodes
@@ -157,19 +187,21 @@ public class UndetectableNodeReplacer {
             protoGenKeyNode.isInterface(),
             protoGenKeyNode.getNamespaceNameGenericParametersWithBoundsNode(),
             replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenKeyNode.getImplementsListNode()),
-            protoGenKeyNode.getVersionsNode(),
-            replaceUndetectableNodesForFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenKeyNode.getFieldsNode())
+            replaceUndetectableNodesForOptionalVersionsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenKeyNode.getVersionsNode()),
+            replaceUndetectableNodesForOptionalFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenKeyNode.getFieldsNode())
         );
     }
 
-    private static Optional<FieldsNode> replaceUndetectableNodesForFieldsNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final Optional<FieldsNode> fieldsNode) {
-        return fieldsNode.isEmpty() ? Optional.empty() : Optional.of(
-            new FieldsNode(
-                fieldsNode.get().getSourceFileName(),
-                fieldsNode.get().getLine(),
-                fieldsNode.get().getCharPosition(),
-                replaceUndetectableNodesForFieldNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, fieldsNode.get().getFieldNodes())
-            )
+    private static Optional<FieldsNode> replaceUndetectableNodesForOptionalFieldsNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final Optional<FieldsNode> fieldsNode) {
+        return fieldsNode.isEmpty() ? Optional.empty() : Optional.of(replaceUndetectableNodesForFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, fieldsNode.get()));
+    }
+
+    private static FieldsNode replaceUndetectableNodesForFieldsNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final FieldsNode fieldsNode) {
+        return new FieldsNode(
+            fieldsNode.getSourceFileName(),
+            fieldsNode.getLine(),
+            fieldsNode.getCharPosition(),
+            replaceUndetectableNodesForFieldNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, fieldsNode.getFieldNodes())
         );
     }
 

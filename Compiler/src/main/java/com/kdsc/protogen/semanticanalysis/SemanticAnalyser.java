@@ -13,6 +13,7 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorFactory.createSema
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 
 //TODO:KMD This needs to check for any ObjectFieldTypeNodes in the parse tree as this means the type cannot be found
+//TODO:KMD Don't allow implements lists on both outer type and versions
 public class SemanticAnalyser {
 
     public static List<SemanticError> runSemanticAnalysis(final List<FileNode> fileNodes) {

@@ -786,4 +786,1188 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
         assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
     }
 
+    @Test
+    public void testReplaceOneNonNestedTypeInVersions() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type TestNamespace.TestType {
+                version 1 {
+                    testField : TestNamespace.EnumToReplace
+                }
+                version 2 {
+                    testField : TestNamespace.EnumToReplace
+                }
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var expectedToStringOutput = """
+    //FileNode
+        //ProtoGenTypeNode
+            IsInterface : false
+            //NamespaceNameGenericParametersWithBoundsNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : TestType
+            //VersionsNode
+                //VersionNode
+                    //VersionNumberNode
+                        VersionNumber : 1
+                    //FieldsNode
+                        //FieldNode
+                            //FieldNameNode
+                                FieldName : testField
+                            //FieldTypeNode
+                                Optional : false
+                                //EnumFieldTypeNode
+                                    //NamespaceNameGenericParametersNode
+                                        //NamespaceNameNode
+                                            //NamespaceNode
+                                                Namespace : TestNamespace
+                                            //NameNode
+                                                Name : EnumToReplace
+                //VersionNode
+                    //VersionNumberNode
+                        VersionNumber : 2
+                    //FieldsNode
+                        //FieldNode
+                            //FieldNameNode
+                                FieldName : testField
+                            //FieldTypeNode
+                                Optional : false
+                                //EnumFieldTypeNode
+                                    //NamespaceNameGenericParametersNode
+                                        //NamespaceNameNode
+                                            //NamespaceNode
+                                                Namespace : TestNamespace
+                                            //NameNode
+                                                Name : EnumToReplace
+        //ProtoGenEnumNode
+            //NamespaceNameNode
+                //NamespaceNode
+                    Namespace : TestNamespace
+                //NameNode
+                    Name : EnumToReplace
+            //EnumCasesNode
+                //EnumNameNode
+                    EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedMapTypeInVersions() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type TestNamespace.Type {
+                version 1 {
+                    testField : map<TestNamespace.EnumToReplace, TestNamespace.EnumToReplace>
+                }
+                version 2 {
+                    testField : map<TestNamespace.EnumToReplace, TestNamespace.EnumToReplace>
+                }
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var expectedToStringOutput = """
+        //FileNode
+            //ProtoGenTypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : Type
+                //VersionsNode
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 1
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //MapFieldTypeNode
+                                        //Key
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+                                        //Value
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 2
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //MapFieldTypeNode
+                                        //Key
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+                                        //Value
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+            //ProtoGenEnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedSetTypeInVersions() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type TestNamespace.TestType {
+                version 1 {
+                    testField : set<TestNamespace.EnumToReplace>
+                }
+                version 2 {
+                    testField : set<TestNamespace.EnumToReplace>
+                }
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var expectedToStringOutput = """
+        //FileNode
+            //ProtoGenTypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                //VersionsNode
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 1
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //SetFieldTypeNode
+                                        //Entry
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 2
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //SetFieldTypeNode
+                                        //Entry
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+            //ProtoGenEnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedValueOrErrorTypeInVersions() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type TestNamespace.TestType {
+                version 1 {
+                    testField : valueorerror<TestNamespace.EnumToReplace>
+                }
+                version 2 {
+                    testField : valueorerror<TestNamespace.EnumToReplace>
+                }
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var expectedToStringOutput = """
+        //FileNode
+            //ProtoGenTypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                //VersionsNode
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 1
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ValueOrErrorFieldTypeNode
+                                        //Entry
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 2
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ValueOrErrorFieldTypeNode
+                                        //Entry
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+            //ProtoGenEnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedArrayTypeInVersions() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type TestNamespace.TestType {
+                version 1 {
+                    testField : TestNamespace.EnumToReplace[][]
+                }
+                version 2 {
+                    testField : TestNamespace.EnumToReplace[][]
+                }
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var expectedToStringOutput = """
+        //FileNode
+            //ProtoGenTypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                //VersionsNode
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 1
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ArrayFieldTypeNode
+                                        //EnumFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : EnumToReplace
+                                        Dimensions : 2
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 2
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ArrayFieldTypeNode
+                                        //EnumFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : EnumToReplace
+                                        Dimensions : 2
+            //ProtoGenEnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNonNestedTypeInImplementsListInVersions() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type interface TestNamespace.TestTypeInterface<T> {
+                testInterfaceField : T
+            }
+            
+            type TestNamespace.TestType {
+                version 1 : TestNamespace.TestTypeInterface<TestNamespace.EnumToReplace> {
+                    testField : TestNamespace.EnumToReplace
+                }
+                version 2 : TestNamespace.TestTypeInterface<TestNamespace.EnumToReplace> {
+                    testField : TestNamespace.EnumToReplace
+                }
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var expectedToStringOutput = """
+        //FileNode
+            //ProtoGenTypeNode
+                IsInterface : true
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestTypeInterface
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testInterfaceField
+                        //FieldTypeNode
+                            Optional : false
+                            //GenericObjectFieldTypeNode
+                                //GenericParameterNode
+                                    Identifier : T
+            //ProtoGenTypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                //VersionsNode
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 1
+                        //ImplementsListNode
+                            //NamespaceNameGenericParametersNode
+                                //NamespaceNameNode
+                                    //NamespaceNode
+                                        Namespace : TestNamespace
+                                    //NameNode
+                                        Name : TestTypeInterface
+                                //GenericParametersNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //EnumFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : EnumToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //EnumFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : EnumToReplace
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 2
+                        //ImplementsListNode
+                            //NamespaceNameGenericParametersNode
+                                //NamespaceNameNode
+                                    //NamespaceNode
+                                        Namespace : TestNamespace
+                                    //NameNode
+                                        Name : TestTypeInterface
+                                //GenericParametersNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //EnumFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : EnumToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //EnumFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : EnumToReplace
+            //ProtoGenEnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedMapTypeInImplementsListInVersions() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type interface TestNamespace.TestTypeInterface<T> {
+                testInterfaceField : T
+            }
+            
+            type TestNamespace.Type {
+                version 1 : TestNamespace.TestTypeInterface<map<TestNamespace.EnumToReplace, TestNamespace.EnumToReplace>> {
+                    testField : map<TestNamespace.EnumToReplace, TestNamespace.EnumToReplace>
+                }
+                version 2 : TestNamespace.TestTypeInterface<map<TestNamespace.EnumToReplace, TestNamespace.EnumToReplace>> {
+                    testField : map<TestNamespace.EnumToReplace, TestNamespace.EnumToReplace>
+                }
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var expectedToStringOutput = """
+        //FileNode
+            //ProtoGenTypeNode
+                IsInterface : true
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestTypeInterface
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testInterfaceField
+                        //FieldTypeNode
+                            Optional : false
+                            //GenericObjectFieldTypeNode
+                                //GenericParameterNode
+                                    Identifier : T
+            //ProtoGenTypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : Type
+                //VersionsNode
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 1
+                        //ImplementsListNode
+                            //NamespaceNameGenericParametersNode
+                                //NamespaceNameNode
+                                    //NamespaceNode
+                                        Namespace : TestNamespace
+                                    //NameNode
+                                        Name : TestTypeInterface
+                                //GenericParametersNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //MapFieldTypeNode
+                                            //Key
+                                                //FieldTypeNode
+                                                    Optional : false
+                                                    //EnumFieldTypeNode
+                                                        //NamespaceNameGenericParametersNode
+                                                            //NamespaceNameNode
+                                                                //NamespaceNode
+                                                                    Namespace : TestNamespace
+                                                                //NameNode
+                                                                    Name : EnumToReplace
+                                            //Value
+                                                //FieldTypeNode
+                                                    Optional : false
+                                                    //EnumFieldTypeNode
+                                                        //NamespaceNameGenericParametersNode
+                                                            //NamespaceNameNode
+                                                                //NamespaceNode
+                                                                    Namespace : TestNamespace
+                                                                //NameNode
+                                                                    Name : EnumToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //MapFieldTypeNode
+                                        //Key
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+                                        //Value
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 2
+                        //ImplementsListNode
+                            //NamespaceNameGenericParametersNode
+                                //NamespaceNameNode
+                                    //NamespaceNode
+                                        Namespace : TestNamespace
+                                    //NameNode
+                                        Name : TestTypeInterface
+                                //GenericParametersNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //MapFieldTypeNode
+                                            //Key
+                                                //FieldTypeNode
+                                                    Optional : false
+                                                    //EnumFieldTypeNode
+                                                        //NamespaceNameGenericParametersNode
+                                                            //NamespaceNameNode
+                                                                //NamespaceNode
+                                                                    Namespace : TestNamespace
+                                                                //NameNode
+                                                                    Name : EnumToReplace
+                                            //Value
+                                                //FieldTypeNode
+                                                    Optional : false
+                                                    //EnumFieldTypeNode
+                                                        //NamespaceNameGenericParametersNode
+                                                            //NamespaceNameNode
+                                                                //NamespaceNode
+                                                                    Namespace : TestNamespace
+                                                                //NameNode
+                                                                    Name : EnumToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //MapFieldTypeNode
+                                        //Key
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+                                        //Value
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+            //ProtoGenEnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedSetTypeInImplementsListInVersions() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type interface TestNamespace.TestTypeInterface<T> {
+                testInterfaceField : T
+            }
+            
+            type TestNamespace.TestType {
+                version 1 : TestNamespace.TestTypeInterface<set<TestNamespace.EnumToReplace>> {
+                    testField : set<TestNamespace.EnumToReplace>
+                }
+                version 2 : TestNamespace.TestTypeInterface<set<TestNamespace.EnumToReplace>> {
+                    testField : set<TestNamespace.EnumToReplace>
+                }
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var expectedToStringOutput = """
+        //FileNode
+            //ProtoGenTypeNode
+                IsInterface : true
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestTypeInterface
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testInterfaceField
+                        //FieldTypeNode
+                            Optional : false
+                            //GenericObjectFieldTypeNode
+                                //GenericParameterNode
+                                    Identifier : T
+            //ProtoGenTypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                //VersionsNode
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 1
+                        //ImplementsListNode
+                            //NamespaceNameGenericParametersNode
+                                //NamespaceNameNode
+                                    //NamespaceNode
+                                        Namespace : TestNamespace
+                                    //NameNode
+                                        Name : TestTypeInterface
+                                //GenericParametersNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //SetFieldTypeNode
+                                            //Entry
+                                                //FieldTypeNode
+                                                    Optional : false
+                                                    //EnumFieldTypeNode
+                                                        //NamespaceNameGenericParametersNode
+                                                            //NamespaceNameNode
+                                                                //NamespaceNode
+                                                                    Namespace : TestNamespace
+                                                                //NameNode
+                                                                    Name : EnumToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //SetFieldTypeNode
+                                        //Entry
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 2
+                        //ImplementsListNode
+                            //NamespaceNameGenericParametersNode
+                                //NamespaceNameNode
+                                    //NamespaceNode
+                                        Namespace : TestNamespace
+                                    //NameNode
+                                        Name : TestTypeInterface
+                                //GenericParametersNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //SetFieldTypeNode
+                                            //Entry
+                                                //FieldTypeNode
+                                                    Optional : false
+                                                    //EnumFieldTypeNode
+                                                        //NamespaceNameGenericParametersNode
+                                                            //NamespaceNameNode
+                                                                //NamespaceNode
+                                                                    Namespace : TestNamespace
+                                                                //NameNode
+                                                                    Name : EnumToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //SetFieldTypeNode
+                                        //Entry
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+            //ProtoGenEnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedValueOrErrorTypeInImplementsListInVersions() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type interface TestNamespace.TestTypeInterface<T> {
+                testInterfaceField : T
+            }
+            
+            type TestNamespace.TestType {
+                version 1 : TestNamespace.TestTypeInterface<valueorerror<TestNamespace.EnumToReplace>> {
+                    testField : valueorerror<TestNamespace.EnumToReplace>
+                }
+                version 2 : TestNamespace.TestTypeInterface<valueorerror<TestNamespace.EnumToReplace>> {
+                    testField : valueorerror<TestNamespace.EnumToReplace>
+                }
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var expectedToStringOutput = """
+        //FileNode
+            //ProtoGenTypeNode
+                IsInterface : true
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestTypeInterface
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testInterfaceField
+                        //FieldTypeNode
+                            Optional : false
+                            //GenericObjectFieldTypeNode
+                                //GenericParameterNode
+                                    Identifier : T
+            //ProtoGenTypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                //VersionsNode
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 1
+                        //ImplementsListNode
+                            //NamespaceNameGenericParametersNode
+                                //NamespaceNameNode
+                                    //NamespaceNode
+                                        Namespace : TestNamespace
+                                    //NameNode
+                                        Name : TestTypeInterface
+                                //GenericParametersNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //ValueOrErrorFieldTypeNode
+                                            //Entry
+                                                //FieldTypeNode
+                                                    Optional : false
+                                                    //EnumFieldTypeNode
+                                                        //NamespaceNameGenericParametersNode
+                                                            //NamespaceNameNode
+                                                                //NamespaceNode
+                                                                    Namespace : TestNamespace
+                                                                //NameNode
+                                                                    Name : EnumToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ValueOrErrorFieldTypeNode
+                                        //Entry
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 2
+                        //ImplementsListNode
+                            //NamespaceNameGenericParametersNode
+                                //NamespaceNameNode
+                                    //NamespaceNode
+                                        Namespace : TestNamespace
+                                    //NameNode
+                                        Name : TestTypeInterface
+                                //GenericParametersNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //ValueOrErrorFieldTypeNode
+                                            //Entry
+                                                //FieldTypeNode
+                                                    Optional : false
+                                                    //EnumFieldTypeNode
+                                                        //NamespaceNameGenericParametersNode
+                                                            //NamespaceNameNode
+                                                                //NamespaceNode
+                                                                    Namespace : TestNamespace
+                                                                //NameNode
+                                                                    Name : EnumToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ValueOrErrorFieldTypeNode
+                                        //Entry
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //EnumFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : EnumToReplace
+            //ProtoGenEnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedArrayTypeInImplementsListInVersions() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type interface TestNamespace.TestTypeInterface<T> {
+                testInterfaceField : T
+            }
+            
+            type TestNamespace.TestType {
+                version 1 : TestNamespace.TestTypeInterface<TestNamespace.EnumToReplace[][]> {
+                    testField : TestNamespace.EnumToReplace[][]
+                }
+                version 2 : TestNamespace.TestTypeInterface<TestNamespace.EnumToReplace[][]> {
+                    testField : TestNamespace.EnumToReplace[][]
+                }
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var expectedToStringOutput = """
+        //FileNode
+            //ProtoGenTypeNode
+                IsInterface : true
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestTypeInterface
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testInterfaceField
+                        //FieldTypeNode
+                            Optional : false
+                            //GenericObjectFieldTypeNode
+                                //GenericParameterNode
+                                    Identifier : T
+            //ProtoGenTypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                //VersionsNode
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 1
+                        //ImplementsListNode
+                            //NamespaceNameGenericParametersNode
+                                //NamespaceNameNode
+                                    //NamespaceNode
+                                        Namespace : TestNamespace
+                                    //NameNode
+                                        Name : TestTypeInterface
+                                //GenericParametersNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //ArrayFieldTypeNode
+                                            //EnumFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : EnumToReplace
+                                            Dimensions : 2
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ArrayFieldTypeNode
+                                        //EnumFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : EnumToReplace
+                                        Dimensions : 2
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 2
+                        //ImplementsListNode
+                            //NamespaceNameGenericParametersNode
+                                //NamespaceNameNode
+                                    //NamespaceNode
+                                        Namespace : TestNamespace
+                                    //NameNode
+                                        Name : TestTypeInterface
+                                //GenericParametersNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //ArrayFieldTypeNode
+                                            //EnumFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : EnumToReplace
+                                            Dimensions : 2
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ArrayFieldTypeNode
+                                        //EnumFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : EnumToReplace
+                                        Dimensions : 2
+            //ProtoGenEnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+    }
+
 }
