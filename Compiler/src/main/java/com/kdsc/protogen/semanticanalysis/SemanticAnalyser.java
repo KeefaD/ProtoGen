@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorFactory.createSemanticError;
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 
-//TODO:KMD This needs to check for any ObjectFieldTypeNodes in the parse tree as this means the type cannot be found
 //TODO:KMD Don't allow implements lists on both outer type and versions
 public class SemanticAnalyser {
 
@@ -129,6 +128,18 @@ public class SemanticAnalyser {
                         );
                 }
             );
+
+        if(typeNode.getImplementsListNode().isPresent()) {
+            var versionsImplementsListNodes = typeNode
+                .getVersionsNode()
+                .stream()
+                .flatMap(vn -> vn.getVersionNodes().stream())
+                .flatMap(vn -> vn.getImplementsListNode().stream())
+                .flatMap(il -> il.getNamespaceNameGenericParametersNodes().stream())
+                .collect(Collectors.toList());
+            versionsImplementsListNodes
+                .forEach(nngp -> semanticErrors.add(createSemanticError(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME, nngp, ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode()))));
+        }
 
         if(typeNode.getImplementsListNode().isPresent()) {
             typeNode

@@ -14,6 +14,119 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TestSemanticAnalyserTypes extends BaseParserTest {
 
     @Test
+    public void testImplementsListOnOuterTypeAndVersions() {
+        var testProgram = """
+            type TestNamespace.Type1
+            
+            type TestNamespace.Type : TestNamespace.Type1 {
+                version 1 : TestNamespace.Type1
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 20, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testImplementsListOnOuterTypeAndVersionsTwice() {
+        var testProgram = """
+            type TestNamespace.Type1
+            type interface TestNamespace.Type2
+            
+            type TestNamespace.Type : TestNamespace.Type1, TestNamespace.Type2 {
+                version 1 : TestNamespace.Type1, TestNamespace.Type2
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 20, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 41, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type2")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testImplementsListOnOuterTypeAndVersionsTwoVersions() {
+        var testProgram = """
+            type TestNamespace.Type1
+            
+            type TestNamespace.Type : TestNamespace.Type1 {
+                version 1 : TestNamespace.Type1
+                version 2 : TestNamespace.Type1
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 20, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 20, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type1")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testImplementsListOnOuterTypeAndVersionsTwoVersionsTwice() {
+        var testProgram = """
+            type TestNamespace.Type1
+            type interface TestNamespace.Type2
+            
+            type TestNamespace.Type : TestNamespace.Type1, TestNamespace.Type2 {
+                version 1 : TestNamespace.Type1, TestNamespace.Type2
+                version 2 : TestNamespace.Type1, TestNamespace.Type2
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(4, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 20, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 41, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type2")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), DUMMY_SOURCE_FILE_NAME, 6, 20, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type1")),
+            semanticErrors.get(2).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), DUMMY_SOURCE_FILE_NAME, 6, 41, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type2")),
+            semanticErrors.get(3).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
     public void testMissingObjectInField() {
         var testProgram = """
             type TestNamespace.Type {
