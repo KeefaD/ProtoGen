@@ -248,7 +248,7 @@ public class SemanticAnalyser {
             checkFieldType(semanticErrors, mapFieldTypeNode.getValueFieldTypeNode());
         }
         if(nonArrayFieldTypeNode instanceof ObjectFieldTypeNode objectFieldTypeNode) {
-            semanticErrors.add(createSemanticError(UNKNOWN_OBJECT, objectFieldTypeNode, ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode())));
+            semanticErrors.add(createSemanticError(UNKNOWN_OBJECT, objectFieldTypeNode, ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameNode())));
         }
         if(nonArrayFieldTypeNode instanceof SetFieldTypeNode setFieldTypeNode) {
             checkFieldType(semanticErrors, setFieldTypeNode.getFieldTypeNode());

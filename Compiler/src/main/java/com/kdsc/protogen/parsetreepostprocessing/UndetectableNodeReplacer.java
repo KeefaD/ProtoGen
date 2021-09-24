@@ -254,7 +254,7 @@ public class UndetectableNodeReplacer {
     private static NonArrayFieldTypeNode replaceUndetectableNodesForNonArrayFieldTypeNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
 
         if(nonArrayFieldTypeNode instanceof ObjectFieldTypeNode objectFieldTypeNode) {
-            if(typesToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()))) {
+            if(typesToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameNode()))) {
                 return new TypeFieldTypeNode(
                     nonArrayFieldTypeNode.getSourceFileName(),
                     nonArrayFieldTypeNode.getLine(),
@@ -262,7 +262,7 @@ public class UndetectableNodeReplacer {
                     objectFieldTypeNode.getNamespaceNameGenericParametersNode()
                 );
             }
-            if(keysToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()))) {
+            if(keysToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameNode()))) {
                 return new KeyFieldTypeNode(
                     nonArrayFieldTypeNode.getSourceFileName(),
                     nonArrayFieldTypeNode.getLine(),
@@ -270,7 +270,7 @@ public class UndetectableNodeReplacer {
                     objectFieldTypeNode.getNamespaceNameGenericParametersNode()
                 );
             }
-            if(enumsToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()))) {
+            if(enumsToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameNode()))) {
                 return new EnumFieldTypeNode(
                     nonArrayFieldTypeNode.getSourceFileName(),
                     nonArrayFieldTypeNode.getLine(),
