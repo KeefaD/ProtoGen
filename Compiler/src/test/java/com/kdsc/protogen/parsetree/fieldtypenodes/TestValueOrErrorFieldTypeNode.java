@@ -56,10 +56,9 @@ public class TestValueOrErrorFieldTypeNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //ValueOrErrorFieldTypeNode
-            //Entry
-                //FieldTypeNode
-                    Optional : false
-                    //BoolFieldTypeNode
+            //FieldTypeNode
+                Optional : false
+                //BoolFieldTypeNode
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }

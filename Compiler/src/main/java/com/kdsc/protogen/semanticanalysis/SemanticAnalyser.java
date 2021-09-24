@@ -1,7 +1,6 @@
 package com.kdsc.protogen.semanticanalysis;
 
 import com.kdsc.protogen.parsetree.*;
-import com.kdsc.protogen.parsetree.commoninterfaces.AllowableOutputFieldTypeNode;
 import com.kdsc.protogen.parsetree.fieldtypenodes.*;
 import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
 
@@ -148,10 +147,7 @@ public class SemanticAnalyser {
                             .getGenericParametersNode()
                             .stream()
                             .flatMap(gp -> gp.getFieldTypeNodes().stream())
-                            .flatMap(ftn -> Stream.of(ftn.getArrayFieldTypeNode().stream(), ftn.getNonArrayFieldTypeNode().stream()))
-                            .flatMap(s -> s)
-                            .map(ftn -> (AllowableOutputFieldTypeNode) ftn)
-                            .flatMap(uftn -> GetGenericParameters(uftn).stream())
+                            .flatMap(ftn -> getGenericParametersFieldTypeNode(ftn).stream())
                             .collect(Collectors.toList());
                         usedGenericParameterIdentifiers
                             .forEach(
@@ -200,31 +196,104 @@ public class SemanticAnalyser {
                     }
                 }
             );
+
+        checkFields(semanticErrors, typeNode.getFieldsNode());
+
+        typeNode
+            .getVersionsNode()
+            .stream()
+            .flatMap(vn -> vn.getVersionNodes().stream())
+            .forEach(vn -> checkFields(semanticErrors, vn.getFieldsNode()));
+
+        typeNode
+            .getImplementsListNode()
+            .stream()
+            .flatMap(iln -> iln.getNamespaceNameGenericParametersNodes().stream())
+            .map(NamespaceNameGenericParametersNode::getGenericParametersNode)
+            .flatMap(Optional::stream)
+            .flatMap(gpn -> gpn.getFieldTypeNodes().stream())
+            .forEach(ftn -> checkFieldType(semanticErrors, ftn));
+
+        typeNode
+            .getVersionsNode()
+            .stream()
+            .flatMap(vn -> vn.getVersionNodes().stream())
+            .flatMap(vn -> vn.getImplementsListNode().stream())
+            .flatMap(iln -> iln.getNamespaceNameGenericParametersNodes().stream())
+            .map(NamespaceNameGenericParametersNode::getGenericParametersNode)
+            .flatMap(Optional::stream)
+            .flatMap(gpn -> gpn.getFieldTypeNodes().stream())
+            .forEach(ftn -> checkFieldType(semanticErrors, ftn));
     }
 
-    private static List<GenericObjectFieldTypeNode> GetGenericParameters(AllowableOutputFieldTypeNode allowableOutputFieldTypeNode) {
+    private static void checkFields(final List<SemanticError> semanticErrors, final Optional<FieldsNode> fieldsNode) {
+        fieldsNode
+            .stream()
+            .flatMap(fn -> fn.getFieldNodes().stream())
+            .map(FieldNode::getFieldTypeNode)
+            .forEach(fn -> checkFieldType(semanticErrors, fn));
+    }
+
+    private static void checkFieldType(final List<SemanticError> semanticErrors, final FieldTypeNode fieldTypeNode) {
+        if(fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
+            checkArrayFieldType(semanticErrors, fieldTypeNode.getArrayFieldTypeNode().get());
+        } else if(fieldTypeNode.getNonArrayFieldTypeNode().isPresent()) {
+            checkNonArrayFieldType(semanticErrors, fieldTypeNode.getNonArrayFieldTypeNode().get());
+        }
+    }
+
+    private static void checkNonArrayFieldType(final List<SemanticError> semanticErrors, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
+        if(nonArrayFieldTypeNode instanceof MapFieldTypeNode mapFieldTypeNode) {
+            checkFieldType(semanticErrors, mapFieldTypeNode.getKeyFieldTypeNode());
+            checkFieldType(semanticErrors, mapFieldTypeNode.getValueFieldTypeNode());
+        }
+        if(nonArrayFieldTypeNode instanceof ObjectFieldTypeNode objectFieldTypeNode) {
+            semanticErrors.add(createSemanticError(UNKNOWN_OBJECT, objectFieldTypeNode, ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode())));
+        }
+        if(nonArrayFieldTypeNode instanceof SetFieldTypeNode setFieldTypeNode) {
+            checkFieldType(semanticErrors, setFieldTypeNode.getFieldTypeNode());
+        }
+        if(nonArrayFieldTypeNode instanceof ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode) {
+            checkFieldType(semanticErrors, valueOrErrorFieldTypeNode.getFieldTypeNode());
+        }
+    }
+
+    private static void checkArrayFieldType(final List<SemanticError> semanticErrors, final ArrayFieldTypeNode arrayFieldTypeNode) {
+        checkNonArrayFieldType(semanticErrors, arrayFieldTypeNode.getNonArrayFieldTypeNode());
+    }
+
+    private static List<GenericObjectFieldTypeNode> getGenericParametersFieldTypeNode(final FieldTypeNode fieldTypeNode) {
         var foundGenericParameters = new ArrayList<GenericObjectFieldTypeNode>();
-        GetGenericParametersRecurse(foundGenericParameters, allowableOutputFieldTypeNode);
+        getGenericParametersFieldTypeNode(foundGenericParameters, fieldTypeNode);
         return foundGenericParameters;
     }
 
-    private static void GetGenericParametersRecurse(List<GenericObjectFieldTypeNode> foundGenericObjectFieldTypeNodes, AllowableOutputFieldTypeNode allowableOutputFieldTypeNode) {
-        if(allowableOutputFieldTypeNode instanceof GenericObjectFieldTypeNode genericObjectFieldTypeNode) {
-            foundGenericObjectFieldTypeNodes.add(genericObjectFieldTypeNode);
+    private static void getGenericParametersFieldTypeNode(final List<GenericObjectFieldTypeNode> foundGenericParameters, final FieldTypeNode fieldTypeNode) {
+        if(fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
+            getGenericParametersArrayFieldTypeNode(foundGenericParameters, fieldTypeNode.getArrayFieldTypeNode().get());
+        } else if (fieldTypeNode.getNonArrayFieldTypeNode().isPresent()) {
+            getGenericParametersNonArrayFieldTypeNode(foundGenericParameters, fieldTypeNode.getNonArrayFieldTypeNode().get());
         }
-        if(allowableOutputFieldTypeNode instanceof ArrayFieldTypeNode arrayFieldTypeNode) {
-            GetGenericParametersRecurse(foundGenericObjectFieldTypeNodes, arrayFieldTypeNode.getNonArrayFieldTypeNodeAsAllowableOutputFieldTypeNode());
+    }
+
+    private static void getGenericParametersNonArrayFieldTypeNode(final List<GenericObjectFieldTypeNode> foundGenericParameters, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
+        if(nonArrayFieldTypeNode instanceof GenericObjectFieldTypeNode genericObjectFieldTypeNode) {
+            foundGenericParameters.add(genericObjectFieldTypeNode);
         }
-        if(allowableOutputFieldTypeNode instanceof MapFieldTypeNode mapFieldTypeNode) {
-            GetGenericParametersRecurse(foundGenericObjectFieldTypeNodes, mapFieldTypeNode.getKeyFieldTypeNodeAsAllowableOutputFieldTypeNode());
-            GetGenericParametersRecurse(foundGenericObjectFieldTypeNodes, mapFieldTypeNode.getValueFieldTypeNodeAsAllowableOutputFieldTypeNode());
+        if(nonArrayFieldTypeNode instanceof MapFieldTypeNode mapFieldTypeNode) {
+            getGenericParametersFieldTypeNode(foundGenericParameters, mapFieldTypeNode.getKeyFieldTypeNode());
+            getGenericParametersFieldTypeNode(foundGenericParameters, mapFieldTypeNode.getValueFieldTypeNode());
         }
-        if(allowableOutputFieldTypeNode instanceof SetFieldTypeNode setFieldTypeNode) {
-            GetGenericParametersRecurse(foundGenericObjectFieldTypeNodes, setFieldTypeNode.getEntryFieldTypeNodeAsAllowableOutputFieldTypeNode());
+        if(nonArrayFieldTypeNode instanceof SetFieldTypeNode setFieldTypeNode) {
+            getGenericParametersFieldTypeNode(foundGenericParameters, setFieldTypeNode.getFieldTypeNode());
         }
-        if(allowableOutputFieldTypeNode instanceof ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode) {
-            GetGenericParametersRecurse(foundGenericObjectFieldTypeNodes, valueOrErrorFieldTypeNode.getEntryFieldTypeNodeAsAllowableOutputFieldTypeNode());
+        if(nonArrayFieldTypeNode instanceof ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode) {
+            getGenericParametersFieldTypeNode(foundGenericParameters, valueOrErrorFieldTypeNode.getFieldTypeNode());
         }
+    }
+
+    private static void getGenericParametersArrayFieldTypeNode(final List<GenericObjectFieldTypeNode> foundGenericParameters, final ArrayFieldTypeNode arrayFieldTypeNode) {
+        getGenericParametersNonArrayFieldTypeNode(foundGenericParameters, arrayFieldTypeNode.getNonArrayFieldTypeNode());
     }
 
     private static void checkGenericParameters(final List<SemanticError> semanticErrors, final Map<String, ProtoGenTypeNode> typeNodeMap, final ProtoGenTypeNode typeNode, final NamespaceNameGenericParametersNode implementsTypeNamespaceNameGenericParametersNode) {

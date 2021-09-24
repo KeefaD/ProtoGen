@@ -1,11 +1,10 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
 import com.kdsc.protogen.parsetree.NamespaceNameGenericParametersNode;
-import com.kdsc.protogen.parsetree.commoninterfaces.AllowableOutputFieldTypeNode;
 
 import java.util.Objects;
 
-public class KeyFieldTypeNode extends NonArrayFieldTypeNode implements AllowableOutputFieldTypeNode {
+public class KeyFieldTypeNode extends NonArrayFieldTypeNode {
 
     private final NamespaceNameGenericParametersNode namespaceNameGenericParametersNode;
 

@@ -1,10 +1,8 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-import com.kdsc.protogen.parsetree.commoninterfaces.AllowableOutputFieldTypeNode;
-
 import java.util.Objects;
 
-public class MapFieldTypeNode extends NonArrayFieldTypeNode implements AllowableOutputFieldTypeNode {
+public class MapFieldTypeNode extends NonArrayFieldTypeNode {
 
     private final FieldTypeNode keyFieldTypeNode;
     private final FieldTypeNode valueFieldTypeNode;
@@ -29,16 +27,6 @@ public class MapFieldTypeNode extends NonArrayFieldTypeNode implements Allowable
 
     public FieldTypeNode getValueFieldTypeNode() {
         return valueFieldTypeNode;
-    }
-
-    //TODO:KMD Needs test
-    public AllowableOutputFieldTypeNode getKeyFieldTypeNodeAsAllowableOutputFieldTypeNode() {
-        return keyFieldTypeNode.getAllowableOutputFieldTypeNode();
-    }
-
-    //TODO:KMD Needs test
-    public AllowableOutputFieldTypeNode getValueFieldTypeNodeAsAllowableOutputFieldTypeNode() {
-        return valueFieldTypeNode.getAllowableOutputFieldTypeNode();
     }
 
     @Override

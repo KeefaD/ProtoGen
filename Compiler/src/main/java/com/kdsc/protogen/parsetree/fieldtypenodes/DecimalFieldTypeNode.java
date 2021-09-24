@@ -1,8 +1,6 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-import com.kdsc.protogen.parsetree.commoninterfaces.AllowableOutputFieldTypeNode;
-
-public class DecimalFieldTypeNode extends NonArrayFieldTypeNode implements AllowableOutputFieldTypeNode {
+public class DecimalFieldTypeNode extends NonArrayFieldTypeNode {
 
     public DecimalFieldTypeNode(
         final String sourceFileName,

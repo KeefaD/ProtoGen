@@ -14,6 +14,272 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TestSemanticAnalyserTypes extends BaseParserTest {
 
     @Test
+    public void testMissingObjectInField() {
+        var testProgram = """
+            type TestNamespace.Type {
+                testField : TestNamespace.TestType1
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 20, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testMissingObjectInNestedField() {
+        var testProgram = """
+            type TestNamespace.Type {
+                testField : map<TestNamespace.TestType1, TestNamespace.TestType2>
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 24, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 49, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testSameMissingObjectInNestedField() {
+        var testProgram = """
+            type TestNamespace.Type {
+                testField : map<TestNamespace.TestType1, TestNamespace.TestType1>
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+                PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 24, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
+                semanticErrors.get(0).getFullErrorMessage(),
+                "Unexpected semantic error message"
+        );
+        assertEquals(
+                PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 49, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
+                semanticErrors.get(1).getFullErrorMessage(),
+                "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testMissingObjectInImplementsListField() {
+        var testProgram = """
+            type TestNamespace.TestType1<T>
+            
+            type TestNamespace.Type : TestNamespace.TestType1<TestNamespace.TestType2>
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 54, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testMissingObjectInImplementsListNestedField() {
+        var testProgram = """
+            type TestNamespace.TestType1<T>
+            
+            type TestNamespace.Type : TestNamespace.TestType1<map<TestNamespace.TestType2, TestNamespace.TestType3>>
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 58, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 83, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType3")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testMissingSameObjectInImplementsListNestedField() {
+        var testProgram = """
+            type TestNamespace.TestType1<T>
+            
+            type TestNamespace.Type : TestNamespace.TestType1<map<TestNamespace.TestType2, TestNamespace.TestType2>>
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 58, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 83, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testMissingObjectInVersionField() {
+        var testProgram = """
+            type TestNamespace.Type {
+                version 1 {
+                    testField : TestNamespace.TestType1
+                }
+                version 2 {
+                    testField : TestNamespace.TestType1
+                }
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 24, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 6, 24, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testMissingObjectInNestedVersionField() {
+        var testProgram = """
+            type TestNamespace.Type {
+                version 1 {
+                    testField : map<TestNamespace.TestType1, TestNamespace.TestType2>
+                }
+                version 2 {
+                    testField : map<TestNamespace.TestType1, TestNamespace.TestType2>
+                }
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(4, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 28, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 53, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 6, 28, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
+            semanticErrors.get(2).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 6, 53, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
+            semanticErrors.get(3).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testMissingObjectInVersionImplementsListField() {
+        var testProgram = """
+            type TestNamespace.TestType1<T>
+            
+            type TestNamespace.Type {
+                version 1 : TestNamespace.TestType1<TestNamespace.TestType2>
+                version 2 : TestNamespace.TestType2<TestNamespace.TestType3>
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 44, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 44, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType3")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testMissingObjectInVersionImplementsListNestedField() {
+        var testProgram = """
+            type TestNamespace.TestType1<T>
+            
+            type TestNamespace.Type {
+                version 1 : TestNamespace.TestType1<map<TestNamespace.TestType2, TestNamespace.TestType3>>
+                version 2 : TestNamespace.TestType1<map<TestNamespace.TestType3, TestNamespace.TestType4>>
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(4, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 48, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 73, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType3")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 48, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType3")),
+            semanticErrors.get(2).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 73, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType4")),
+            semanticErrors.get(3).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
     public void testRedefinitionOfVersionNumberOneForType() {
         var testProgram = """
             type TestNamespace.Type {

@@ -181,16 +181,15 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                         //FieldTypeNode
                             Optional : false
                             //SetFieldTypeNode
-                                //Entry
-                                    //FieldTypeNode
-                                        Optional : false
-                                        //TypeFieldTypeNode
-                                            //NamespaceNameGenericParametersNode
-                                                //NamespaceNameNode
-                                                    //NamespaceNode
-                                                        Namespace : TestNamespace
-                                                    //NameNode
-                                                        Name : TypeToReplace
+                                //FieldTypeNode
+                                    Optional : false
+                                    //TypeFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : TypeToReplace
         """;
         assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
     }
@@ -241,16 +240,15 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                         //FieldTypeNode
                             Optional : false
                             //ValueOrErrorFieldTypeNode
-                                //Entry
-                                    //FieldTypeNode
-                                        Optional : false
-                                        //TypeFieldTypeNode
-                                            //NamespaceNameGenericParametersNode
-                                                //NamespaceNameNode
-                                                    //NamespaceNode
-                                                        Namespace : TestNamespace
-                                                    //NameNode
-                                                        Name : TypeToReplace
+                                //FieldTypeNode
+                                    Optional : false
+                                    //TypeFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : TypeToReplace
         """;
         assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
     }
@@ -609,24 +607,6 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                             //FieldTypeNode
                                 Optional : false
                                 //SetFieldTypeNode
-                                    //Entry
-                                        //FieldTypeNode
-                                            Optional : false
-                                            //TypeFieldTypeNode
-                                                //NamespaceNameGenericParametersNode
-                                                    //NamespaceNameNode
-                                                        //NamespaceNode
-                                                            Namespace : TestNamespace
-                                                        //NameNode
-                                                            Name : TypeToReplace
-                //FieldsNode
-                    //FieldNode
-                        //FieldNameNode
-                            FieldName : testField
-                        //FieldTypeNode
-                            Optional : false
-                            //SetFieldTypeNode
-                                //Entry
                                     //FieldTypeNode
                                         Optional : false
                                         //TypeFieldTypeNode
@@ -636,6 +616,22 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                                         Namespace : TestNamespace
                                                     //NameNode
                                                         Name : TypeToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //SetFieldTypeNode
+                                //FieldTypeNode
+                                    Optional : false
+                                    //TypeFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : TypeToReplace
         """;
         assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
     }
@@ -714,24 +710,6 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                             //FieldTypeNode
                                 Optional : false
                                 //ValueOrErrorFieldTypeNode
-                                    //Entry
-                                        //FieldTypeNode
-                                            Optional : false
-                                            //TypeFieldTypeNode
-                                                //NamespaceNameGenericParametersNode
-                                                    //NamespaceNameNode
-                                                        //NamespaceNode
-                                                            Namespace : TestNamespace
-                                                        //NameNode
-                                                            Name : TypeToReplace
-                //FieldsNode
-                    //FieldNode
-                        //FieldNameNode
-                            FieldName : testField
-                        //FieldTypeNode
-                            Optional : false
-                            //ValueOrErrorFieldTypeNode
-                                //Entry
                                     //FieldTypeNode
                                         Optional : false
                                         //TypeFieldTypeNode
@@ -741,6 +719,22 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                                         Namespace : TestNamespace
                                                     //NameNode
                                                         Name : TypeToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //ValueOrErrorFieldTypeNode
+                                //FieldTypeNode
+                                    Optional : false
+                                    //TypeFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : TypeToReplace
         """;
         assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
     }
@@ -1091,16 +1085,15 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                 //FieldTypeNode
                                     Optional : false
                                     //SetFieldTypeNode
-                                        //Entry
-                                            //FieldTypeNode
-                                                Optional : false
-                                                //TypeFieldTypeNode
-                                                    //NamespaceNameGenericParametersNode
-                                                        //NamespaceNameNode
-                                                            //NamespaceNode
-                                                                Namespace : TestNamespace
-                                                            //NameNode
-                                                                Name : TypeToReplace
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
                     //VersionNode
                         //VersionNumberNode
                             VersionNumber : 2
@@ -1111,16 +1104,15 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                 //FieldTypeNode
                                     Optional : false
                                     //SetFieldTypeNode
-                                        //Entry
-                                            //FieldTypeNode
-                                                Optional : false
-                                                //TypeFieldTypeNode
-                                                    //NamespaceNameGenericParametersNode
-                                                        //NamespaceNameNode
-                                                            //NamespaceNode
-                                                                Namespace : TestNamespace
-                                                            //NameNode
-                                                                Name : TypeToReplace
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
         """;
         assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
     }
@@ -1180,16 +1172,15 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                 //FieldTypeNode
                                     Optional : false
                                     //ValueOrErrorFieldTypeNode
-                                        //Entry
-                                            //FieldTypeNode
-                                                Optional : false
-                                                //TypeFieldTypeNode
-                                                    //NamespaceNameGenericParametersNode
-                                                        //NamespaceNameNode
-                                                            //NamespaceNode
-                                                                Namespace : TestNamespace
-                                                            //NameNode
-                                                                Name : TypeToReplace
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
                     //VersionNode
                         //VersionNumberNode
                             VersionNumber : 2
@@ -1200,16 +1191,15 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                 //FieldTypeNode
                                     Optional : false
                                     //ValueOrErrorFieldTypeNode
-                                        //Entry
-                                            //FieldTypeNode
-                                                Optional : false
-                                                //TypeFieldTypeNode
-                                                    //NamespaceNameGenericParametersNode
-                                                        //NamespaceNameNode
-                                                            //NamespaceNode
-                                                                Namespace : TestNamespace
-                                                            //NameNode
-                                                                Name : TypeToReplace
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
         """;
         assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
     }
@@ -1716,24 +1706,6 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                     //FieldTypeNode
                                         Optional : false
                                         //SetFieldTypeNode
-                                            //Entry
-                                                //FieldTypeNode
-                                                    Optional : false
-                                                    //TypeFieldTypeNode
-                                                        //NamespaceNameGenericParametersNode
-                                                            //NamespaceNameNode
-                                                                //NamespaceNode
-                                                                    Namespace : TestNamespace
-                                                                //NameNode
-                                                                    Name : TypeToReplace
-                        //FieldsNode
-                            //FieldNode
-                                //FieldNameNode
-                                    FieldName : testField
-                                //FieldTypeNode
-                                    Optional : false
-                                    //SetFieldTypeNode
-                                        //Entry
                                             //FieldTypeNode
                                                 Optional : false
                                                 //TypeFieldTypeNode
@@ -1743,6 +1715,22 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                                                 Namespace : TestNamespace
                                                             //NameNode
                                                                 Name : TypeToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //SetFieldTypeNode
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
                     //VersionNode
                         //VersionNumberNode
                             VersionNumber : 2
@@ -1757,24 +1745,6 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                     //FieldTypeNode
                                         Optional : false
                                         //SetFieldTypeNode
-                                            //Entry
-                                                //FieldTypeNode
-                                                    Optional : false
-                                                    //TypeFieldTypeNode
-                                                        //NamespaceNameGenericParametersNode
-                                                            //NamespaceNameNode
-                                                                //NamespaceNode
-                                                                    Namespace : TestNamespace
-                                                                //NameNode
-                                                                    Name : TypeToReplace
-                        //FieldsNode
-                            //FieldNode
-                                //FieldNameNode
-                                    FieldName : testField
-                                //FieldTypeNode
-                                    Optional : false
-                                    //SetFieldTypeNode
-                                        //Entry
                                             //FieldTypeNode
                                                 Optional : false
                                                 //TypeFieldTypeNode
@@ -1784,6 +1754,22 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                                                 Namespace : TestNamespace
                                                             //NameNode
                                                                 Name : TypeToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //SetFieldTypeNode
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
         """;
         assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
     }
@@ -1871,24 +1857,6 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                     //FieldTypeNode
                                         Optional : false
                                         //ValueOrErrorFieldTypeNode
-                                            //Entry
-                                                //FieldTypeNode
-                                                    Optional : false
-                                                    //TypeFieldTypeNode
-                                                        //NamespaceNameGenericParametersNode
-                                                            //NamespaceNameNode
-                                                                //NamespaceNode
-                                                                    Namespace : TestNamespace
-                                                                //NameNode
-                                                                    Name : TypeToReplace
-                        //FieldsNode
-                            //FieldNode
-                                //FieldNameNode
-                                    FieldName : testField
-                                //FieldTypeNode
-                                    Optional : false
-                                    //ValueOrErrorFieldTypeNode
-                                        //Entry
                                             //FieldTypeNode
                                                 Optional : false
                                                 //TypeFieldTypeNode
@@ -1898,6 +1866,22 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                                                 Namespace : TestNamespace
                                                             //NameNode
                                                                 Name : TypeToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ValueOrErrorFieldTypeNode
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
                     //VersionNode
                         //VersionNumberNode
                             VersionNumber : 2
@@ -1912,24 +1896,6 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                     //FieldTypeNode
                                         Optional : false
                                         //ValueOrErrorFieldTypeNode
-                                            //Entry
-                                                //FieldTypeNode
-                                                    Optional : false
-                                                    //TypeFieldTypeNode
-                                                        //NamespaceNameGenericParametersNode
-                                                            //NamespaceNameNode
-                                                                //NamespaceNode
-                                                                    Namespace : TestNamespace
-                                                                //NameNode
-                                                                    Name : TypeToReplace
-                        //FieldsNode
-                            //FieldNode
-                                //FieldNameNode
-                                    FieldName : testField
-                                //FieldTypeNode
-                                    Optional : false
-                                    //ValueOrErrorFieldTypeNode
-                                        //Entry
                                             //FieldTypeNode
                                                 Optional : false
                                                 //TypeFieldTypeNode
@@ -1939,6 +1905,22 @@ public class TestUndetectableNodeReplacerWithTypes extends BaseParserTest {
                                                                 Namespace : TestNamespace
                                                             //NameNode
                                                                 Name : TypeToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ValueOrErrorFieldTypeNode
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
         """;
         assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
     }

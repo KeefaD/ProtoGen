@@ -154,16 +154,15 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                         //FieldTypeNode
                             Optional : false
                             //SetFieldTypeNode
-                                //Entry
-                                    //FieldTypeNode
-                                        Optional : false
-                                        //EnumFieldTypeNode
-                                            //NamespaceNameGenericParametersNode
-                                                //NamespaceNameNode
-                                                    //NamespaceNode
-                                                        Namespace : TestNamespace
-                                                    //NameNode
-                                                        Name : EnumToReplace
+                                //FieldTypeNode
+                                    Optional : false
+                                    //EnumFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : EnumToReplace
             //ProtoGenEnumNode
                 //NamespaceNameNode
                     //NamespaceNode
@@ -208,16 +207,15 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                         //FieldTypeNode
                             Optional : false
                             //ValueOrErrorFieldTypeNode
-                                //Entry
-                                    //FieldTypeNode
-                                        Optional : false
-                                        //EnumFieldTypeNode
-                                            //NamespaceNameGenericParametersNode
-                                                //NamespaceNameNode
-                                                    //NamespaceNode
-                                                        Namespace : TestNamespace
-                                                    //NameNode
-                                                        Name : EnumToReplace
+                                //FieldTypeNode
+                                    Optional : false
+                                    //EnumFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : EnumToReplace
             //ProtoGenEnumNode
                 //NamespaceNameNode
                     //NamespaceNode
@@ -552,24 +550,6 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                             //FieldTypeNode
                                 Optional : false
                                 //SetFieldTypeNode
-                                    //Entry
-                                        //FieldTypeNode
-                                            Optional : false
-                                            //EnumFieldTypeNode
-                                                //NamespaceNameGenericParametersNode
-                                                    //NamespaceNameNode
-                                                        //NamespaceNode
-                                                            Namespace : TestNamespace
-                                                        //NameNode
-                                                            Name : EnumToReplace
-                //FieldsNode
-                    //FieldNode
-                        //FieldNameNode
-                            FieldName : testField
-                        //FieldTypeNode
-                            Optional : false
-                            //SetFieldTypeNode
-                                //Entry
                                     //FieldTypeNode
                                         Optional : false
                                         //EnumFieldTypeNode
@@ -579,6 +559,22 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                                         Namespace : TestNamespace
                                                     //NameNode
                                                         Name : EnumToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //SetFieldTypeNode
+                                //FieldTypeNode
+                                    Optional : false
+                                    //EnumFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : EnumToReplace
             //ProtoGenEnumNode
                 //NamespaceNameNode
                     //NamespaceNode
@@ -651,24 +647,6 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                             //FieldTypeNode
                                 Optional : false
                                 //ValueOrErrorFieldTypeNode
-                                    //Entry
-                                        //FieldTypeNode
-                                            Optional : false
-                                            //EnumFieldTypeNode
-                                                //NamespaceNameGenericParametersNode
-                                                    //NamespaceNameNode
-                                                        //NamespaceNode
-                                                            Namespace : TestNamespace
-                                                        //NameNode
-                                                            Name : EnumToReplace
-                //FieldsNode
-                    //FieldNode
-                        //FieldNameNode
-                            FieldName : testField
-                        //FieldTypeNode
-                            Optional : false
-                            //ValueOrErrorFieldTypeNode
-                                //Entry
                                     //FieldTypeNode
                                         Optional : false
                                         //EnumFieldTypeNode
@@ -678,6 +656,22 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                                         Namespace : TestNamespace
                                                     //NameNode
                                                         Name : EnumToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //ValueOrErrorFieldTypeNode
+                                //FieldTypeNode
+                                    Optional : false
+                                    //EnumFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : EnumToReplace
             //ProtoGenEnumNode
                 //NamespaceNameNode
                     //NamespaceNode
@@ -1004,16 +998,15 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                 //FieldTypeNode
                                     Optional : false
                                     //SetFieldTypeNode
-                                        //Entry
-                                            //FieldTypeNode
-                                                Optional : false
-                                                //EnumFieldTypeNode
-                                                    //NamespaceNameGenericParametersNode
-                                                        //NamespaceNameNode
-                                                            //NamespaceNode
-                                                                Namespace : TestNamespace
-                                                            //NameNode
-                                                                Name : EnumToReplace
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //EnumFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : EnumToReplace
                     //VersionNode
                         //VersionNumberNode
                             VersionNumber : 2
@@ -1024,16 +1017,15 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                 //FieldTypeNode
                                     Optional : false
                                     //SetFieldTypeNode
-                                        //Entry
-                                            //FieldTypeNode
-                                                Optional : false
-                                                //EnumFieldTypeNode
-                                                    //NamespaceNameGenericParametersNode
-                                                        //NamespaceNameNode
-                                                            //NamespaceNode
-                                                                Namespace : TestNamespace
-                                                            //NameNode
-                                                                Name : EnumToReplace
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //EnumFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : EnumToReplace
             //ProtoGenEnumNode
                 //NamespaceNameNode
                     //NamespaceNode
@@ -1087,16 +1079,15 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                 //FieldTypeNode
                                     Optional : false
                                     //ValueOrErrorFieldTypeNode
-                                        //Entry
-                                            //FieldTypeNode
-                                                Optional : false
-                                                //EnumFieldTypeNode
-                                                    //NamespaceNameGenericParametersNode
-                                                        //NamespaceNameNode
-                                                            //NamespaceNode
-                                                                Namespace : TestNamespace
-                                                            //NameNode
-                                                                Name : EnumToReplace
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //EnumFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : EnumToReplace
                     //VersionNode
                         //VersionNumberNode
                             VersionNumber : 2
@@ -1107,16 +1098,15 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                 //FieldTypeNode
                                     Optional : false
                                     //ValueOrErrorFieldTypeNode
-                                        //Entry
-                                            //FieldTypeNode
-                                                Optional : false
-                                                //EnumFieldTypeNode
-                                                    //NamespaceNameGenericParametersNode
-                                                        //NamespaceNameNode
-                                                            //NamespaceNode
-                                                                Namespace : TestNamespace
-                                                            //NameNode
-                                                                Name : EnumToReplace
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //EnumFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : EnumToReplace
             //ProtoGenEnumNode
                 //NamespaceNameNode
                     //NamespaceNode
@@ -1599,24 +1589,6 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                     //FieldTypeNode
                                         Optional : false
                                         //SetFieldTypeNode
-                                            //Entry
-                                                //FieldTypeNode
-                                                    Optional : false
-                                                    //EnumFieldTypeNode
-                                                        //NamespaceNameGenericParametersNode
-                                                            //NamespaceNameNode
-                                                                //NamespaceNode
-                                                                    Namespace : TestNamespace
-                                                                //NameNode
-                                                                    Name : EnumToReplace
-                        //FieldsNode
-                            //FieldNode
-                                //FieldNameNode
-                                    FieldName : testField
-                                //FieldTypeNode
-                                    Optional : false
-                                    //SetFieldTypeNode
-                                        //Entry
                                             //FieldTypeNode
                                                 Optional : false
                                                 //EnumFieldTypeNode
@@ -1626,6 +1598,22 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                                                 Namespace : TestNamespace
                                                             //NameNode
                                                                 Name : EnumToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //SetFieldTypeNode
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //EnumFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : EnumToReplace
                     //VersionNode
                         //VersionNumberNode
                             VersionNumber : 2
@@ -1640,24 +1628,6 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                     //FieldTypeNode
                                         Optional : false
                                         //SetFieldTypeNode
-                                            //Entry
-                                                //FieldTypeNode
-                                                    Optional : false
-                                                    //EnumFieldTypeNode
-                                                        //NamespaceNameGenericParametersNode
-                                                            //NamespaceNameNode
-                                                                //NamespaceNode
-                                                                    Namespace : TestNamespace
-                                                                //NameNode
-                                                                    Name : EnumToReplace
-                        //FieldsNode
-                            //FieldNode
-                                //FieldNameNode
-                                    FieldName : testField
-                                //FieldTypeNode
-                                    Optional : false
-                                    //SetFieldTypeNode
-                                        //Entry
                                             //FieldTypeNode
                                                 Optional : false
                                                 //EnumFieldTypeNode
@@ -1667,6 +1637,22 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                                                 Namespace : TestNamespace
                                                             //NameNode
                                                                 Name : EnumToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //SetFieldTypeNode
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //EnumFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : EnumToReplace
             //ProtoGenEnumNode
                 //NamespaceNameNode
                     //NamespaceNode
@@ -1748,24 +1734,6 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                     //FieldTypeNode
                                         Optional : false
                                         //ValueOrErrorFieldTypeNode
-                                            //Entry
-                                                //FieldTypeNode
-                                                    Optional : false
-                                                    //EnumFieldTypeNode
-                                                        //NamespaceNameGenericParametersNode
-                                                            //NamespaceNameNode
-                                                                //NamespaceNode
-                                                                    Namespace : TestNamespace
-                                                                //NameNode
-                                                                    Name : EnumToReplace
-                        //FieldsNode
-                            //FieldNode
-                                //FieldNameNode
-                                    FieldName : testField
-                                //FieldTypeNode
-                                    Optional : false
-                                    //ValueOrErrorFieldTypeNode
-                                        //Entry
                                             //FieldTypeNode
                                                 Optional : false
                                                 //EnumFieldTypeNode
@@ -1775,6 +1743,22 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                                                 Namespace : TestNamespace
                                                             //NameNode
                                                                 Name : EnumToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ValueOrErrorFieldTypeNode
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //EnumFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : EnumToReplace
                     //VersionNode
                         //VersionNumberNode
                             VersionNumber : 2
@@ -1789,24 +1773,6 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                     //FieldTypeNode
                                         Optional : false
                                         //ValueOrErrorFieldTypeNode
-                                            //Entry
-                                                //FieldTypeNode
-                                                    Optional : false
-                                                    //EnumFieldTypeNode
-                                                        //NamespaceNameGenericParametersNode
-                                                            //NamespaceNameNode
-                                                                //NamespaceNode
-                                                                    Namespace : TestNamespace
-                                                                //NameNode
-                                                                    Name : EnumToReplace
-                        //FieldsNode
-                            //FieldNode
-                                //FieldNameNode
-                                    FieldName : testField
-                                //FieldTypeNode
-                                    Optional : false
-                                    //ValueOrErrorFieldTypeNode
-                                        //Entry
                                             //FieldTypeNode
                                                 Optional : false
                                                 //EnumFieldTypeNode
@@ -1816,6 +1782,22 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseParserTest {
                                                                 Namespace : TestNamespace
                                                             //NameNode
                                                                 Name : EnumToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ValueOrErrorFieldTypeNode
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //EnumFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : EnumToReplace
             //ProtoGenEnumNode
                 //NamespaceNameNode
                     //NamespaceNode
