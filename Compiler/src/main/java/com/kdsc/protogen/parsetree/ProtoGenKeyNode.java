@@ -61,6 +61,11 @@ public class ProtoGenKeyNode extends BaseNode implements TopLevelObject, HasName
     }
 
     @Override
+    public boolean isLibraryNode() {
+        return false;
+    }
+
+    @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//ProtoGenKeyNode\n");

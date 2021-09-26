@@ -45,7 +45,6 @@ public class TestValueOrErrorFieldTypeNode extends BaseTestNode {
         assertEquals(entryFieldTypeNode, node.getFieldTypeNode(), "Created and retrieved objects don't match");
     }
 
-    //TODO:KMD Maybe I should get rid of the entry level
     @Test
     public void testToString() {
         var node = new ValueOrErrorFieldTypeNode(

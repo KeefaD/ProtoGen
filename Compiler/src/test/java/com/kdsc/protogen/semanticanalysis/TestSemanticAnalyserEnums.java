@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 //TODO:KMD Get all these different types of unit tests into a nice hierarchy
+//TODO:KMD prevent versions and direct for enums
 public class TestSemanticAnalyserEnums extends BaseParserTest {
 
     @Test

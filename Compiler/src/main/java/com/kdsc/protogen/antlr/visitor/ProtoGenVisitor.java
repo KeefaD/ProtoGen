@@ -1,5 +1,6 @@
-package com.kdsc.protogen.antlr;
+package com.kdsc.protogen.antlr.visitor;
 
+import com.kdsc.protogen.antlr.ProtoGenParser;
 import com.kdsc.protogen.parsetree.*;
 import com.kdsc.protogen.parsetree.fieldtypenodes.*;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -7,7 +8,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.ProtoGenBaseVisitor<Object> {
+public class ProtoGenVisitor extends com.kdsc.protogen.antlr.ProtoGenBaseVisitor<Object> {
 
     private static final String INTERFACE = "interface";
     private static final String OPTIONAL = "optional";
@@ -27,7 +28,7 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
 
     private final String sourceFileName;
 
-    public ProtoGenVisitorImplementation(final String sourceFileName) {
+    public ProtoGenVisitor(final String sourceFileName) {
         this.sourceFileName = sourceFileName;
     }
 
@@ -129,11 +130,11 @@ public class ProtoGenVisitorImplementation extends com.kdsc.protogen.antlr.Proto
     @Override
     public Object visitEnum_version(final ProtoGenParser.Enum_versionContext ctx) {
         return new EnumVersionNode(
-                sourceFileName,
-                ctx.getStart().getLine(),
-                ctx.getStart().getCharPositionInLine(),
-                (VersionNumberNode) visit(ctx.version_number()),
-                ctx.enum_cases() == null ? Optional.empty() : Optional.of((EnumCasesNode) visit(ctx.enum_cases()))
+            sourceFileName,
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
+            (VersionNumberNode) visit(ctx.version_number()),
+            ctx.enum_cases() == null ? Optional.empty() : Optional.of((EnumCasesNode) visit(ctx.enum_cases()))
         );
     }
 

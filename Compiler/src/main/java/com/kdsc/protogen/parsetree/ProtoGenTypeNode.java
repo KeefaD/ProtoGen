@@ -61,6 +61,11 @@ public class ProtoGenTypeNode extends BaseNode implements TopLevelObject, HasNam
     }
 
     @Override
+    public boolean isLibraryNode() {
+        return false;
+    }
+
+    @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//ProtoGenTypeNode\n");

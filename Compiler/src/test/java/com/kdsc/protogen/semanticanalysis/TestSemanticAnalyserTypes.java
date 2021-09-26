@@ -14,6 +14,124 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TestSemanticAnalyserTypes extends BaseParserTest {
 
     @Test
+    public void testDirectInheritanceLoop() {
+        var testProgram = """            
+            type TestNamespace.Type : TestNamespace.Type {
+                version 1
+            }
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), DUMMY_SOURCE_FILE_NAME, 1, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type->TestNamespace.Type")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testIndirectInheritanceLoop() {
+        var testProgram = """
+            type TestNamespace.Type1 : TestNamespace.Type
+                   
+            type TestNamespace.Type : TestNamespace.Type1
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), DUMMY_SOURCE_FILE_NAME, 1, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type1->TestNamespace.Type->TestNamespace.Type1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type->TestNamespace.Type1->TestNamespace.Type")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testIndirectInheritanceLoopTwoLevels() {
+        var testProgram = """
+            type TestNamespace.Type1 : TestNamespace.Type
+            
+            type TestNamespace.Type2 : TestNamespace.Type1
+                   
+            type TestNamespace.Type : TestNamespace.Type2
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(3, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), DUMMY_SOURCE_FILE_NAME, 1, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type1->TestNamespace.Type->TestNamespace.Type2->TestNamespace.Type1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type2->TestNamespace.Type1->TestNamespace.Type->TestNamespace.Type2")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type->TestNamespace.Type2->TestNamespace.Type1->TestNamespace.Type")),
+            semanticErrors.get(2).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testInheritanceLoopSecondInterface() {
+        var testProgram = """
+            type interface TestNamespace.Type1
+            
+            type interface TestNamespace.Type2 : TestNamespace.Type
+            
+            type interface TestNamespace.Type3 : TestNamespace.Type2
+            
+            type interface TestNamespace.Type4 : TestNamespace.Type3
+                   
+            type interface TestNamespace.Type : TestNamespace.Type1, TestNamespace.Type3
+        """;
+        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
+        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(4, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type2->TestNamespace.Type->TestNamespace.Type3->TestNamespace.Type2")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type3->TestNamespace.Type2->TestNamespace.Type->TestNamespace.Type3")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), DUMMY_SOURCE_FILE_NAME, 7, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type4->TestNamespace.Type3->TestNamespace.Type2->TestNamespace.Type->TestNamespace.Type3")),
+            semanticErrors.get(2).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            PARSER_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), DUMMY_SOURCE_FILE_NAME, 9, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type->TestNamespace.Type3->TestNamespace.Type2->TestNamespace.Type")),
+            semanticErrors.get(3).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    //TODO:KMD Test extend non interface with interface
+    //TODO:KMD Test disallowed map / set key types
+    //TODO:KMD Test disallowed key types
+
+    @Test
     public void testImplementsListOnOuterTypeAndVersions() {
         var testProgram = """
             type TestNamespace.Type1
@@ -182,14 +300,14 @@ public class TestSemanticAnalyserTypes extends BaseParserTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Expected one semantic error");
         assertEquals(
-                PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 24, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
-                semanticErrors.get(0).getFullErrorMessage(),
-                "Unexpected semantic error message"
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 24, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
         );
         assertEquals(
-                PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 49, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
-                semanticErrors.get(1).getFullErrorMessage(),
-                "Unexpected semantic error message"
+            PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 49, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
         );
     }
 
@@ -369,6 +487,7 @@ public class TestSemanticAnalyserTypes extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
+        //TODO:KMD Expected one semantic error message is wrong
         assertEquals(4, semanticErrors.size(), "Expected one semantic error");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 48, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),

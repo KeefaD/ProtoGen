@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 //TODO:KMD This could probably be made more generic, I so wish Java had proper generics without type erasure
+//TODO:KMD Maybe I should just clone everything
 public class UndetectableNodeReplacer {
 
     public static List<FileNode> replaceUndetectableNodes(final List<FileNode> fileNodes) {

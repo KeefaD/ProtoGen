@@ -2,7 +2,7 @@ package com.kdsc.protogen.antlr.parser;
 
 import com.kdsc.protogen.antlr.ProtoGenLexer;
 import com.kdsc.protogen.antlr.ProtoGenParser;
-import com.kdsc.protogen.antlr.ProtoGenVisitorImplementation;
+import com.kdsc.protogen.antlr.visitor.ProtoGenVisitor;
 import com.kdsc.protogen.antlr.errors.ProtoGenErrorListener;
 import com.kdsc.protogen.parsetree.FileNode;
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -31,7 +31,7 @@ public abstract class BaseParserTest {
 
         var parseTree = compileTestProgramAndReturnParseTree(errorListener, testProgram);
 
-        var visitor = new ProtoGenVisitorImplementation(DUMMY_SOURCE_FILE_NAME);
+        var visitor = new ProtoGenVisitor(DUMMY_SOURCE_FILE_NAME);
         var fileNode = (FileNode) visitor.visit(parseTree);
 
         if(errorListener.errorOccurred()) {

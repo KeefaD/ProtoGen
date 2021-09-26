@@ -1,9 +1,11 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.parsetree.commoninterfaces.HasNamespaceName;
+
 import java.util.Objects;
 import java.util.Optional;
 
-public class NamespaceNameGenericParametersNode extends BaseNode {
+public class NamespaceNameGenericParametersNode extends BaseNode implements HasNamespaceName {
 
     private final NamespaceNameNode namespaceNameNode;
     private final Optional<GenericParametersNode> genericParametersNode;

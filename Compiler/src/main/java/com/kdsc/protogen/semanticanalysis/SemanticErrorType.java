@@ -17,7 +17,8 @@ public enum SemanticErrorType {
     MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE(10, "More than one non interface type specified in implements list for type %s non interface type %s"),
     NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION(11, "Number of type parameters in implements list for item %s - %d does not match type definition %d"),
     UNKNOWN_OBJECT(12, "Unknown object %s"),
-    CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME(13, "Cannot have implements list on outer type and version at the same time %s");
+    CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME(13, "Cannot have implements list on outer type and version at the same time %s"),
+    INHERITANCE_LOOP_DETECTED(14, "Inheritance loop detected %s");
 
     private final long number;
     private final String message;
