@@ -31,15 +31,15 @@ public abstract class BaseParserTest {
 
         var parseTree = compileTestProgramAndReturnParseTree(errorListener, testProgram);
 
-        var visitor = new ProtoGenVisitor(DUMMY_SOURCE_FILE_NAME);
-        var fileNode = (FileNode) visitor.visit(parseTree);
-
         if(errorListener.errorOccurred()) {
             for(var message : errorListener.getErrors()) {
                 System.out.println(message);
             }
             fail("Expected test program to compile without error");
         }
+
+        var visitor = new ProtoGenVisitor(DUMMY_SOURCE_FILE_NAME);
+        var fileNode = (FileNode) visitor.visit(parseTree);
 
         System.out.println("//Parse Tree");
         System.out.println(fileNode.toFormattedString(1));

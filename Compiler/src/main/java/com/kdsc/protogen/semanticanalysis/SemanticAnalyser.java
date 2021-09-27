@@ -11,6 +11,8 @@ import java.util.stream.Stream;
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorFactory.createSemanticError;
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 
+//TODO:KMD Redefinition of field in interface with different type
+//TODO:KMD Generic parameters on outer type and versions
 public class SemanticAnalyser {
 
     private record Objects(
@@ -99,6 +101,7 @@ public class SemanticAnalyser {
 
         checkInheritanceLoop(semanticErrors, objects, new HashSet<>(), "", typeNode, typeNode);
 
+        //Generic Parameters
         var genericParameters = typeNode
             .getNamespaceNameGenericParametersWithBoundsNode()
             .getGenericParametersWithBoundsNode()
@@ -117,7 +120,6 @@ public class SemanticAnalyser {
                     }
                 }
             );
-
         typeNode
             .getNamespaceNameGenericParametersWithBoundsNode()
             .getGenericParametersWithBoundsNode()
@@ -157,48 +159,16 @@ public class SemanticAnalyser {
         if(typeNode.getImplementsListNode().isPresent()) {
             typeNode
                 .getImplementsListNode()
-                .get()
-                .getNamespaceNameGenericParametersNodes()
-                .forEach(
-                    nngp -> {
-                        var namespaceNameAsString = ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode());
-                        if(!objects.typeNodeMap.containsKey(namespaceNameAsString)) {
-                            semanticErrors.add(createSemanticError(TYPE_REFERS_TO_NON_EXISTENT_TYPE_IN_IMPLEMENTS_LIST, nngp, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), namespaceNameAsString));
-                        } else {
-                            checkGenericParameters(semanticErrors, objects, typeNode, nngp);
-                        }
-                        var usedGenericParameterIdentifiers = nngp
-                            .getGenericParametersNode()
-                            .stream()
-                            .flatMap(gp -> gp.getFieldTypeNodes().stream())
-                            .flatMap(ftn -> getGenericParametersFieldTypeNode(ftn).stream())
-                            .collect(Collectors.toList());
-                        usedGenericParameterIdentifiers
-                            .forEach(
-                                i -> {
-                                    if(!genericParametersSet.contains(i.getGenericParameterNode().getIdentifier())) {
-                                        semanticErrors.add(createSemanticError(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE, i, i.getGenericParameterNode().getIdentifier(), ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode())));
-                                    }
-                                }
-                            );
-                    }
-                );
-
-            var nonInterfaceTypeNodes = typeNode
-                .getImplementsListNode()
-                .stream()
-                .flatMap(iln -> iln.getNamespaceNameGenericParametersNodes().stream())
-                .filter(nngpwb -> objects.typeNodeMap.containsKey(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())))
-                .filter(nngpwb -> !objects.typeNodeMap.get(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())).isInterface())
-                .collect(Collectors.toList());
-
-            if(nonInterfaceTypeNodes.size() > 1) {
-                nonInterfaceTypeNodes
-                    .forEach(
-                        nngpn -> semanticErrors.add(createSemanticError(MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE, nngpn, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), ParseTreeUtils.getNamespaceNameString(nngpn.getNamespaceNameNode())))
-                    );
-            }
+                .ifPresent(iln -> checkImplementsList(semanticErrors, objects, typeNode, genericParametersSet, iln));
         }
+
+        typeNode
+            .getVersionsNode()
+            .stream()
+            .flatMap(vn -> vn.getVersionNodes().stream())
+            .flatMap(vn -> vn.getImplementsListNode().stream())
+            //TODO:KMD This is wrong, it is using the wrong set of generic parameters
+            .forEach(iln -> checkImplementsList(semanticErrors, objects, typeNode, genericParametersSet, iln));
 
         var versions = typeNode
             .getVersionsNode()
@@ -248,6 +218,58 @@ public class SemanticAnalyser {
             .flatMap(Optional::stream)
             .flatMap(gpn -> gpn.getFieldTypeNodes().stream())
             .forEach(ftn -> checkFieldType(semanticErrors, objects, ftn));
+    }
+
+    private static void checkImplementsList(final List<SemanticError> semanticErrors, final Objects objects, final ProtoGenTypeNode typeNode, final Set<String> genericParametersSet, final ImplementsListNode implementsListNode) {
+        implementsListNode
+            .getNamespaceNameGenericParametersNodes()
+            .forEach(
+                nngp -> {
+                    var namespaceNameAsString = ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode());
+                    if(!objects.typeNodeMap.containsKey(namespaceNameAsString)) {
+                        semanticErrors.add(createSemanticError(TYPE_REFERS_TO_NON_EXISTENT_TYPE_IN_IMPLEMENTS_LIST, nngp, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), namespaceNameAsString));
+                    } else {
+                        checkGenericParameters(semanticErrors, objects, typeNode, nngp);
+                    }
+                    var usedGenericParameterIdentifiers = nngp
+                        .getGenericParametersNode()
+                        .stream()
+                        .flatMap(gp -> gp.getFieldTypeNodes().stream())
+                        .flatMap(ftn -> getGenericParametersFieldTypeNode(ftn).stream())
+                        .collect(Collectors.toList());
+                    usedGenericParameterIdentifiers
+                        .forEach(
+                            i -> {
+                                if(!genericParametersSet.contains(i.getGenericParameterNode().getIdentifier())) {
+                                    semanticErrors.add(createSemanticError(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE, i, i.getGenericParameterNode().getIdentifier(), ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode())));
+                                }
+                            }
+                        );
+                }
+            );
+
+        var nonInterfaceTypeNodes = implementsListNode
+            .getNamespaceNameGenericParametersNodes()
+            .stream()
+            .filter(nngpwb -> objects.typeNodeMap.containsKey(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())))
+            .filter(nngpwb -> !objects.typeNodeMap.get(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())).isInterface())
+            .collect(Collectors.toList());
+
+        if(typeNode.isInterface()) {
+            if(nonInterfaceTypeNodes.size() > 0) {
+                nonInterfaceTypeNodes
+                    .forEach(
+                        nngpn -> semanticErrors.add(createSemanticError(EXTENDING_INTERFACE_WITH_NON_INTERFACE, nngpn, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), ParseTreeUtils.getNamespaceNameString(nngpn.getNamespaceNameNode())))
+                    );
+            }
+        } else {
+            if(nonInterfaceTypeNodes.size() > 1) {
+                nonInterfaceTypeNodes
+                    .forEach(
+                        nngpn -> semanticErrors.add(createSemanticError(MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE, nngpn, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), ParseTreeUtils.getNamespaceNameString(nngpn.getNamespaceNameNode())))
+                    );
+            }
+        }
     }
 
     private static void checkInheritanceLoop(final List<SemanticError> semanticErrors, final Objects objects, final Set<String> alreadyVisitedTypes, final String path, final ProtoGenTypeNode initialTypeNode, final ProtoGenTypeNode typeNode) {

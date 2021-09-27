@@ -23,7 +23,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -41,7 +41,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -59,7 +59,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -78,7 +78,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -102,7 +102,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -126,7 +126,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -149,7 +149,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -167,7 +167,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -185,7 +185,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 1, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -203,7 +203,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -221,7 +221,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 1, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -239,7 +239,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 1, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
             semanticErrors.get(0).getFullErrorMessage(),

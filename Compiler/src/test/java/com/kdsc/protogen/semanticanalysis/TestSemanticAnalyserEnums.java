@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 //TODO:KMD Get all these different types of unit tests into a nice hierarchy
-//TODO:KMD prevent versions and direct for enums
 public class TestSemanticAnalyserEnums extends BaseParserTest {
 
     @Test
@@ -28,7 +27,7 @@ public class TestSemanticAnalyserEnums extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(1)),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -48,7 +47,7 @@ public class TestSemanticAnalyserEnums extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(2)),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -70,7 +69,7 @@ public class TestSemanticAnalyserEnums extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(3)),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -95,7 +94,7 @@ public class TestSemanticAnalyserEnums extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 8, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase1")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -116,7 +115,7 @@ public class TestSemanticAnalyserEnums extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 8, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -138,7 +137,7 @@ public class TestSemanticAnalyserEnums extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 8, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -165,7 +164,7 @@ public class TestSemanticAnalyserEnums extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase1")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -188,7 +187,7 @@ public class TestSemanticAnalyserEnums extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -212,7 +211,7 @@ public class TestSemanticAnalyserEnums extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(2, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(PARSER_ERROR_MESSAGE.formatted(
             REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(0).getFullErrorMessage(),
@@ -247,7 +246,7 @@ public class TestSemanticAnalyserEnums extends BaseParserTest {
         var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
         assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(4, semanticErrors.size(), "Expected one semantic error");
+        assertEquals(4, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(0).getFullErrorMessage(),
