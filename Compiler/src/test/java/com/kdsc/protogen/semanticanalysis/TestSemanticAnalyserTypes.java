@@ -1,6 +1,6 @@
 package com.kdsc.protogen.semanticanalysis;
 
-import com.kdsc.protogen.antlr.parser.BaseParserTest;
+import com.kdsc.protogen.BaseCompilerTest;
 import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
 import org.junit.jupiter.api.Test;
 
@@ -11,7 +11,7 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class TestSemanticAnalyserTypes extends BaseParserTest {
+public class TestSemanticAnalyserTypes extends BaseCompilerTest {
 
     @Test
     public void testDirectInheritanceLoop() {

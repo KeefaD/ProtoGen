@@ -1,13 +1,13 @@
 package com.kdsc.protogen.parsetreepostprocessing;
 
-import com.kdsc.protogen.antlr.parser.BaseParserTest;
+import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestUndetectableNodeReplacerWithKeys extends BaseParserTest {
+public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
 
     @Test
     public void testReplaceOneNonNestedKey() {

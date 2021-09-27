@@ -4,7 +4,8 @@ import com.kdsc.protogen.filegenerationtree.FileNode;
 
 public class JavaFileNode extends FileNode {
 
-    public JavaFileNode() {
+    public JavaFileNode(final String fileName, final String path) {
+        super(fileName, path);
     }
 
     @Override

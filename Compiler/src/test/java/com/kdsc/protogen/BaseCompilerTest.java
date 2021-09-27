@@ -1,4 +1,4 @@
-package com.kdsc.protogen.antlr.parser;
+package com.kdsc.protogen;
 
 import com.kdsc.protogen.antlr.ProtoGenLexer;
 import com.kdsc.protogen.antlr.ProtoGenParser;
@@ -17,7 +17,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-public abstract class BaseParserTest {
+public abstract class BaseCompilerTest {
 
     public static final String DUMMY_SOURCE_FILE_NAME = "UnitTest";
 
@@ -86,4 +86,5 @@ public abstract class BaseParserTest {
         parser.addErrorListener(errorListener);
         return parser.file();
     }
+
 }

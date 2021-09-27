@@ -2,6 +2,10 @@ package com.kdsc.protogen.filegenerationtree.proto;
 
 public class EnumFileNode extends ProtoFileNode {
 
+    public EnumFileNode(final String fileName, final String path) {
+        super(fileName, path);
+    }
+
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();

@@ -1,6 +1,6 @@
 package com.kdsc.protogen.semanticanalysis;
 
-import com.kdsc.protogen.antlr.parser.BaseParserTest;
+import com.kdsc.protogen.BaseCompilerTest;
 import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 //TODO:KMD Get all these different types of unit tests into a nice hierarchy
-public class TestSemanticAnalyserEnums extends BaseParserTest {
+public class TestSemanticAnalyserEnums extends BaseCompilerTest {
 
     @Test
     public void testRedefinitionOfVersionNumberOneForEnum() {

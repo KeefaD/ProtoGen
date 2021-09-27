@@ -1,13 +1,13 @@
 package com.kdsc.protogen.antlr.parser.unhappypath;
 
 import com.kdsc.protogen.antlr.errors.ProtoGenErrorListener;
-import com.kdsc.protogen.antlr.parser.BaseParserTest;
+import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class TestUnhappyPathGeneral extends BaseParserTest {
+public class TestUnhappyPathGeneral extends BaseCompilerTest {
 
     @Test
     void singleCharacter() {

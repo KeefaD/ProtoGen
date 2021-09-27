@@ -2,9 +2,10 @@ package com.kdsc.protogen.filegenerationtree.proto;
 
 import com.kdsc.protogen.filegenerationtree.FileNode;
 
-public class ProtoFileNode extends FileNode {
+public abstract class ProtoFileNode extends FileNode {
 
-    public ProtoFileNode() {
+    public ProtoFileNode(final String fileName, final String path) {
+        super(fileName, path);
     }
 
     @Override

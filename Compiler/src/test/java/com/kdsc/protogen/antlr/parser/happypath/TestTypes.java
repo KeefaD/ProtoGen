@@ -1,9 +1,9 @@
 package com.kdsc.protogen.antlr.parser.happypath;
 
-import com.kdsc.protogen.antlr.parser.BaseParserTest;
+import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;
 
-public class TestTypes extends BaseParserTest {
+public class TestTypes extends BaseCompilerTest {
 
     @Test
     void singleType() {
