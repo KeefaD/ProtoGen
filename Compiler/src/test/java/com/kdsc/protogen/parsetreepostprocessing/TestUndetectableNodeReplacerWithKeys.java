@@ -3,8 +3,6 @@ package com.kdsc.protogen.parsetreepostprocessing;
 import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
@@ -21,8 +19,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 testField : TestNamespace.KeyToReplace
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -62,7 +59,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                         //NameNode
                                             Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -77,8 +74,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 testField : map<TestNamespace.KeyToReplace, TestNamespace.KeyToReplace>
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -132,7 +128,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                     //NameNode
                                                         Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -147,8 +143,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 testField : set<TestNamespace.KeyToReplace>
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -191,7 +186,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                 //NameNode
                                                     Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -206,8 +201,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 testField : valueorerror<TestNamespace.KeyToReplace>
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -250,7 +244,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                 //NameNode
                                                     Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -265,8 +259,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 testField : TestNamespace.KeyToReplace[][]
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -308,7 +301,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                 Name : KeyToReplace
                                 Dimensions : 2
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -327,8 +320,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 testField : TestNamespace.KeyToReplace
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -405,7 +397,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                         //NameNode
                                             Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -424,8 +416,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 testField : map<TestNamespace.KeyToReplace, TestNamespace.KeyToReplace>
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -530,7 +521,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                     //NameNode
                                                         Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -549,8 +540,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 testField : set<TestNamespace.KeyToReplace>
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -633,7 +623,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                 //NameNode
                                                     Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -652,8 +642,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 testField : valueorerror<TestNamespace.KeyToReplace>
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -736,7 +725,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                 //NameNode
                                                     Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -755,8 +744,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 testField : TestNamespace.KeyToReplace[][]
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -837,7 +825,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                 Name : KeyToReplace
                                 Dimensions : 2
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -857,8 +845,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -918,7 +905,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                 //NameNode
                                                     Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -938,8 +925,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -1027,7 +1013,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                             //NameNode
                                                                 Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1047,8 +1033,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -1114,7 +1099,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                         //NameNode
                                                             Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1134,8 +1119,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -1201,7 +1185,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                         //NameNode
                                                             Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1221,8 +1205,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -1286,7 +1269,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                         Name : KeyToReplace
                                         Dimensions : 2
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1310,8 +1293,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -1425,7 +1407,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                 //NameNode
                                                     Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1446,8 +1428,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -1556,7 +1537,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                             //NameNode
                                                                 Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1580,8 +1561,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -1707,7 +1687,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                         //NameNode
                                                             Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1731,8 +1711,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -1858,7 +1837,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                         //NameNode
                                                             Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1882,8 +1861,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenKeyNode
@@ -2005,7 +1983,7 @@ public class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest {
                                                         Name : KeyToReplace
                                         Dimensions : 2
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
 }

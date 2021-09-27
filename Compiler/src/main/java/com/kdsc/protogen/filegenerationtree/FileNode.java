@@ -22,8 +22,8 @@ public class FileNode extends BaseNode {
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//FileNode\n");
-        stringBuilder.append(oneIndent() + "FileName : " + fileName);
-        stringBuilder.append(oneIndent() + "Path : " + path);
+        stringBuilder.append(oneIndent() + "FileName : " + fileName + "\n");
+        stringBuilder.append(oneIndent() + "Path : " + path + "\n");
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

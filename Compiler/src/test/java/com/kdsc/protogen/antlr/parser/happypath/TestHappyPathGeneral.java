@@ -9,7 +9,7 @@ public class TestHappyPathGeneral extends BaseCompilerTest {
     void emptyFile() {
         var testProgram = """
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -68,6 +68,6 @@ public class TestHappyPathGeneral extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 }

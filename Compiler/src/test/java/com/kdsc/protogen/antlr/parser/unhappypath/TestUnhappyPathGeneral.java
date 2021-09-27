@@ -14,7 +14,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         var testProgram = """
             a
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -29,7 +29,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         var testProgram = """
             ttype TestNamespace.TestType
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -44,7 +44,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         var testProgram = """
             type TestType
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -59,7 +59,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         var testProgram = """
             type TestType {}
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -74,7 +74,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         var testProgram = """
             type TestNamespace.TestType {
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -91,7 +91,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
                 testArray : int32[
             }
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -113,7 +113,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
                 case2
             }
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -135,7 +135,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
                 field2 : string
             }
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -157,7 +157,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
                 field2 : string
             }
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -173,7 +173,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
             enum {
             }
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -189,7 +189,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
             type {
             }
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -205,7 +205,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
             type interface {
             }
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -221,7 +221,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
             key {
             }
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -237,7 +237,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
             key interface {
             }
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(

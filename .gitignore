@@ -200,3 +200,6 @@ hs_err_pid*
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.semanticanalysis.TestSemanticAnalyserTypes.xml
 /Compiler/build/reports/tests/test/classes/com.kdsc.protogen.antlr.parser.unhappypath.TestUnhappyPathFoundCases.html
 /Compiler/build/test-results/test/TEST-com.kdsc.protogen.antlr.parser.unhappypath.TestUnhappyPathFoundCases.xml
+/Compiler/build/reports/tests/test/packages/com.kdsc.protogen.transform.proto.html
+/Compiler/build/reports/tests/test/classes/com.kdsc.protogen.transform.proto.TestTransformer.html
+/Compiler/build/test-results/test/TEST-com.kdsc.protogen.transform.proto.TestTransformer.xml

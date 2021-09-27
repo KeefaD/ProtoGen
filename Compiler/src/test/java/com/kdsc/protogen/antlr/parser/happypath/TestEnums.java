@@ -10,7 +10,7 @@ public class TestEnums extends BaseCompilerTest {
         var testProgram = """
             enum TestNamespace.TestEnum
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -18,7 +18,7 @@ public class TestEnums extends BaseCompilerTest {
         var testProgram = """
             enum TestNamespace.TestEnum {}
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class TestEnums extends BaseCompilerTest {
             enum TestNamespace.TestEnum {
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class TestEnums extends BaseCompilerTest {
                 testEnumCase
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class TestEnums extends BaseCompilerTest {
                 testEnumCase2
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class TestEnums extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class TestEnums extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -92,6 +92,6 @@ public class TestEnums extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 }

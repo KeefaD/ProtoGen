@@ -17,7 +17,7 @@ public class TestUnhappyPathFoundCases extends BaseCompilerTest {
                 version 1 TestNamespace.Type : TestNamespace.Type1
             }
         """;
-        var parserErrors = compileTestProgramReturnParserErrors(testProgram);
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(2, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(

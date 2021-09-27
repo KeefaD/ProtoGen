@@ -9,7 +9,6 @@ import com.kdsc.protogen.parsetree.ProtoGenKeyNode;
 import com.kdsc.protogen.parsetree.ProtoGenTypeNode;
 import com.kdsc.protogen.transform.TransformerContext;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -19,9 +18,10 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
 
     @Override
     public List<FileNode> transform(TransformerContext transformerContext, List<com.kdsc.protogen.parsetree.FileNode> fileNodes) {
-        fileNodes
-            .forEach(fn -> transformFileNode(transformerContext, fn));
-        return Collections.emptyList();
+        return fileNodes
+            .stream()
+            .flatMap(fn -> transformFileNode(transformerContext, fn).stream())
+            .collect(Collectors.toList());
     }
 
     private List<FileNode> transformFileNode(TransformerContext transformerContext, com.kdsc.protogen.parsetree.FileNode fileNode) {

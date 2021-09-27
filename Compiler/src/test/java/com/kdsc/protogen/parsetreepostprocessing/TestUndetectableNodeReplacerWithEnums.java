@@ -3,8 +3,6 @@ package com.kdsc.protogen.parsetreepostprocessing;
 import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
@@ -21,8 +19,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 testField : TestNamespace.EnumToReplace
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -56,7 +53,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -71,8 +68,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 testField : map<TestNamespace.EnumToReplace, TestNamespace.EnumToReplace>
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -120,7 +116,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -135,8 +131,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 testField : set<TestNamespace.EnumToReplace>
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -173,7 +168,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -188,8 +183,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 testField : valueorerror<TestNamespace.EnumToReplace>
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -226,7 +220,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -241,8 +235,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 testField : TestNamespace.EnumToReplace[][]
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -278,7 +271,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -297,8 +290,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 testField : TestNamespace.EnumToReplace
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -369,7 +361,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -388,8 +380,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 testField : map<TestNamespace.EnumToReplace, TestNamespace.EnumToReplace>
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -488,7 +479,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -507,8 +498,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 testField : set<TestNamespace.EnumToReplace>
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -585,7 +575,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -604,8 +594,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 testField : valueorerror<TestNamespace.EnumToReplace>
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -682,7 +671,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -701,8 +690,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 testField : TestNamespace.EnumToReplace[][]
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -777,7 +765,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -797,8 +785,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
     //FileNode
         //ProtoGenTypeNode
@@ -852,7 +839,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 //EnumNameNode
                     EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -872,8 +859,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -955,7 +941,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -975,8 +961,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -1036,7 +1021,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1056,8 +1041,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -1117,7 +1101,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1137,8 +1121,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -1196,7 +1179,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1220,8 +1203,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -1329,7 +1311,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1353,8 +1335,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -1518,7 +1499,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1542,8 +1523,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -1663,7 +1643,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1687,8 +1667,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -1808,7 +1787,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
     @Test
@@ -1832,8 +1811,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
             //ProtoGenTypeNode
@@ -1949,7 +1927,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, newFileNode.toString(), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
 }

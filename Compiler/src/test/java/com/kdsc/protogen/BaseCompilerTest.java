@@ -5,6 +5,12 @@ import com.kdsc.protogen.antlr.ProtoGenParser;
 import com.kdsc.protogen.antlr.visitor.ProtoGenVisitor;
 import com.kdsc.protogen.antlr.errors.ProtoGenErrorListener;
 import com.kdsc.protogen.parsetree.FileNode;
+import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
+import com.kdsc.protogen.semanticanalysis.SemanticAnalyser;
+import com.kdsc.protogen.semanticanalysis.SemanticError;
+import com.kdsc.protogen.transform.Transform;
+import com.kdsc.protogen.transform.TransformerContext;
+import com.kdsc.protogen.transform.proto.Transformer;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -21,7 +27,7 @@ public abstract class BaseCompilerTest {
 
     public static final String DUMMY_SOURCE_FILE_NAME = "UnitTest";
 
-    protected FileNode compileTestProgramAndCheckNoParserErrors(String testProgram) {
+    protected FileNode runCompilerToParserCheckNoErrors(String testProgram) {
 
         System.out.println("//Test Program");
         System.out.println(testProgram);
@@ -47,7 +53,7 @@ public abstract class BaseCompilerTest {
         return fileNode;
     }
 
-    protected List<String> compileTestProgramReturnParserErrors(String testProgram) {
+    protected List<String> runCompilerToParserReturnParserErrors(String testProgram) {
 
         System.out.println("//Test Program");
         System.out.println(testProgram);
@@ -65,6 +71,31 @@ public abstract class BaseCompilerTest {
         }
 
         return errorListener.getErrors();
+    }
+
+    protected FileNode runCompilerToParseTreePostProcessReturnFileNode(String testProgram) {
+        var fileNode = runCompilerToParserCheckNoErrors(testProgram);
+        return UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+    }
+
+    protected List<SemanticError> runCompilerToSemanticAnalyserReturnSemanticErrors(String testProgram) {
+        var fileNode = runCompilerToParserCheckNoErrors(testProgram);
+        var fileNodeList = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode));
+        return SemanticAnalyser.runSemanticAnalysis(fileNodeList);
+    }
+
+    protected List<com.kdsc.protogen.filegenerationtree.FileNode> runCompilerToTransformReturnProtoFileNodes(String testProgram) {
+        var fileNode = runCompilerToParserCheckNoErrors(testProgram);
+        var fileNodeList = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode));
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(fileNodeList);
+        if(semanticErrors.size() != 0) {
+            semanticErrors
+                .forEach(System.out::println);
+            fail("Unexpected semantic errors");
+        }
+        var transformer = new Transformer();
+        var transformerContext = new TransformerContext();
+        return transformer.transform(transformerContext, fileNodeList);
     }
 
     private ParseTree compileTestProgramAndReturnParseTree(BaseErrorListener errorListener, String testProgram) {

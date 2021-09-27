@@ -1,10 +1,7 @@
 package com.kdsc.protogen.semanticanalysis;
 
 import com.kdsc.protogen.BaseCompilerTest;
-import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static com.kdsc.protogen.semanticanalysis.SemanticError.PARSER_ERROR_MESSAGE;
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.REDEFINITION_OF_ENUM_CASE;
@@ -12,7 +9,6 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.REDEFINITION_
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-//TODO:KMD Get all these different types of unit tests into a nice hierarchy
 public class TestSemanticAnalyserEnums extends BaseCompilerTest {
 
     @Test
@@ -23,9 +19,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
                 version 1
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -43,9 +37,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
                 version 2
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -65,9 +57,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
                 version 3
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -90,9 +80,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
                 enumCase1
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -111,9 +99,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
                 enumCase2
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -133,9 +119,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
                 enumCase2
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -160,9 +144,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -183,9 +165,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
@@ -207,9 +187,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(PARSER_ERROR_MESSAGE.formatted(
@@ -242,9 +220,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
                 }
             }
         """;
-        var fileNode = compileTestProgramAndCheckNoParserErrors(testProgram);
-        var newFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(newFileNode));
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(4, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(

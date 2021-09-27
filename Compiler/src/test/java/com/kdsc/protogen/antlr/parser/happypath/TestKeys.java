@@ -10,7 +10,7 @@ public class TestKeys extends BaseCompilerTest {
         var testProgram = """
             key TestNamespace.TestKey
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -18,7 +18,7 @@ public class TestKeys extends BaseCompilerTest {
         var testProgram = """
             key TestNamespace.TestNestedNamespace.TestKey
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class TestKeys extends BaseCompilerTest {
             key TestNamespace.TestKey1
             key TestNamespace.TestKey2
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -35,7 +35,7 @@ public class TestKeys extends BaseCompilerTest {
         var testProgram = """
             key TestNamespace.TestKey
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -43,7 +43,7 @@ public class TestKeys extends BaseCompilerTest {
         var testProgram = """
             key TestNamespace.TestKey {}
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class TestKeys extends BaseCompilerTest {
             key TestNamespace.TestKey {
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -62,7 +62,7 @@ public class TestKeys extends BaseCompilerTest {
                 testField : int32
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -73,7 +73,7 @@ public class TestKeys extends BaseCompilerTest {
                 testField2 : int32
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class TestKeys extends BaseCompilerTest {
         var testProgram = """
             key TestNamespace.TestKey : TestNamespace.OtherKey
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -89,7 +89,7 @@ public class TestKeys extends BaseCompilerTest {
         var testProgram = """
             key TestNamespace.TestKey : TestNamespace.OtherKey {}
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -98,7 +98,7 @@ public class TestKeys extends BaseCompilerTest {
             key TestNamespace.TestKey : TestNamespace.OtherKey {
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -106,7 +106,7 @@ public class TestKeys extends BaseCompilerTest {
         var testProgram = """
             key TestNamespace.TestKey : TestNamespace.OtherKey<T>
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -114,7 +114,7 @@ public class TestKeys extends BaseCompilerTest {
         var testProgram = """
             key TestNamespace.TestKey : TestNamespace.OtherKey<T> {}
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -123,7 +123,7 @@ public class TestKeys extends BaseCompilerTest {
             key TestNamespace.TestKey : TestNamespace.OtherKey<T> {
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -133,7 +133,7 @@ public class TestKeys extends BaseCompilerTest {
                 TestNamespace.OtherKey1,
                 TestNamespace.OtherKey2
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -143,7 +143,7 @@ public class TestKeys extends BaseCompilerTest {
                 TestNamespace.OtherKey1,
                 TestNamespace.OtherKey2 {}
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -154,7 +154,7 @@ public class TestKeys extends BaseCompilerTest {
                 TestNamespace.OtherKey2 {
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -164,7 +164,7 @@ public class TestKeys extends BaseCompilerTest {
                 TestNamespace.OtherKey1<T>,
                 TestNamespace.OtherKey2<T>
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -174,7 +174,7 @@ public class TestKeys extends BaseCompilerTest {
                 TestNamespace.OtherKey1<T>,
                 TestNamespace.OtherKey2<T> {}
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -185,7 +185,7 @@ public class TestKeys extends BaseCompilerTest {
                 TestNamespace.OtherKey2<T> {
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -195,7 +195,7 @@ public class TestKeys extends BaseCompilerTest {
                 version 1 {}
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -207,7 +207,7 @@ public class TestKeys extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -222,7 +222,7 @@ public class TestKeys extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -232,7 +232,7 @@ public class TestKeys extends BaseCompilerTest {
                 testField : T
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -242,7 +242,7 @@ public class TestKeys extends BaseCompilerTest {
                 testField : T
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -252,7 +252,7 @@ public class TestKeys extends BaseCompilerTest {
                 testField : T
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -262,7 +262,7 @@ public class TestKeys extends BaseCompilerTest {
                 testField : T
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -272,7 +272,7 @@ public class TestKeys extends BaseCompilerTest {
                 testField : T
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -282,7 +282,7 @@ public class TestKeys extends BaseCompilerTest {
                 testField : T
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -292,7 +292,7 @@ public class TestKeys extends BaseCompilerTest {
                 testField : T
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -307,7 +307,7 @@ public class TestKeys extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -322,7 +322,7 @@ public class TestKeys extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -337,7 +337,7 @@ public class TestKeys extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -350,7 +350,7 @@ public class TestKeys extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -365,7 +365,7 @@ public class TestKeys extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -380,7 +380,7 @@ public class TestKeys extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -395,7 +395,7 @@ public class TestKeys extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -410,7 +410,7 @@ public class TestKeys extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -425,7 +425,7 @@ public class TestKeys extends BaseCompilerTest {
                 }
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -450,7 +450,7 @@ public class TestKeys extends BaseCompilerTest {
                 testGenericField : T
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -475,7 +475,7 @@ public class TestKeys extends BaseCompilerTest {
                 testGenericField : optional T
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -483,7 +483,7 @@ public class TestKeys extends BaseCompilerTest {
         var testProgram = """
             key TestNamespace.TestAllFieldTypes<T> { testDoubleField : optional double testFloatField : optional float testInt32Field : optional int32 testInt64Field : optional int64 testBoolField : optional bool testStringField : optional string testByteField : optional bytes testDecimalField : optional decimal testDateField : optional date testDatetimeField : optional datetime testMapField : optional map<int32, int32> testSetField : optional set<int32> testArrayField : optional int32[] testTypeField : optional TestNamespace.TestType testGenericField : optional T }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -493,7 +493,7 @@ public class TestKeys extends BaseCompilerTest {
                 testRecursiveMap : map<map<int32, int32>, map<int32, int32>>
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -503,7 +503,7 @@ public class TestKeys extends BaseCompilerTest {
                 testRecursiveSet : set<set<int32>>
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -513,7 +513,7 @@ public class TestKeys extends BaseCompilerTest {
                 testMultiDimensionalArray : int32[][][]
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -523,7 +523,7 @@ public class TestKeys extends BaseCompilerTest {
                 testNestedMapSetArray : map<set<int[][]>, set<int32[][]>>
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -533,7 +533,7 @@ public class TestKeys extends BaseCompilerTest {
             key TestNamespace.TestComment {
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -543,7 +543,7 @@ public class TestKeys extends BaseCompilerTest {
                 //Comment in middle
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -553,7 +553,7 @@ public class TestKeys extends BaseCompilerTest {
             }
             //Comment at bottom
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -563,7 +563,7 @@ public class TestKeys extends BaseCompilerTest {
             key TestNamespace.TestComment {
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -575,7 +575,7 @@ public class TestKeys extends BaseCompilerTest {
             key TestNamespace.TestComment {
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -587,7 +587,7 @@ public class TestKeys extends BaseCompilerTest {
                 */
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -599,7 +599,7 @@ public class TestKeys extends BaseCompilerTest {
             Comment at bottom
             */
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
@@ -613,6 +613,6 @@ public class TestKeys extends BaseCompilerTest {
             key TestNamespace.TestComment {
             }
         """;
-        compileTestProgramAndCheckNoParserErrors(testProgram);
+        runCompilerToParserCheckNoErrors(testProgram);
     }
 }
