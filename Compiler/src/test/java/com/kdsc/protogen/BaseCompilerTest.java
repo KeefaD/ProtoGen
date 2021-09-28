@@ -3,7 +3,7 @@ package com.kdsc.protogen;
 import com.kdsc.protogen.antlr.ProtoGenLexer;
 import com.kdsc.protogen.antlr.ProtoGenParser;
 import com.kdsc.protogen.antlr.visitor.ProtoGenVisitor;
-import com.kdsc.protogen.antlr.errors.ProtoGenErrorListener;
+import com.kdsc.protogen.antlr.visitor.ProtoGenErrorListener;
 import com.kdsc.protogen.parsetree.FileNode;
 import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
 import com.kdsc.protogen.semanticanalysis.SemanticAnalyser;
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public abstract class BaseCompilerTest {
 
-    public static final String DUMMY_SOURCE_FILE_NAME = "UnitTest";
+    public static final String FAKE_SOURCE_FILE_NAME_AND_PATH = "FakeSourceFileName.pg";
 
     protected FileNode runCompilerToParserCheckNoErrors(String testProgram) {
 
@@ -32,7 +32,7 @@ public abstract class BaseCompilerTest {
         System.out.println(testProgram);
 
         //TODO:KMD Not keen on having this source file name in two places
-        var errorListener = new ProtoGenErrorListener(DUMMY_SOURCE_FILE_NAME);
+        var errorListener = new ProtoGenErrorListener(FAKE_SOURCE_FILE_NAME_AND_PATH);
 
         var parseTree = compileTestProgramAndReturnParseTree(errorListener, testProgram);
 
@@ -43,7 +43,7 @@ public abstract class BaseCompilerTest {
             fail("Expected test program to compile without error");
         }
 
-        var visitor = new ProtoGenVisitor(DUMMY_SOURCE_FILE_NAME);
+        var visitor = new ProtoGenVisitor(FAKE_SOURCE_FILE_NAME_AND_PATH);
         var fileNode = (FileNode) visitor.visit(parseTree);
 
         System.out.println("//Parse Tree");
@@ -57,7 +57,7 @@ public abstract class BaseCompilerTest {
         System.out.println("//Test Program");
         System.out.println(testProgram);
 
-        var errorListener = new ProtoGenErrorListener(DUMMY_SOURCE_FILE_NAME);
+        var errorListener = new ProtoGenErrorListener(FAKE_SOURCE_FILE_NAME_AND_PATH);
 
         compileTestProgramAndReturnParseTree(errorListener, testProgram);
 
@@ -65,9 +65,8 @@ public abstract class BaseCompilerTest {
         if(!errorListener.errorOccurred()) {
             System.out.println("None".indent(4));
         }
-        for(var message : errorListener.getErrors()) {
-            System.out.println(message.indent(4));
-        }
+        errorListener.getErrors()
+            .forEach(e -> System.out.println(e.indent(4)));
 
         return errorListener.getErrors();
     }
@@ -81,9 +80,16 @@ public abstract class BaseCompilerTest {
     }
 
     protected List<SemanticError> runCompilerToSemanticAnalyserReturnSemanticErrors(String testProgram) {
-        var fileNode = runCompilerToParserCheckNoErrors(testProgram);
-        var fileNodeList = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode));
-        return SemanticAnalyser.runSemanticAnalysis(fileNodeList);
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(fileNode));
+        System.out.println("//Semantic Errors");
+        if(semanticErrors.size() == 0) {
+            System.out.println("None".indent(4));
+        }
+        //TODO:KMD Why are we getting extra newlines here
+        semanticErrors
+            .forEach(se -> System.out.println(se.toString().indent(4)));
+        return semanticErrors;
     }
 
     protected List<com.kdsc.protogen.filegenerationtree.FileNode> runCompilerToTransformReturnProtoFileNodes(String testProgram) {

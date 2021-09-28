@@ -16,9 +16,9 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 public class SemanticAnalyser {
 
     private record Objects(
-            Map<String, ProtoGenTypeNode> typeNodeMap,
-            Map<String, ProtoGenKeyNode> keyNodeMap,
-            Map<String, ProtoGenEnumNode> enumNodeMap
+        Map<String, ProtoGenTypeNode> typeNodeMap,
+        Map<String, ProtoGenKeyNode> keyNodeMap,
+        Map<String, ProtoGenEnumNode> enumNodeMap
     ) {
         private Objects {
             java.util.Objects.requireNonNull(typeNodeMap);
@@ -318,6 +318,7 @@ public class SemanticAnalyser {
             checkFieldType(semanticErrors, objects, mapFieldTypeNode.getKeyFieldTypeNode());
             checkFieldType(semanticErrors, objects, mapFieldTypeNode.getValueFieldTypeNode());
         }
+        //TODO:KMD Put this to the bottom
         if(nonArrayFieldTypeNode instanceof ObjectFieldTypeNode objectFieldTypeNode) {
             semanticErrors.add(createSemanticError(UNKNOWN_OBJECT, objectFieldTypeNode, ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameNode())));
         }

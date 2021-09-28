@@ -1,6 +1,6 @@
 package com.kdsc.protogen.antlr.parser.unhappypath;
 
-import com.kdsc.protogen.antlr.errors.ProtoGenErrorListener;
+import com.kdsc.protogen.antlr.visitor.ProtoGenErrorListener;
 import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 4, "extraneous input 'a' expecting {<EOF>, 'type', 'key', 'enum'}"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 4, "extraneous input 'a' expecting {<EOF>, 'type', 'key', 'enum'}"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
@@ -33,7 +33,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 4, "mismatched input 'ttype' expecting {<EOF>, 'type', 'key', 'enum'}"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 4, "mismatched input 'ttype' expecting {<EOF>, 'type', 'key', 'enum'}"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
@@ -48,7 +48,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 2, 0, "mismatched input '<EOF>' expecting '.'"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 2, 0, "mismatched input '<EOF>' expecting '.'"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
@@ -63,7 +63,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 18, "mismatched input '{' expecting '.'"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 18, "mismatched input '{' expecting '.'"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
@@ -78,7 +78,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 2, 0, "no viable alternative at input '<EOF>'"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 2, 0, "no viable alternative at input '<EOF>'"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
@@ -95,7 +95,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 3, 4, "missing ']' at '}'"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 4, "missing ']' at '}'"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
@@ -117,7 +117,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 6, 8, "extraneous input 'case1' expecting {'}', 'version'}"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 8, "extraneous input 'case1' expecting {'}', 'version'}"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
@@ -139,7 +139,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 6, 8, "extraneous input 'field1' expecting {'}', 'version'}"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 8, "extraneous input 'field1' expecting {'}', 'version'}"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
@@ -161,7 +161,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 6, 8, "extraneous input 'field1' expecting {'}', 'version'}"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 8, "extraneous input 'field1' expecting {'}', 'version'}"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
@@ -177,7 +177,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 9, "mismatched input '{' expecting IDENTIFIER"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 9, "mismatched input '{' expecting IDENTIFIER"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
@@ -193,7 +193,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 9, "mismatched input '{' expecting IDENTIFIER"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 9, "mismatched input '{' expecting IDENTIFIER"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
@@ -209,7 +209,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 19, "mismatched input '{' expecting IDENTIFIER"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 19, "mismatched input '{' expecting IDENTIFIER"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
@@ -225,7 +225,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 8, "mismatched input '{' expecting IDENTIFIER"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 8, "mismatched input '{' expecting IDENTIFIER"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
@@ -241,7 +241,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 1, 18, "mismatched input '{' expecting IDENTIFIER"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 18, "mismatched input '{' expecting IDENTIFIER"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );

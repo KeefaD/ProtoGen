@@ -23,7 +23,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(1)),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(1)),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -41,7 +41,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(2)),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(2)),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -61,12 +61,12 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(3)),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(3)),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(3)),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(3)),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -84,7 +84,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 8, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase1")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 8, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase1")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -103,7 +103,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 8, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 8, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -123,12 +123,12 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 8, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 8, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 8, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 8, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -148,7 +148,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 4, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase1")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase1")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -169,7 +169,7 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -191,12 +191,12 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(SEMANTIC_ERROR_MESSAGE.formatted(
-            REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
+            REDEFINITION_OF_ENUM_CASE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 6, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -224,22 +224,22 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(4, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 5, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 6, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 11, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 11, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(2).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), DUMMY_SOURCE_FILE_NAME, 12, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_CASE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 12, 12, REDEFINITION_OF_ENUM_CASE.getMessage("enumCase2")),
             semanticErrors.get(3).getFullErrorMessage(),
             "Unexpected semantic error message"
         );

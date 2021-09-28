@@ -1,6 +1,6 @@
 package com.kdsc.protogen.antlr.parser.unhappypath;
 
-import com.kdsc.protogen.antlr.errors.ProtoGenErrorListener;
+import com.kdsc.protogen.antlr.visitor.ProtoGenErrorListener;
 import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;
 
@@ -21,12 +21,12 @@ public class TestUnhappyPathFoundCases extends BaseCompilerTest {
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
         assertEquals(2, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 2,19, "mismatched input '{' expecting IDENTIFIER"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 2,19, "mismatched input '{' expecting IDENTIFIER"),
             parserErrors.get(0),
             "Unexpected semantic error message"
         );
         assertEquals(
-            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(DUMMY_SOURCE_FILE_NAME, 3,18, "extraneous input 'TestNamespace' expecting {'}', 'version'}"),
+            ProtoGenErrorListener.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 3,18, "extraneous input 'TestNamespace' expecting {'}', 'version'}"),
             parserErrors.get(1),
             "Unexpected semantic error message"
         );

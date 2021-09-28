@@ -1,4 +1,4 @@
-package com.kdsc.protogen.antlr.errors;
+package com.kdsc.protogen.antlr.visitor;
 
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;
@@ -7,9 +7,10 @@ import org.antlr.v4.runtime.Recognizer;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO:KMD Missing silly test for this
 public class ProtoGenErrorListener extends BaseErrorListener {
 
-    public static final String PARSER_ERROR_MESSAGE = "PROTOGEN PARSER ERROR in file:%s at line:%d char:%d with msg:%s";
+    public static final String PARSER_ERROR_MESSAGE = "PROTOGEN_PARSER_ERROR in file:%s at line:%d char:%d with msg:%s";
 
     private final String sourceFileName;
     private final List<String> errors = new ArrayList<>();
