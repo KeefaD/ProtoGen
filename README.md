@@ -49,3 +49,23 @@
 6. Type library version to read and object version
 
 Generic box to put protogen items into, configurable
+
+# ProtoStore
+
+##Features
+
+1.  Stack ProtoBoxes into storage for fast retrieval
+2.  Indexes
+3.  Bi temporaral
+4.  Store, lists, maps, sets, arrays into boxes
+
+# ProtoCalc
+
+##Features
+
+1.  Real time calculations using ProtoBoxes
+2.  What ifs
+3.  Stateful graphs
+4.  Elastic
+5.  Skip calculations under pressure
+6.  Event store
