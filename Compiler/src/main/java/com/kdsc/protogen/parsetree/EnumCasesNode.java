@@ -15,6 +15,7 @@ public class EnumCasesNode extends BaseNode {
     ) {
         super(sourceFileName, line, charPosition);
         this.enumNameNodes = enumNameNodes;
+        //TODO:KMD Check order of all these pre conditions
         Objects.requireNonNull(enumNameNodes);
     }
 

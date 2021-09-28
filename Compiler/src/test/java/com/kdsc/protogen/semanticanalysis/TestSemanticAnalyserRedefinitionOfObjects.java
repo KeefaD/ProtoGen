@@ -3,7 +3,7 @@ package com.kdsc.protogen.semanticanalysis;
 import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;
 
-import static com.kdsc.protogen.semanticanalysis.SemanticError.PARSER_ERROR_MESSAGE;
+import static com.kdsc.protogen.semanticanalysis.SemanticError.SEMANTIC_ERROR_MESSAGE;
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.REDEFINITION_OF_OBJECT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -20,7 +20,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -36,7 +36,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -52,7 +52,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -69,12 +69,12 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -91,12 +91,12 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -113,12 +113,12 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 3, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -134,7 +134,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -150,7 +150,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Type")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -166,7 +166,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 1, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 1, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -182,7 +182,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Key")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -198,7 +198,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 1, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 1, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -214,7 +214,7 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 1, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), DUMMY_SOURCE_FILE_NAME, 1, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );

@@ -494,7 +494,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
                 testInterfaceField : T
             }
             
-            type TestNamespace.TestType : TestNamespace.TestTypeInterface<set<TestNamespace.EnumToReplace>>{
+            type TestNamespace.TestType : TestNamespace.TestTypeInterface<set<TestNamespace.EnumToReplace>> {
                 testField : set<TestNamespace.EnumToReplace>
             }
         """;
@@ -1182,6 +1182,7 @@ public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
         assertEquals(expectedToStringOutput, fileNode.toString(), "Unexpected toString output");
     }
 
+    //TODO:KMD Perhaps you should use T in the test type versions, it would be less confusing
     @Test
     public void testReplaceOneNonNestedTypeInImplementsListInVersions() {
 

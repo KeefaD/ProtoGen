@@ -101,6 +101,7 @@ public class TestKeyInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //TODO:KMD This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicKeyInterfaceOneImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """

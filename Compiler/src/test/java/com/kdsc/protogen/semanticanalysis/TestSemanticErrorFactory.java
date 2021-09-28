@@ -4,7 +4,7 @@ import com.kdsc.protogen.parsetree.BaseTestNode;
 import com.kdsc.protogen.parsetree.TestProtoGenEnumNode;
 import org.junit.jupiter.api.Test;
 
-import static com.kdsc.protogen.semanticanalysis.SemanticError.PARSER_ERROR_MESSAGE;
+import static com.kdsc.protogen.semanticanalysis.SemanticError.SEMANTIC_ERROR_MESSAGE;
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.REDEFINITION_OF_OBJECT;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -18,7 +18,7 @@ public class TestSemanticErrorFactory {
         assertEquals(BaseTestNode.fileName, semanticError.sourceFileName(), "Unexpected file name");
         assertEquals(BaseTestNode.line, semanticError.line(), "Unexpected line number");
         assertEquals(BaseTestNode.charPosition, semanticError.charPosition(), "Unexpected file name");
-        assertEquals(PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), BaseTestNode.fileName, 1, 0, REDEFINITION_OF_OBJECT.getMessage("Namespace.Name")), semanticError.getFullErrorMessage(), "Unexpected semantic error message");
+        assertEquals(SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), BaseTestNode.fileName, 1, 0, REDEFINITION_OF_OBJECT.getMessage("Namespace.Name")), semanticError.getFullErrorMessage(), "Unexpected semantic error message");
     }
     
 }

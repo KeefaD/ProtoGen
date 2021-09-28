@@ -8,7 +8,6 @@ import com.kdsc.protogen.parsetree.FileNode;
 import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
 import com.kdsc.protogen.semanticanalysis.SemanticAnalyser;
 import com.kdsc.protogen.semanticanalysis.SemanticError;
-import com.kdsc.protogen.transform.Transform;
 import com.kdsc.protogen.transform.TransformerContext;
 import com.kdsc.protogen.transform.proto.Transformer;
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -75,7 +74,10 @@ public abstract class BaseCompilerTest {
 
     protected FileNode runCompilerToParseTreePostProcessReturnFileNode(String testProgram) {
         var fileNode = runCompilerToParserCheckNoErrors(testProgram);
-        return UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var returnFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        System.out.println("//Replaced Parse Tree");
+        System.out.println(returnFileNode.toFormattedString(1));
+        return returnFileNode;
     }
 
     protected List<SemanticError> runCompilerToSemanticAnalyserReturnSemanticErrors(String testProgram) {

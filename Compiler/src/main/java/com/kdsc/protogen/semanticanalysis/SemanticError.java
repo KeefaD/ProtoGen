@@ -12,7 +12,7 @@ public record SemanticError(
     Object... arguments
 ) {
 
-    public static final String PARSER_ERROR_MESSAGE = "PROTOGEN SEMANTIC ERROR %d in:%s at line:%d char:%d with msg:%s";
+    public static final String SEMANTIC_ERROR_MESSAGE = "PROTOGEN SEMANTIC ERROR %d in:%s at line:%d char:%d with msg:%s";
 
     public SemanticError {
         Objects.requireNonNull(semanticErrorType);
@@ -22,6 +22,6 @@ public record SemanticError(
     }
 
     public String getFullErrorMessage() {
-        return PARSER_ERROR_MESSAGE.formatted(semanticErrorType.getNumber(), sourceFileName, line, charPosition, semanticErrorType.getMessage(arguments));
+        return SEMANTIC_ERROR_MESSAGE.formatted(semanticErrorType.getNumber(), sourceFileName, line, charPosition, semanticErrorType.getMessage(arguments));
     }
 }

@@ -2,7 +2,7 @@ package com.kdsc.protogen.semanticanalysis;
 
 import org.junit.jupiter.api.Test;
 
-import static com.kdsc.protogen.semanticanalysis.SemanticError.PARSER_ERROR_MESSAGE;
+import static com.kdsc.protogen.semanticanalysis.SemanticError.SEMANTIC_ERROR_MESSAGE;
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.REDEFINITION_OF_OBJECT;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -64,7 +64,7 @@ public class TestSemanticError {
             "Test Message Argument"
          );
 
-         assertEquals(PARSER_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), TEST_FILE_NAME, 1, 0, REDEFINITION_OF_OBJECT.getMessage("Test Message Argument")), semanticError.getFullErrorMessage(), "Unexpected semantic error message");
+         assertEquals(SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), TEST_FILE_NAME, 1, 0, REDEFINITION_OF_OBJECT.getMessage("Test Message Argument")), semanticError.getFullErrorMessage(), "Unexpected semantic error message");
     }
 
 }
