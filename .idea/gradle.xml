@@ -13,6 +13,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Compiler" />
+            <option value="$PROJECT_DIR$/Examples" />
+            <option value="$PROJECT_DIR$/Runtime" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -4,6 +4,7 @@ grammar ProtoGen;
     package com.kdsc.protogen.antlr;
 }
 
+//TODO:KMD Why am I getting a warning here, investigate
 file:
     (
         protogen_type |

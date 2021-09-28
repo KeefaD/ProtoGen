@@ -489,7 +489,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     @Test
     void recursiveMaps() {
         var testProgram = """
-            type interface TestNamespace.TestRecursiveMaps{
+            type interface TestNamespace.TestRecursiveMaps {
                 testRecursiveMap : map<map<int32, int32>, map<int32, int32>>
             }
         """;
@@ -520,7 +520,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     void recursiveNestedMapSetArray() {
         var testProgram = """
             type interface TestNamespace.TestMultiDimensionalArray {
-                testNestedMapSetArray : map<set<int[][]>, set<int32[][]>>
+                testNestedMapSetArray : map<set<int32[][]>, set<int32[][]>>
             }
         """;
         runCompilerToParserCheckNoErrors(testProgram);

@@ -489,7 +489,7 @@ public class TestKeys extends BaseCompilerTest {
     @Test
     void recursiveMaps() {
         var testProgram = """
-            key TestNamespace.TestRecursiveMaps{
+            key TestNamespace.TestRecursiveMaps {
                 testRecursiveMap : map<map<int32, int32>, map<int32, int32>>
             }
         """;
@@ -520,7 +520,7 @@ public class TestKeys extends BaseCompilerTest {
     void recursiveNestedMapSetArray() {
         var testProgram = """
             key TestNamespace.TestMultiDimensionalArray {
-                testNestedMapSetArray : map<set<int[][]>, set<int32[][]>>
+                testNestedMapSetArray : map<set<int32[][]>, set<int32[][]>>
             }
         """;
         runCompilerToParserCheckNoErrors(testProgram);

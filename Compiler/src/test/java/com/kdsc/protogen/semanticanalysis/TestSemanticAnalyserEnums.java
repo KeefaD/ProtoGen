@@ -9,6 +9,7 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.REDEFINITION_
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+//TODO:KMD Test unordered versions, should this be an error?
 public class TestSemanticAnalyserEnums extends BaseCompilerTest {
 
     @Test

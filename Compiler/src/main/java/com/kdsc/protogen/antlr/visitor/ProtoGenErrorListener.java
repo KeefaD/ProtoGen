@@ -7,10 +7,11 @@ import org.antlr.v4.runtime.Recognizer;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO:KMD I think you can end up with optional optional as a field type optional T where T is optional, close this down
 //TODO:KMD Missing silly test for this
 public class ProtoGenErrorListener extends BaseErrorListener {
 
-    public static final String PARSER_ERROR_MESSAGE = "PROTOGEN_PARSER_ERROR in file:%s at line:%d char:%d with msg:%s";
+    public static final String PARSER_ERROR_MESSAGE = "PROTOGEN_PARSER_ERROR in file:%s at line:%d char:%d with message:%s";
 
     private final String sourceFileName;
     private final List<String> errors = new ArrayList<>();

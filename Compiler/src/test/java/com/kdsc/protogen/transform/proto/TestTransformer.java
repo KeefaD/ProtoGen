@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class TestTransformer  extends BaseCompilerTest {
 
+    //TODO:KMD Need to think about capitalisation for namespaces, should we allow uppercase packages, investigate
     @Test
     public void testBasicEnum() {
         var testProgram = """            
@@ -19,7 +20,8 @@ public class TestTransformer  extends BaseCompilerTest {
             //ProtoFileNode
                 //FileNode
                     FileName : Enum.proto
-                    Path : Temporary
+                    Path : TestNamespace
+                    FileNameAndPath : TestNamespace/Enum.proto
         """;
         assertNotNull(fileGenerationTree, "FileGenerationTree list is null");
         assertEquals(1, fileGenerationTree.size(), "Unexpected file generation tree size");

@@ -3,6 +3,7 @@ package com.kdsc.protogen.antlr.parser.happypath;
 import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;
 
+//TODO:KMD Test running Gradle on the command line to build everything
 public class TestKeyInterfaces extends BaseCompilerTest {
 
     @Test
@@ -490,7 +491,7 @@ public class TestKeyInterfaces extends BaseCompilerTest {
     @Test
     void recursiveMaps() {
         var testProgram = """
-            key interface TestNamespace.TestRecursiveMaps{
+            key interface TestNamespace.TestRecursiveMaps {
                 testRecursiveMap : map<map<int32, int32>, map<int32, int32>>
             }
         """;
@@ -521,7 +522,7 @@ public class TestKeyInterfaces extends BaseCompilerTest {
     void recursiveNestedMapSetArray() {
         var testProgram = """
             key interface TestNamespace.TestMultiDimensionalArray {
-                testNestedMapSetArray : map<set<int[][]>, set<int32[][]>>
+                testNestedMapSetArray : map<set<int32[][]>, set<int32[][]>>
             }
         """;
         runCompilerToParserCheckNoErrors(testProgram);

@@ -1,2 +1,4 @@
 include 'Compiler'
+include 'Examples'
+include 'Runtime'
 

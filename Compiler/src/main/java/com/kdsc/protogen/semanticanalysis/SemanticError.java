@@ -12,7 +12,7 @@ public record SemanticError(
     Object... arguments
 ) {
 
-    public static final String SEMANTIC_ERROR_MESSAGE = "PROTOGEN_SEMANTIC_ERROR %d in file:%s at line:%d char:%d with msg:%s";
+    public static final String SEMANTIC_ERROR_MESSAGE = "PROTOGEN_SEMANTIC_ERROR_%d in file:%s at line:%d char:%d with message:%s";
 
     public SemanticError {
         Objects.requireNonNull(semanticErrorType);
