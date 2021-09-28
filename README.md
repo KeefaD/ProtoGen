@@ -18,21 +18,18 @@
 6. Amazing errors with the compiler
 7. As simple as possible
 8. Antrl tests
-9. Records for nodes
-10. 
+
 
 ##Outstanding tasks
-1. Parse tree
-2. Undetectable node replacer
-3. Semantic analyser
-4. Transformer
+1. Semantic analyser
+2. Transformer
     -> Bucket for imports, but make the imports protogen imports (maybe)
-5. Code generator
-6. Create generated code test
-7. Normal generated code test
-8. Generated docs
-9. What about lists
-10. Name escaping
+3. Code generator
+4. Create generated code test
+5. Normal generated code test
+6. Generated docs
+7. What about lists
+8. Name escaping
 
 
 # ProtoBoxes
@@ -50,6 +47,33 @@
 4. Metadata -> Dictionary
 5. Value -> Not dictionary
 6. Type library version to read and object version
-7. 
 
 Generic box to put protogen items into, configurable
+
+# ProtoStore
+
+##Features
+
+1.  Stack ProtoBoxes into storage for fast retrieval
+2.  Indexes
+3.  Bitemporaral
+4.  Store, lists, maps, sets, arrays into boxes
+
+# ProtoCalc
+
+##Features
+
+1.  Real time calculations using ProtoBoxes
+2.  What ifs
+3.  Stateful graphs
+4.  Elastic
+5.  Skip calculations under pressure
+6.  Event store
+
+# ProtoReport
+
+##Features
+
+1.  Live updating like Toro
+2.  Live pivot table
+3.  What if
