@@ -56,7 +56,7 @@ Generic box to put protogen items into, configurable
 
 1.  Stack ProtoBoxes into storage for fast retrieval
 2.  Indexes
-3.  Bi temporaral
+3.  Bitemporaral
 4.  Store, lists, maps, sets, arrays into boxes
 
 # ProtoCalc
@@ -69,3 +69,11 @@ Generic box to put protogen items into, configurable
 4.  Elastic
 5.  Skip calculations under pressure
 6.  Event store
+
+# ProtoReport
+
+##Features
+
+1.  Live updating like Toro
+2.  Live pivot table
+3.  What if
