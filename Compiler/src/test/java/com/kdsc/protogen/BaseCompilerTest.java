@@ -93,17 +93,16 @@ public abstract class BaseCompilerTest {
     }
 
     protected List<com.kdsc.protogen.filegenerationtree.FileNode> runCompilerToTransformReturnProtoFileNodes(String testProgram) {
-        var fileNode = runCompilerToParserCheckNoErrors(testProgram);
-        var fileNodeList = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode));
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(fileNodeList);
-        if(semanticErrors.size() != 0) {
-            semanticErrors
-                .forEach(System.out::println);
-            fail("Unexpected semantic errors");
-        }
+        var fileNode = compileTestProgramCheckNoParserOrSemanticErrors(testProgram);
         var transformer = new Transformer();
         var transformerContext = new TransformerContext();
-        return transformer.transform(transformerContext, fileNodeList);
+        var fileGenerationTreeList =  transformer.transform(transformerContext, List.of(fileNode));
+        System.out.println("//File Generation Tree");
+        fileGenerationTreeList
+            .forEach(
+                fgt -> System.out.println(fgt.toFormattedString(1))
+            );
+        return fileGenerationTreeList;
     }
 
     private ParseTree compileTestProgramAndReturnParseTree(BaseErrorListener errorListener, String testProgram) {
@@ -124,6 +123,18 @@ public abstract class BaseCompilerTest {
         parser.removeErrorListeners();
         parser.addErrorListener(errorListener);
         return parser.file();
+    }
+
+    //TODO:KMD Sort out all this list of stuff it seems a bit inconsistent
+    private FileNode compileTestProgramCheckNoParserOrSemanticErrors(String testProgram) {
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(fileNode));
+        if(semanticErrors.size() != 0) {
+            semanticErrors
+                    .forEach(System.out::println);
+            fail("Unexpected semantic errors");
+        }
+        return fileNode;
     }
 
 }
