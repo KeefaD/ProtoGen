@@ -1,0 +1,36 @@
+type com.kdsc.protogen.examples.collections.Valueorerrors<T> {
+    testDoubleValueorerror : valueorerror<double>
+    testFloatValueorerror : valueorerror<float>
+    testInt32Valueorerror : valueorerror<int32>
+    testInt64Valueorerror : valueorerror<int64>
+    testBoolValueorerror : valueorerror<bool>
+    testStringValueorerror : valueorerror<string>
+    testBytesValueorerror : valueorerror<bytes>
+    testDecimalValueorerror : valueorerror<decimal>
+    testDateValueorerror : valueorerror<date>
+    testDatetimeValueorerror : valueorerror<datetime>
+    testLocaldatetimeValueorerror : valueorerror<localdatetime>
+    testMapValueorerror : valueorerror<map<string, string>>
+    testSetValueorerror : valueorerror<set<string>>
+    testValueorerrorValueorerror : valueorerror<valueorerror<decimal>> //Hmm what does this mean if there is an error
+    testObjectValueorerror : valueorerror<com.kdsc.protogen.examples.simple.Type>
+    testGenericTypeValueorerror : valueorerror<T> //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
+    testArrayValueorerror : valueorerror<string[]>
+    testOptionalDoubleValueorerror : valueorerror<optional double>
+    testOptionalFloatValueorerror : valueorerror<optional float>
+    testOptionalInt32Valueorerror : valueorerror<optional int32>
+    testOptionalInt64Valueorerror : valueorerror<optional int64>
+    testOptionalBoolValueorerror : valueorerror<optional bool>
+    testOptionalStringValueorerror : valueorerror<optional string>
+    testOptionalBytesValueorerror : valueorerror<optional bytes>
+    testOptionalDecimalValueorerror : valueorerror<optional decimal>
+    testOptionalDateValueorerror : valueorerror<optional date>
+    testOptionalDatetimeValueorerror : valueorerror<optional datetime>
+    testOptionalLocaldatetimeValueorerror : valueorerror<optional localdatetime>
+    testOptionalMapValueorerror : valueorerror<optional map<string, string>>
+    testOptionalSetValueorerror : valueorerror<optional set<string>>
+    testOptionalValueorerrorValueorerror : valueorerror<optional valueorerror<decimal>> //Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
+    testOptionalObjectValueorerror : valueorerror<optional com.kdsc.protogen.examples.simple.Type>
+    testOptionalGenericTypeValueorerror : valueorerror<optional T> //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
+    testOptionalArrayValueorerror : valueorerror<optional string[]>
+}

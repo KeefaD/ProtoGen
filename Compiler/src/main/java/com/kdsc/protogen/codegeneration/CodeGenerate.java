@@ -1,6 +1,5 @@
 package com.kdsc.protogen.codegeneration;
 
-import com.kdsc.protogen.codegeneration.proto.CodeGenerator;
 import com.kdsc.protogen.filegenerationtree.FileNode;
 import com.kdsc.protogen.filegenerationtree.java.JavaFileNode;
 import com.kdsc.protogen.filegenerationtree.proto.ProtoFileNode;
@@ -22,7 +21,7 @@ public class CodeGenerate implements com.kdsc.protogen.codegeneration.CodeGenera
             .stream()
             .filter(fn -> fn instanceof ProtoFileNode)
             .collect(Collectors.toList());
-        var protoCodeGenerator = new CodeGenerator();
+        var protoCodeGenerator = new com.kdsc.protogen.codegeneration.proto.CodeGenerator();
         protoCodeGenerator.generate(protoFileNodes);
     }
 }

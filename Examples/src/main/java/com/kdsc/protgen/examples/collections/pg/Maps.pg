@@ -1,0 +1,36 @@
+type com.kdsc.protogen.examples.collections.Maps<T> {
+//    testDoubleMap : map<double, double>
+//    testFloatMap : map<float, float>
+    testInt32Map : map<int32, int32>
+    testInt64Map : map<int64, int64>
+    testBoolMap : map<bool, bool>
+    testStringMap : map<string, string>
+    testBytesMap : map<bytes, bytes>
+    testDecimalMap : map<decimal, decimal>
+    testDateMap : map<date, date>
+    testDatetimeMap : map<datetime, datetime>
+    testLocaldatetimeMap : map<localdatetime, localdatetime>
+    testMapMap : map<map<string, string>, map<string, string>>
+    testSetMap : map<set<string>, set<string>>
+//    testValueorerrorMap : map<valueorerror<decimal>, valueorerror<decimal>> //Hmm what does this mean if there is an error
+    testObjectMap : map<com.kdsc.protogen.examples.simple.Type, com.kdsc.protogen.examples.simple.Type>
+    testGenericTypeMap : map<T, T> //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
+    testArrayMap : map<string[], string[]>
+//    testOptionalDoubleMap : map<optional double, optional double>
+//    testOptionalFloatMap : map<optional float, optional float>
+    testOptionalInt32Map : map<optional int32, optional int32>
+    testOptionalInt64Map : map<optional int64, optional int64>
+    testOptionalBoolMap : map<optional bool, optional bool>
+    testOptionalStringMap : map<optional string, optional string>
+    testOptionalBytesMap : map<optional bytes, optional bytes>
+    testOptionalDecimalMap : map<optional decimal, optional decimal>
+    testOptionalDateSetMap : map<optional date, optional date>
+    testOptionalDatetimeMap : map<optional datetime, optional datetime>
+    testOptionalLocaldatetimeMap : map<optional localdatetime, optional localdatetime>
+    testOptionalMapMap : map<optional map<string, string>, optional map<string, string>>
+    testOptionalSetMap : map<optional set<string>, optional set<string>>
+    testOptionalValueorerrorMap : map<optional valueorerror<decimal>, optional valueorerror<decimal>> //Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
+//    testOptionalObjectMap : map<optional com.kdsc.protogen.examples.simple.Type, optional com.kdsc.protogen.examples.simple.Type>
+    testOptionalGenericTypeMap : map<optional T, optional T> //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
+    testOptionalArrayMap : map<optional string[], optional string[]>
+}

@@ -29,7 +29,7 @@ public class TestParseTreeUtils {
         );
         var expectedOutput = "Namespace.Name";
         var output = ParseTreeUtils.getNamespaceNameString(testNamespaceName);
-        assertEquals(expectedOutput, output, "Expected output doesn't match");
+        assertEquals(expectedOutput, output, "Actual output doesn't match expected output");
     }
 
     @Test
@@ -56,7 +56,7 @@ public class TestParseTreeUtils {
         );
         var expectedOutput = "Namespace1.Namespace2.Name";
         var output = ParseTreeUtils.getNamespaceNameString(testNamespaceName);
-        assertEquals(expectedOutput, output, "Expected output doesn't match");
+        assertEquals(expectedOutput, output, "Actual output doesn't match expected output");
     }
 
 }

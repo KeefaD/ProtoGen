@@ -11,6 +11,7 @@ public class VersionNumberNode extends BaseNode {
         final long versionNumber
     ) {
         super(sourceFileName, line, charPosition);
+        //TODO:KMD Perhaps numbers require positive
         this.versionNumber = versionNumber;
     }
 

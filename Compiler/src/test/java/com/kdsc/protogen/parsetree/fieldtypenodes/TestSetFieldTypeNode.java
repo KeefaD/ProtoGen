@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+//TODO:KMD Should probably test objects where everything that can be empty is NOT empty
 public class TestSetFieldTypeNode extends BaseTestNode {
 
     @Test

@@ -5,8 +5,10 @@ import java.util.stream.IntStream;
 
 public abstract class BaseNode {
 
+    //TODO:KMD This should be shared with the other nodes
     protected static final int INDENTATION_SPACE_COUNT = 4;
 
+    //TODO:KMD This should be shared with the other nodes
     protected String oneIndent() {
         return IntStream.range(0, INDENTATION_SPACE_COUNT).mapToObj(counter -> " ").collect(Collectors.joining());
     }

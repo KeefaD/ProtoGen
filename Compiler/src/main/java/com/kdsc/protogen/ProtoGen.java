@@ -11,6 +11,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 
+//TODO:KMD This is hideously out of date, but we don't need it yet
 public class ProtoGen {
     public static void main(final String... args) {
 

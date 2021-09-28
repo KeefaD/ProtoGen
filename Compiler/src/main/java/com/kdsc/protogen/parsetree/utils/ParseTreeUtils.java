@@ -15,7 +15,6 @@ public class ParseTreeUtils {
             .stream()
             .map(NamespaceNode::getNamespace)
             .collect(Collectors.joining(DELIMITER));
-        returnString += "." + namespaceNameNode.getNameNode().getName();
-        return returnString;
+        return returnString + "." + namespaceNameNode.getNameNode().getName();
     }
 }
