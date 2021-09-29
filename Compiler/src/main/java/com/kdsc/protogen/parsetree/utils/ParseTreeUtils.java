@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class ParseTreeUtils {
 
+    //TODO:KMD Is delimiter the right name
     public static final String DELIMITER = ".";
 
     public static String getNamespaceNameString(final NamespaceNameNode namespaceNameNode) {

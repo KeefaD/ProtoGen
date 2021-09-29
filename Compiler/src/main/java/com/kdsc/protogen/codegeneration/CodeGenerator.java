@@ -5,5 +5,5 @@ import com.kdsc.protogen.filegenerationtree.FileNode;
 import java.util.List;
 
 public interface CodeGenerator {
-    void generate(List<FileNode> fileNodes);
+    void generate(final CodeGeneratorContext codeGeneratorContext, final List<FileNode> fileNodes);
 }

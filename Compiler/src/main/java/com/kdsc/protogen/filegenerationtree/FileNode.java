@@ -15,14 +15,18 @@ public class FileNode extends BaseNode {
         Objects.requireNonNull(path);
         Strings.requireNonBlank(fileName);
         //TODO:KMD Not sure about non blank for path, perhaps it is acceptable
-        Strings.requireNonBlank(path);
+//        Strings.requireNonBlank(path);
         this.fileName = fileName;
+        //TODO:KMD Need to be careful with this path, it should be machine independent as in not matter about windows / linux otherwise it could cause problems with type libraries
         this.path = path;
     }
 
     //TODO:KMD Perhaps we should centralise this separator
+    //TODO:KMD Shit name
     public String getPathAndFileName() {
-        return path + File.separator + fileName;
+        return path == null || path.isBlank()
+            ? fileName
+            : path + File.separator + fileName;
     }
 
     @Override

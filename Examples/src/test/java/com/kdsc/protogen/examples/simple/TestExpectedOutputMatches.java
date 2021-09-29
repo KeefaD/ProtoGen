@@ -7,7 +7,7 @@ public class TestExpectedOutputMatches extends BaseExpectedOutputMatchesTest {
 
     @Test
     public void testExpectedOutputMatches() {
-        runCompilerWithTestProgram("simple");
+        runCompilerWithTestProgram("simple", "", "simple");
     }
 
 }

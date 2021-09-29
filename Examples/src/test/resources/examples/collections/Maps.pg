@@ -1,4 +1,4 @@
-type com.kdsc.protogen.examples.collections.Maps<T> {
+type collections.Maps<T> {
 //    testDoubleMap : map<double, double>
 //    testFloatMap : map<float, float>
     testInt32Map : map<int32, int32>
@@ -13,7 +13,7 @@ type com.kdsc.protogen.examples.collections.Maps<T> {
     testMapMap : map<map<string, string>, map<string, string>>
     testSetMap : map<set<string>, set<string>>
 //    testValueorerrorMap : map<valueorerror<decimal>, valueorerror<decimal>> //Hmm what does this mean if there is an error
-    testObjectMap : map<com.kdsc.protogen.examples.simple.Type, com.kdsc.protogen.examples.simple.Type>
+    testObjectMap : map<collections.Maps, collections.Maps>
     testGenericTypeMap : map<T, T> //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
     testArrayMap : map<string[], string[]>
 //    testOptionalDoubleMap : map<optional double, optional double>
@@ -29,8 +29,8 @@ type com.kdsc.protogen.examples.collections.Maps<T> {
     testOptionalLocaldatetimeMap : map<optional localdatetime, optional localdatetime>
     testOptionalMapMap : map<optional map<string, string>, optional map<string, string>>
     testOptionalSetMap : map<optional set<string>, optional set<string>>
-    testOptionalValueorerrorMap : map<optional valueorerror<decimal>, optional valueorerror<decimal>> //Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
-//    testOptionalObjectMap : map<optional com.kdsc.protogen.examples.simple.Type, optional com.kdsc.protogen.examples.simple.Type>
+//    testOptionalValueorerrorMap : map<optional valueorerror<decimal>, optional valueorerror<decimal>> //Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
+    testOptionalObjectMap : map<optional collections.Maps, optional collections.Maps>
     testOptionalGenericTypeMap : map<optional T, optional T> //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
     testOptionalArrayMap : map<optional string[], optional string[]>
 }

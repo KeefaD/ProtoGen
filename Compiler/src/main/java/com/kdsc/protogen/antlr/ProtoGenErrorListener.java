@@ -14,6 +14,8 @@ public class ProtoGenErrorListener extends BaseErrorListener {
     public static final String PARSER_ERROR_MESSAGE = "PROTOGEN_PARSER_ERROR in file:%s at line:%d char:%d with message:%s";
 
     private final String sourceFileName;
+
+    //TODO:KMD Make this consistent with semantic errors with their own class
     private final List<String> errors = new ArrayList<>();
 
     public ProtoGenErrorListener(final String sourceFileName) {

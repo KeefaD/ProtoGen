@@ -21,4 +21,5 @@ public class ParserResults {
     public boolean hasParserErrorOccurred() {
         return parserErrors.size() != 0;
     }
+
 }

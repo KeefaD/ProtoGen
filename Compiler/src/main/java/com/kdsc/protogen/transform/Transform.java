@@ -11,6 +11,8 @@ public class Transform implements com.kdsc.protogen.transform.Transformer {
 
     @Override
     public List<FileNode> transform(TransformerContext transformerContext, List<com.kdsc.protogen.parsetree.FileNode> fileNodes) {
+
+        //TODO:KMD Should we do static for this, but this might inhibit future expansion
         var protoTransformer = new Transformer();
         var protoFiles = protoTransformer.transform(transformerContext, fileNodes);
         var javaTransformer = new com.kdsc.protogen.transform.java.Transformer();

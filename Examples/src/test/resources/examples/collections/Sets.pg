@@ -1,4 +1,4 @@
-type com.kdsc.protogen.examples.collections.Sets<T> {
+type collections.Sets<T> {
 //    testDoubleSet : set<double>
 //    testFloatSet : set<float>
     testInt32Set : set<int32>
@@ -13,7 +13,7 @@ type com.kdsc.protogen.examples.collections.Sets<T> {
     testMapSet : set<map<string, string>>
     testSetSet : set<set<string>>
 //    testValueorerrorSet : set<valueorerror<decimal>> //Hmm what does this mean if there is an error
-    testObjectSet : set<com.kdsc.protogen.examples.simple.Type>
+    testObjectSet : set<collections.Sets>
     testGenericTypeSet : set<T> //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
     testArraySet : set<string[]>
 //    testOptionalDoubleSet : set<optional double>
@@ -29,8 +29,8 @@ type com.kdsc.protogen.examples.collections.Sets<T> {
     testOptionalLocaldatetimeSet : set<optional localdatetime>
     testOptionalMapSet : set<optional map<string, string>>
     testOptionalSetSet : set<optional set<string>>
-    testOptionalValueorerrorSet : set<optional valueorerror<decimal>> //Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
-//    testOptionalObjectSet : set<optional com.kdsc.protogen.examples.simple.Type>
+//    testOptionalValueorerrorSet : set<optional valueorerror<decimal>> //Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
+    testOptionalObjectSet : set<optional collections.Sets>
     testOptionalGenericTypeSet : set<optional T> //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
     testOptionalArraySet : set<optional string[]>
 }

@@ -10,18 +10,18 @@ import java.util.stream.Collectors;
 public class CodeGenerate implements com.kdsc.protogen.codegeneration.CodeGenerator {
 
     @Override
-    public void generate(List<FileNode> fileNodes) {
+    public void generate(final CodeGeneratorContext codeGeneratorContext, final List<FileNode> fileNodes) {
         var javaFileNodes = fileNodes
             .stream()
             .filter(fn -> fn instanceof JavaFileNode)
             .collect(Collectors.toList());
         var javaCodeGenerator = new com.kdsc.protogen.codegeneration.java.CodeGenerator();
-        javaCodeGenerator.generate(javaFileNodes);
+        javaCodeGenerator.generate(codeGeneratorContext, javaFileNodes);
         var protoFileNodes = fileNodes
             .stream()
             .filter(fn -> fn instanceof ProtoFileNode)
             .collect(Collectors.toList());
         var protoCodeGenerator = new com.kdsc.protogen.codegeneration.proto.CodeGenerator();
-        protoCodeGenerator.generate(protoFileNodes);
+        protoCodeGenerator.generate(codeGeneratorContext, protoFileNodes);
     }
 }

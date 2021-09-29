@@ -1,4 +1,4 @@
-type com.kdsc.protogen.examples.collections.Arrays<T> {
+type collections.Arrays<T> {
     testDoubleArray : double[]
     testFloatArray : float[]
     testInt32Array : int32[]
@@ -13,7 +13,7 @@ type com.kdsc.protogen.examples.collections.Arrays<T> {
     testMapArray : map<string, string>[]
     testSetArray : set<string>[]
     testValueorerrorArray : valueorerror<decimal>[]
-    testObjectArray : com.kdsc.protogen.examples.simple.Type[]
+    testObjectArray : collections.Arrays[]
     testGenericTypeArray : T[] //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
     testArrayArray : string[][]
     testOptionalDoubleArray : optional double[]
@@ -30,7 +30,7 @@ type com.kdsc.protogen.examples.collections.Arrays<T> {
     testOptionalMapArray : optional map<string, string>[]
     testOptionalSetArray : optional set<string>[]
     testOptionalValueorerrorArray : optional valueorerror<decimal>[] //Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
-    testOptionalObjectArray : optional com.kdsc.protogen.examples.simple.Type[]
+    testOptionalObjectArray : optional collections.Arrays[]
     testOptionalGenericTypeArray : optional T[] //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
     testOptionalArrayArray : optional string[][]
 }

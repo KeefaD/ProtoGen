@@ -1,10 +1,12 @@
 package com.kdsc.protogen;
 
 import com.kdsc.protogen.antlr.Parser;
+import com.kdsc.protogen.codegeneration.CodeGenerate;
+import com.kdsc.protogen.codegeneration.CodeGeneratorContext;
 import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
 import com.kdsc.protogen.semanticanalysis.SemanticAnalyser;
+import com.kdsc.protogen.transform.Transform;
 import com.kdsc.protogen.transform.TransformerContext;
-import com.kdsc.protogen.transform.proto.Transformer;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -18,22 +20,28 @@ public class ProtoGen {
 
     public static final char OPTION_MARKER = '-';
     public static final String BASE_NAMESPACE = OPTION_MARKER + "basenamespace";
+    public static final String JAVA_OUTPUT_DIRECTORY = OPTION_MARKER + "javaoutputdirectory";
+    public static final String PROTO_OUTPUT_DIRECTORY = OPTION_MARKER + "protooutputdirectory";
     public static final String SHOW_PARSE_TREE = OPTION_MARKER + "showparsetree";
     public static final String SHOW_REPLACED_PARSE_TREE = OPTION_MARKER + "showreplacedparsetree";
     public static final String SHOW_FILE_GENERATION_TREE = OPTION_MARKER + "showfilegenerationtree";
     public static final String ARGUMENT_VALUE_SEPARATOR = "=";
 
     //TODO:KMD This class is a mess at the moment, obviously clean it all up
-    public static void main(final String... args) {
+    public static int main(final String... args) {
 
         if(args == null || args.length < 1) {
             printUsage();
-            return;
+            return -1;
         }
 
         var sourceFileList = new ArrayList<String>();
         var useBaseNamespace = false;
         var baseNamespace = "";
+        var useJavaOutputDirectory = false;
+        var javaOutputDirectory = "";
+        var useProtoOutputDirectory = false;
+        var protoOutputDirectory = "";
         var showParseTree = false;
         var showReplacedParseTree = false;
         var showFileGenerationTree = false;
@@ -45,9 +53,25 @@ public class ProtoGen {
                     var splitArg = arg.split(ARGUMENT_VALUE_SEPARATOR);
                     if(splitArg.length != 2) {
                         printUsage();
-                        return;
+                        return -1;
                     }
                     baseNamespace = splitArg[1];
+                } else if(lowerCaseArg.startsWith(JAVA_OUTPUT_DIRECTORY)) {
+                    useJavaOutputDirectory = true;
+                    var splitArg = arg.split(ARGUMENT_VALUE_SEPARATOR);
+                    if(splitArg.length != 2) {
+                        printUsage();
+                        return -1;
+                    }
+                    javaOutputDirectory = splitArg[1];
+                } else if(lowerCaseArg.startsWith(PROTO_OUTPUT_DIRECTORY)) {
+                    useProtoOutputDirectory = true;
+                    var splitArg = arg.split(ARGUMENT_VALUE_SEPARATOR);
+                    if(splitArg.length != 2) {
+                        printUsage();
+                        return -1;
+                    }
+                    protoOutputDirectory = splitArg[1];
                 } else if(lowerCaseArg.startsWith(SHOW_PARSE_TREE)) {
                     showParseTree = true;
                     continue;
@@ -57,20 +81,19 @@ public class ProtoGen {
                 } else if(lowerCaseArg.startsWith(SHOW_FILE_GENERATION_TREE)) {
                     showFileGenerationTree = true;
                     continue;
-                }
-                if(arg.contains("=")) {
+                } else if(arg.contains("=")) {
                     printUsage();
-                    return;
+                    return -1;
                 }
             }
 
             sourceFileList.add(arg);
         }
 
-        compileProgram(sourceFileList, useBaseNamespace, baseNamespace, showParseTree, showReplacedParseTree, showFileGenerationTree);
+        return compileProgram(sourceFileList, useBaseNamespace, baseNamespace, useJavaOutputDirectory, javaOutputDirectory, useProtoOutputDirectory, protoOutputDirectory, showParseTree, showReplacedParseTree, showFileGenerationTree);
     }
 
-    private static boolean compileProgram(final List<String> sourceFileList, final boolean useBaseNamespace, final String baseNamespace, final boolean showParseTree, final boolean showReplacedParseTree, final boolean showFileGenerationTree) {
+    private static int compileProgram(final List<String> sourceFileList, final boolean useBaseNamespace, final String baseNamespace, final boolean useJavaOutputDirectory, final String javaOutputDirectory, final boolean useProtoOutputDirectory, final String protoOutputDirectory, final boolean showParseTree, final boolean showReplacedParseTree, final boolean showFileGenerationTree) {
 
         //TODO:KMD Assume one directory argument for now, can't be bothered to do files
 //        sourceFileList
@@ -113,7 +136,8 @@ public class ProtoGen {
             parserResults
                 .getParserErrors()
                 .forEach(pe -> System.out.println("    " + pe));
-            return false;
+            //TODO:KMD Don't like the fact this doesn't start at -1
+            return -2;
         }
 
         if(showParseTree) {
@@ -139,28 +163,32 @@ public class ProtoGen {
             System.out.println("//Semantic Errors");
             semanticErrors
                 .forEach(se -> System.out.println("    " + se));
-            return false;
+            return -3;
         }
 
-        var transformer = new Transformer();
+        //TODO:KMD Perhaps this should be static
+        var transform = new Transform();
         var transformerContext = new TransformerContext(baseNamespace);
-        var fileGenerationTree =  transformer.transform(transformerContext, replacedFileNodes);
+        var fileGenerationTree =  transform.transform(transformerContext, replacedFileNodes);
 
         if(showFileGenerationTree) {
             System.out.println();
             System.out.println("//File Generation Tree");
             fileGenerationTree
                 .forEach(fgt -> System.out.println(fgt.toFormattedString(1)));
-            return false;
         }
 
-        return true;
+        var codeGenerate = new CodeGenerate();
+        var codeGeneratorContext = new CodeGeneratorContext(javaOutputDirectory, protoOutputDirectory);
+        codeGenerate.generate(codeGeneratorContext, fileGenerationTree);
+
+        return 0;
     }
 
     private static void printUsage() {
         var usageMessage = """
         
-        ProtoGen sourceFiles -baseNamespace=com.test -showParseTree -showReplacedParseTree -showFileGenerationTree
+        ProtoGen sourceFiles -baseNamespace=com.test -javaOutputDirectory=/directory -protoOutputDirectory=/directory -showParseTree -showReplacedParseTree -showFileGenerationTree
         """;
         System.out.println(usageMessage);
     }

@@ -49,25 +49,25 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
     //TODO:KMD How are we going to represent versions in Proto
     //TODO:KMD We need to do proto name escaping
     //TODO:KMD We need to to do name escaping in general or prevent keywords, need to make up your mind soon, keywords is going to be annoying once you add more languages, as long as the types come out with the right name it is ok
+    //TODO:KMD Figure out what to do about these paths
     private FileNode transformEnumNode(TransformerContext transformerContext, com.kdsc.protogen.parsetree.ProtoGenEnumNode enumNode) {
         return new EnumFileNode(
-            enumNode.getNamespaceNameNode().getNameNode().getName() + TransformerContext.protoFileExtension,
-            //TODO:KMD What about base namespace
-            TransformUtils.convertNamespaceNameNodeToPath(enumNode.getNamespaceNameNode())
+            TransformUtils.convertNamespaceNameNodeToName(enumNode.getNamespaceNameNode()) + TransformerContext.protoFileExtension,
+            ""
         );
     }
 
     private FileNode transformTypeNode(TransformerContext transformerContext, com.kdsc.protogen.parsetree.ProtoGenTypeNode typeNode) {
         return new MessageFileNode(
-            typeNode.getNamespaceNameNode().getNameNode().getName() + TransformerContext.protoFileExtension,
-            TransformUtils.convertNamespaceNameNodeToPath(typeNode.getNamespaceNameNode())
+            TransformUtils.convertNamespaceNameNodeToName(typeNode.getNamespaceNameNode()) + TransformerContext.protoFileExtension,
+            ""
         );
     }
 
     private FileNode transformKeyNode(TransformerContext transformerContext, com.kdsc.protogen.parsetree.ProtoGenKeyNode keyNode) {
         return new MessageFileNode(
-            keyNode.getNamespaceNameNode().getNameNode().getName() + TransformerContext.protoFileExtension,
-            TransformUtils.convertNamespaceNameNodeToPath(keyNode.getNamespaceNameNode())
+            TransformUtils.convertNamespaceNameNodeToName(keyNode.getNamespaceNameNode()) + TransformerContext.protoFileExtension,
+            ""
         );
     }
 }

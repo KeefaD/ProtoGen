@@ -8,7 +8,7 @@ public class TestExpectedOutputMatches extends BaseExpectedOutputMatchesTest {
 
     @Test
     public void testExpectedOutputMatches() {
-        runCompilerWithTestProgram("enums");
+        runCompilerWithTestProgram("enums", "", "enums");
     }
 
 }

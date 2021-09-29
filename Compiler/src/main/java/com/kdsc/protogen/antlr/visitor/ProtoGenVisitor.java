@@ -249,6 +249,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
             return visit(ctx.generic_object_field_type());
         }
 
+        //TODO:KMD Should we do an else here
         switch (ctx.children.get(0).getText()) {
             case DOUBLE -> {
                 return new DoubleFieldTypeNode(

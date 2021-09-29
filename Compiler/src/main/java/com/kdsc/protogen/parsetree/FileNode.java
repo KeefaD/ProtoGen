@@ -3,6 +3,7 @@ package com.kdsc.protogen.parsetree;
 import java.util.List;
 import java.util.Objects;
 
+//TODO:KMD Check consistency of all these nodes in terms of Antlr lists and optionals, it's only going to get harder to change later
 public class FileNode extends BaseNode {
 
     private final List<ProtoGenTypeNode> protoGenTypeNodes;
