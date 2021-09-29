@@ -1,4 +1,4 @@
-package com.kdsc.protogen.antlr.parser.happypath;
+package com.kdsc.protogen.antlr.visitor.happypath;
 
 import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.kdsc.protogen.antlr.visitor;
+package com.kdsc.protogen.antlr;
 
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;

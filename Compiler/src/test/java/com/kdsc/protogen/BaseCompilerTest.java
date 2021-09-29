@@ -1,9 +1,9 @@
 package com.kdsc.protogen;
 
-import com.kdsc.protogen.antlr.ProtoGenLexer;
-import com.kdsc.protogen.antlr.ProtoGenParser;
+import com.kdsc.protogen.antlr.generated.ProtoGenLexer;
+import com.kdsc.protogen.antlr.generated.ProtoGenParser;
 import com.kdsc.protogen.antlr.visitor.ProtoGenVisitor;
-import com.kdsc.protogen.antlr.visitor.ProtoGenErrorListener;
+import com.kdsc.protogen.antlr.ProtoGenErrorListener;
 import com.kdsc.protogen.parsetree.FileNode;
 import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
 import com.kdsc.protogen.semanticanalysis.SemanticAnalyser;
@@ -25,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 public abstract class BaseCompilerTest {
 
     public static final String FAKE_SOURCE_FILE_NAME_AND_PATH = "FakeSourceFileName.pg";
+    public static final String BASE_NAMESPACE = "";
 
     protected FileNode runCompilerToParserCheckNoErrors(String testProgram) {
 
@@ -95,7 +96,7 @@ public abstract class BaseCompilerTest {
     protected List<com.kdsc.protogen.filegenerationtree.FileNode> runCompilerToTransformReturnProtoFileNodes(String testProgram) {
         var fileNode = compileTestProgramCheckNoParserOrSemanticErrors(testProgram);
         var transformer = new Transformer();
-        var transformerContext = new TransformerContext();
+        var transformerContext = new TransformerContext(BASE_NAMESPACE);
         var fileGenerationTreeList =  transformer.transform(transformerContext, List.of(fileNode));
         System.out.println("//File Generation Tree");
         fileGenerationTreeList

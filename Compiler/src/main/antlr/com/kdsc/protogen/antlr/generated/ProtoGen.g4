@@ -1,7 +1,7 @@
 grammar ProtoGen;
 
 @header {
-    package com.kdsc.protogen.antlr;
+    package com.kdsc.protogen.antlr.generated;
 }
 
 //TODO:KMD Why am I getting a warning here, investigate
