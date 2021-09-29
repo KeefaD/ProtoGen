@@ -6,7 +6,7 @@
 2. Versioning strategies
 3. Immutable
 4. Deep equals
-5. Perhaps covariant and ccntravarient collections
+5. Perhaps covariant and contravarient collections
 6. Type libraries, version catalogues, guids
 
 ##Notes
