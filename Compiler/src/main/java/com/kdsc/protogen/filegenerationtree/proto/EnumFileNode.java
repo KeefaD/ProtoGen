@@ -4,6 +4,7 @@ public class EnumFileNode extends ProtoFileNode {
 
     public EnumFileNode(final String fileName, final String path) {
         super(fileName, path);
+        //TODO:KMD Pre-conditions
     }
 
     @Override

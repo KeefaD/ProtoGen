@@ -18,4 +18,5 @@ public class ParseTreeUtils {
             .collect(Collectors.joining(DELIMITER));
         return returnString + "." + namespaceNameNode.getNameNode().getName();
     }
+
 }

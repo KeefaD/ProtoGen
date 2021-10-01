@@ -41,4 +41,5 @@ public class NamespaceNameGenericParametersNode extends BaseNode implements HasN
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
+
 }

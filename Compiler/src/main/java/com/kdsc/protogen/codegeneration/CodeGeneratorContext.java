@@ -9,6 +9,8 @@ public class CodeGeneratorContext {
     private final String protoOutputDirectory;
 
     public CodeGeneratorContext(final String javaOutputDirectory, final String protoOutputDirectory) {
+
+        //TODO:KMD Extract into private method, or put in CodeGeneratorUtils
         var normalisedJavaOutputDirectory = javaOutputDirectory.endsWith(File.separator)
             ? javaOutputDirectory
             : javaOutputDirectory + File.separator;

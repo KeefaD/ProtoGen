@@ -13,8 +13,11 @@ public class DoubleFieldTypeNode extends NonArrayFieldTypeNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
+
+        //TODO:KMD Perhaps you can do get class get name for the node names?
         stringBuilder.append("//DoubleFieldTypeNode\n");
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
+
 }

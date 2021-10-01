@@ -31,4 +31,5 @@ public class KeyFieldTypeNode extends NonArrayFieldTypeNode {
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
+
 }

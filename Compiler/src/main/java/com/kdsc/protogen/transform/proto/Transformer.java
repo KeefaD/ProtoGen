@@ -70,4 +70,5 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
             ""
         );
     }
+
 }

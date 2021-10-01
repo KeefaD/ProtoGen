@@ -11,6 +11,8 @@ public class CodeGenerate implements com.kdsc.protogen.codegeneration.CodeGenera
 
     @Override
     public void generate(final CodeGeneratorContext codeGeneratorContext, final List<FileNode> fileNodes) {
+
+        //TODO:KMD We are double filtering here, no need for that, pick one place
         var javaFileNodes = fileNodes
             .stream()
             .filter(fn -> fn instanceof JavaFileNode)

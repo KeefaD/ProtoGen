@@ -10,6 +10,8 @@ public abstract class BaseNode {
 
     //TODO:KMD This should be shared with the other nodes
     protected String oneIndent() {
+
+        //TODO:KMD Make this string a constant, no reason not to
         return IntStream.range(0, INDENTATION_SPACE_COUNT).mapToObj(counter -> " ").collect(Collectors.joining());
     }
 

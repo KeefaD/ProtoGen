@@ -37,4 +37,5 @@ public class ObjectFieldTypeNode extends NonArrayFieldTypeNode implements HasNam
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
+
 }

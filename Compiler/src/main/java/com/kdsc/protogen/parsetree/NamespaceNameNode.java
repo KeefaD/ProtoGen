@@ -5,6 +5,7 @@ import com.kdsc.protogen.utils.parameterchecking.Lists;
 import java.util.List;
 import java.util.Objects;
 
+//TODO:KMD Need to do a day just working on TODO:KMD's to keep the numbers down otherwise it is going ot get out of control
 public class NamespaceNameNode extends BaseNode {
 
     private final List<NamespaceNode> namespaceNodes;

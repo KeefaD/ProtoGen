@@ -47,4 +47,5 @@ public abstract class BaseNode {
     }
 
     public abstract String toFormattedString(final int indentationLevel);
+
 }

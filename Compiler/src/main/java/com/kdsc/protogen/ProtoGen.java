@@ -30,6 +30,7 @@ public class ProtoGen {
     //TODO:KMD This class is a mess at the moment, obviously clean it all up
     public static int main(final String... args) {
 
+        //TODO:KMD Don't need this, just need to check we have source files, that is the minimum
         if(args == null || args.length < 1) {
             printUsage();
             return -1;
@@ -86,7 +87,6 @@ public class ProtoGen {
                     return -1;
                 }
             }
-
             sourceFileList.add(arg);
         }
 

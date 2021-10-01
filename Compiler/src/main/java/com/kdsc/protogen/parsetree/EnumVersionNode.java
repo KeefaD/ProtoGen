@@ -32,6 +32,8 @@ public class EnumVersionNode extends BaseNode {
 
     @Override
     public String toFormattedString(final int indentationLevel) {
+
+        //TODO:KMD Perhaps you can extract this out and make it all nice, it is a bit repetitive
         var stringBuilder = new StringBuilder();
         stringBuilder.append("//EnumVersionNode\n");
         stringBuilder.append(versionNumberNode.toFormattedString(1));
@@ -39,4 +41,5 @@ public class EnumVersionNode extends BaseNode {
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
+
 }

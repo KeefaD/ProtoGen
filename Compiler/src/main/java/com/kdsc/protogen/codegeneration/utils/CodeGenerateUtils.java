@@ -1,11 +1,11 @@
 package com.kdsc.protogen.codegeneration.utils;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 //TODO:KMD This needs a close look at
+//TODO:KMD Need to think about charsets, perhaps write a program in a funny charset, it has to be totally reliable
 public class CodeGenerateUtils {
 
     public static void writeStringToPath(final String pathAndFileName, final String textToWrite) {

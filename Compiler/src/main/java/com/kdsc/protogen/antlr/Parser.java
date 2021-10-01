@@ -30,8 +30,8 @@ public class Parser {
                         try (var inputStream = new FileInputStream(p)) {
                             try {
                                 antlrInputStream = new ANTLRInputStream(inputStream);
-                            } catch (IOException exception) {
-                                throw new RuntimeException(exception);
+                            } catch (IOException ioException) {
+                                throw new RuntimeException(ioException);
                             }
                         } catch (IOException ioException) {
                             throw new RuntimeException(ioException);
@@ -44,17 +44,16 @@ public class Parser {
                         parser.removeErrorListeners();
                         parser.addErrorListener(errorListener);
                         var parseTree = parser.file();
-
                         if(errorListener.errorOccurred()) {
                             parserResults.getParserErrors().addAll(errorListener.getErrors());
                             //TODO:KMD Should probably return empty list here, should there be any file nodes if there are parse errors?
                         }
+
                         var visitor = new ProtoGenVisitor(p);
                         return (FileNode) visitor.visit(parseTree);
                     }
                 )
                 .collect(Collectors.toList());
-
         parserResults.getFileNodes().addAll(fileNodes);
         return parserResults;
     }

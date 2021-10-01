@@ -5,6 +5,9 @@ import com.kdsc.protogen.parsetree.NamespaceNode;
 
 import java.util.stream.Collectors;
 
+//TODO:KMD Check isProtoGen type for types that have generic parameters, it's all going to go to shit if they are not
+//TODO:KMD Need to test moving all the directories around
+//TODO:KMD Need to be able to do a comparison on all the examples at the same time or it is pointless
 //TODO:KMD Needs test
 public class TransformUtils {
 

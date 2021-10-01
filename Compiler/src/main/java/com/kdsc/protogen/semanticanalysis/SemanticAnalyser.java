@@ -13,6 +13,8 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 
 //TODO:KMD Redefinition of field in interface with different type
 //TODO:KMD Generic parameters on outer type and versions
+//TODO:KMD This really needs to be refactored to be super neat
+//TODO:KMD Obviously we need to make this work for keys but there is no point until Types are 1005
 public class SemanticAnalyser {
 
     private record Objects(
