@@ -11,12 +11,9 @@ import java.util.List;
 //TODO:KMD Missing silly test for this
 public class ProtoGenErrorListener extends BaseErrorListener {
 
-    public static final String PARSER_ERROR_MESSAGE = "PROTOGEN_PARSER_ERROR in file:%s at line:%d char:%d with message:%s";
-
     private final String sourceFileName;
 
-    //TODO:KMD Make this consistent with semantic errors with their own class
-    private final List<String> errors = new ArrayList<>();
+    private final List<ParserError> errors = new ArrayList<>();
 
     public ProtoGenErrorListener(final String sourceFileName) {
         this.sourceFileName = sourceFileName;
@@ -24,14 +21,14 @@ public class ProtoGenErrorListener extends BaseErrorListener {
 
     @Override
     public void syntaxError(final Recognizer<?, ?> recognizer, final Object offendingSymbol, final int line, final int charPositionInLine, final String msg, final RecognitionException e) {
-        errors.add(PARSER_ERROR_MESSAGE.formatted(sourceFileName, line, charPositionInLine, msg));
+        errors.add(new ParserError(sourceFileName, line, charPositionInLine, msg));
     }
 
     public boolean errorOccurred() {
         return errors.size() != 0;
     }
 
-    public List<String> getErrors() {
+    public List<ParserError> getErrors() {
         return errors;
     }
 

@@ -130,7 +130,8 @@ public class ProtoGen {
         filePaths
             .forEach(fp -> System.out.println("    " + fp));
 
-        var parserResults = Parser.parse(filePaths);
+        var parser = new Parser();
+        var parserResults = parser.parse(filePaths);
 
         if(parserResults.hasParserErrorOccurred()) {
             System.out.println("//Parser Errors");
@@ -148,7 +149,8 @@ public class ProtoGen {
                 .forEach(pf -> System.out.println(pf.toFormattedString(1)));
         }
 
-        var replacedFileNodes = UndetectableNodeReplacer.replaceUndetectableNodes(parserResults.getFileNodes());
+        var undetectableNodeReplacer = new UndetectableNodeReplacer();
+        var replacedFileNodes = undetectableNodeReplacer.replaceUndetectableNodes(parserResults.getFileNodes());
 
         if(showReplacedParseTree) {
             System.out.println();
@@ -157,7 +159,8 @@ public class ProtoGen {
                 .forEach(pf -> System.out.println(pf.toFormattedString(1)));
         }
 
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(replacedFileNodes);
+        var semanticAnalyser = new SemanticAnalyser();
+        var semanticErrors = semanticAnalyser.runSemanticAnalysis(replacedFileNodes);
 
         if(semanticErrors.size() > 0) {
             System.out.println();

@@ -10,12 +10,12 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Parser {
 
-    //TODO:KMD Why is this static and Transform and CodeGenerate not, make it consistent
-    public static ParserResults parse(final List<String> pathsToParse) {
+    public ParserResults parse(final List<String> pathsToParse) {
         var parserResults = new ParserResults();
         var fileNodes = pathsToParse
             .stream()
@@ -26,7 +26,6 @@ public class Parser {
                         ANTLRInputStream antlrInputStream;
                         ProtoGenLexer protoGenLexer;
 
-                        //TODO:KMD look at this
                         try (var inputStream = new FileInputStream(p)) {
                             try {
                                 antlrInputStream = new ANTLRInputStream(inputStream);
@@ -46,15 +45,18 @@ public class Parser {
                         var parseTree = parser.file();
                         if(errorListener.errorOccurred()) {
                             parserResults.getParserErrors().addAll(errorListener.getErrors());
-                            //TODO:KMD Should probably return empty list here, should there be any file nodes if there are parse errors?
+                            return Optional.<FileNode>empty();
                         }
 
                         var visitor = new ProtoGenVisitor(p);
-                        return (FileNode) visitor.visit(parseTree);
+                        return Optional.of((FileNode)visitor.visit(parseTree));
                     }
                 )
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .collect(Collectors.toList());
         parserResults.getFileNodes().addAll(fileNodes);
         return parserResults;
     }
+
 }

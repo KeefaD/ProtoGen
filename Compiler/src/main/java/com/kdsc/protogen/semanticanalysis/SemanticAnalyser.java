@@ -29,7 +29,7 @@ public class SemanticAnalyser {
         }
     }
 
-    public static List<SemanticError> runSemanticAnalysis(final List<FileNode> fileNodes) {
+    public List<SemanticError> runSemanticAnalysis(final List<FileNode> fileNodes) {
 
         var returnSemanticErrors = new ArrayList<SemanticError>();
 
@@ -65,7 +65,7 @@ public class SemanticAnalyser {
             .collect(Collectors.toList());
     }
 
-    private static void checkRedefinitionOfObject(final List<SemanticError> semanticErrors, final List<FileNode> fileNodes) {
+    private void checkRedefinitionOfObject(final List<SemanticError> semanticErrors, final List<FileNode> fileNodes) {
 
         var topLevelObjects = fileNodes
             .stream()
@@ -93,13 +93,13 @@ public class SemanticAnalyser {
             );
     }
 
-    private static void checkTypes(final List<SemanticError> semanticErrors, final Objects objects) {
+    private void checkTypes(final List<SemanticError> semanticErrors, final Objects objects) {
         objects.typeNodeMap
             .values()
             .forEach(tn -> checkType(semanticErrors, objects, tn));
     }
 
-    private static void checkType(final List<SemanticError> semanticErrors, final Objects objects, final ProtoGenTypeNode typeNode) {
+    private void checkType(final List<SemanticError> semanticErrors, final Objects objects, final ProtoGenTypeNode typeNode) {
 
         checkInheritanceLoop(semanticErrors, objects, new HashSet<>(), "", typeNode, typeNode);
 
@@ -222,7 +222,7 @@ public class SemanticAnalyser {
             .forEach(ftn -> checkFieldType(semanticErrors, objects, ftn));
     }
 
-    private static void checkImplementsList(final List<SemanticError> semanticErrors, final Objects objects, final ProtoGenTypeNode typeNode, final Set<String> genericParametersSet, final ImplementsListNode implementsListNode) {
+    private void checkImplementsList(final List<SemanticError> semanticErrors, final Objects objects, final ProtoGenTypeNode typeNode, final Set<String> genericParametersSet, final ImplementsListNode implementsListNode) {
         implementsListNode
             .getNamespaceNameGenericParametersNodes()
             .forEach(
@@ -274,7 +274,7 @@ public class SemanticAnalyser {
         }
     }
 
-    private static void checkInheritanceLoop(final List<SemanticError> semanticErrors, final Objects objects, final Set<String> alreadyVisitedTypes, final String path, final ProtoGenTypeNode initialTypeNode, final ProtoGenTypeNode typeNode) {
+    private void checkInheritanceLoop(final List<SemanticError> semanticErrors, final Objects objects, final Set<String> alreadyVisitedTypes, final String path, final ProtoGenTypeNode initialTypeNode, final ProtoGenTypeNode typeNode) {
         var namespaceNameAsString = ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode());
         var newPath = path + namespaceNameAsString;
         if(alreadyVisitedTypes.contains(namespaceNameAsString)) {
@@ -299,7 +299,7 @@ public class SemanticAnalyser {
             );
     }
 
-    private static void checkFields(final List<SemanticError> semanticErrors, final Objects objects, final Optional<FieldsNode> fieldsNode) {
+    private void checkFields(final List<SemanticError> semanticErrors, final Objects objects, final Optional<FieldsNode> fieldsNode) {
         fieldsNode
             .stream()
             .flatMap(fn -> fn.getFieldNodes().stream())
@@ -307,7 +307,7 @@ public class SemanticAnalyser {
             .forEach(fn -> checkFieldType(semanticErrors, objects, fn));
     }
 
-    private static void checkFieldType(final List<SemanticError> semanticErrors, final Objects objects, final FieldTypeNode fieldTypeNode) {
+    private void checkFieldType(final List<SemanticError> semanticErrors, final Objects objects, final FieldTypeNode fieldTypeNode) {
         if(fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
             checkArrayFieldType(semanticErrors, objects, fieldTypeNode.getArrayFieldTypeNode().get());
         } else if(fieldTypeNode.getNonArrayFieldTypeNode().isPresent()) {
@@ -315,7 +315,7 @@ public class SemanticAnalyser {
         }
     }
 
-    private static void checkNonArrayFieldType(final List<SemanticError> semanticErrors, final Objects objects, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
+    private void checkNonArrayFieldType(final List<SemanticError> semanticErrors, final Objects objects, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
         if(nonArrayFieldTypeNode instanceof MapFieldTypeNode mapFieldTypeNode) {
             checkFieldType(semanticErrors, objects, mapFieldTypeNode.getKeyFieldTypeNode());
             checkFieldType(semanticErrors, objects, mapFieldTypeNode.getValueFieldTypeNode());
@@ -332,17 +332,17 @@ public class SemanticAnalyser {
         }
     }
 
-    private static void checkArrayFieldType(final List<SemanticError> semanticErrors, final Objects objects, final ArrayFieldTypeNode arrayFieldTypeNode) {
+    private void checkArrayFieldType(final List<SemanticError> semanticErrors, final Objects objects, final ArrayFieldTypeNode arrayFieldTypeNode) {
         checkNonArrayFieldType(semanticErrors, objects, arrayFieldTypeNode.getNonArrayFieldTypeNode());
     }
 
-    private static List<GenericObjectFieldTypeNode> getGenericParametersFieldTypeNode(final FieldTypeNode fieldTypeNode) {
+    private List<GenericObjectFieldTypeNode> getGenericParametersFieldTypeNode(final FieldTypeNode fieldTypeNode) {
         var foundGenericParameters = new ArrayList<GenericObjectFieldTypeNode>();
         getGenericParametersFieldTypeNode(foundGenericParameters, fieldTypeNode);
         return foundGenericParameters;
     }
 
-    private static void getGenericParametersFieldTypeNode(final List<GenericObjectFieldTypeNode> foundGenericParameters, final FieldTypeNode fieldTypeNode) {
+    private void getGenericParametersFieldTypeNode(final List<GenericObjectFieldTypeNode> foundGenericParameters, final FieldTypeNode fieldTypeNode) {
         if(fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
             getGenericParametersArrayFieldTypeNode(foundGenericParameters, fieldTypeNode.getArrayFieldTypeNode().get());
         } else if (fieldTypeNode.getNonArrayFieldTypeNode().isPresent()) {
@@ -350,7 +350,7 @@ public class SemanticAnalyser {
         }
     }
 
-    private static void getGenericParametersNonArrayFieldTypeNode(final List<GenericObjectFieldTypeNode> foundGenericParameters, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
+    private void getGenericParametersNonArrayFieldTypeNode(final List<GenericObjectFieldTypeNode> foundGenericParameters, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
         if(nonArrayFieldTypeNode instanceof GenericObjectFieldTypeNode genericObjectFieldTypeNode) {
             foundGenericParameters.add(genericObjectFieldTypeNode);
         }
@@ -366,11 +366,11 @@ public class SemanticAnalyser {
         }
     }
 
-    private static void getGenericParametersArrayFieldTypeNode(final List<GenericObjectFieldTypeNode> foundGenericParameters, final ArrayFieldTypeNode arrayFieldTypeNode) {
+    private void getGenericParametersArrayFieldTypeNode(final List<GenericObjectFieldTypeNode> foundGenericParameters, final ArrayFieldTypeNode arrayFieldTypeNode) {
         getGenericParametersNonArrayFieldTypeNode(foundGenericParameters, arrayFieldTypeNode.getNonArrayFieldTypeNode());
     }
 
-    private static void checkGenericParameters(final List<SemanticError> semanticErrors, final Objects objects, final ProtoGenTypeNode typeNode, final NamespaceNameGenericParametersNode implementsTypeNamespaceNameGenericParametersNode) {
+    private void checkGenericParameters(final List<SemanticError> semanticErrors, final Objects objects, final ProtoGenTypeNode typeNode, final NamespaceNameGenericParametersNode implementsTypeNamespaceNameGenericParametersNode) {
 
         var numberOfGenericParametersOnImplementsListDefinition = implementsTypeNamespaceNameGenericParametersNode.getGenericParametersNode().isPresent()
             ? implementsTypeNamespaceNameGenericParametersNode
@@ -397,13 +397,13 @@ public class SemanticAnalyser {
         }
     }
 
-    private static void checkEnums(final List<SemanticError> semanticErrors, final Objects objects) {
+    private void checkEnums(final List<SemanticError> semanticErrors, final Objects objects) {
         objects.enumNodeMap
             .values()
             .forEach(en -> checkEnum(semanticErrors, en));
     }
 
-    private static void checkEnum(final List<SemanticError> semanticErrors, final ProtoGenEnumNode enumNode) {
+    private void checkEnum(final List<SemanticError> semanticErrors, final ProtoGenEnumNode enumNode) {
         var versions = enumNode
             .getEnumVersionsNode()
             .stream()
@@ -433,7 +433,7 @@ public class SemanticAnalyser {
         if(enumNode.getEnumCasesNode().isPresent()) checkEnumCases(semanticErrors, enumNode.getEnumCasesNode().get());
     }
 
-    private static void checkEnumCases(final List<SemanticError> semanticErrors, final EnumCasesNode enumCasesNode) {
+    private void checkEnumCases(final List<SemanticError> semanticErrors, final EnumCasesNode enumCasesNode) {
         var enumNameSet = new HashSet<String>();
         enumCasesNode
             .getEnumNameNodes()

@@ -7,10 +7,10 @@ import java.util.List;
 
 public class ParserResults {
 
-    private final List<String> parserErrors = new ArrayList<>();
+    private final List<ParserError> parserErrors = new ArrayList<>();
     private final List<FileNode> fileNodes = new ArrayList<>();
 
-    public List<String> getParserErrors() {
+    public List<ParserError> getParserErrors() {
         return parserErrors;
     }
 

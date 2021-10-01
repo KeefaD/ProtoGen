@@ -249,87 +249,75 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
             return visit(ctx.generic_object_field_type());
         }
 
-        //TODO:KMD Should we do an else here
-        switch (ctx.children.get(0).getText()) {
-            case DOUBLE -> {
-                return new DoubleFieldTypeNode(
+        return switch (ctx.children.get(0).getText()) {
+            case DOUBLE ->
+                new DoubleFieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
-            }
-            case FLOAT -> {
-                return new FloatFieldTypeNode(
+            case FLOAT ->
+                new FloatFieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
-            }
-            case INT_32 -> {
-                return new Int32FieldTypeNode(
+            case INT_32 ->
+                new Int32FieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
-            }
-            case INT_64 -> {
-                return new Int64FieldTypeNode(
+            case INT_64 ->
+                new Int64FieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
-            }
-            case BOOL -> {
-                return new BoolFieldTypeNode(
+            case BOOL ->
+                new BoolFieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
-            }
-            case STRING -> {
-                return new StringFieldTypeNode(
+            case STRING ->
+                new StringFieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
-            }
-            case BYTES -> {
-                return new BytesFieldTypeNode(
+            case BYTES ->
+                new BytesFieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
-            }
-            case DECIMAL -> {
-                return new DecimalFieldTypeNode(
+            case DECIMAL ->
+                new DecimalFieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
-            }
-            case DATE -> {
-                return new DateFieldTypeNode(
+            case DATE ->
+                new DateFieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
-            }
-            case DATETIME -> {
-                return new DatetimeFieldTypeNode(
+            case DATETIME ->
+                new DatetimeFieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
-            }
-            case LOCALDATETIME -> {
-                return new LocalDatetimeFieldTypeNode(
+            case LOCALDATETIME ->
+                new LocalDatetimeFieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
-            }
             default -> throw new RuntimeException("Unexpected case " + ctx.children.get(0).getText());
-        }
+        };
     }
 
     @Override

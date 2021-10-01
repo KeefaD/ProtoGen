@@ -1,5 +1,6 @@
 package com.kdsc.protogen;
 
+import com.kdsc.protogen.antlr.ParserError;
 import com.kdsc.protogen.antlr.generated.ProtoGenLexer;
 import com.kdsc.protogen.antlr.generated.ProtoGenParser;
 import com.kdsc.protogen.antlr.visitor.ProtoGenVisitor;
@@ -53,7 +54,7 @@ public abstract class BaseCompilerTest {
         return fileNode;
     }
 
-    protected List<String> runCompilerToParserReturnParserErrors(String testProgram) {
+protected List<ParserError> runCompilerToParserReturnParserErrors(String testProgram) {
 
         System.out.println("//Test Program");
         System.out.println(testProgram);
@@ -67,14 +68,15 @@ public abstract class BaseCompilerTest {
             System.out.println("None".indent(4));
         }
         errorListener.getErrors()
-            .forEach(e -> System.out.println(e.indent(4)));
+            .forEach(e -> System.out.println(e.toString().indent(4)));
 
         return errorListener.getErrors();
     }
 
     protected FileNode runCompilerToParseTreePostProcessReturnFileNode(String testProgram) {
         var fileNode = runCompilerToParserCheckNoErrors(testProgram);
-        var returnFileNode = UndetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var undetectableNodeReplacer = new UndetectableNodeReplacer();
+        var returnFileNode = undetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         System.out.println("//Replaced Parse Tree");
         System.out.println(returnFileNode.toFormattedString(1));
         return returnFileNode;
@@ -82,7 +84,8 @@ public abstract class BaseCompilerTest {
 
     protected List<SemanticError> runCompilerToSemanticAnalyserReturnSemanticErrors(String testProgram) {
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(fileNode));
+        var semanticAnalyser = new SemanticAnalyser();
+        var semanticErrors = semanticAnalyser.runSemanticAnalysis(List.of(fileNode));
         System.out.println("//Semantic Errors");
         if(semanticErrors.size() == 0) {
             System.out.println("None".indent(4));
@@ -129,7 +132,8 @@ public abstract class BaseCompilerTest {
     //TODO:KMD Sort out all this list of stuff it seems a bit inconsistent
     private FileNode compileTestProgramCheckNoParserOrSemanticErrors(String testProgram) {
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
-        var semanticErrors = SemanticAnalyser.runSemanticAnalysis(List.of(fileNode));
+        var semanticAnalyser = new SemanticAnalyser();
+        var semanticErrors = semanticAnalyser.runSemanticAnalysis(List.of(fileNode));
         if(semanticErrors.size() != 0) {
             semanticErrors
                     .forEach(System.out::println);
