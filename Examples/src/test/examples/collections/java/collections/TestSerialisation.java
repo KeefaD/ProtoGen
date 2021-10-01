@@ -1,4 +1,4 @@
-package com.kdsc.protogen.examples.collections;
+package collections;
 
 import org.junit.jupiter.api.Test;
 

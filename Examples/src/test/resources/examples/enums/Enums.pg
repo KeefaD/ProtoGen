@@ -3,19 +3,19 @@ enum enums.Enum {
     enumCase2
 }
 
-enum enums.VersionedEnum {
-    version 1 {
-        enumCase1
-        enumCase2
-    }
-    version 2 {
-        enumCase1
-        enumCase2
-        enumCase3
-    }
-}
+//enum enums.VersionedEnum {
+//    version 1 {
+//        enumCase1
+//        enumCase2
+//    }
+//    version 2 {
+//        enumCase1
+//        enumCase2
+//        enumCase3
+//    }
+//}
 
-type enums.UseEnums {
-    testField1 : enums.Enum
-    testField2 : enums.VersionedEnum
-}
+//type enums.UseEnums {
+//    testField1 : enums.Enum
+//    testField2 : enums.VersionedEnum
+//}

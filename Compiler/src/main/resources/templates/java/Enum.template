@@ -1,0 +1,7 @@
+package [NAMESPACE];
+
+[IMPORTS]
+
+public enum [ENUM_NAME] {
+[ENUM_CASES]
+}

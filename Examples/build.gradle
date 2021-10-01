@@ -9,6 +9,28 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    main {
+        java {
+            srcDirs = [
+                'src/main/examples/collections/java',
+                'src/main/examples/enums/java',
+                'src/main/examples/simple/java'
+            ]
+        }
+    }
+    test {
+        java {
+            srcDirs = [
+                'src/test/java',
+                'src/test/examples/collections/java',
+                'src/test/examples/enums/java',
+                'src/test/examples/simple/java'
+            ]
+        }
+    }
+}
+
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'

@@ -1,4 +1,4 @@
-package com.kdsc.protogen.examples.collections;
+package enums;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package com.kdsc.protogen.examples.simple;
+package simple;
 
 import org.junit.jupiter.api.Test;
 

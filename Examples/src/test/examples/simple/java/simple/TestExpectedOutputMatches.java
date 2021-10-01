@@ -1,4 +1,4 @@
-package com.kdsc.protogen.examples.simple;
+package simple;
 
 import com.kdsc.protogen.examples.BaseExpectedOutputMatchesTest;
 import org.junit.jupiter.api.Test;

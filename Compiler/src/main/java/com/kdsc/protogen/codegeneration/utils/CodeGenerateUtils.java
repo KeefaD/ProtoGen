@@ -1,6 +1,7 @@
 package com.kdsc.protogen.codegeneration.utils;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -24,6 +25,32 @@ public class CodeGenerateUtils {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String readTemplateFromClasspath(String pathToTemplate) {
+        var clazz = CodeGenerateUtils.class;
+        var inputStream = clazz.getResourceAsStream(pathToTemplate);
+        try {
+            var bytes = inputStream.readAllBytes();
+            if(bytes == null) {
+                throw new RuntimeException("Got null for inputStream.readAllBytes unexpectedly");
+            }
+            return new String(bytes, StandardCharsets.UTF_8);
+        } catch (IOException ioException) {
+            throw new RuntimeException(ioException);
+        }
+    }
+
+    public static String replace(String template, String stringToReplace, String replaceWithString) {
+        return template.replace(stringToReplace, replaceWithString);
+    }
+
+    public static String replaceAndCollapse(String template, String stringToReplace, String replaceWithString) {
+        return template.replace(stringToReplace + "\n", replaceWithString);
+    }
+
+    public static String replaceAndCollapseTwo(String template, String stringToReplace, String replaceWithString) {
+        return template.replace(stringToReplace + "\n\n", replaceWithString);
     }
 
 }

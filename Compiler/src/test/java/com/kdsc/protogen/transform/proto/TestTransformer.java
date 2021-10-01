@@ -24,6 +24,7 @@ public class TestTransformer  extends BaseCompilerTest {
                     FileName : TestNamespace.Enum.proto
                     Path :\s
                     FileNameAndPath : TestNamespace.Enum.proto
+            Name : Enum
         """;
         assertNotNull(fileGenerationTree, "FileGenerationTree list is null");
         assertEquals(1, fileGenerationTree.size(), "Unexpected file generation tree size");
