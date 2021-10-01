@@ -21,7 +21,7 @@ public class TestNamespaceNameGenericParametersWithBoundsNode extends BaseTestNo
     }
 
     @Test
-    public void testNullsOrEmptiesInConstructor() {
+    public void testInvalidConstructorCall() {
 
         assertThrows(NullPointerException.class,
             () ->

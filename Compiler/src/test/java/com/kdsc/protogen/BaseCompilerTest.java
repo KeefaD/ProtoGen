@@ -4,7 +4,7 @@ import com.kdsc.protogen.antlr.ParserError;
 import com.kdsc.protogen.antlr.generated.ProtoGenLexer;
 import com.kdsc.protogen.antlr.generated.ProtoGenParser;
 import com.kdsc.protogen.antlr.visitor.ProtoGenVisitor;
-import com.kdsc.protogen.antlr.ProtoGenErrorListener;
+import com.kdsc.protogen.antlr.ParserErrorListener;
 import com.kdsc.protogen.parsetree.FileNode;
 import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
 import com.kdsc.protogen.semanticanalysis.SemanticAnalyser;
@@ -34,7 +34,7 @@ public abstract class BaseCompilerTest {
         System.out.println(testProgram);
 
         //TODO:KMD Not keen on having this source file name in two places
-        var errorListener = new ProtoGenErrorListener(FAKE_SOURCE_FILE_NAME_AND_PATH);
+        var errorListener = new ParserErrorListener(FAKE_SOURCE_FILE_NAME_AND_PATH);
 
         var parseTree = compileTestProgramAndReturnParseTree(errorListener, testProgram);
 
@@ -59,7 +59,7 @@ protected List<ParserError> runCompilerToParserReturnParserErrors(String testPro
         System.out.println("//Test Program");
         System.out.println(testProgram);
 
-        var errorListener = new ProtoGenErrorListener(FAKE_SOURCE_FILE_NAME_AND_PATH);
+        var errorListener = new ParserErrorListener(FAKE_SOURCE_FILE_NAME_AND_PATH);
 
         compileTestProgramAndReturnParseTree(errorListener, testProgram);
 

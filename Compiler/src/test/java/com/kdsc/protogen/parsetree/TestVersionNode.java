@@ -23,7 +23,7 @@ public class TestVersionNode extends BaseTestNode {
     }
 
     @Test
-    public void testNullsOrEmptiesInConstructor() {
+    public void testInvalidConstructorCall() {
 
         assertThrows(NullPointerException.class,
             () ->

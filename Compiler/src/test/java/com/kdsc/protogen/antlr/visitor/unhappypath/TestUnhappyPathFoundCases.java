@@ -1,7 +1,6 @@
 package com.kdsc.protogen.antlr.visitor.unhappypath;
 
 import com.kdsc.protogen.antlr.ParserError;
-import com.kdsc.protogen.antlr.ProtoGenErrorListener;
 import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;
 

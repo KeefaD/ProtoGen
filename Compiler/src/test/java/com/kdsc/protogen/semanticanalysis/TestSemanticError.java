@@ -11,7 +11,8 @@ public class TestSemanticError {
     public static final String TEST_FILE_NAME = "TestFileName";
 
     @Test
-    public void testNullsInConstructor() {
+    //CANTFIX IntelliJ seems to be getting confused about var args here
+    public void testInvalidConstructorCall() {
         assertThrows(NullPointerException.class,
             () ->
             new SemanticError(

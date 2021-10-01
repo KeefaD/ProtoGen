@@ -1,5 +1,6 @@
 package com.kdsc.protogen.antlr;
 
+import com.kdsc.protogen.utils.parameterchecking.Strings;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;
 import org.antlr.v4.runtime.Recognizer;
@@ -7,15 +8,14 @@ import org.antlr.v4.runtime.Recognizer;
 import java.util.ArrayList;
 import java.util.List;
 
-//TODO:KMD I think you can end up with optional optional as a field type optional T where T is optional, close this down
-//TODO:KMD Missing silly test for this
-public class ProtoGenErrorListener extends BaseErrorListener {
+public class ParserErrorListener extends BaseErrorListener {
 
     private final String sourceFileName;
 
     private final List<ParserError> errors = new ArrayList<>();
 
-    public ProtoGenErrorListener(final String sourceFileName) {
+    public ParserErrorListener(final String sourceFileName) {
+        Strings.requireNonBlank(sourceFileName);
         this.sourceFileName = sourceFileName;
     }
 

@@ -21,7 +21,7 @@ public class Parser {
             .stream()
                 .map(
                     p -> {
-                        var errorListener = new ProtoGenErrorListener(p);
+                        var errorListener = new ParserErrorListener(p);
 
                         ANTLRInputStream antlrInputStream;
                         ProtoGenLexer protoGenLexer;

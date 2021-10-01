@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 //TODO:KMD Test running Gradle on the command line to build everything
+//TODO:KMD I think you can end up with optional optional as a field type optional T where T is optional, close this down
 public class ProtoGen {
 
     public static final char OPTION_MARKER = '-';

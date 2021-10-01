@@ -5,7 +5,6 @@ import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
 
-//TODO:KMD Missing test for this
 public record ParserError(
     String sourceFileName,
     long line,
@@ -16,7 +15,7 @@ public record ParserError(
     public static final String PARSER_ERROR_MESSAGE = "PROTOGEN_PARSER_ERROR in file:%s at line:%d char:%d with message:%s";
 
     public ParserError {
-        Objects.requireNonNull(sourceFileName);
+        Strings.requireNonBlank(sourceFileName);
         Numbers.requireOneOrGreater(line);
         Numbers.requireZeroOrGreater(charPosition);
         Strings.requireNonBlank(message);
