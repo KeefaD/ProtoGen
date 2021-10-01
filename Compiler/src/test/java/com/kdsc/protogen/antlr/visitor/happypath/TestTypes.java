@@ -101,6 +101,7 @@ public class TestTypes extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicTypeOneImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
@@ -109,6 +110,7 @@ public class TestTypes extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicTypeOneImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
@@ -117,6 +119,7 @@ public class TestTypes extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicTypeOneImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
@@ -157,6 +160,7 @@ public class TestTypes extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicTypeTwoImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
@@ -167,6 +171,7 @@ public class TestTypes extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicTypeTwoImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
@@ -177,6 +182,7 @@ public class TestTypes extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicTypeTwoImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """

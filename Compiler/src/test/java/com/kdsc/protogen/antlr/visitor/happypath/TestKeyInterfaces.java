@@ -3,7 +3,6 @@ package com.kdsc.protogen.antlr.visitor.happypath;
 import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;
 
-//TODO:KMD Test running Gradle on the command line to build everything
 public class TestKeyInterfaces extends BaseCompilerTest {
 
     @Test
@@ -102,7 +101,7 @@ public class TestKeyInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
-    //TODO:KMD This should produce a parse tree but not pass semantic analysis as it doesn't make sense
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicKeyInterfaceOneImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
@@ -111,6 +110,7 @@ public class TestKeyInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicKeyInterfaceOneImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
@@ -119,6 +119,7 @@ public class TestKeyInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicKeyInterfaceOneImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
@@ -159,6 +160,7 @@ public class TestKeyInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicKeyInterfaceTwoImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
@@ -169,6 +171,7 @@ public class TestKeyInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicKeyInterfaceTwoImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
@@ -179,6 +182,7 @@ public class TestKeyInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicKeyInterfaceTwoImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """

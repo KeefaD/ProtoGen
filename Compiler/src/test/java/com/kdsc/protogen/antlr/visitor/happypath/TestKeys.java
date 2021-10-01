@@ -101,6 +101,7 @@ public class TestKeys extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicKeyOneImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
@@ -109,6 +110,7 @@ public class TestKeys extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicKeyOneImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
@@ -117,6 +119,7 @@ public class TestKeys extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicKeyOneImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
@@ -157,6 +160,7 @@ public class TestKeys extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicKeyTwoImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
@@ -167,6 +171,7 @@ public class TestKeys extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicKeyTwoImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
@@ -177,6 +182,7 @@ public class TestKeys extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicKeyTwoImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """

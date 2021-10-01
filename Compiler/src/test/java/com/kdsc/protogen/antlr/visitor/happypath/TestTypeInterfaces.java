@@ -101,6 +101,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicTypeInterfaceOneImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
@@ -109,6 +110,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicTypeInterfaceOneImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
@@ -117,6 +119,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicTypeInterfaceOneImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
@@ -157,6 +160,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicTypeInterfaceTwoImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
@@ -167,6 +171,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicTypeInterfaceTwoImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
@@ -177,6 +182,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+    //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
     void basicTypeInterfaceTwoImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """

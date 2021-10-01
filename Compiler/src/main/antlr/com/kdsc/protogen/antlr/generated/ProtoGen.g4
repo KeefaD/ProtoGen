@@ -4,7 +4,7 @@ grammar ProtoGen;
     package com.kdsc.protogen.antlr.generated;
 }
 
-//TODO:KMD Why am I getting a warning here, investigate
+//CANTFIX I can't prevent this warning in the IntelliJ Antlr Plugin at the moment, see here https://github.com/antlr/antlr4/issues/1069
 file:
     (
         protogen_type |

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//TODO:KMD Test running Gradle on the command line to build everything
 public class ProtoGen {
 
     public static final char OPTION_MARKER = '-';
