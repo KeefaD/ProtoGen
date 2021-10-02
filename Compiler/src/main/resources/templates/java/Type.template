@@ -3,5 +3,7 @@ package [PACKAGE_NAME];
 [IMPORTS]
 
 public class [TYPE_NAME] {
+[PRIVATE_FIELDS]
 [CONSTRUCTOR]
+[GETTERS]
 }

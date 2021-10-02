@@ -9,6 +9,7 @@ import com.kdsc.protogen.parsetree.EnumNameNode;
 import com.kdsc.protogen.parsetree.ProtoGenEnumNode;
 import com.kdsc.protogen.parsetree.ProtoGenTypeNode;
 import com.kdsc.protogen.transform.TransformerContext;
+import com.kdsc.protogen.transform.shared.FieldTransformer;
 import com.kdsc.protogen.transform.utils.TransformUtils;
 
 import java.util.Collections;
@@ -60,13 +61,21 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
     }
 
     private FileNode transformTypeNode(final TransformerContext transformerContext, final ProtoGenTypeNode typeNode) {
+
+        var fileContext = new FileContext();
+
+        var fieldTransformer = new FieldTransformer();
+
+        var fieldNodes = fieldTransformer.transformFieldsNodes(transformerContext, fileContext, typeNode.getFieldsNode().get());
+
         if(typeNode.getFieldsNode().isPresent()) {
             return new ClassFileNode(
                 typeNode.getNamespaceNameNode().getNameNode().getName() + TransformerContext.javaFileExtension,
                 TransformUtils.convertNamespaceNameNodeToPath(typeNode.getNamespaceNameNode()),
                 TransformUtils.convertNamespaceNameNodeToNamespace(typeNode.getNamespaceNameNode()),
                 typeNode.getNamespaceNameNode().getNameNode().getName(),
-                Collections.emptyList()
+                fileContext.getImportStatements(),
+                fieldNodes
             );
         }
         return new ClassFileNode(
@@ -74,6 +83,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
             TransformUtils.convertNamespaceNameNodeToPath(typeNode.getNamespaceNameNode()),
             TransformUtils.convertNamespaceNameNodeToNamespace(typeNode.getNamespaceNameNode()),
             typeNode.getNamespaceNameNode().getNameNode().getName(),
+            Collections.emptySet(),
             Collections.emptyList()
         );
     }

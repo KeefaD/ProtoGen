@@ -25,6 +25,7 @@ import java.util.stream.Collectors;
 //TODO:KMD We need to do proto name escaping
 //TODO:KMD We need to to do name escaping in general or prevent keywords, need to make up your mind soon, keywords is going to be annoying once you add more languages, as long as the types come out with the right name it is ok
 //TODO:KMD Have a proper look at the parse tree and decide what to do about optionals and lists before it is too late
+//TODO:KMD Think about capitalisation of fields
 public class ProtoGen {
 
     public static final char OPTION_MARKER = '-';

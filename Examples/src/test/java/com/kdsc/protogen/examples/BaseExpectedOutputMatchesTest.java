@@ -76,9 +76,10 @@ public class BaseExpectedOutputMatchesTest {
             fail("Unexpected compilation error");
         }
 
-        if(!writeActualToExpected) {
-            assertExpectedFilesMatchActual(fullPathToExpectedOutputDirectory, fullPathToOutputDirectory);
+        if(writeActualToExpected) {
+            fail("Running tests in write actual to expected mode");
         }
+        assertExpectedFilesMatchActual(fullPathToExpectedOutputDirectory, fullPathToOutputDirectory);
     }
 
     protected void assertExpectedFilesMatchActual(final String expectedResultsDirectory, final String actualResultsDirectory) {
@@ -154,7 +155,7 @@ public class BaseExpectedOutputMatchesTest {
                     var expected = FileUtils.readFileContents(expectedFilePath);
                     var actualFilePath = new File(actualResultsDirectory, efn);
                     var actual = FileUtils.readFileContents(actualFilePath);
-                    assertEquals(expected, actual, "Actual file contents do not match expected");
+                    assertEquals(expected, actual, "Actual file contents do not match expected for " + expectedFilePath.toPath());
                 }
             );
 

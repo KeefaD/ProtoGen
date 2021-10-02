@@ -5,10 +5,9 @@ import com.kdsc.protogen.filegenerationtree.FileNode;
 import com.kdsc.protogen.filegenerationtree.proto.EnumCaseNode;
 import com.kdsc.protogen.filegenerationtree.proto.EnumFileNode;
 import com.kdsc.protogen.filegenerationtree.proto.MessageFileNode;
-import com.kdsc.protogen.filegenerationtree.shared.FieldNode;
-import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.FieldTypeNode;
-import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.Int32FieldTypeNode;
 import com.kdsc.protogen.transform.TransformerContext;
+import com.kdsc.protogen.transform.java.FileContext;
+import com.kdsc.protogen.transform.shared.FieldTransformer;
 import com.kdsc.protogen.transform.utils.TransformUtils;
 
 import java.util.Collections;
@@ -73,52 +72,17 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
     }
 
     private FileNode transformTypeNode(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.ProtoGenTypeNode typeNode) {
+        var fieldTransformer = new FieldTransformer();
+
+        var fileContext = new FileContext();
+
         return new MessageFileNode(
             TransformUtils.convertNamespaceNameNodeToName(typeNode.getNamespaceNameNode()) + TransformerContext.protoFileExtension,
             "",
             typeNode.getNamespaceNameNode().getNameNode().getName(),
             //TODO:KMD Warning here
-            transformFieldsNodes(transformerContext, typeNode.getFieldsNode().get())
+            fieldTransformer.transformFieldsNodes(transformerContext, fileContext, typeNode.getFieldsNode().get())
         );
-    }
-
-    private List<FieldNode> transformFieldsNodes(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.FieldsNode fieldsNodes) {
-        return fieldsNodes
-            .getFieldNodes()
-            .stream()
-            .map(fn -> transformFieldNode(transformerContext, fn))
-            .collect(Collectors.toList());
-    }
-
-    private FieldNode transformFieldNode(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.FieldNode fieldNode) {
-        return new FieldNode(
-            fieldNode.getFieldNameNode().getFieldName(),
-            transformFieldTypeNode(transformerContext, fieldNode.getFieldTypeNode())
-        );
-    }
-
-    private FieldTypeNode transformFieldTypeNode(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.fieldtypenodes.FieldTypeNode fieldTypeNode) {
-
-        if(fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
-            return transformArrayFieldTypeNode(transformerContext, fieldTypeNode.getArrayFieldTypeNode().get());
-        } else if (fieldTypeNode.getNonArrayFieldTypeNode().isPresent()) {
-            return transformNonArrayFieldTypeNode(transformerContext, fieldTypeNode.getNonArrayFieldTypeNode().get());
-        }
-
-        throw new RuntimeException("This should never happen");
-    }
-
-    private FieldTypeNode transformArrayFieldTypeNode(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.fieldtypenodes.ArrayFieldTypeNode fieldTypeNode) {
-        //TODO:KMD Just for now
-        return null;
-    }
-
-
-    private FieldTypeNode transformNonArrayFieldTypeNode(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.fieldtypenodes.NonArrayFieldTypeNode fieldTypeNode) {
-        return switch (fieldTypeNode) {
-            case com.kdsc.protogen.parsetree.fieldtypenodes.Int32FieldTypeNode int32FieldType -> new Int32FieldTypeNode();
-            default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
-        };
     }
 
     private FileNode transformKeyNode(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.ProtoGenKeyNode keyNode) {
