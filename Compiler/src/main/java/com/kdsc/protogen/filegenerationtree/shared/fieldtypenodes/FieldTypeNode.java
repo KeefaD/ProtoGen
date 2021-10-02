@@ -22,4 +22,5 @@ public abstract class FieldTypeNode extends BaseNode {
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
+
 }

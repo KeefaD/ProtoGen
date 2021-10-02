@@ -1,8 +1,8 @@
 package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
-public class Int32FieldTypeNode extends FieldTypeNode {
+public class DoubleFieldTypeNode extends FieldTypeNode {
 
-    public Int32FieldTypeNode(
+    public DoubleFieldTypeNode(
         final boolean isOptional
     ) {
         super(isOptional);
@@ -11,7 +11,7 @@ public class Int32FieldTypeNode extends FieldTypeNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//Int32FieldTypeNode\n");
+        stringBuilder.append("//DoubleFieldTypeNode\n");
         stringBuilder.append(super.toFormattedString(1));
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);

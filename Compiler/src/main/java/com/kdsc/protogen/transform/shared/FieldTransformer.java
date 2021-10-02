@@ -1,9 +1,7 @@
 package com.kdsc.protogen.transform.shared;
 
 import com.kdsc.protogen.filegenerationtree.shared.FieldNode;
-import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.FieldTypeNode;
-import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.Int32FieldTypeNode;
-import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.Int64FieldTypeNode;
+import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.*;
 import com.kdsc.protogen.transform.TransformerContext;
 import com.kdsc.protogen.transform.java.FileContext;
 
@@ -52,6 +50,8 @@ public class FieldTransformer {
             fileContext.addImport("java.util.Optional");
         }
         return switch (fieldTypeNode) {
+            case com.kdsc.protogen.parsetree.fieldtypenodes.DoubleFieldTypeNode ignored -> new DoubleFieldTypeNode(isOptional);
+            case com.kdsc.protogen.parsetree.fieldtypenodes.FloatFieldTypeNode ignored -> new FloatFieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetree.fieldtypenodes.Int32FieldTypeNode ignored -> new Int32FieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetree.fieldtypenodes.Int64FieldTypeNode ignored -> new Int64FieldTypeNode(isOptional);
             default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);

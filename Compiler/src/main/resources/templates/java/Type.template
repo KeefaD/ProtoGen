@@ -6,4 +6,5 @@ public class [TYPE_NAME] {
 [PRIVATE_FIELDS]
 [CONSTRUCTOR]
 [GETTERS]
+[TO_STRING]
 }

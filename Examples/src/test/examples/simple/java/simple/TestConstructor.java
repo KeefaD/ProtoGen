@@ -9,9 +9,13 @@ public class TestConstructor {
 
     @Test
     public void testConstructor() {
-        var type = new Type(
+        new Type(
+            1d,
+            1f,
             0,
             1,
+            Optional.of(1d),
+            Optional.of(1f),
             Optional.of(1),
             Optional.of(1L)
         );

@@ -1,8 +1,12 @@
 syntax = "proto3";
 
 message Type {
-	int32 TestInt32 = 1;
-	int64 TestInt64 = 2;
-	int32 TestOptionalInt32 = 3;
-	int64 TestOptionalInt64 = 4;
+	double TestDouble = 1;
+	float TestFloat = 2;
+	int32 TestInt32 = 3;
+	int64 TestInt64 = 4;
+	double TestOptionalDouble = 5;
+	float TestOptionalFloat = 6;
+	int32 TestOptionalInt32 = 7;
+	int64 TestOptionalInt64 = 8;
 }

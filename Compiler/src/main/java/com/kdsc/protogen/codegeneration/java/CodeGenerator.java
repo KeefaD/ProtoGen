@@ -7,9 +7,7 @@ import com.kdsc.protogen.filegenerationtree.java.ClassFileNode;
 import com.kdsc.protogen.filegenerationtree.java.EnumCaseNode;
 import com.kdsc.protogen.filegenerationtree.java.EnumFileNode;
 import com.kdsc.protogen.filegenerationtree.java.JavaFileNode;
-import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.FieldTypeNode;
-import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.Int32FieldTypeNode;
-import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.Int64FieldTypeNode;
+import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.*;
 
 import java.util.List;
 import java.util.Set;
@@ -56,6 +54,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
         output = CodeGenerateUtils.replaceAndCollapse(output, "[PRIVATE_FIELDS]", generatePrivateFields(codeGeneratorContext, classFileNode));
         output = CodeGenerateUtils.replaceAndCollapse(output, "[CONSTRUCTOR]", generateConstructor(codeGeneratorContext, classFileNode));
         output = CodeGenerateUtils.replaceAndCollapse(output, "[GETTERS]", generateGetters(codeGeneratorContext, classFileNode));
+        output = CodeGenerateUtils.replaceAndCollapse(output, "[TO_STRING]", generateToString(codeGeneratorContext, classFileNode));
         CodeGenerateUtils.writeStringToPath(codeGeneratorContext.getJavaOutputDirectory() + classFileNode.getPathAndFileName(), output);
     }
 
@@ -133,15 +132,44 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
         return stringBuilder.toString();
     }
 
+    private String generateToString(final CodeGeneratorContext codeGeneratorContext, final ClassFileNode classFileNode) {
+
+        var stringBuilder = new StringBuilder();
+        stringBuilder.append("\t@Override\n");
+        stringBuilder.append("\tpublic String toString() {\n");
+        stringBuilder.append("\t\treturn toFormattedString(0);\n");
+        stringBuilder.append("\t}\n");
+        stringBuilder.append("\n");
+        stringBuilder.append("\tpublic String toFormattedString(final int indentationLevel) {\n");
+        stringBuilder.append("\t\tvar stringBuilder = new StringBuilder();\n");
+        classFileNode
+            .getFieldNodes()
+            .forEach(
+                fn -> {
+                }
+            );
+        //TODO:KMD I think we need a utility method here
+        stringBuilder.append("\t\tstringBuilder.append(\"//" + classFileNode.getPackageName() + "." + classFileNode.getName() + "\\n\");\n");
+        //TODO:KMD Hard coded 4 here, move to interface
+        stringBuilder.append("\t\treturn stringBuilder.toString().indent(indentationLevel * 4);\n");
+        stringBuilder.append("\t}\n");
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
+
     private String generateFieldType(final CodeGeneratorContext codeGeneratorContext, final FieldTypeNode fieldTypeNode) {
         if(fieldTypeNode.isOptional()) {
             return switch (fieldTypeNode) {
+                case DoubleFieldTypeNode ignored -> "Optional<Double>";
+                case FloatFieldTypeNode ignored -> "Optional<Float>";
                 case Int32FieldTypeNode ignored -> "Optional<Integer>";
                 case Int64FieldTypeNode ignored -> "Optional<Long>";
                 default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
             };
         } else {
             return switch (fieldTypeNode) {
+                case DoubleFieldTypeNode ignored -> "double";
+                case FloatFieldTypeNode ignored -> "float";
                 case Int32FieldTypeNode ignored -> "int";
                 case Int64FieldTypeNode ignored -> "long";
                 default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);

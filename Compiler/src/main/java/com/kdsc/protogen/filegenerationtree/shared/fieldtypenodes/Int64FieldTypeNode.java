@@ -16,4 +16,5 @@ public class Int64FieldTypeNode extends FieldTypeNode {
         var outputString = stringBuilder.toString();
         return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
+
 }

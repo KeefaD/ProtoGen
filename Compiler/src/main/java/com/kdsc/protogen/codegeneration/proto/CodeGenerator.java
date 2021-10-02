@@ -8,9 +8,7 @@ import com.kdsc.protogen.filegenerationtree.proto.EnumFileNode;
 import com.kdsc.protogen.filegenerationtree.proto.MessageFileNode;
 import com.kdsc.protogen.filegenerationtree.proto.ProtoFileNode;
 import com.kdsc.protogen.filegenerationtree.shared.FieldNode;
-import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.FieldTypeNode;
-import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.Int32FieldTypeNode;
-import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.Int64FieldTypeNode;
+import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.*;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -73,6 +71,8 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
     //TODO:KMD Obviously we are ignoring optional here
     private String generateFieldType(final CodeGeneratorContext codeGeneratorContext, final FieldTypeNode fieldTypeNode) {
         return switch (fieldTypeNode) {
+            case DoubleFieldTypeNode ignored -> "double";
+            case FloatFieldTypeNode ignored -> "float";
             case Int32FieldTypeNode ignored -> "int32";
             case Int64FieldTypeNode ignored -> "int64";
             default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
