@@ -1,8 +1,9 @@
 package simple;
 
+import com.kdsc.protogen.runtime.ProtoGenType;
 import java.util.Optional;
 
-public class Type {
+public class Type implements ProtoGenType {
 
 	private double TestDouble;
 	private float TestFloat;
@@ -101,7 +102,7 @@ public class Type {
 	public String toFormattedString(final int indentationLevel) {
 		var stringBuilder = new StringBuilder();
 		stringBuilder.append("//simple.Type\n");
-		return stringBuilder.toString().indent(indentationLevel * 4);
+		return stringBuilder.toString().indent(indentationLevel * TO_STRING_INDENTATION_LEVEL);
 	}
 
 }

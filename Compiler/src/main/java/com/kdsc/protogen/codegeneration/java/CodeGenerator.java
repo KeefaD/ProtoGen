@@ -150,8 +150,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
             );
         //TODO:KMD I think we need a utility method here
         stringBuilder.append("\t\tstringBuilder.append(\"//" + classFileNode.getPackageName() + "." + classFileNode.getName() + "\\n\");\n");
-        //TODO:KMD Hard coded 4 here, move to interface
-        stringBuilder.append("\t\treturn stringBuilder.toString().indent(indentationLevel * 4);\n");
+        stringBuilder.append("\t\treturn stringBuilder.toString().indent(indentationLevel * TO_STRING_INDENTATION_LEVEL);\n");
         stringBuilder.append("\t}\n");
         stringBuilder.append("\n");
         return stringBuilder.toString();

@@ -2,7 +2,7 @@ package [PACKAGE_NAME];
 
 [IMPORTS]
 
-public class [TYPE_NAME] {
+public class [TYPE_NAME] implements ProtoGenType {
 [PRIVATE_FIELDS]
 [CONSTRUCTOR]
 [GETTERS]
