@@ -1,36 +1,36 @@
-key com.kdsc.protogen.examples.simple.Key<T> {
-//    testDouble : double
-//    testFloat : float
-    testInt32 : int32
-    testInt64 : int64
-    testBool : bool
-    testString : string
-    testBytes : bytes
-    testDecimal : decimal
-    testDate : date
-    testDatetime : datetime
-    testLocaldatetime : localdatetime
-    testMap : map<string, string>
-    testSet : set<string>
-//    testValueorerror : valueorerror<decimal>
-    testObject : com.kdsc.protogen.examples.simple.Type
-    testGenericType : T //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
-    testArray : string[]
-//    testOptionalDouble : optional double
-//    testOptionalFloat : optional float
-    testOptionalInt32 : optional int32
-    testOptionalInt64 : optional int64
-    testOptionalBool : optional bool
-    testOptionalString : optional string
-    testOptionalBytes : optional bytes
-    testOptionalDecimal : optional decimal
-    testOptionalDate : optional date
-    testOptionalDatetime : optional datetime
-    testOptionalLocaldatetime : optional localdatetime
-    testOptionalMap : optional map<string, string>
-    testOptionalSet : optional set<string>
-//    testOptionalValueorerror : optional valueorerror<decimal>
-    testOptionalObject : optional com.kdsc.protogen.examples.simple.Type
-    testOptionalGenericType : optional T //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
-    testOptionalArray : optional string[]
-}
+//key com.kdsc.protogen.examples.simple.Key<T> {
+////    testDouble : double
+////    testFloat : float
+//    testInt32 : int32
+//    testInt64 : int64
+//    testBool : bool
+//    testString : string
+//    testBytes : bytes
+//    testDecimal : decimal
+//    testDate : date
+//    testDatetime : datetime
+//    testLocaldatetime : localdatetime
+//    testMap : map<string, string>
+//    testSet : set<string>
+////    testValueorerror : valueorerror<decimal>
+//    testObject : com.kdsc.protogen.examples.simple.Type
+//    testGenericType : T //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
+//    testArray : string[]
+////    testOptionalDouble : optional double
+////    testOptionalFloat : optional float
+//    testOptionalInt32 : optional int32
+//    testOptionalInt64 : optional int64
+//    testOptionalBool : optional bool
+//    testOptionalString : optional string
+//    testOptionalBytes : optional bytes
+//    testOptionalDecimal : optional decimal
+//    testOptionalDate : optional date
+//    testOptionalDatetime : optional datetime
+//    testOptionalLocaldatetime : optional localdatetime
+//    testOptionalMap : optional map<string, string>
+//    testOptionalSet : optional set<string>
+////    testOptionalValueorerror : optional valueorerror<decimal>
+//    testOptionalObject : optional com.kdsc.protogen.examples.simple.Type
+//    testOptionalGenericType : optional T //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
+//    testOptionalArray : optional string[]
+//}

@@ -1,5 +1,6 @@
 syntax = "proto3";
 
 enum Enum {
-[ENUM_CASES]
+	enumCase1 = 0;
+	enumCase2 = 1;
 }

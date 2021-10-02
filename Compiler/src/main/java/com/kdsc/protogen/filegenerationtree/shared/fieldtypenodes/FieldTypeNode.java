@@ -1,4 +1,4 @@
-package com.kdsc.protogen.filegenerationtree.shared;
+package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
 import com.kdsc.protogen.filegenerationtree.BaseNode;
 

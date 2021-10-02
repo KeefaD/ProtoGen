@@ -18,6 +18,13 @@ import java.util.stream.Collectors;
 
 //TODO:KMD Test running Gradle on the command line to build everything
 //TODO:KMD I think you can end up with optional optional as a field type optional T where T is optional, close this down
+//TODO:KMD We need to see if we can categorise the unit tests and make them show up in those categories in the unit test results
+//TODO:KMD We need to run protobuf on the examples
+//TODO:KMD Starting to not put unit tests everywhere for every class, you should do it even if they are empty to fill them out later
+//TODO:KMD How are we going to represent versions in Proto
+//TODO:KMD We need to do proto name escaping
+//TODO:KMD We need to to do name escaping in general or prevent keywords, need to make up your mind soon, keywords is going to be annoying once you add more languages, as long as the types come out with the right name it is ok
+//TODO:KMD Have a proper look at the parse tree and decide what to do about optionals and lists before it is too late
 public class ProtoGen {
 
     public static final char OPTION_MARKER = '-';

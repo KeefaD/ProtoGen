@@ -1,0 +1,6 @@
+syntax = "proto3";
+
+message Type {
+	int32 testInt32 = 1;
+	int32 testOptionalInt32 = 2;
+}

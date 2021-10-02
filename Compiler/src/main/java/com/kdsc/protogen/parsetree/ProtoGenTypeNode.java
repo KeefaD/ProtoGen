@@ -71,6 +71,7 @@ public class ProtoGenTypeNode extends BaseNode implements TopLevelObject, HasNam
         stringBuilder.append("//ProtoGenTypeNode\n");
         stringBuilder.append(oneIndent() + "IsInterface : " + isInterface + "\n");
         stringBuilder.append(namespaceNameGenericParametersWithBoundsNode.toFormattedString(1));
+        //TODO:KMD these lambda parameter names are inconsistent with everything else
         implementsListNode.ifPresent(listNode -> stringBuilder.append(listNode.toFormattedString(1)));
         versionsNode.ifPresent(versionsNode -> stringBuilder.append(versionsNode.toFormattedString(1)));
         fieldsNode.ifPresent(fieldsNode -> stringBuilder.append(fieldsNode.toFormattedString(1)));

@@ -37,4 +37,13 @@ public class FileUtils {
         }
     }
 
+    public static void makeDirectory(String pathToDirectory) {
+        var path = Paths.get(pathToDirectory);
+        var file = path.toFile();
+        if(file.exists()) {
+            throw new RuntimeException("Directory already exists " + pathToDirectory);
+        }
+        file.mkdirs();
+    }
+
 }
