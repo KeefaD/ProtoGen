@@ -75,6 +75,8 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
             case FloatFieldTypeNode ignored -> "float";
             case Int32FieldTypeNode ignored -> "int32";
             case Int64FieldTypeNode ignored -> "int64";
+            case BoolFieldTypeNode ignored -> "bool";
+            case StringFieldTypeNode ignored -> "string";
             default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
         };
     }

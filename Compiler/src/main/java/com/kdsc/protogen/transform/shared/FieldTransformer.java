@@ -54,6 +54,8 @@ public class FieldTransformer {
             case com.kdsc.protogen.parsetree.fieldtypenodes.FloatFieldTypeNode ignored -> new FloatFieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetree.fieldtypenodes.Int32FieldTypeNode ignored -> new Int32FieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetree.fieldtypenodes.Int64FieldTypeNode ignored -> new Int64FieldTypeNode(isOptional);
+            case com.kdsc.protogen.parsetree.fieldtypenodes.BoolFieldTypeNode ignored -> new BoolFieldTypeNode(isOptional);
+            case com.kdsc.protogen.parsetree.fieldtypenodes.StringFieldTypeNode ignored -> new StringFieldTypeNode(isOptional);
             default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
         };
     }

@@ -8,29 +8,41 @@ public class Type {
 	private float TestFloat;
 	private int TestInt32;
 	private long TestInt64;
+	private boolean TestBool;
+	private String TestString;
 	private Optional<Double> TestOptionalDouble;
 	private Optional<Float> TestOptionalFloat;
 	private Optional<Integer> TestOptionalInt32;
 	private Optional<Long> TestOptionalInt64;
+	private Optional<Boolean> TestOptionalBool;
+	private Optional<String> TestOptionalString;
 
 	public Type(
 		double TestDouble,
 		float TestFloat,
 		int TestInt32,
 		long TestInt64,
+		boolean TestBool,
+		String TestString,
 		Optional<Double> TestOptionalDouble,
 		Optional<Float> TestOptionalFloat,
 		Optional<Integer> TestOptionalInt32,
-		Optional<Long> TestOptionalInt64
+		Optional<Long> TestOptionalInt64,
+		Optional<Boolean> TestOptionalBool,
+		Optional<String> TestOptionalString
 	) {
 		this.TestDouble = TestDouble;
 		this.TestFloat = TestFloat;
 		this.TestInt32 = TestInt32;
 		this.TestInt64 = TestInt64;
+		this.TestBool = TestBool;
+		this.TestString = TestString;
 		this.TestOptionalDouble = TestOptionalDouble;
 		this.TestOptionalFloat = TestOptionalFloat;
 		this.TestOptionalInt32 = TestOptionalInt32;
 		this.TestOptionalInt64 = TestOptionalInt64;
+		this.TestOptionalBool = TestOptionalBool;
+		this.TestOptionalString = TestOptionalString;
 	}
 
 	public double getTestDouble() {
@@ -49,6 +61,14 @@ public class Type {
 		return TestInt64;
 	}
 
+	public boolean getTestBool() {
+		return TestBool;
+	}
+
+	public String getTestString() {
+		return TestString;
+	}
+
 	public Optional<Double> getTestOptionalDouble() {
 		return TestOptionalDouble;
 	}
@@ -63,6 +83,14 @@ public class Type {
 
 	public Optional<Long> getTestOptionalInt64() {
 		return TestOptionalInt64;
+	}
+
+	public Optional<Boolean> getTestOptionalBool() {
+		return TestOptionalBool;
+	}
+
+	public Optional<String> getTestOptionalString() {
+		return TestOptionalString;
 	}
 
 	@Override

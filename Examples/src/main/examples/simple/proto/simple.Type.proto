@@ -5,8 +5,12 @@ message Type {
 	float TestFloat = 2;
 	int32 TestInt32 = 3;
 	int64 TestInt64 = 4;
-	double TestOptionalDouble = 5;
-	float TestOptionalFloat = 6;
-	int32 TestOptionalInt32 = 7;
-	int64 TestOptionalInt64 = 8;
+	bool TestBool = 5;
+	string TestString = 6;
+	double TestOptionalDouble = 7;
+	float TestOptionalFloat = 8;
+	int32 TestOptionalInt32 = 9;
+	int64 TestOptionalInt64 = 10;
+	bool TestOptionalBool = 11;
+	string TestOptionalString = 12;
 }

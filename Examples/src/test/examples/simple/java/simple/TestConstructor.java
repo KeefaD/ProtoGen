@@ -14,10 +14,14 @@ public class TestConstructor {
             1f,
             0,
             1,
+            false,
+            "Test",
             Optional.of(1d),
             Optional.of(1f),
             Optional.of(1),
-            Optional.of(1L)
+            Optional.of(1L),
+            Optional.of(false),
+            Optional.of("Test")
         );
     }
 

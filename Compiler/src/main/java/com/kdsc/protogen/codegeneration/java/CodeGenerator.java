@@ -164,6 +164,8 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                 case FloatFieldTypeNode ignored -> "Optional<Float>";
                 case Int32FieldTypeNode ignored -> "Optional<Integer>";
                 case Int64FieldTypeNode ignored -> "Optional<Long>";
+                case BoolFieldTypeNode ignored -> "Optional<Boolean>";
+                case StringFieldTypeNode ignored -> "Optional<String>";
                 default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
             };
         } else {
@@ -172,6 +174,8 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                 case FloatFieldTypeNode ignored -> "float";
                 case Int32FieldTypeNode ignored -> "int";
                 case Int64FieldTypeNode ignored -> "long";
+                case BoolFieldTypeNode ignored -> "boolean";
+                case StringFieldTypeNode ignored -> "String";
                 default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
             };
         }

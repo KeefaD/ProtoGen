@@ -3,8 +3,8 @@ type simple.Type<T> {
     TestFloat : float
     TestInt32 : int32
     TestInt64 : int64
-//    TestBool : bool
-//    TestString : string
+    TestBool : bool
+    TestString : string
 //    TestBytes : bytes
 //    TestDecimal : decimal
 //    TestDate : date
@@ -20,8 +20,8 @@ type simple.Type<T> {
     TestOptionalFloat : optional float
     TestOptionalInt32 : optional int32
     TestOptionalInt64 : optional int64
-//    TestOptionalBool : optional bool
-//    TestOptionalString : optional string
+    TestOptionalBool : optional bool
+    TestOptionalString : optional string
 //    TestOptionalBytes : optional bytes
 //    TestOptionalDecimal : optional decimal
 //    TestOptionalDate : optional date
