@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+[PACKAGE]
+
 [IMPORTS]
 
 message [MESSAGE_NAME] {

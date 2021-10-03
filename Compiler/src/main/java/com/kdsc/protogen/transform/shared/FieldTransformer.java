@@ -2,8 +2,9 @@ package com.kdsc.protogen.transform.shared;
 
 import com.kdsc.protogen.filegenerationtree.shared.FieldNode;
 import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.*;
+import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
 import com.kdsc.protogen.transform.TransformerContext;
-import com.kdsc.protogen.transform.java.FileContext;
+import com.kdsc.protogen.transform.FileContext;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,7 +48,10 @@ public class FieldTransformer {
     //TODO:KMD This is optional is a hack
     private FieldTypeNode transformNonArrayFieldTypeNode(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.fieldtypenodes.NonArrayFieldTypeNode fieldTypeNode, final boolean isOptional) {
         if(isOptional) {
-            fileContext.addImport("java.util.Optional");
+            fileContext.addJavaImport("java.util.Optional");
+        }
+        if(fieldTypeNode instanceof com.kdsc.protogen.parsetree.fieldtypenodes.TypeFieldTypeNode typeFieldTypeNode) {
+            fileContext.addProtoImport(ParseTreeUtils.getNamespaceNameString(typeFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()));
         }
         return switch (fieldTypeNode) {
             case com.kdsc.protogen.parsetree.fieldtypenodes.DoubleFieldTypeNode ignored -> new DoubleFieldTypeNode(isOptional);
@@ -56,6 +60,11 @@ public class FieldTransformer {
             case com.kdsc.protogen.parsetree.fieldtypenodes.Int64FieldTypeNode ignored -> new Int64FieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetree.fieldtypenodes.BoolFieldTypeNode ignored -> new BoolFieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetree.fieldtypenodes.StringFieldTypeNode ignored -> new StringFieldTypeNode(isOptional);
+            case com.kdsc.protogen.parsetree.fieldtypenodes.TypeFieldTypeNode typeFieldTypeNode -> new TypeFieldTypeNode(
+                isOptional,
+                ParseTreeUtils.getNamespaceString(typeFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()), //TODO:KMD Perhaps add some helper methods here on the has namespace name interface
+                typeFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode().getNameNode().getName()
+            );
             default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
         };
     }

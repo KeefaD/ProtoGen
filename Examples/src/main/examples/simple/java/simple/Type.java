@@ -11,12 +11,14 @@ public class Type implements ProtoGenType {
 	private long TestInt64;
 	private boolean TestBool;
 	private String TestString;
+	private simple.InnerType TestType;
 	private Optional<Double> TestOptionalDouble;
 	private Optional<Float> TestOptionalFloat;
 	private Optional<Integer> TestOptionalInt32;
 	private Optional<Long> TestOptionalInt64;
 	private Optional<Boolean> TestOptionalBool;
 	private Optional<String> TestOptionalString;
+	private Optional<simple.InnerType> TestOptionalType;
 
 	public Type(
 		double TestDouble,
@@ -25,12 +27,14 @@ public class Type implements ProtoGenType {
 		long TestInt64,
 		boolean TestBool,
 		String TestString,
+		simple.InnerType TestType,
 		Optional<Double> TestOptionalDouble,
 		Optional<Float> TestOptionalFloat,
 		Optional<Integer> TestOptionalInt32,
 		Optional<Long> TestOptionalInt64,
 		Optional<Boolean> TestOptionalBool,
-		Optional<String> TestOptionalString
+		Optional<String> TestOptionalString,
+		Optional<simple.InnerType> TestOptionalType
 	) {
 		this.TestDouble = TestDouble;
 		this.TestFloat = TestFloat;
@@ -38,12 +42,14 @@ public class Type implements ProtoGenType {
 		this.TestInt64 = TestInt64;
 		this.TestBool = TestBool;
 		this.TestString = TestString;
+		this.TestType = TestType;
 		this.TestOptionalDouble = TestOptionalDouble;
 		this.TestOptionalFloat = TestOptionalFloat;
 		this.TestOptionalInt32 = TestOptionalInt32;
 		this.TestOptionalInt64 = TestOptionalInt64;
 		this.TestOptionalBool = TestOptionalBool;
 		this.TestOptionalString = TestOptionalString;
+		this.TestOptionalType = TestOptionalType;
 	}
 
 	public double getTestDouble() {
@@ -70,6 +76,10 @@ public class Type implements ProtoGenType {
 		return TestString;
 	}
 
+	public simple.InnerType getTestType() {
+		return TestType;
+	}
+
 	public Optional<Double> getTestOptionalDouble() {
 		return TestOptionalDouble;
 	}
@@ -92,6 +102,10 @@ public class Type implements ProtoGenType {
 
 	public Optional<String> getTestOptionalString() {
 		return TestOptionalString;
+	}
+
+	public Optional<simple.InnerType> getTestOptionalType() {
+		return TestOptionalType;
 	}
 
 	@Override

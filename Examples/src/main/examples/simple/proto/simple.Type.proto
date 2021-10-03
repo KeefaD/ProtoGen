@@ -1,5 +1,9 @@
 syntax = "proto3";
 
+package simple;
+
+import "simple.InnerType.proto";
+
 message Type {
 	double TestDouble = 1;
 	float TestFloat = 2;
@@ -7,10 +11,12 @@ message Type {
 	int64 TestInt64 = 4;
 	bool TestBool = 5;
 	string TestString = 6;
-	double TestOptionalDouble = 7;
-	float TestOptionalFloat = 8;
-	int32 TestOptionalInt32 = 9;
-	int64 TestOptionalInt64 = 10;
-	bool TestOptionalBool = 11;
-	string TestOptionalString = 12;
+	simple.InnerType TestType = 7;
+	double TestOptionalDouble = 8;
+	float TestOptionalFloat = 9;
+	int32 TestOptionalInt32 = 10;
+	int64 TestOptionalInt64 = 11;
+	bool TestOptionalBool = 12;
+	string TestOptionalString = 13;
+	simple.InnerType TestOptionalType = 14;
 }

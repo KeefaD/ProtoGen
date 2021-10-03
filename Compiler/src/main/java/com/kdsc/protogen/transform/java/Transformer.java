@@ -8,14 +8,15 @@ import com.kdsc.protogen.parsetree.EnumCasesNode;
 import com.kdsc.protogen.parsetree.EnumNameNode;
 import com.kdsc.protogen.parsetree.ProtoGenEnumNode;
 import com.kdsc.protogen.parsetree.ProtoGenTypeNode;
+import com.kdsc.protogen.transform.FileContext;
 import com.kdsc.protogen.transform.TransformerContext;
 import com.kdsc.protogen.transform.shared.FieldTransformer;
 import com.kdsc.protogen.transform.utils.TransformUtils;
+import com.kdsc.protogen.utils.Streams;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 //TODO:KMD This is a total mess at the moment
 public class Transformer implements com.kdsc.protogen.transform.Transformer {
@@ -29,7 +30,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
     }
 
     private List<FileNode> transformFileNode(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.FileNode fileNode) {
-        return Stream.concat(
+        return Streams.concat(
             fileNode
                 .getProtoGenEnumNodes()
                 .stream()
@@ -65,7 +66,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
         var fileContext = new FileContext();
 
         //TODO:KMD Obviously we need to do this all nicely
-        fileContext.addImport("com.kdsc.protogen.runtime.ProtoGenType");
+        fileContext.addJavaImport("com.kdsc.protogen.runtime.ProtoGenType");
 
         var fieldTransformer = new FieldTransformer();
 
@@ -77,7 +78,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
                 TransformUtils.convertNamespaceNameNodeToPath(typeNode.getNamespaceNameNode()),
                 TransformUtils.convertNamespaceNameNodeToNamespace(typeNode.getNamespaceNameNode()),
                 typeNode.getNamespaceNameNode().getNameNode().getName(),
-                fileContext.getImportStatements(),
+                fileContext.getJavaImportStatements(),
                 fieldNodes
             );
         }

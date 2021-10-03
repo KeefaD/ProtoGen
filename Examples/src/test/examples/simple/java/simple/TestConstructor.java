@@ -16,12 +16,14 @@ public class TestConstructor {
             1,
             false,
             "Test",
+            new InnerType(1f),
             Optional.of(1d),
             Optional.of(1f),
             Optional.of(1),
             Optional.of(1L),
             Optional.of(false),
-            Optional.of("Test")
+            Optional.of("Test"),
+            Optional.of(new InnerType(1f))
         );
     }
 

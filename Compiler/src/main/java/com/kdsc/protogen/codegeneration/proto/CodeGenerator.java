@@ -11,6 +11,7 @@ import com.kdsc.protogen.filegenerationtree.shared.FieldNode;
 import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.*;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 //TODO:KMD This is a total mess at the moment
@@ -38,6 +39,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
     private void generateEnumNode(final CodeGeneratorContext codeGeneratorContext, final EnumFileNode enumFileNode) {
         System.out.println("Writing " + codeGeneratorContext.getProtoOutputDirectory() + enumFileNode.getPathAndFileName());
         var output = CodeGenerateUtils.readTemplateFromClasspath(ENUM_TEMPLATE_CLASSPATH);
+        output = CodeGenerateUtils.replaceAndCollapse(output, "[PACKAGE]", "package " + enumFileNode.getPackageName() + ";\n");
         output = CodeGenerateUtils.replace(output, "[ENUM_NAME]", enumFileNode.getEnumName());
         output = CodeGenerateUtils.replaceAndCollapse(output, "[ENUM_CASES]", generateEnumCases(codeGeneratorContext, enumFileNode.getEnumCaseNodes()));
         CodeGenerateUtils.writeStringToPath(codeGeneratorContext.getProtoOutputDirectory() + enumFileNode.getPathAndFileName(), output);
@@ -46,10 +48,24 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
     private void generateTypeNode(final CodeGeneratorContext codeGeneratorContext, final MessageFileNode messageFileNode) {
         System.out.println("Writing " + codeGeneratorContext.getProtoOutputDirectory() + messageFileNode.getPathAndFileName());
         var output = CodeGenerateUtils.readTemplateFromClasspath(MESSAGE_TEMPLATE_CLASSPATH);
-        output = CodeGenerateUtils.replaceAndCollapseTwo(output, "[IMPORTS]", "");
+        output = CodeGenerateUtils.replaceAndCollapse(output, "[PACKAGE]", "package " + messageFileNode.getPackageName() + ";\n");
+        output = CodeGenerateUtils.replaceAndCollapseTwo(output, "[IMPORTS]", generateImportStatements(codeGeneratorContext, messageFileNode.getImportStatements()));
         output = CodeGenerateUtils.replace(output, "[MESSAGE_NAME]", messageFileNode.getName());
         output = CodeGenerateUtils.replaceAndCollapse(output, "[FIELDS]", generateFields(codeGeneratorContext, messageFileNode.getFieldNodes()));
         CodeGenerateUtils.writeStringToPath(codeGeneratorContext.getProtoOutputDirectory() + messageFileNode.getPathAndFileName(), output);
+    }
+
+    private String generateImportStatements(final CodeGeneratorContext codeGeneratorContext, final Set<String> importStatements) {
+        var stringBuilder = new StringBuilder();
+        importStatements
+            .forEach(
+                //TODO:KMD This .proto in here is wrong
+                is -> stringBuilder.append("import \"" + is + ".proto\";\n")
+            );
+        if(importStatements.size() > 0) {
+            stringBuilder.append("\n");
+        }
+        return stringBuilder.toString();
     }
 
     private String generateEnumCases(final CodeGeneratorContext codeGeneratorContext, final List<EnumCaseNode> enumCaseNodes) {
@@ -77,6 +93,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
             case Int64FieldTypeNode ignored -> "int64";
             case BoolFieldTypeNode ignored -> "bool";
             case StringFieldTypeNode ignored -> "string";
+            case TypeFieldTypeNode typeFieldTypeNode -> typeFieldTypeNode.getFullyQualifiedName();
             default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
         };
     }

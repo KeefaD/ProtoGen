@@ -1,5 +1,7 @@
 syntax = "proto3";
 
+[PACKAGE]
+
 enum [ENUM_NAME] {
 [ENUM_CASES]
 }

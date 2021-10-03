@@ -165,6 +165,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                 case Int64FieldTypeNode ignored -> "Optional<Long>";
                 case BoolFieldTypeNode ignored -> "Optional<Boolean>";
                 case StringFieldTypeNode ignored -> "Optional<String>";
+                case TypeFieldTypeNode typeFieldTypeNode -> "Optional<" + typeFieldTypeNode.getFullyQualifiedName() + ">";
                 default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
             };
         } else {
@@ -175,6 +176,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                 case Int64FieldTypeNode ignored -> "long";
                 case BoolFieldTypeNode ignored -> "boolean";
                 case StringFieldTypeNode ignored -> "String";
+                case TypeFieldTypeNode typeFieldTypeNode -> typeFieldTypeNode.getFullyQualifiedName();
                 default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
             };
         }
