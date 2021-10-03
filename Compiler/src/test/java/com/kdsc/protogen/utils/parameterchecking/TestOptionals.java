@@ -38,4 +38,5 @@ public class TestOptionals extends BaseTestNode {
     public void TestRequireOneHappyPathThree() {
         Optionals.requireOne(Optional.of(1), Optional.empty(), Optional.empty());
     }
+
 }

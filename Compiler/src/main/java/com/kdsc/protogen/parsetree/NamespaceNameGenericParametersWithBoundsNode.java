@@ -3,7 +3,7 @@ package com.kdsc.protogen.parsetree;
 import java.util.Objects;
 import java.util.Optional;
 
-public class NamespaceNameGenericParametersWithBoundsNode extends BaseNode {
+public class NamespaceNameGenericParametersWithBoundsNode extends BaseParseTreeNode {
 
     private final NamespaceNameNode namespaceNameNode;
     private final Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode;
@@ -33,11 +33,11 @@ public class NamespaceNameGenericParametersWithBoundsNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//NamespaceNameGenericParametersWithBoundsNode\n");
-        stringBuilder.append(namespaceNameNode.toFormattedString(1));
-        genericParametersWithBoundsNode.ifPresent(parametersWithBoundsNode -> stringBuilder.append(parametersWithBoundsNode.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, NamespaceNameGenericParametersWithBoundsNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, namespaceNameNode);
+        fieldToFormattedStringField(stringBuilder, genericParametersWithBoundsNode);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

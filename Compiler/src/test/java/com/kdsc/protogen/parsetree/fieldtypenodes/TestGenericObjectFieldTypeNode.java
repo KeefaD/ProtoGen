@@ -49,21 +49,27 @@ public class TestGenericObjectFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testToString() {
-        var node = new ObjectFieldTypeNode(
+        var node = new GenericObjectFieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            TestNamespaceNameGenericParametersNode.createTestNode()
+            TestGenericParameterNode.createTestNode()
         );
         var expectedToStringOutput = """
-        //ObjectFieldTypeNode
-            //NamespaceNameGenericParametersNode
-                //NamespaceNameNode
-                    //NamespaceNode
-                        Namespace : Namespace
-                    //NameNode
-                        Name : Name
+        //GenericObjectFieldTypeNode
+            //Super -> //NonArrayFieldTypeNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
+            //GenericParameterNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
+                Identifier : T
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
+
 }

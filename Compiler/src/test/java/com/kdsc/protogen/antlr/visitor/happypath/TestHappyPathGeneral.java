@@ -70,4 +70,5 @@ public class TestHappyPathGeneral extends BaseCompilerTest {
         """;
         runCompilerToParserCheckNoErrors(testProgram);
     }
+
 }

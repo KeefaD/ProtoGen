@@ -37,5 +37,4 @@ public class TestStrings extends BaseTestNode {
         Strings.requireNonBlank("String");
     }
 
-
 }

@@ -3,8 +3,6 @@ package com.kdsc.protogen.antlr;
 import com.kdsc.protogen.utils.parameterchecking.Numbers;
 import com.kdsc.protogen.utils.parameterchecking.Strings;
 
-import java.util.Objects;
-
 public record ParserError(
     String sourceFileName,
     long line,

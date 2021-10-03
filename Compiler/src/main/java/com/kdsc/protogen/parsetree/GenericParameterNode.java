@@ -4,7 +4,7 @@ import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
 
-public class GenericParameterNode extends BaseNode {
+public class GenericParameterNode extends BaseParseTreeNode {
 
     private final String identifier;
 
@@ -27,10 +27,10 @@ public class GenericParameterNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//GenericParameterNode\n");
-        stringBuilder.append(oneIndent() + "Identifier : " + identifier + "\n");
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, GenericParameterNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, "Identifier", identifier);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

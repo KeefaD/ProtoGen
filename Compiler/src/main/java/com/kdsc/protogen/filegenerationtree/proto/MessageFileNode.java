@@ -33,12 +33,11 @@ public class MessageFileNode extends ProtoFileNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//MessageFileNode\n");
-        stringBuilder.append(super.toFormattedString(1));
-        stringBuilder.append(oneIndent() + "Name : " + name + "\n");
-        fieldNodes.forEach(fn -> stringBuilder.append(fn.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, MessageFileNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, "Name", name);
+        fieldToFormattedStringField(stringBuilder, fieldNodes);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

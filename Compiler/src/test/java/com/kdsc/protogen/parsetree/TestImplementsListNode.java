@@ -56,7 +56,12 @@ public class TestImplementsListNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //ImplementsListNode
+            //Super -> //BaseParseTreeNode
+                SourceFileName : TestFileName.pg
+                Line : 1
+                CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
+
 }

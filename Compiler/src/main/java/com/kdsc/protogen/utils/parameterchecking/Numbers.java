@@ -13,4 +13,5 @@ public class Numbers {
             throw new IllegalArgumentException("Require number to be one or greater");
         }
     }
+
 }

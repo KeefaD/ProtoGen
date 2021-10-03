@@ -11,10 +11,9 @@ public class DoubleFieldTypeNode extends FieldTypeNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//DoubleFieldTypeNode\n");
-        stringBuilder.append(super.toFormattedString(1));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, DoubleFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

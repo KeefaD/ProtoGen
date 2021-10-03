@@ -30,14 +30,11 @@ public class EnumFileNode extends ProtoFileNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//EnumFileNode\n");
-        //TODO:KMD Should probably print super in the output
-        stringBuilder.append(super.toFormattedString(1));
-        //TODO:KMD These \n's should be everywhere, in fact we should factor out this to a util method or put it in the base class
-        stringBuilder.append(oneIndent() + "Name : " + enumName + "\n");
-        enumCaseNodes.forEach(ecn -> stringBuilder.append(ecn.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, EnumFileNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, "Name", enumName);
+        fieldToFormattedStringField(stringBuilder, enumCaseNodes);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

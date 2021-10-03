@@ -84,7 +84,7 @@ public class SemanticAnalyser {
             .forEach(
                 tln -> {
                     var namespaceNameAsString = ParseTreeUtils.getNamespaceNameString(tln.getNamespaceNameNode());
-                    if(topLevelObjectNamespaceNamesAsString.contains(namespaceNameAsString)) {
+                    if (topLevelObjectNamespaceNamesAsString.contains(namespaceNameAsString)) {
                         semanticErrors.add(createSemanticError(REDEFINITION_OF_OBJECT, tln, namespaceNameAsString));
                     } else {
                         topLevelObjectNamespaceNamesAsString.add(namespaceNameAsString);
@@ -115,7 +115,7 @@ public class SemanticAnalyser {
         genericParameters
             .forEach(
                 gp -> {
-                    if(genericParametersSet.contains(gp.getIdentifier())) {
+                    if (genericParametersSet.contains(gp.getIdentifier())) {
                         semanticErrors.add(createSemanticError(REDEFINITION_OF_GENERIC_PARAMETER, gp, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), gp.getIdentifier()));
                     } else {
                         genericParametersSet.add(gp.getIdentifier());
@@ -134,9 +134,9 @@ public class SemanticAnalyser {
                         .getNamespaceNameGenericParametersNodes()
                         .forEach(
                             nngpwb -> {
-                                if(!objects.typeNodeMap.containsKey(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode()))) {
+                                if (!objects.typeNodeMap.containsKey(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode()))) {
                                     semanticErrors.add(createSemanticError(GENERIC_PARAMETER_BOUNDS_REFERS_TO_NON_EXISTENT_TYPE, nngpwb, gpwb.getIdentifier(), ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())));
-                                } else if(namespaceNameAsStringSet.contains(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode()))) {
+                                } else if (namespaceNameAsStringSet.contains(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode()))) {
                                     semanticErrors.add(createSemanticError(GENERIC_PARAMETER_BOUNDS_REFERS_TO_TYPE_MULTIPLE_TIMES, nngpwb, gpwb.getIdentifier(), ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())));
                                 } else {
                                     namespaceNameAsStringSet.add(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode()));
@@ -146,7 +146,7 @@ public class SemanticAnalyser {
                 }
             );
 
-        if(typeNode.getImplementsListNode().isPresent()) {
+        if (typeNode.getImplementsListNode().isPresent()) {
             var versionsImplementsListNodes = typeNode
                 .getVersionsNode()
                 .stream()
@@ -158,7 +158,7 @@ public class SemanticAnalyser {
                 .forEach(nngp -> semanticErrors.add(createSemanticError(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME, nngp, ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode()))));
         }
 
-        if(typeNode.getImplementsListNode().isPresent()) {
+        if (typeNode.getImplementsListNode().isPresent()) {
             typeNode
                 .getImplementsListNode()
                 .ifPresent(iln -> checkImplementsList(semanticErrors, objects, typeNode, genericParametersSet, iln));
@@ -185,7 +185,7 @@ public class SemanticAnalyser {
             .map(VersionNode::getVersionNumberNode)
             .forEach(
                 vn -> {
-                    if(versionNumbersSet.contains(vn.getVersionNumber())) {
+                    if (versionNumbersSet.contains(vn.getVersionNumber())) {
                         semanticErrors.add(createSemanticError(REDEFINITION_OF_TYPE_VERSION, vn, vn.getVersionNumber()));
                     } else {
                         versionNumbersSet.add(vn.getVersionNumber());
@@ -228,7 +228,7 @@ public class SemanticAnalyser {
             .forEach(
                 nngp -> {
                     var namespaceNameAsString = ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode());
-                    if(!objects.typeNodeMap.containsKey(namespaceNameAsString)) {
+                    if (!objects.typeNodeMap.containsKey(namespaceNameAsString)) {
                         semanticErrors.add(createSemanticError(TYPE_REFERS_TO_NON_EXISTENT_TYPE_IN_IMPLEMENTS_LIST, nngp, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), namespaceNameAsString));
                     } else {
                         checkGenericParameters(semanticErrors, objects, typeNode, nngp);
@@ -242,7 +242,7 @@ public class SemanticAnalyser {
                     usedGenericParameterIdentifiers
                         .forEach(
                             i -> {
-                                if(!genericParametersSet.contains(i.getGenericParameterNode().getIdentifier())) {
+                                if (!genericParametersSet.contains(i.getGenericParameterNode().getIdentifier())) {
                                     semanticErrors.add(createSemanticError(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE, i, i.getGenericParameterNode().getIdentifier(), ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode())));
                                 }
                             }
@@ -257,15 +257,15 @@ public class SemanticAnalyser {
             .filter(nngpwb -> !objects.typeNodeMap.get(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())).isInterface())
             .collect(Collectors.toList());
 
-        if(typeNode.isInterface()) {
-            if(nonInterfaceTypeNodes.size() > 0) {
+        if (typeNode.isInterface()) {
+            if (nonInterfaceTypeNodes.size() > 0) {
                 nonInterfaceTypeNodes
                     .forEach(
                         nngpn -> semanticErrors.add(createSemanticError(EXTENDING_INTERFACE_WITH_NON_INTERFACE, nngpn, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), ParseTreeUtils.getNamespaceNameString(nngpn.getNamespaceNameNode())))
                     );
             }
         } else {
-            if(nonInterfaceTypeNodes.size() > 1) {
+            if (nonInterfaceTypeNodes.size() > 1) {
                 nonInterfaceTypeNodes
                     .forEach(
                         nngpn -> semanticErrors.add(createSemanticError(MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE, nngpn, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), ParseTreeUtils.getNamespaceNameString(nngpn.getNamespaceNameNode())))
@@ -277,7 +277,7 @@ public class SemanticAnalyser {
     private void checkInheritanceLoop(final List<SemanticError> semanticErrors, final Objects objects, final Set<String> alreadyVisitedTypes, final String path, final ProtoGenTypeNode initialTypeNode, final ProtoGenTypeNode typeNode) {
         var namespaceNameAsString = ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode());
         var newPath = path + namespaceNameAsString;
-        if(alreadyVisitedTypes.contains(namespaceNameAsString)) {
+        if (alreadyVisitedTypes.contains(namespaceNameAsString)) {
             semanticErrors.add(createSemanticError(INHERITANCE_LOOP_DETECTED, initialTypeNode, newPath));
             return;
         } else {
@@ -293,7 +293,7 @@ public class SemanticAnalyser {
                     var newTypeNode = objects.typeNodeMap.get(ParseTreeUtils.getNamespaceNameString(iln.getNamespaceNameNode()));
 
                     //It is possible that the type node can refer to a non-existent type at this stage, that will get picked up somewhere else in the analysis
-                    if(newTypeNode == null) return;
+                    if (newTypeNode == null) return;
                     checkInheritanceLoop(semanticErrors, objects, newAlreadyVisitedTypes, newPath + "->", initialTypeNode, newTypeNode);
                 }
             );
@@ -308,26 +308,26 @@ public class SemanticAnalyser {
     }
 
     private void checkFieldType(final List<SemanticError> semanticErrors, final Objects objects, final FieldTypeNode fieldTypeNode) {
-        if(fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
+        if (fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
             checkArrayFieldType(semanticErrors, objects, fieldTypeNode.getArrayFieldTypeNode().get());
-        } else if(fieldTypeNode.getNonArrayFieldTypeNode().isPresent()) {
+        } else if (fieldTypeNode.getNonArrayFieldTypeNode().isPresent()) {
             checkNonArrayFieldType(semanticErrors, objects, fieldTypeNode.getNonArrayFieldTypeNode().get());
         }
     }
 
     private void checkNonArrayFieldType(final List<SemanticError> semanticErrors, final Objects objects, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
-        if(nonArrayFieldTypeNode instanceof MapFieldTypeNode mapFieldTypeNode) {
+        if (nonArrayFieldTypeNode instanceof MapFieldTypeNode mapFieldTypeNode) {
             checkFieldType(semanticErrors, objects, mapFieldTypeNode.getKeyFieldTypeNode());
             checkFieldType(semanticErrors, objects, mapFieldTypeNode.getValueFieldTypeNode());
         }
         //TODO:KMD Put this to the bottom
-        if(nonArrayFieldTypeNode instanceof ObjectFieldTypeNode objectFieldTypeNode) {
+        if (nonArrayFieldTypeNode instanceof ObjectFieldTypeNode objectFieldTypeNode) {
             semanticErrors.add(createSemanticError(UNKNOWN_OBJECT, objectFieldTypeNode, ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameNode())));
         }
-        if(nonArrayFieldTypeNode instanceof SetFieldTypeNode setFieldTypeNode) {
+        if (nonArrayFieldTypeNode instanceof SetFieldTypeNode setFieldTypeNode) {
             checkFieldType(semanticErrors, objects, setFieldTypeNode.getFieldTypeNode());
         }
-        if(nonArrayFieldTypeNode instanceof ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode) {
+        if (nonArrayFieldTypeNode instanceof ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode) {
             checkFieldType(semanticErrors, objects, valueOrErrorFieldTypeNode.getFieldTypeNode());
         }
     }
@@ -343,7 +343,7 @@ public class SemanticAnalyser {
     }
 
     private void getGenericParametersFieldTypeNode(final List<GenericObjectFieldTypeNode> foundGenericParameters, final FieldTypeNode fieldTypeNode) {
-        if(fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
+        if (fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
             getGenericParametersArrayFieldTypeNode(foundGenericParameters, fieldTypeNode.getArrayFieldTypeNode().get());
         } else if (fieldTypeNode.getNonArrayFieldTypeNode().isPresent()) {
             getGenericParametersNonArrayFieldTypeNode(foundGenericParameters, fieldTypeNode.getNonArrayFieldTypeNode().get());
@@ -351,17 +351,17 @@ public class SemanticAnalyser {
     }
 
     private void getGenericParametersNonArrayFieldTypeNode(final List<GenericObjectFieldTypeNode> foundGenericParameters, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
-        if(nonArrayFieldTypeNode instanceof GenericObjectFieldTypeNode genericObjectFieldTypeNode) {
+        if (nonArrayFieldTypeNode instanceof GenericObjectFieldTypeNode genericObjectFieldTypeNode) {
             foundGenericParameters.add(genericObjectFieldTypeNode);
         }
-        if(nonArrayFieldTypeNode instanceof MapFieldTypeNode mapFieldTypeNode) {
+        if (nonArrayFieldTypeNode instanceof MapFieldTypeNode mapFieldTypeNode) {
             getGenericParametersFieldTypeNode(foundGenericParameters, mapFieldTypeNode.getKeyFieldTypeNode());
             getGenericParametersFieldTypeNode(foundGenericParameters, mapFieldTypeNode.getValueFieldTypeNode());
         }
-        if(nonArrayFieldTypeNode instanceof SetFieldTypeNode setFieldTypeNode) {
+        if (nonArrayFieldTypeNode instanceof SetFieldTypeNode setFieldTypeNode) {
             getGenericParametersFieldTypeNode(foundGenericParameters, setFieldTypeNode.getFieldTypeNode());
         }
-        if(nonArrayFieldTypeNode instanceof ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode) {
+        if (nonArrayFieldTypeNode instanceof ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode) {
             getGenericParametersFieldTypeNode(foundGenericParameters, valueOrErrorFieldTypeNode.getFieldTypeNode());
         }
     }
@@ -388,17 +388,17 @@ public class SemanticAnalyser {
             ? implementsTypeDefinition.getNamespaceNameGenericParametersWithBoundsNode().getGenericParametersWithBoundsNode().get().getGenericParameterWithBoundsNodes().size()
             : 0;
 
-        if(numberOfGenericParametersOnImplementsListDefinition != numberOfGenericParametersOnTypeDefinition) {
+        if (numberOfGenericParametersOnImplementsListDefinition != numberOfGenericParametersOnTypeDefinition) {
             semanticErrors.add(createSemanticError(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION, implementsTypeNamespaceNameGenericParametersNode, ParseTreeUtils.getNamespaceNameString(implementsTypeNamespaceNameGenericParametersNode.getNamespaceNameNode()), numberOfGenericParametersOnImplementsListDefinition, numberOfGenericParametersOnTypeDefinition));
         } else {
-            if(numberOfGenericParametersOnImplementsListDefinition > 0) {
+            if (numberOfGenericParametersOnImplementsListDefinition > 0) {
                 //TODO:KMD Check all the bounds
             }
         }
     }
 
     private void checkEnums(final List<SemanticError> semanticErrors, final Objects objects) {
-        objects.enumNodeMap
+    objects.enumNodeMap
             .values()
             .forEach(en -> checkEnum(semanticErrors, en));
     }
@@ -417,7 +417,7 @@ public class SemanticAnalyser {
             .map(EnumVersionNode::getVersionNumberNode)
             .forEach(
                 vn -> {
-                    if(versionNumbersSet.contains(vn.getVersionNumber())) {
+                    if (versionNumbersSet.contains(vn.getVersionNumber())) {
                         semanticErrors.add(createSemanticError(REDEFINITION_OF_ENUM_VERSION, vn, vn.getVersionNumber()));
                     } else {
                         versionNumbersSet.add(vn.getVersionNumber());
@@ -430,7 +430,7 @@ public class SemanticAnalyser {
             .filter(evn -> evn.getEnumCasesNode().isPresent())
             .forEach(evn -> checkEnumCases(semanticErrors, evn.getEnumCasesNode().get()));
 
-        if(enumNode.getEnumCasesNode().isPresent()) checkEnumCases(semanticErrors, enumNode.getEnumCasesNode().get());
+        if (enumNode.getEnumCasesNode().isPresent()) checkEnumCases(semanticErrors, enumNode.getEnumCasesNode().get());
     }
 
     private void checkEnumCases(final List<SemanticError> semanticErrors, final EnumCasesNode enumCasesNode) {
@@ -439,7 +439,7 @@ public class SemanticAnalyser {
             .getEnumNameNodes()
             .forEach(
                 enn -> {
-                    if(enumNameSet.contains(enn.getEnumName())) {
+                    if (enumNameSet.contains(enn.getEnumName())) {
                         semanticErrors.add(createSemanticError(REDEFINITION_OF_ENUM_CASE, enn, enn.getEnumName()));
                     } else {
                         enumNameSet.add(enn.getEnumName());
@@ -447,5 +447,4 @@ public class SemanticAnalyser {
                 }
             );
     }
-
 }

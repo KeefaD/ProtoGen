@@ -25,6 +25,11 @@ public class TestBoolFieldTypeNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //BoolFieldTypeNode
+            //Super -> //NonArrayFieldTypeNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
@@ -36,4 +41,5 @@ public class TestBoolFieldTypeNode extends BaseTestNode {
             BaseTestNode.charPosition
         );
     }
+
 }

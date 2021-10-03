@@ -7,7 +7,7 @@ import com.kdsc.protogen.utils.parameterchecking.Optionals;
 import java.util.Objects;
 import java.util.Optional;
 
-public class ProtoGenEnumNode extends BaseNode implements TopLevelObject, HasNamespaceName {
+public class ProtoGenEnumNode extends BaseParseTreeNode implements TopLevelObject, HasNamespaceName {
 
     private NamespaceNameNode namespaceNameNode;
     private Optional<EnumVersionsNode> enumVersionsNode;
@@ -52,12 +52,12 @@ public class ProtoGenEnumNode extends BaseNode implements TopLevelObject, HasNam
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//ProtoGenEnumNode\n");
-        stringBuilder.append(namespaceNameNode.toFormattedString(1));
-        enumVersionsNode.ifPresent(evn -> stringBuilder.append(evn.toFormattedString(1)));
-        enumCasesNode.ifPresent(ecn -> stringBuilder.append(ecn.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, ProtoGenEnumNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, namespaceNameNode);
+        fieldToFormattedStringField(stringBuilder, enumVersionsNode);
+        fieldToFormattedStringField(stringBuilder, enumCasesNode);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

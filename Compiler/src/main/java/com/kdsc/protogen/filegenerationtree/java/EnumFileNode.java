@@ -37,13 +37,12 @@ public class EnumFileNode extends JavaFileNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//EnumFileNode\n");
-        stringBuilder.append(super.toFormattedString(1));
-        stringBuilder.append(oneIndent() + "Namespace : " + namespace + "\n");
-        stringBuilder.append(oneIndent() + "Name : " + name + "\n");
-        enumCaseNodes.forEach(ecn -> stringBuilder.append(ecn.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, EnumFileNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, "", namespace);
+        fieldToFormattedStringField(stringBuilder, "", namespace);
+        fieldToFormattedStringField(stringBuilder, enumCaseNodes);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

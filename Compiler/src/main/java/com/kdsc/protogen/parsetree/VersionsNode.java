@@ -2,9 +2,8 @@ package com.kdsc.protogen.parsetree;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
-public class VersionsNode extends BaseNode {
+public class VersionsNode extends BaseParseTreeNode {
 
     private final List<VersionNode> versionNodes;
 
@@ -26,10 +25,10 @@ public class VersionsNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//VersionsNode\n");
-        versionNodes.forEach(vn -> stringBuilder.append(vn.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, VersionsNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, versionNodes);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

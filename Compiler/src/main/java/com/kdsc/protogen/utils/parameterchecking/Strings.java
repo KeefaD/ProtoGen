@@ -7,4 +7,5 @@ public class Strings {
             throw new IllegalArgumentException("Require string to be non blank");
         }
     }
+
 }

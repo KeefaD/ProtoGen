@@ -57,7 +57,12 @@ public class TestGenericParametersNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //GenericParametersNode
+            //Super -> //BaseParseTreeNode
+                SourceFileName : TestFileName.pg
+                Line : 1
+                CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
+
 }

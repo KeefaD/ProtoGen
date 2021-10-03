@@ -621,4 +621,5 @@ public class TestKeyInterfaces extends BaseCompilerTest {
         """;
         runCompilerToParserCheckNoErrors(testProgram);
     }
+
 }

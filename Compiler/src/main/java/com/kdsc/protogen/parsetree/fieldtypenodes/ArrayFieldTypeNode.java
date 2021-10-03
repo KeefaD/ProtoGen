@@ -1,13 +1,13 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-import com.kdsc.protogen.parsetree.BaseNode;
+import com.kdsc.protogen.parsetree.BaseParseTreeNode;
 import com.kdsc.protogen.utils.parameterchecking.Numbers;
 
 import java.util.Objects;
 
 //TODO:KMD I think it is worth putting equals and hashcode on parse tree nodes
 //TODO:KMD Think about the names ProtoGenType etc, not happy with it
-public class ArrayFieldTypeNode extends BaseNode {
+public class ArrayFieldTypeNode extends BaseParseTreeNode {
 
     private final NonArrayFieldTypeNode nonArrayFieldTypeNode;
     private final long dimensions;
@@ -37,12 +37,11 @@ public class ArrayFieldTypeNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//ArrayFieldTypeNode\n");
-        stringBuilder.append(nonArrayFieldTypeNode.toFormattedString(1));
-        //TODO:KMD Shouldn't this have a \n
-        stringBuilder.append(oneIndent() + "Dimensions : " + dimensions);
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, ArrayFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, nonArrayFieldTypeNode);
+        fieldToFormattedStringField(stringBuilder, "Dimensions", dimensions);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

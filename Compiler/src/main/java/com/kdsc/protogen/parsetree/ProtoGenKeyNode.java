@@ -6,7 +6,7 @@ import com.kdsc.protogen.parsetree.commoninterfaces.TopLevelObject;
 import java.util.Objects;
 import java.util.Optional;
 
-public class ProtoGenKeyNode extends BaseNode implements TopLevelObject, HasNamespaceName {
+public class ProtoGenKeyNode extends BaseParseTreeNode implements TopLevelObject, HasNamespaceName {
 
     private boolean isInterface;
     private NamespaceNameGenericParametersWithBoundsNode namespaceNameGenericParametersWithBoundsNode;
@@ -68,14 +68,14 @@ public class ProtoGenKeyNode extends BaseNode implements TopLevelObject, HasName
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//ProtoGenKeyNode\n");
-        stringBuilder.append(oneIndent() + "IsInterface : " + isInterface + "\n");
-        stringBuilder.append(namespaceNameGenericParametersWithBoundsNode.toFormattedString(1));
-        implementsListNode.ifPresent(listNode -> stringBuilder.append(listNode.toFormattedString(1)));
-        versionsNode.ifPresent(versionsNode -> stringBuilder.append(versionsNode.toFormattedString(1)));
-        fieldsNode.ifPresent(fieldsNode -> stringBuilder.append(fieldsNode.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, ProtoGenKeyNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, "IsInterface", isInterface);
+        fieldToFormattedStringField(stringBuilder, namespaceNameGenericParametersWithBoundsNode);
+        fieldToFormattedStringField(stringBuilder, implementsListNode);
+        fieldToFormattedStringField(stringBuilder, versionsNode);
+        fieldToFormattedStringField(stringBuilder, fieldsNode);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

@@ -63,6 +63,10 @@ public class TestNamespaceNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //NamespaceNode
+            //Super -> //BaseParseTreeNode
+                SourceFileName : TestFileName.pg
+                Line : 1
+                CharPosition : 0
             Namespace : Namespace
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
@@ -76,4 +80,5 @@ public class TestNamespaceNode extends BaseTestNode {
             "Namespace"
         );
     }
+
 }

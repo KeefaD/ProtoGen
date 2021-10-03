@@ -25,6 +25,11 @@ public class TestStringFieldTypeNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //StringFieldTypeNode
+            //Super -> //NonArrayFieldTypeNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }

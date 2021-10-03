@@ -103,10 +103,26 @@ public class TestProtoGenEnumNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //ProtoGenEnumNode
+            //Super -> //BaseParseTreeNode
+                SourceFileName : TestFileName.pg
+                Line : 1
+                CharPosition : 0
             //NamespaceNameNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
                 //NamespaceNode
+                    //Super -> //BaseParseTreeNode
+                        SourceFileName : TestFileName.pg
+                        Line : 1
+                        CharPosition : 0
                     Namespace : Namespace
                 //NameNode
+                    //Super -> //BaseParseTreeNode
+                        SourceFileName : TestFileName.pg
+                        Line : 1
+                        CharPosition : 0
                     Name : Name
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
@@ -122,4 +138,5 @@ public class TestProtoGenEnumNode extends BaseTestNode {
             Optional.empty()
         );
     }
+
 }

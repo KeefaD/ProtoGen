@@ -4,7 +4,7 @@ import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
 
-public class NameNode extends BaseNode {
+public class NameNode extends BaseParseTreeNode {
 
     private final String name;
 
@@ -27,10 +27,10 @@ public class NameNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//NameNode\n");
-        stringBuilder.append(oneIndent() + "Name : " + name);
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, NameNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, "Name", name);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

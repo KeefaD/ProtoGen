@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Objects;
 
 //TODO:KMD Need to do a day just working on TODO:KMD's to keep the numbers down otherwise it is going ot get out of control
-public class NamespaceNameNode extends BaseNode {
+public class NamespaceNameNode extends BaseParseTreeNode {
 
     private final List<NamespaceNode> namespaceNodes;
     private final NameNode nameNode;
@@ -38,11 +38,11 @@ public class NamespaceNameNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//NamespaceNameNode\n");
-        namespaceNodes.forEach(pgtn -> stringBuilder.append(pgtn.toFormattedString(1)));
-        stringBuilder.append(nameNode.toFormattedString(1));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, NamespaceNameNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, namespaceNodes);
+        fieldToFormattedStringField(stringBuilder, nameNode);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

@@ -1,21 +1,18 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.nodes.BaseNode;
 import com.kdsc.protogen.utils.parameterchecking.Numbers;
 import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-public abstract class BaseNode {
-
-    protected static final int INDENTATION_SPACE_COUNT = 4;
+public abstract class BaseParseTreeNode extends BaseNode {
 
     private final String sourceFileName;
     private final long line;
     private final long charPosition;
 
-    public BaseNode(final String sourceFileName, final long line, final long charPosition) {
+    public BaseParseTreeNode(final String sourceFileName, final long line, final long charPosition) {
         Objects.requireNonNull(sourceFileName);
         Strings.requireNonBlank(sourceFileName);
         Numbers.requireZeroOrGreater(line);
@@ -37,15 +34,14 @@ public abstract class BaseNode {
         return charPosition;
     }
 
-    protected String oneIndent() {
-        return IntStream.range(0, INDENTATION_SPACE_COUNT).mapToObj(counter -> " ").collect(Collectors.joining());
-    }
-
     @Override
-    public String toString() {
-        return toFormattedString(0);
+    public String toFormattedString(final int indentationLevel) {
+        var stringBuilder = new StringBuilder();
+        classToFormattedStringTitle(stringBuilder, BaseParseTreeNode.class);
+        fieldToFormattedStringField(stringBuilder, "SourceFileName", sourceFileName);
+        fieldToFormattedStringField(stringBuilder, "Line", line);
+        fieldToFormattedStringField(stringBuilder, "CharPosition", charPosition);
+        return indentString(stringBuilder, indentationLevel);
     }
-
-    public abstract String toFormattedString(final int indentationLevel);
 
 }

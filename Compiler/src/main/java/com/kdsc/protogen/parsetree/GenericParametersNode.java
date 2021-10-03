@@ -5,7 +5,7 @@ import com.kdsc.protogen.parsetree.fieldtypenodes.FieldTypeNode;
 import java.util.List;
 import java.util.Objects;
 
-public class GenericParametersNode extends BaseNode {
+public class GenericParametersNode extends BaseParseTreeNode {
 
     private final List<FieldTypeNode> fieldTypeNodes;
 
@@ -27,10 +27,10 @@ public class GenericParametersNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//GenericParametersNode\n");
-        fieldTypeNodes.forEach(gpwb -> stringBuilder.append(gpwb.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, GenericParametersNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, fieldTypeNodes);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

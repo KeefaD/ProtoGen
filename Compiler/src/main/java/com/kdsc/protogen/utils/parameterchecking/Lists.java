@@ -12,4 +12,5 @@ public class Lists {
             throw new IllegalArgumentException("Expected inputList to have at least one item in it");
         }
     }
+
 }

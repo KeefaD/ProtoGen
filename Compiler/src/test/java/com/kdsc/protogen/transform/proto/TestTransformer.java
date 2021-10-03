@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TestTransformer  extends BaseCompilerTest {
 
     //TODO:KMD I think we need to add verbose to the compiler and logging
-    //TODO:KMD Need to think about capitalisation for namespaces, should we allow uppercase packages, investigate
     @Test
     public void testBasicEnum() {
         var testProgram = """            
@@ -19,11 +18,11 @@ public class TestTransformer  extends BaseCompilerTest {
         //TODO:KMD Ok these multiline strings seem to strip out trailing spaces hence the \s, this could be a problem, have a think
         var expectedToStringOutput = """
         //EnumFileNode
-            //ProtoFileNode
-                //FileNode
+            //Super -> //ProtoFileNode
+                //Super -> //FileNode
+                    //Super -> //BaseFileGenerationTreeNode
                     FileName : TestNamespace.Enum.proto
                     Path :\s
-                    FileNameAndPath : TestNamespace.Enum.proto
             Name : Enum
         """;
         assertNotNull(fileGenerationTree, "FileGenerationTree list is null");

@@ -3,7 +3,7 @@ package com.kdsc.protogen.parsetree;
 import java.util.Objects;
 import java.util.Optional;
 
-public class EnumVersionNode extends BaseNode {
+public class EnumVersionNode extends BaseParseTreeNode {
 
     private final VersionNumberNode versionNumberNode;
     private final Optional<EnumCasesNode> enumCasesNode;
@@ -32,14 +32,12 @@ public class EnumVersionNode extends BaseNode {
 
     @Override
     public String toFormattedString(final int indentationLevel) {
-
-        //TODO:KMD Perhaps you can extract this out and make it all nice, it is a bit repetitive
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//EnumVersionNode\n");
-        stringBuilder.append(versionNumberNode.toFormattedString(1));
-        enumCasesNode.ifPresent(ecn -> stringBuilder.append(ecn.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, EnumVersionNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, versionNumberNode);
+        fieldToFormattedStringField(stringBuilder, enumCasesNode);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

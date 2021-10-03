@@ -86,7 +86,16 @@ public class TestArrayFieldTypeNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //ArrayFieldTypeNode
+            //Super -> //BaseParseTreeNode
+                SourceFileName : TestFileName.pg
+                Line : 1
+                CharPosition : 0
             //BoolFieldTypeNode
+                //Super -> //NonArrayFieldTypeNode
+                    //Super -> //BaseParseTreeNode
+                        SourceFileName : TestFileName.pg
+                        Line : 1
+                        CharPosition : 0
             Dimensions : 1
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");

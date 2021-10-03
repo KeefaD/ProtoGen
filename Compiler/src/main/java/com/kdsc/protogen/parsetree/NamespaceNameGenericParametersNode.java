@@ -5,7 +5,7 @@ import com.kdsc.protogen.parsetree.commoninterfaces.HasNamespaceName;
 import java.util.Objects;
 import java.util.Optional;
 
-public class NamespaceNameGenericParametersNode extends BaseNode implements HasNamespaceName {
+public class NamespaceNameGenericParametersNode extends BaseParseTreeNode implements HasNamespaceName {
 
     private final NamespaceNameNode namespaceNameNode;
     private final Optional<GenericParametersNode> genericParametersNode;
@@ -35,11 +35,11 @@ public class NamespaceNameGenericParametersNode extends BaseNode implements HasN
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//NamespaceNameGenericParametersNode\n");
-        stringBuilder.append(namespaceNameNode.toFormattedString(1));
-        genericParametersNode.ifPresent(parametersNode -> stringBuilder.append(parametersNode.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, NamespaceNameGenericParametersNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, namespaceNameNode);
+        fieldToFormattedStringField(stringBuilder, genericParametersNode);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

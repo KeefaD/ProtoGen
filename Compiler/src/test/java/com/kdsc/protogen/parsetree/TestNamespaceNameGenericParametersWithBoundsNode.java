@@ -72,10 +72,26 @@ public class TestNamespaceNameGenericParametersWithBoundsNode extends BaseTestNo
         );
         var expectedToStringOutput = """
         //NamespaceNameGenericParametersWithBoundsNode
+            //Super -> //BaseParseTreeNode
+                SourceFileName : TestFileName.pg
+                Line : 1
+                CharPosition : 0
             //NamespaceNameNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
                 //NamespaceNode
+                    //Super -> //BaseParseTreeNode
+                        SourceFileName : TestFileName.pg
+                        Line : 1
+                        CharPosition : 0
                     Namespace : Namespace
                 //NameNode
+                    //Super -> //BaseParseTreeNode
+                        SourceFileName : TestFileName.pg
+                        Line : 1
+                        CharPosition : 0
                     Name : Name
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");

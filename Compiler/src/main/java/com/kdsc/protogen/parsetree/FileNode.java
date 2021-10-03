@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 //TODO:KMD Check consistency of all these nodes in terms of Antlr lists and optionals, it's only going to get harder to change later
-public class FileNode extends BaseNode {
+public class FileNode extends BaseParseTreeNode {
 
     private final List<ProtoGenTypeNode> protoGenTypeNodes;
     private final List<ProtoGenKeyNode> protoGenKeyNodes;
@@ -42,12 +42,12 @@ public class FileNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//FileNode\n");
-        protoGenTypeNodes.forEach(pgtn -> stringBuilder.append(pgtn.toFormattedString(1)));
-        protoGenKeyNodes.forEach(pgkn -> stringBuilder.append(pgkn.toFormattedString(1)));
-        protoGenEnumNodes.forEach(pgkn -> stringBuilder.append(pgkn.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, FileNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, protoGenTypeNodes);
+        fieldToFormattedStringField(stringBuilder, protoGenKeyNodes);
+        fieldToFormattedStringField(stringBuilder, protoGenEnumNodes);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

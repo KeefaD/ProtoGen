@@ -22,8 +22,8 @@ public class FieldTransformer {
 
     private FieldNode transformFieldNode(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.FieldNode fieldNode) {
         return new FieldNode(
-                fieldNode.getFieldNameNode().getFieldName(),
-                transformFieldTypeNode(transformerContext, fileContext, fieldNode.getFieldTypeNode())
+            fieldNode.getFieldNameNode().getFieldName(),
+            transformFieldTypeNode(transformerContext, fileContext, fieldNode.getFieldTypeNode())
         );
     }
 
@@ -59,4 +59,5 @@ public class FieldTransformer {
             default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
         };
     }
+
 }

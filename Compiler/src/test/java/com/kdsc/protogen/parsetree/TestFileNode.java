@@ -92,7 +92,12 @@ public class TestFileNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //FileNode
+            //Super -> //BaseParseTreeNode
+                SourceFileName : TestFileName.pg
+                Line : 1
+                CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
+
 }

@@ -24,10 +24,10 @@ public class SetFieldTypeNode extends NonArrayFieldTypeNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//SetFieldTypeNode\n");
-        stringBuilder.append(fieldTypeNode.toFormattedString(1));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, SetFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, fieldTypeNode);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

@@ -4,7 +4,7 @@ import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
 
-public class EnumNameNode extends BaseNode {
+public class EnumNameNode extends BaseParseTreeNode {
 
     private final String enumName;
 
@@ -27,10 +27,10 @@ public class EnumNameNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//EnumNameNode\n");
-        stringBuilder.append(oneIndent() + "EnumName : " + enumName);
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, EnumNameNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, "EnumName", enumName);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

@@ -25,6 +25,11 @@ public class TestDoubleFieldTypeNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //DoubleFieldTypeNode
+            //Super -> //NonArrayFieldTypeNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }

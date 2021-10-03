@@ -30,4 +30,5 @@ public class Optionals {
             throw new IllegalArgumentException("Expected at most one present optional found " + isPresentCount);
         }
     }
+
 }

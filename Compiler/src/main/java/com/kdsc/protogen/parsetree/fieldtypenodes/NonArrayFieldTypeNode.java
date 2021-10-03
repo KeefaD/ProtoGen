@@ -1,9 +1,9 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-import com.kdsc.protogen.parsetree.BaseNode;
+import com.kdsc.protogen.parsetree.BaseParseTreeNode;
 
 //TODO:KMD Perhaps make sealed
-public abstract class NonArrayFieldTypeNode extends BaseNode {
+public abstract class NonArrayFieldTypeNode extends BaseParseTreeNode {
 
     public NonArrayFieldTypeNode(
         final String sourceFileName,
@@ -16,9 +16,9 @@ public abstract class NonArrayFieldTypeNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//NonArrayFieldTypeNode\n");
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, NonArrayFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

@@ -621,4 +621,5 @@ public class TestTypeInterfaces extends BaseCompilerTest {
         """;
         runCompilerToParserCheckNoErrors(testProgram);
     }
+
 }

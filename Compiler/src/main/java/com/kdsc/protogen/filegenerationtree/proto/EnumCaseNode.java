@@ -1,8 +1,8 @@
 package com.kdsc.protogen.filegenerationtree.proto;
 
-import com.kdsc.protogen.filegenerationtree.BaseNode;
+import com.kdsc.protogen.filegenerationtree.BaseFileGenerationTreeNode;
 
-public class EnumCaseNode extends BaseNode {
+public class EnumCaseNode extends BaseFileGenerationTreeNode {
 
     private final String name;
 
@@ -20,10 +20,10 @@ public class EnumCaseNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//EnumCaseNode\n");
-        stringBuilder.append(oneIndent() + "Name : " + name);
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, EnumCaseNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, "Name", name);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

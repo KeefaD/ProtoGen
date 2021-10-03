@@ -47,15 +47,16 @@ public class ClassFileNode extends JavaFileNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//ClassFileNode\n");
-        stringBuilder.append(super.toFormattedString(1));
-        stringBuilder.append(oneIndent() + "PackageName : " + packageName + "\n");
-        stringBuilder.append(oneIndent() + "Name : " + name + "\n");
+        classToFormattedStringTitle(stringBuilder, ClassFileNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, "PackageName", packageName);
+        fieldToFormattedStringField(stringBuilder, "Name", name);
+        //TODO:KMD Fix this
         stringBuilder.append(oneIndent() + "ImportStatements\n");
+//        fieldToFormattedStringField(stringBuilder, importStatements);
         importStatements.forEach(is -> stringBuilder.append(is.indent(INDENTATION_SPACE_COUNT)));
-        fieldNodes.forEach(fn -> stringBuilder.append(fn.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        fieldToFormattedStringField(stringBuilder, fieldNodes);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

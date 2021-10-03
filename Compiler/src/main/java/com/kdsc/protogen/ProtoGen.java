@@ -26,6 +26,11 @@ import java.util.stream.Collectors;
 //TODO:KMD We need to to do name escaping in general or prevent keywords, need to make up your mind soon, keywords is going to be annoying once you add more languages, as long as the types come out with the right name it is ok
 //TODO:KMD Have a proper look at the parse tree and decide what to do about optionals and lists before it is too late
 //TODO:KMD Think about capitalisation of fields
+//TODO:KMD Check isProtoGen type for types that have generic parameters, it's all going to go to shit if they are not
+//TODO:KMD Need to test moving all the directories around
+//TODO:KMD Need to be able to do a comparison on all the examples at the same time or it is pointless
+//TODO:KMD Need to think about capitalisation for namespaces, should we allow uppercase packages, investigate
+//TODO:KMD Enums should always have one value, check java and dot net
 public class ProtoGen {
 
     public static final char OPTION_MARKER = '-';

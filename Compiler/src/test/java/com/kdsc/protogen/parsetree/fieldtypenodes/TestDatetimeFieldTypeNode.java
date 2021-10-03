@@ -25,6 +25,11 @@ public class TestDatetimeFieldTypeNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //DatetimeFieldTypeNode
+            //Super -> //NonArrayFieldTypeNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }

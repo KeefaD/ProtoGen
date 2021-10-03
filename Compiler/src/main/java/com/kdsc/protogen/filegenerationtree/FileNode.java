@@ -5,7 +5,7 @@ import com.kdsc.protogen.utils.parameterchecking.Strings;
 import java.io.File;
 import java.util.Objects;
 
-public class FileNode extends BaseNode {
+public class FileNode extends BaseFileGenerationTreeNode {
 
     private final String fileName;
     private final String path;
@@ -32,13 +32,11 @@ public class FileNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//FileNode\n");
-        stringBuilder.append(oneIndent() + "FileName : " + fileName + "\n");
-        stringBuilder.append(oneIndent() + "Path : " + path + "\n");
-        //TODO:KMD Not sure about having a derived field here, it might set a precedent but it will be handy
-        stringBuilder.append(oneIndent() + "FileNameAndPath : " + getPathAndFileName() + "\n");
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, FileNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, "FileName", fileName);
+        fieldToFormattedStringField(stringBuilder, "Path", path);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

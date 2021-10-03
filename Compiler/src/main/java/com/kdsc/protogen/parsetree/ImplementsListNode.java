@@ -3,7 +3,7 @@ package com.kdsc.protogen.parsetree;
 import java.util.List;
 import java.util.Objects;
 
-public class ImplementsListNode extends BaseNode {
+public class ImplementsListNode extends BaseParseTreeNode {
 
     private final List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes;
 
@@ -25,10 +25,10 @@ public class ImplementsListNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//ImplementsListNode\n");
-        namespaceNameGenericParametersNodes.forEach(gpwb -> stringBuilder.append(gpwb.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, ImplementsListNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, namespaceNameGenericParametersNodes);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

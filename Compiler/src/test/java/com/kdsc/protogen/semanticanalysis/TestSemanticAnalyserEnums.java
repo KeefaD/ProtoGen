@@ -245,4 +245,5 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
             "Unexpected semantic error message"
         );
     }
+
 }

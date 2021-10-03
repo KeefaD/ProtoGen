@@ -72,7 +72,15 @@ public class TestEnumVersionNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //EnumVersionNode
+            //Super -> //BaseParseTreeNode
+                SourceFileName : TestFileName.pg
+                Line : 1
+                CharPosition : 0
             //VersionNumberNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
                 VersionNumber : 1
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");

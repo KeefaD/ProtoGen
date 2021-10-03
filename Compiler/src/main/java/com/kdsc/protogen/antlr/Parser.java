@@ -19,42 +19,43 @@ public class Parser {
         var parserResults = new ParserResults();
         var fileNodes = pathsToParse
             .stream()
-                .map(
-                    p -> {
-                        var errorListener = new ParserErrorListener(p);
+            .map(
+                p -> {
+                    var errorListener = new ParserErrorListener(p);
 
-                        ANTLRInputStream antlrInputStream;
-                        ProtoGenLexer protoGenLexer;
+                    ANTLRInputStream antlrInputStream;
+                    ProtoGenLexer protoGenLexer;
 
-                        try (var inputStream = new FileInputStream(p)) {
-                            try {
-                                antlrInputStream = new ANTLRInputStream(inputStream);
-                            } catch (IOException ioException) {
-                                throw new RuntimeException(ioException);
-                            }
+                    try (var inputStream = new FileInputStream(p)) {
+                        try {
+                            antlrInputStream = new ANTLRInputStream(inputStream);
                         } catch (IOException ioException) {
                             throw new RuntimeException(ioException);
                         }
-
-                        protoGenLexer = new ProtoGenLexer(antlrInputStream);
-                        var tokens = new CommonTokenStream(protoGenLexer);
-                        var parser = new ProtoGenParser(tokens);
-
-                        parser.removeErrorListeners();
-                        parser.addErrorListener(errorListener);
-                        var parseTree = parser.file();
-                        if(errorListener.errorOccurred()) {
-                            parserResults.getParserErrors().addAll(errorListener.getErrors());
-                            return Optional.<FileNode>empty();
-                        }
-
-                        var visitor = new ProtoGenVisitor(p);
-                        return Optional.of((FileNode)visitor.visit(parseTree));
+                    } catch (IOException ioException) {
+                        throw new RuntimeException(ioException);
                     }
-                )
-                .filter(Optional::isPresent)
-                .map(Optional::get)
-                .collect(Collectors.toList());
+
+                    protoGenLexer = new ProtoGenLexer(antlrInputStream);
+                    var tokens = new CommonTokenStream(protoGenLexer);
+                    var parser = new ProtoGenParser(tokens);
+
+                    parser.removeErrorListeners();
+                    parser.addErrorListener(errorListener);
+                    var parseTree = parser.file();
+                    if(errorListener.errorOccurred()) {
+                        parserResults.getParserErrors().addAll(errorListener.getErrors());
+                        return Optional.<FileNode>empty();
+                    }
+
+                    var visitor = new ProtoGenVisitor(p);
+                    return Optional.of((FileNode)visitor.visit(parseTree));
+                }
+            )
+            .filter(Optional::isPresent)
+            .map(Optional::get)
+            .collect(Collectors.toList());
+
         parserResults.getFileNodes().addAll(fileNodes);
         return parserResults;
     }

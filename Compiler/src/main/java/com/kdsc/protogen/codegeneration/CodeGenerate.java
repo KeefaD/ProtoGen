@@ -26,4 +26,5 @@ public class CodeGenerate implements com.kdsc.protogen.codegeneration.CodeGenera
         var protoCodeGenerator = new com.kdsc.protogen.codegeneration.proto.CodeGenerator();
         protoCodeGenerator.generate(codeGeneratorContext, protoFileNodes);
     }
+
 }

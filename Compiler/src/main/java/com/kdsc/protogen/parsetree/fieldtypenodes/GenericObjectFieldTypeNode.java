@@ -26,10 +26,10 @@ public class GenericObjectFieldTypeNode extends NonArrayFieldTypeNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//GenericObjectFieldTypeNode\n");
-        stringBuilder.append(genericParameterNode.toFormattedString(1));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, GenericObjectFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, genericParameterNode);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

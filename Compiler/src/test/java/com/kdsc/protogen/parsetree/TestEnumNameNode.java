@@ -63,8 +63,13 @@ public class TestEnumNameNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //EnumNameNode
+            //Super -> //BaseParseTreeNode
+                SourceFileName : TestFileName.pg
+                Line : 1
+                CharPosition : 0
             EnumName : EnumName
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
+
 }

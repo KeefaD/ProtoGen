@@ -26,10 +26,10 @@ public class KeyFieldTypeNode extends NonArrayFieldTypeNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//KeyFieldTypeNode\n");
-        stringBuilder.append(namespaceNameGenericParametersNode.toFormattedString(1));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, KeyFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, namespaceNameGenericParametersNode);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

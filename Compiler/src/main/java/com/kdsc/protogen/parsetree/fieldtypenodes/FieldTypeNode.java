@@ -1,12 +1,12 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
-import com.kdsc.protogen.parsetree.BaseNode;
+import com.kdsc.protogen.parsetree.BaseParseTreeNode;
 import com.kdsc.protogen.utils.parameterchecking.Optionals;
 
 import java.util.Objects;
 import java.util.Optional;
 
-public class FieldTypeNode extends BaseNode {
+public class FieldTypeNode extends BaseParseTreeNode {
 
     private final boolean optional;
     private final Optional<ArrayFieldTypeNode> arrayFieldTypeNode;
@@ -44,12 +44,12 @@ public class FieldTypeNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//FieldTypeNode\n");
-        stringBuilder.append(oneIndent() + "Optional : " + optional + "\n");
-        arrayFieldTypeNode.ifPresent(aftn -> stringBuilder.append(aftn.toFormattedString(1)));
-        nonArrayFieldTypeNode.ifPresent(naftn -> stringBuilder.append(naftn.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, FieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, "Optional", optional);
+        fieldToFormattedStringField(stringBuilder, arrayFieldTypeNode);
+        fieldToFormattedStringField(stringBuilder, nonArrayFieldTypeNode);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

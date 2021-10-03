@@ -94,4 +94,5 @@ public class TestEnums extends BaseCompilerTest {
         """;
         runCompilerToParserCheckNoErrors(testProgram);
     }
+
 }

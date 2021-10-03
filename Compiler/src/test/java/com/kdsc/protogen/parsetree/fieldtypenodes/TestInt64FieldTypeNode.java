@@ -25,6 +25,11 @@ public class TestInt64FieldTypeNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //Int64FieldTypeNode
+            //Super -> //NonArrayFieldTypeNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }

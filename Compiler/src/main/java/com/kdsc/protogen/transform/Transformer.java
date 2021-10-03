@@ -7,4 +7,5 @@ import java.util.List;
 public interface Transformer {
 
     List<FileNode> transform(TransformerContext transformerContext, List<com.kdsc.protogen.parsetree.FileNode> fileNodes);
+
 }

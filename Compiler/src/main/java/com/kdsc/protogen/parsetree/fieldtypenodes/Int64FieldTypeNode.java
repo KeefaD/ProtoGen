@@ -13,9 +13,9 @@ public class Int64FieldTypeNode extends NonArrayFieldTypeNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//Int64FieldTypeNode\n");
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, Int64FieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

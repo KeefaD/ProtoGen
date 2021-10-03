@@ -3,7 +3,7 @@ package com.kdsc.protogen.parsetree;
 import java.util.List;
 import java.util.Objects;
 
-public class EnumCasesNode extends BaseNode {
+public class EnumCasesNode extends BaseParseTreeNode {
 
     private final List<EnumNameNode> enumNameNodes;
 
@@ -26,10 +26,10 @@ public class EnumCasesNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//EnumCasesNode\n");
-        enumNameNodes.forEach(ecn -> stringBuilder.append(ecn.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, EnumCasesNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, enumNameNodes);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }

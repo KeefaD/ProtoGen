@@ -63,6 +63,10 @@ public class TestFieldNameNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //FieldNameNode
+            //Super -> //BaseParseTreeNode
+                SourceFileName : TestFileName.pg
+                Line : 1
+                CharPosition : 0
             FieldName : FieldName
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
@@ -76,4 +80,5 @@ public class TestFieldNameNode extends BaseTestNode {
             "FieldName"
         );
     }
+
 }

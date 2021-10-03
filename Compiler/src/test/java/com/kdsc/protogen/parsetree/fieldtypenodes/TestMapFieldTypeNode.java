@@ -83,15 +83,39 @@ public class TestMapFieldTypeNode extends BaseTestNode {
         );
         var expectedToStringOutput = """
         //MapFieldTypeNode
-            //Key
+            //Super -> //NonArrayFieldTypeNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
+            Key
                 //FieldTypeNode
+                    //Super -> //BaseParseTreeNode
+                        SourceFileName : TestFileName.pg
+                        Line : 1
+                        CharPosition : 0
                     Optional : false
                     //BoolFieldTypeNode
-            //Value
+                        //Super -> //NonArrayFieldTypeNode
+                            //Super -> //BaseParseTreeNode
+                                SourceFileName : TestFileName.pg
+                                Line : 1
+                                CharPosition : 0
+            Value
                 //FieldTypeNode
+                    //Super -> //BaseParseTreeNode
+                        SourceFileName : TestFileName.pg
+                        Line : 1
+                        CharPosition : 0
                     Optional : false
                     //BoolFieldTypeNode
+                        //Super -> //NonArrayFieldTypeNode
+                            //Super -> //BaseParseTreeNode
+                                SourceFileName : TestFileName.pg
+                                Line : 1
+                                CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
+
 }

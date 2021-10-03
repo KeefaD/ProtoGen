@@ -3,7 +3,7 @@ package com.kdsc.protogen.parsetree;
 import java.util.Objects;
 import java.util.Optional;
 
-public class VersionNode extends BaseNode {
+public class VersionNode extends BaseParseTreeNode {
 
     private final VersionNumberNode versionNumberNode;
     private final Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode;
@@ -49,13 +49,13 @@ public class VersionNode extends BaseNode {
     @Override
     public String toFormattedString(final int indentationLevel) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("//VersionNode\n");
-        stringBuilder.append(versionNumberNode.toFormattedString(1));
-        genericParametersWithBoundsNode.ifPresent(gbwp -> stringBuilder.append(gbwp.toFormattedString(1)));
-        implementsListNode.ifPresent(iln -> stringBuilder.append(iln.toFormattedString(1)));
-        fieldsNode.ifPresent(fieldsNode -> stringBuilder.append(fieldsNode.toFormattedString(1)));
-        var outputString = stringBuilder.toString();
-        return outputString.indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        classToFormattedStringTitle(stringBuilder, VersionNode.class);
+        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
+        fieldToFormattedStringField(stringBuilder, versionNumberNode);
+        fieldToFormattedStringField(stringBuilder, genericParametersWithBoundsNode);
+        fieldToFormattedStringField(stringBuilder, implementsListNode);
+        fieldToFormattedStringField(stringBuilder, fieldsNode);
+        return indentString(stringBuilder, indentationLevel);
     }
 
 }
