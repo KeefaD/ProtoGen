@@ -1,4 +1,4 @@
 package com.kdsc.protogen.runtime.types;
 
-public class ProtoGenDateTime {
+public class Decimal {
 }
