@@ -15,6 +15,8 @@ public class Type implements ProtoGenType {
 	private com.kdsc.protogen.runtime.types.Date TestDate;
 	private com.kdsc.protogen.runtime.types.DateTime TestDateTime;
 	private com.kdsc.protogen.runtime.types.LocalDateTime TestLocalDateTime;
+	private com.kdsc.protogen.runtime.types.Map<Integer, Integer> TestMap;
+	private com.kdsc.protogen.runtime.types.Set<Integer> TestSet;
 	private com.kdsc.protogen.runtime.types.ValueOrError<Integer> TestValueOrError;
 	private simple.InnerType TestType;
 	private Optional<Double> TestOptionalDouble;
@@ -27,6 +29,8 @@ public class Type implements ProtoGenType {
 	private Optional<com.kdsc.protogen.runtime.types.Date> TestOptionalDate;
 	private Optional<com.kdsc.protogen.runtime.types.DateTime> TestOptionalDatetime;
 	private Optional<com.kdsc.protogen.runtime.types.LocalDateTime> TestOptionalLocalDateTime;
+	private Optional<com.kdsc.protogen.runtime.types.Map<Integer, Integer>> TestOptionalMap;
+	private Optional<com.kdsc.protogen.runtime.types.Set<Integer>> TestOptionalSet;
 	private Optional<com.kdsc.protogen.runtime.types.ValueOrError<Integer>> TestOptionalValueOrError;
 	private Optional<simple.InnerType> TestOptionalType;
 
@@ -41,6 +45,8 @@ public class Type implements ProtoGenType {
 		com.kdsc.protogen.runtime.types.Date TestDate,
 		com.kdsc.protogen.runtime.types.DateTime TestDateTime,
 		com.kdsc.protogen.runtime.types.LocalDateTime TestLocalDateTime,
+		com.kdsc.protogen.runtime.types.Map<Integer, Integer> TestMap,
+		com.kdsc.protogen.runtime.types.Set<Integer> TestSet,
 		com.kdsc.protogen.runtime.types.ValueOrError<Integer> TestValueOrError,
 		simple.InnerType TestType,
 		Optional<Double> TestOptionalDouble,
@@ -53,6 +59,8 @@ public class Type implements ProtoGenType {
 		Optional<com.kdsc.protogen.runtime.types.Date> TestOptionalDate,
 		Optional<com.kdsc.protogen.runtime.types.DateTime> TestOptionalDatetime,
 		Optional<com.kdsc.protogen.runtime.types.LocalDateTime> TestOptionalLocalDateTime,
+		Optional<com.kdsc.protogen.runtime.types.Map<Integer, Integer>> TestOptionalMap,
+		Optional<com.kdsc.protogen.runtime.types.Set<Integer>> TestOptionalSet,
 		Optional<com.kdsc.protogen.runtime.types.ValueOrError<Integer>> TestOptionalValueOrError,
 		Optional<simple.InnerType> TestOptionalType
 	) {
@@ -66,6 +74,8 @@ public class Type implements ProtoGenType {
 		this.TestDate = TestDate;
 		this.TestDateTime = TestDateTime;
 		this.TestLocalDateTime = TestLocalDateTime;
+		this.TestMap = TestMap;
+		this.TestSet = TestSet;
 		this.TestValueOrError = TestValueOrError;
 		this.TestType = TestType;
 		this.TestOptionalDouble = TestOptionalDouble;
@@ -78,6 +88,8 @@ public class Type implements ProtoGenType {
 		this.TestOptionalDate = TestOptionalDate;
 		this.TestOptionalDatetime = TestOptionalDatetime;
 		this.TestOptionalLocalDateTime = TestOptionalLocalDateTime;
+		this.TestOptionalMap = TestOptionalMap;
+		this.TestOptionalSet = TestOptionalSet;
 		this.TestOptionalValueOrError = TestOptionalValueOrError;
 		this.TestOptionalType = TestOptionalType;
 	}
@@ -120,6 +132,14 @@ public class Type implements ProtoGenType {
 
 	public com.kdsc.protogen.runtime.types.LocalDateTime getTestLocalDateTime() {
 		return TestLocalDateTime;
+	}
+
+	public com.kdsc.protogen.runtime.types.Map<Integer, Integer> getTestMap() {
+		return TestMap;
+	}
+
+	public com.kdsc.protogen.runtime.types.Set<Integer> getTestSet() {
+		return TestSet;
 	}
 
 	public com.kdsc.protogen.runtime.types.ValueOrError<Integer> getTestValueOrError() {
@@ -168,6 +188,14 @@ public class Type implements ProtoGenType {
 
 	public Optional<com.kdsc.protogen.runtime.types.LocalDateTime> getTestOptionalLocalDateTime() {
 		return TestOptionalLocalDateTime;
+	}
+
+	public Optional<com.kdsc.protogen.runtime.types.Map<Integer, Integer>> getTestOptionalMap() {
+		return TestOptionalMap;
+	}
+
+	public Optional<com.kdsc.protogen.runtime.types.Set<Integer>> getTestOptionalSet() {
+		return TestOptionalSet;
 	}
 
 	public Optional<com.kdsc.protogen.runtime.types.ValueOrError<Integer>> getTestOptionalValueOrError() {

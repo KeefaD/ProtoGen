@@ -87,6 +87,15 @@ public class FieldTransformer {
                 isOptional,
                 transformFieldTypeNode(transformerContext, fileContext, valueOrErrorFieldTypeNode.getFieldTypeNode())
             );
+            case com.kdsc.protogen.parsetree.fieldtypenodes.SetFieldTypeNode setFieldTypeNode -> new SetFieldTypeNode(
+                isOptional,
+                transformFieldTypeNode(transformerContext, fileContext, setFieldTypeNode.getFieldTypeNode())
+            );
+            case com.kdsc.protogen.parsetree.fieldtypenodes.MapFieldTypeNode mapFieldTypeNode -> new MapFieldTypeNode(
+                isOptional,
+                transformFieldTypeNode(transformerContext, fileContext, mapFieldTypeNode.getKeyFieldTypeNode()),
+                transformFieldTypeNode(transformerContext, fileContext, mapFieldTypeNode.getValueFieldTypeNode())
+            );
             default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
         };
     }

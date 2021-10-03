@@ -22,6 +22,8 @@ public class TestGetters {
         var testDate = new Date();
         var testDateTime = new DateTime();
         var testLocalDateTime = new LocalDateTime();
+        var testMap = new Map<Integer, Integer>();
+        var testSet = new Set<Integer>();
         var testValueOrError = new ValueOrError<>(1);
         var testType = new InnerType(1f);
         var testOptionalDouble = Optional.of(1d);
@@ -34,6 +36,8 @@ public class TestGetters {
         var testOptionalDate = Optional.of(new Date());
         var testOptionalDateTime = Optional.of(new DateTime());
         var testOptionalLocalDateTime = Optional.of(new LocalDateTime());
+        var testOptionalMap = Optional.of(new Map<Integer, Integer>());
+        var testOptionalSet = Optional.of(new Set<Integer>());
         var testOptionalValueOrError = Optional.of(new ValueOrError<>(1));
         var testOptionalType = Optional.of(new InnerType(1f));
         var type = new Type(
@@ -47,6 +51,8 @@ public class TestGetters {
             testDate,
             testDateTime,
             testLocalDateTime,
+            testMap,
+            testSet,
             testValueOrError,
             testType,
             testOptionalDouble,
@@ -59,6 +65,8 @@ public class TestGetters {
             testOptionalDate,
             testOptionalDateTime,
             testOptionalLocalDateTime,
+            testOptionalMap,
+            testOptionalSet,
             testOptionalValueOrError,
             testOptionalType
         );

@@ -1,4 +1,4 @@
 package com.kdsc.protogen.runtime.types;
 
-public class Map {
+public class Map<K, V> {
 }

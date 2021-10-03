@@ -21,6 +21,8 @@ public class TestConstructor {
             new Date(),
             new DateTime(),
             new LocalDateTime(),
+            new Map<>(),
+            new Set<>(),
             new ValueOrError<>(1),
             new InnerType(1f),
             Optional.of(1d),
@@ -33,6 +35,8 @@ public class TestConstructor {
             Optional.of(new Date()),
             Optional.of(new DateTime()),
             Optional.of(new LocalDateTime()),
+            Optional.of(new Map<>()),
+            Optional.of(new Set<>()),
             Optional.of(new ValueOrError<>(1)),
             Optional.of(new InnerType(1f))
         );

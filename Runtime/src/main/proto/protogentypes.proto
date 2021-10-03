@@ -16,3 +16,9 @@ message LocalDateTime {
 
 message ValueOrError {
 }
+
+message Set {
+}
+
+message Map {
+}

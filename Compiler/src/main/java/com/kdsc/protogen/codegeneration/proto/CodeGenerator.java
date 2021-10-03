@@ -99,6 +99,8 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
             case DateTimeFieldTypeNode ignored -> "protogentypes.DateTime";
             case LocalDateTimeFieldTypeNode ignored -> "protogentypes.LocalDateTime";
             case ValueOrErrorFieldTypeNode ignored -> "protogentypes.ValueOrError";
+            case SetFieldTypeNode ignored -> "protogentypes.Set";
+            case MapFieldTypeNode ignored -> "protogentypes.Map";
             default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
         };
     }

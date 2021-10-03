@@ -14,11 +14,11 @@ type simple.Type {
     TestDate : date
     TestDateTime : datetime
     TestLocalDateTime : localdatetime
-//    TestMap : map<string, string>
-//    TestSet : set<string>
+    TestMap : map<int32, int32>
+    TestSet : set<int32>
     TestValueOrError : valueorerror<int32>
     TestType : simple.InnerType
-//    TestArray : string[]
+//    TestArray : int32[]
     TestOptionalDouble : optional double
     TestOptionalFloat : optional float
     TestOptionalInt32 : optional int32
@@ -30,9 +30,9 @@ type simple.Type {
     TestOptionalDate : optional date
     TestOptionalDatetime : optional datetime
     TestOptionalLocalDateTime : optional localdatetime
-//    TestOptionalMap : optional map<string, string>
-//    TestOptionalSet : optional set<string>
+    TestOptionalMap : optional map<int32, int32>
+    TestOptionalSet : optional set<int32>
     TestOptionalValueOrError : optional valueorerror<int32>
     TestOptionalType : optional simple.InnerType
-//    TestOptionalArray : optional string[]
+//    TestOptionalArray : optional int32[]
 }
