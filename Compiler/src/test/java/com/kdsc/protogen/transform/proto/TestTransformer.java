@@ -23,6 +23,7 @@ public class TestTransformer  extends BaseCompilerTest {
                     //Super -> //BaseFileGenerationTreeNode
                     FileName : TestNamespace.Enum.proto
                     Path :\s
+            PackageName : TestNamespace
             Name : Enum
         """;
         assertNotNull(fileGenerationTree, "FileGenerationTree list is null");
