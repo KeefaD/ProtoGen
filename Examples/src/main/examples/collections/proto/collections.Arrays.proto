@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package collections;
+
+import "collections.InnerType.proto";
+import "protogentypes.proto";
+
+message Arrays {
+	protogentypes.Array TestDoubleArray = 1;
+	protogentypes.Array TestFloatArray = 2;
+	protogentypes.Array TestInt32Array = 3;
+	protogentypes.Array TestInt64Array = 4;
+	protogentypes.Array TestBoolArray = 5;
+	protogentypes.Array TestStringArray = 6;
+	protogentypes.Array TestBytesArray = 7;
+	protogentypes.Array TestDecimalArray = 8;
+	protogentypes.Array TestDateArray = 9;
+	protogentypes.Array TestDatetimeArray = 10;
+	protogentypes.Array TestLocaldatetimeArray = 11;
+	protogentypes.Array TestMapArray = 12;
+	protogentypes.Array TestSetArray = 13;
+	protogentypes.Array TestValueorerrorArray = 14;
+	protogentypes.Array TestObjectArray = 15;
+	protogentypes.Array TestArrayArray = 16;
+	protogentypes.Array TestOptionalDoubleArray = 17;
+	protogentypes.Array TestOptionalFloatArray = 18;
+	protogentypes.Array TestOptionalInt32Array = 19;
+	protogentypes.Array TestOptionalInt64Array = 20;
+	protogentypes.Array TestOptionalBoolArray = 21;
+	protogentypes.Array TestOptionalStringArray = 22;
+	protogentypes.Array TestOptionalBytesArray = 23;
+	protogentypes.Array TestOptionalDecimalArray = 24;
+	protogentypes.Array TestOptionalDateArray = 25;
+	protogentypes.Array TestOptionalDatetimeArray = 26;
+	protogentypes.Array TestOptionalLocaldatetimeArray = 27;
+	protogentypes.Array TestOptionalMapArray = 28;
+	protogentypes.Array TestOptionalSetArray = 29;
+	protogentypes.Array TestOptionalValueorerrorArray = 30;
+	protogentypes.Array TestOptionalObjectArray = 31;
+	protogentypes.Array TestOptionalArrayArray = 32;
+}

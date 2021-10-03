@@ -1,4 +1,4 @@
-package simple;
+package collections;
 
 import com.kdsc.protogen.runtime.ProtoGenType;
 
@@ -23,7 +23,7 @@ public class InnerType implements ProtoGenType {
 
 	public String toFormattedString(final int indentationLevel) {
 		var stringBuilder = new StringBuilder();
-		stringBuilder.append("//simple.InnerType\n");
+		stringBuilder.append("//collections.InnerType\n");
 		return stringBuilder.toString().indent(indentationLevel * TO_STRING_INDENTATION_LEVEL);
 	}
 

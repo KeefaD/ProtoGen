@@ -1,0 +1,3 @@
+type collections.InnerType {
+    TestInt32 : int32
+}

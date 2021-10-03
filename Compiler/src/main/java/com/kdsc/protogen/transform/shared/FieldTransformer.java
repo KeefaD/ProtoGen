@@ -52,6 +52,9 @@ public class FieldTransformer {
 
     //TODO:KMD This is optional is a hack
     private FieldTypeNode transformArrayFieldTypeNode(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.fieldtypenodes.ArrayFieldTypeNode arrayFieldTypeNode, final boolean isOptional) {
+        if(isOptional) {
+            fileContext.addJavaImport("java.util.Optional");
+        }
         return new ArrayFieldTypeNode(
             isOptional,
             //TODO:KMD Got a problem here with optionals in arrays
@@ -64,6 +67,7 @@ public class FieldTransformer {
         if(isOptional) {
             fileContext.addJavaImport("java.util.Optional");
         }
+        //TODO:KMD Need to filter out own package
         if(fieldTypeNode instanceof com.kdsc.protogen.parsetree.fieldtypenodes.TypeFieldTypeNode typeFieldTypeNode) {
             fileContext.addProtoImport(ParseTreeUtils.getNamespaceNameString(typeFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()));
         }

@@ -26,7 +26,7 @@ public class TestGetters {
         var testMap = new Map<Integer, Integer>();
         var testSet = new Set<Integer>();
         var testValueOrError = new ValueOrError<>(1);
-        var testType = new InnerType(1f);
+        var testType = new InnerType(1);
         var testArray = new Array<Integer>();
         var testOptionalDouble = Optional.of(1d);
         var testOptionalFloat = Optional.of(1f);
@@ -42,7 +42,7 @@ public class TestGetters {
         var testOptionalMap = Optional.of(new Map<Integer, Integer>());
         var testOptionalSet = Optional.of(new Set<Integer>());
         var testOptionalValueOrError = Optional.of(new ValueOrError<>(1));
-        var testOptionalType = Optional.of(new InnerType(1f));
+        var testOptionalType = Optional.of(new InnerType(1));
         var testOptionalArray = Optional.of(new Array<Integer>());
         var type = new Type(
             testDoubleValue,

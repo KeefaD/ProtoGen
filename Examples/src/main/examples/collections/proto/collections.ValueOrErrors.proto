@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package collections;
+
+import "collections.ValueOrErrors.proto";
+import "protogentypes.proto";
+
+message ValueOrErrors {
+	protogentypes.ValueOrError TestDoubleValueOrError = 1;
+	protogentypes.ValueOrError TestFloatValueOrError = 2;
+	protogentypes.ValueOrError TestInt32ValueOrError = 3;
+	protogentypes.ValueOrError TestInt64ValueOrError = 4;
+	protogentypes.ValueOrError TestBoolValueOrError = 5;
+	protogentypes.ValueOrError TestStringValueOrError = 6;
+	protogentypes.ValueOrError TestBytesValueOrError = 7;
+	protogentypes.ValueOrError TestDecimalValueOrError = 8;
+	protogentypes.ValueOrError TestDateValueOrError = 9;
+	protogentypes.ValueOrError TestDatetimeValueOrError = 10;
+	protogentypes.ValueOrError TestLocaldatetimeValueOrError = 11;
+	protogentypes.ValueOrError TestMapValueOrError = 12;
+	protogentypes.ValueOrError TestSetValueOrError = 13;
+	protogentypes.ValueOrError TestValueOrErrorValueOrError = 14;
+	protogentypes.ValueOrError TestObjectValueOrError = 15;
+	protogentypes.ValueOrError TestArrayValueOrError = 16;
+	protogentypes.ValueOrError TestOptionalDoubleValueOrError = 17;
+	protogentypes.ValueOrError TestOptionalFloatValueOrError = 18;
+	protogentypes.ValueOrError TestOptionalInt32ValueOrError = 19;
+	protogentypes.ValueOrError TestOptionalInt64ValueOrError = 20;
+	protogentypes.ValueOrError TestOptionalBoolValueOrError = 21;
+	protogentypes.ValueOrError TestOptionalStringValueOrError = 22;
+	protogentypes.ValueOrError TestOptionalBytesValueOrError = 23;
+	protogentypes.ValueOrError TestOptionalDecimalValueOrError = 24;
+	protogentypes.ValueOrError TestOptionalDateValueOrError = 25;
+	protogentypes.ValueOrError TestOptionalDatetimeValueOrError = 26;
+	protogentypes.ValueOrError TestOptionalLocaldatetimeValueOrError = 27;
+	protogentypes.ValueOrError TestOptionalMapValueOrError = 28;
+	protogentypes.ValueOrError TestOptionalSetValueOrError = 29;
+	protogentypes.ValueOrError TestOptionalValueOrErrorValueOrError = 30;
+	protogentypes.ValueOrError TestOptionalObjectValueOrError = 31;
+	protogentypes.ValueOrError TestOptionalArrayValueOrError = 32;
+}

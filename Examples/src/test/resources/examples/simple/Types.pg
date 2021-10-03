@@ -1,5 +1,5 @@
 type simple.InnerType {
-    TestFloat : float
+    TestInt32 : int32
 }
 
 type simple.Type {

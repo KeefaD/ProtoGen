@@ -25,7 +25,7 @@ public class TestConstructor {
             new Map<>(),
             new Set<>(),
             new ValueOrError<>(1),
-            new InnerType(1f),
+            new InnerType(1),
             new Array<>(),
             Optional.of(1d),
             Optional.of(1f),
@@ -41,7 +41,7 @@ public class TestConstructor {
             Optional.of(new Map<>()),
             Optional.of(new Set<>()),
             Optional.of(new ValueOrError<>(1)),
-            Optional.of(new InnerType(1f)),
+            Optional.of(new InnerType(1)),
             Optional.of(new Array<>())
         );
     }

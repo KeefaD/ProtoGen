@@ -1,36 +1,34 @@
-//type collections.Sets<T> {
-////    testDoubleSet : set<double>
-////    testFloatSet : set<float>
-//    testInt32Set : set<int32>
-//    testInt64Set : set<int64>
-//    testBoolSet : set<bool>
-//    testStringSet : set<string>
-//    testBytesSet : set<bytes>
-//    testDecimalSet : set<decimal>
-//    testDateSet : set<date>
-//    testDatetimeSet : set<datetime>
-//    testLocaldatetimeSet : set<localdatetime>
-//    testMapSet : set<map<string, string>>
-//    testSetSet : set<set<string>>
-////    testValueorerrorSet : set<valueorerror<decimal>> //Hmm what does this mean if there is an error
-//    testObjectSet : set<collections.Sets>
-//    testGenericTypeSet : set<T> //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
-//    testArraySet : set<string[]>
-////    testOptionalDoubleSet : set<optional double>
-////    testOptionalFloatSet : set<optional float>
-//    testOptionalInt32Set : set<optional int32>
-//    testOptionalInt64Set : set<optional int64>
-//    testOptionalBoolSet : set<optional bool>
-//    testOptionalStringSet : set<optional string>
-//    testOptionalBytesSet : set<optional bytes>
-//    testOptionalDecimalSet : set<optional decimal>
-//    testOptionalDateSet : set<optional date>
-//    testOptionalDatetimeSet : set<optional datetime>
-//    testOptionalLocaldatetimeSet : set<optional localdatetime>
-//    testOptionalMapSet : set<optional map<string, string>>
-//    testOptionalSetSet : set<optional set<string>>
-////    testOptionalValueorerrorSet : set<optional valueorerror<decimal>> //Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
-//   testOptionalObjectSet : set<optional collections.Sets>
-//    testOptionalGenericTypeSet : set<optional T> //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
-//    testOptionalArraySet : set<optional string[]>
-//}
+type collections.Sets {
+//    TestDoubleSet : set<double>
+//    TestFloatSet : set<float>
+    TestInt32Set : set<int32>
+    TestInt64Set : set<int64>
+    TestBoolSet : set<bool>
+    TestStringSet : set<string>
+    TestBytesSet : set<bytes>
+    TestDecimalSet : set<decimal>
+    TestDateSet : set<date>
+    TestDatetimeSet : set<datetime>
+    TestLocaldatetimeSet : set<localdatetime>
+    TestMapSet : set<map<string, string>>
+    TestSetSet : set<set<string>>
+//    TestValueorerrorSet : set<valueorerror<decimal>> //Hmm what does this mean if there is an error
+    TestObjectSet : set<collections.InnerType>
+    TestArraySet : set<string[]>
+//    TestOptionalDoubleSet : set<optional double>
+//    TestOptionalFloatSet : set<optional float>
+    TestOptionalInt32Set : set<optional int32>
+    TestOptionalInt64Set : set<optional int64>
+    TestOptionalBoolSet : set<optional bool>
+    TestOptionalStringSet : set<optional string>
+    TestOptionalBytesSet : set<optional bytes>
+    TestOptionalDecimalSet : set<optional decimal>
+    TestOptionalDateSet : set<optional date>
+    TestOptionalDatetimeSet : set<optional datetime>
+    TestOptionalLocaldatetimeSet : set<optional localdatetime>
+    TestOptionalMapSet : set<optional map<string, string>>
+    TestOptionalSetSet : set<optional set<string>>
+//    TestOptionalValueorerrorSet : set<optional valueorerror<decimal>> //Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
+    TestOptionalObjectSet : set<optional collections.InnerType>
+    TestOptionalArraySet : set<optional string[]>
+}

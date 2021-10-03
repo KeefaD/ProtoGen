@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package simple;
+package collections;
 
 message InnerType {
 	int32 TestInt32 = 1;
