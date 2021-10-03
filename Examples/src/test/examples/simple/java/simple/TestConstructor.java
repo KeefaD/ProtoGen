@@ -1,9 +1,6 @@
 package simple;
 
-import com.kdsc.protogen.runtime.types.Date;
-import com.kdsc.protogen.runtime.types.DateTime;
-import com.kdsc.protogen.runtime.types.Decimal;
-import com.kdsc.protogen.runtime.types.LocalDateTime;
+import com.kdsc.protogen.runtime.types.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -24,6 +21,7 @@ public class TestConstructor {
             new Date(),
             new DateTime(),
             new LocalDateTime(),
+            new ValueOrError<>(1),
             new InnerType(1f),
             Optional.of(1d),
             Optional.of(1f),
@@ -35,6 +33,7 @@ public class TestConstructor {
             Optional.of(new Date()),
             Optional.of(new DateTime()),
             Optional.of(new LocalDateTime()),
+            Optional.of(new ValueOrError<>(1)),
             Optional.of(new InnerType(1f))
         );
     }

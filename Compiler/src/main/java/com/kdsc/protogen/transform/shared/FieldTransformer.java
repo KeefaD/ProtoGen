@@ -83,6 +83,10 @@ public class FieldTransformer {
                 ParseTreeUtils.getNamespaceString(typeFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()), //TODO:KMD Perhaps add some helper methods here on the has namespace name interface
                 typeFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode().getNameNode().getName()
             );
+            case com.kdsc.protogen.parsetree.fieldtypenodes.ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode -> new ValueOrErrorFieldTypeNode(
+                isOptional,
+                transformFieldTypeNode(transformerContext, fileContext, valueOrErrorFieldTypeNode.getFieldTypeNode())
+            );
             default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
         };
     }

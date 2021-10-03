@@ -13,3 +13,6 @@ message DateTime {
 
 message LocalDateTime {
 }
+
+message ValueOrError {
+}

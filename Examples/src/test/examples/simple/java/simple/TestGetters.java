@@ -1,9 +1,6 @@
 package simple;
 
-import com.kdsc.protogen.runtime.types.Date;
-import com.kdsc.protogen.runtime.types.DateTime;
-import com.kdsc.protogen.runtime.types.Decimal;
-import com.kdsc.protogen.runtime.types.LocalDateTime;
+import com.kdsc.protogen.runtime.types.*;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -25,6 +22,7 @@ public class TestGetters {
         var testDate = new Date();
         var testDateTime = new DateTime();
         var testLocalDateTime = new LocalDateTime();
+        var testValueOrError = new ValueOrError<>(1);
         var testType = new InnerType(1f);
         var testOptionalDouble = Optional.of(1d);
         var testOptionalFloat = Optional.of(1f);
@@ -36,6 +34,7 @@ public class TestGetters {
         var testOptionalDate = Optional.of(new Date());
         var testOptionalDateTime = Optional.of(new DateTime());
         var testOptionalLocalDateTime = Optional.of(new LocalDateTime());
+        var testOptionalValueOrError = Optional.of(new ValueOrError<>(1));
         var testOptionalType = Optional.of(new InnerType(1f));
         var type = new Type(
             testDoubleValue,
@@ -48,6 +47,7 @@ public class TestGetters {
             testDate,
             testDateTime,
             testLocalDateTime,
+            testValueOrError,
             testType,
             testOptionalDouble,
             testOptionalFloat,
@@ -59,6 +59,7 @@ public class TestGetters {
             testOptionalDate,
             testOptionalDateTime,
             testOptionalLocalDateTime,
+            testOptionalValueOrError,
             testOptionalType
         );
         assertEquals(testDoubleValue, type.getTestDouble(), "Unexpected value returned from getter");

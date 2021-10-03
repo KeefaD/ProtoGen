@@ -2,7 +2,7 @@ type simple.InnerType {
     TestFloat : float
 }
 
-type simple.Type<T> {
+type simple.Type {
     TestDouble : double
     TestFloat : float
     TestInt32 : int32
@@ -12,13 +12,12 @@ type simple.Type<T> {
 //    TestBytes : bytes
     TestDecimal : decimal
     TestDate : date
-    TestDatetime : datetime
-    TestLocaldatetime : localdatetime
+    TestDateTime : datetime
+    TestLocalDateTime : localdatetime
 //    TestMap : map<string, string>
 //    TestSet : set<string>
-//    TestValueorerror : valueorerror<decimal>
+    TestValueOrError : valueorerror<int32>
     TestType : simple.InnerType
-//    TestGenericType : T //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
 //    TestArray : string[]
     TestOptionalDouble : optional double
     TestOptionalFloat : optional float
@@ -30,11 +29,10 @@ type simple.Type<T> {
     TestOptionalDecimal : optional decimal
     TestOptionalDate : optional date
     TestOptionalDatetime : optional datetime
-    TestOptionalLocaldatetime : optional localdatetime
+    TestOptionalLocalDateTime : optional localdatetime
 //    TestOptionalMap : optional map<string, string>
 //    TestOptionalSet : optional set<string>
-//    TestOptionalValueorerror : optional valueorerror<decimal>
+    TestOptionalValueOrError : optional valueorerror<int32>
     TestOptionalType : optional simple.InnerType
-//    TestOptionalGenericType : optional T //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
 //    TestOptionalArray : optional string[]
 }
