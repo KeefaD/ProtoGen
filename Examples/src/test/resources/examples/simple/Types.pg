@@ -10,10 +10,10 @@ type simple.Type<T> {
     TestBool : bool
     TestString : string
 //    TestBytes : bytes
-//    TestDecimal : decimal
-//    TestDate : date
-//    TestDatetime : datetime
-//    TestLocaldatetime : localdatetime
+    TestDecimal : decimal
+    TestDate : date
+    TestDatetime : datetime
+    TestLocaldatetime : localdatetime
 //    TestMap : map<string, string>
 //    TestSet : set<string>
 //    TestValueorerror : valueorerror<decimal>
@@ -27,10 +27,10 @@ type simple.Type<T> {
     TestOptionalBool : optional bool
     TestOptionalString : optional string
 //    TestOptionalBytes : optional bytes
-//    TestOptionalDecimal : optional decimal
-//    TestOptionalDate : optional date
-//    TestOptionalDatetime : optional datetime
-//    TestOptionalLocaldatetime : optional localdatetime
+    TestOptionalDecimal : optional decimal
+    TestOptionalDate : optional date
+    TestOptionalDatetime : optional datetime
+    TestOptionalLocaldatetime : optional localdatetime
 //    TestOptionalMap : optional map<string, string>
 //    TestOptionalSet : optional set<string>
 //    TestOptionalValueorerror : optional valueorerror<decimal>

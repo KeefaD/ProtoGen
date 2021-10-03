@@ -11,6 +11,10 @@ public class Type implements ProtoGenType {
 	private long TestInt64;
 	private boolean TestBool;
 	private String TestString;
+	private com.kdsc.protogen.runtime.types.Decimal TestDecimal;
+	private com.kdsc.protogen.runtime.types.Date TestDate;
+	private com.kdsc.protogen.runtime.types.DateTime TestDatetime;
+	private com.kdsc.protogen.runtime.types.LocalDateTime TestLocaldatetime;
 	private simple.InnerType TestType;
 	private Optional<Double> TestOptionalDouble;
 	private Optional<Float> TestOptionalFloat;
@@ -18,6 +22,10 @@ public class Type implements ProtoGenType {
 	private Optional<Long> TestOptionalInt64;
 	private Optional<Boolean> TestOptionalBool;
 	private Optional<String> TestOptionalString;
+	private Optional<com.kdsc.protogen.runtime.types.Decimal> TestOptionalDecimal;
+	private Optional<com.kdsc.protogen.runtime.types.Date> TestOptionalDate;
+	private Optional<com.kdsc.protogen.runtime.types.DateTime> TestOptionalDatetime;
+	private Optional<com.kdsc.protogen.runtime.types.LocalDateTime> TestOptionalLocaldatetime;
 	private Optional<simple.InnerType> TestOptionalType;
 
 	public Type(
@@ -27,6 +35,10 @@ public class Type implements ProtoGenType {
 		long TestInt64,
 		boolean TestBool,
 		String TestString,
+		com.kdsc.protogen.runtime.types.Decimal TestDecimal,
+		com.kdsc.protogen.runtime.types.Date TestDate,
+		com.kdsc.protogen.runtime.types.DateTime TestDatetime,
+		com.kdsc.protogen.runtime.types.LocalDateTime TestLocaldatetime,
 		simple.InnerType TestType,
 		Optional<Double> TestOptionalDouble,
 		Optional<Float> TestOptionalFloat,
@@ -34,6 +46,10 @@ public class Type implements ProtoGenType {
 		Optional<Long> TestOptionalInt64,
 		Optional<Boolean> TestOptionalBool,
 		Optional<String> TestOptionalString,
+		Optional<com.kdsc.protogen.runtime.types.Decimal> TestOptionalDecimal,
+		Optional<com.kdsc.protogen.runtime.types.Date> TestOptionalDate,
+		Optional<com.kdsc.protogen.runtime.types.DateTime> TestOptionalDatetime,
+		Optional<com.kdsc.protogen.runtime.types.LocalDateTime> TestOptionalLocaldatetime,
 		Optional<simple.InnerType> TestOptionalType
 	) {
 		this.TestDouble = TestDouble;
@@ -42,6 +58,10 @@ public class Type implements ProtoGenType {
 		this.TestInt64 = TestInt64;
 		this.TestBool = TestBool;
 		this.TestString = TestString;
+		this.TestDecimal = TestDecimal;
+		this.TestDate = TestDate;
+		this.TestDatetime = TestDatetime;
+		this.TestLocaldatetime = TestLocaldatetime;
 		this.TestType = TestType;
 		this.TestOptionalDouble = TestOptionalDouble;
 		this.TestOptionalFloat = TestOptionalFloat;
@@ -49,6 +69,10 @@ public class Type implements ProtoGenType {
 		this.TestOptionalInt64 = TestOptionalInt64;
 		this.TestOptionalBool = TestOptionalBool;
 		this.TestOptionalString = TestOptionalString;
+		this.TestOptionalDecimal = TestOptionalDecimal;
+		this.TestOptionalDate = TestOptionalDate;
+		this.TestOptionalDatetime = TestOptionalDatetime;
+		this.TestOptionalLocaldatetime = TestOptionalLocaldatetime;
 		this.TestOptionalType = TestOptionalType;
 	}
 
@@ -74,6 +98,22 @@ public class Type implements ProtoGenType {
 
 	public String getTestString() {
 		return TestString;
+	}
+
+	public com.kdsc.protogen.runtime.types.Decimal getTestDecimal() {
+		return TestDecimal;
+	}
+
+	public com.kdsc.protogen.runtime.types.Date getTestDate() {
+		return TestDate;
+	}
+
+	public com.kdsc.protogen.runtime.types.DateTime getTestDatetime() {
+		return TestDatetime;
+	}
+
+	public com.kdsc.protogen.runtime.types.LocalDateTime getTestLocaldatetime() {
+		return TestLocaldatetime;
 	}
 
 	public simple.InnerType getTestType() {
@@ -102,6 +142,22 @@ public class Type implements ProtoGenType {
 
 	public Optional<String> getTestOptionalString() {
 		return TestOptionalString;
+	}
+
+	public Optional<com.kdsc.protogen.runtime.types.Decimal> getTestOptionalDecimal() {
+		return TestOptionalDecimal;
+	}
+
+	public Optional<com.kdsc.protogen.runtime.types.Date> getTestOptionalDate() {
+		return TestOptionalDate;
+	}
+
+	public Optional<com.kdsc.protogen.runtime.types.DateTime> getTestOptionalDatetime() {
+		return TestOptionalDatetime;
+	}
+
+	public Optional<com.kdsc.protogen.runtime.types.LocalDateTime> getTestOptionalLocaldatetime() {
+		return TestOptionalLocaldatetime;
 	}
 
 	public Optional<simple.InnerType> getTestOptionalType() {

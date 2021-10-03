@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package protogentypes;
+
+message Decimal {
+}
+
+message Date {
+}
+
+message DateTime {
+}
+
+message LocalDateTime {
+}

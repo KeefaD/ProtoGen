@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package simple;
 
+import "protogentypes.proto";
 import "simple.InnerType.proto";
 
 message Type {
@@ -11,12 +12,20 @@ message Type {
 	int64 TestInt64 = 4;
 	bool TestBool = 5;
 	string TestString = 6;
-	simple.InnerType TestType = 7;
-	double TestOptionalDouble = 8;
-	float TestOptionalFloat = 9;
-	int32 TestOptionalInt32 = 10;
-	int64 TestOptionalInt64 = 11;
-	bool TestOptionalBool = 12;
-	string TestOptionalString = 13;
-	simple.InnerType TestOptionalType = 14;
+	protogentypes.Decimal TestDecimal = 7;
+	protogentypes.Date TestDate = 8;
+	protogentypes.DateTime TestDatetime = 9;
+	protogentypes.LocalDateTime TestLocaldatetime = 10;
+	simple.InnerType TestType = 11;
+	double TestOptionalDouble = 12;
+	float TestOptionalFloat = 13;
+	int32 TestOptionalInt32 = 14;
+	int64 TestOptionalInt64 = 15;
+	bool TestOptionalBool = 16;
+	string TestOptionalString = 17;
+	protogentypes.Decimal TestOptionalDecimal = 18;
+	protogentypes.Date TestOptionalDate = 19;
+	protogentypes.DateTime TestOptionalDatetime = 20;
+	protogentypes.LocalDateTime TestOptionalLocaldatetime = 21;
+	simple.InnerType TestOptionalType = 22;
 }

@@ -165,6 +165,10 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                 case Int64FieldTypeNode ignored -> "Optional<Long>";
                 case BoolFieldTypeNode ignored -> "Optional<Boolean>";
                 case StringFieldTypeNode ignored -> "Optional<String>";
+                case DecimalFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.Decimal>";
+                case DateFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.Date>";
+                case DateTimeFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.DateTime>";
+                case LocalDateTimeFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.LocalDateTime>";
                 case TypeFieldTypeNode typeFieldTypeNode -> "Optional<" + typeFieldTypeNode.getFullyQualifiedName() + ">";
                 default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
             };
@@ -176,6 +180,10 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                 case Int64FieldTypeNode ignored -> "long";
                 case BoolFieldTypeNode ignored -> "boolean";
                 case StringFieldTypeNode ignored -> "String";
+                case DecimalFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.Decimal";
+                case DateFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.Date";
+                case DateTimeFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.DateTime";
+                case LocalDateTimeFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.LocalDateTime";
                 case TypeFieldTypeNode typeFieldTypeNode -> typeFieldTypeNode.getFullyQualifiedName();
                 default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
             };

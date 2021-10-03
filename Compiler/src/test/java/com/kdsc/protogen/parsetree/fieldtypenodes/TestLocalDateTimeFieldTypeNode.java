@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestDatetimeFieldTypeNode extends BaseTestNode {
+public class TestLocalDateTimeFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testCreate() {
-        new DatetimeFieldTypeNode(
+        new LocalDateTimeFieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition
@@ -18,13 +18,13 @@ public class TestDatetimeFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testToString() {
-        var node = new DatetimeFieldTypeNode(
+        var node = new LocalDateTimeFieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition
         );
         var expectedToStringOutput = """
-        //DatetimeFieldTypeNode
+        //LocalDateTimeFieldTypeNode
             //Super -> //NonArrayFieldTypeNode
                 //Super -> //BaseParseTreeNode
                     SourceFileName : TestFileName.pg

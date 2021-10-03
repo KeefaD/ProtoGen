@@ -305,13 +305,13 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
                     ctx.getStart().getCharPositionInLine()
                 );
             case DATETIME ->
-                new DatetimeFieldTypeNode(
+                new DateTimeFieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
             case LOCALDATETIME ->
-                new LocalDatetimeFieldTypeNode(
+                new LocalDateTimeFieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()

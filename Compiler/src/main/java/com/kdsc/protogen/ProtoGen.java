@@ -31,6 +31,7 @@ import java.util.stream.Collectors;
 //TODO:KMD Need to be able to do a comparison on all the examples at the same time or it is pointless
 //TODO:KMD Need to think about capitalisation for namespaces, should we allow uppercase packages, investigate
 //TODO:KMD Enums should always have one value, check java and dot net
+//TODO:KMD Missing LocalDate type
 public class ProtoGen {
 
     public static final char OPTION_MARKER = '-';
