@@ -17,6 +17,7 @@ public class TestConstructor {
             1,
             false,
             "Test",
+            new Bytes(),
             new Decimal(),
             new Date(),
             new DateTime(),
@@ -25,12 +26,14 @@ public class TestConstructor {
             new Set<>(),
             new ValueOrError<>(1),
             new InnerType(1f),
+            new Array<>(),
             Optional.of(1d),
             Optional.of(1f),
             Optional.of(1),
             Optional.of(1L),
             Optional.of(false),
             Optional.of("Test"),
+            Optional.of(new Bytes()),
             Optional.of(new Decimal()),
             Optional.of(new Date()),
             Optional.of(new DateTime()),
@@ -38,7 +41,8 @@ public class TestConstructor {
             Optional.of(new Map<>()),
             Optional.of(new Set<>()),
             Optional.of(new ValueOrError<>(1)),
-            Optional.of(new InnerType(1f))
+            Optional.of(new InnerType(1f)),
+            Optional.of(new Array<>())
         );
     }
 

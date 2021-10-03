@@ -94,6 +94,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
             case BoolFieldTypeNode ignored -> "bool";
             case StringFieldTypeNode ignored -> "string";
             case TypeFieldTypeNode typeFieldTypeNode -> typeFieldTypeNode.getFullyQualifiedName();
+            case BytesFieldTypeNode ignored -> "protogentypes.Bytes";
             case DecimalFieldTypeNode ignored -> "protogentypes.Decimal";
             case DateFieldTypeNode ignored -> "protogentypes.Date";
             case DateTimeFieldTypeNode ignored -> "protogentypes.DateTime";
@@ -101,6 +102,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
             case ValueOrErrorFieldTypeNode ignored -> "protogentypes.ValueOrError";
             case SetFieldTypeNode ignored -> "protogentypes.Set";
             case MapFieldTypeNode ignored -> "protogentypes.Map";
+            case ArrayFieldTypeNode ignored -> "protogentypes.Array";
             default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
         };
     }

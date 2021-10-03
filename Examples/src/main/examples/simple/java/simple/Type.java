@@ -11,6 +11,7 @@ public class Type implements ProtoGenType {
 	private long TestInt64;
 	private boolean TestBool;
 	private String TestString;
+	private com.kdsc.protogen.runtime.types.Bytes TestBytes;
 	private com.kdsc.protogen.runtime.types.Decimal TestDecimal;
 	private com.kdsc.protogen.runtime.types.Date TestDate;
 	private com.kdsc.protogen.runtime.types.DateTime TestDateTime;
@@ -19,12 +20,14 @@ public class Type implements ProtoGenType {
 	private com.kdsc.protogen.runtime.types.Set<Integer> TestSet;
 	private com.kdsc.protogen.runtime.types.ValueOrError<Integer> TestValueOrError;
 	private simple.InnerType TestType;
+	private com.kdsc.protogen.runtime.types.Array<Integer> TestArray;
 	private Optional<Double> TestOptionalDouble;
 	private Optional<Float> TestOptionalFloat;
 	private Optional<Integer> TestOptionalInt32;
 	private Optional<Long> TestOptionalInt64;
 	private Optional<Boolean> TestOptionalBool;
 	private Optional<String> TestOptionalString;
+	private Optional<com.kdsc.protogen.runtime.types.Bytes> TestOptionalBytes;
 	private Optional<com.kdsc.protogen.runtime.types.Decimal> TestOptionalDecimal;
 	private Optional<com.kdsc.protogen.runtime.types.Date> TestOptionalDate;
 	private Optional<com.kdsc.protogen.runtime.types.DateTime> TestOptionalDatetime;
@@ -33,6 +36,7 @@ public class Type implements ProtoGenType {
 	private Optional<com.kdsc.protogen.runtime.types.Set<Integer>> TestOptionalSet;
 	private Optional<com.kdsc.protogen.runtime.types.ValueOrError<Integer>> TestOptionalValueOrError;
 	private Optional<simple.InnerType> TestOptionalType;
+	private Optional<com.kdsc.protogen.runtime.types.Array<Integer>> TestOptionalArray;
 
 	public Type(
 		double TestDouble,
@@ -41,6 +45,7 @@ public class Type implements ProtoGenType {
 		long TestInt64,
 		boolean TestBool,
 		String TestString,
+		com.kdsc.protogen.runtime.types.Bytes TestBytes,
 		com.kdsc.protogen.runtime.types.Decimal TestDecimal,
 		com.kdsc.protogen.runtime.types.Date TestDate,
 		com.kdsc.protogen.runtime.types.DateTime TestDateTime,
@@ -49,12 +54,14 @@ public class Type implements ProtoGenType {
 		com.kdsc.protogen.runtime.types.Set<Integer> TestSet,
 		com.kdsc.protogen.runtime.types.ValueOrError<Integer> TestValueOrError,
 		simple.InnerType TestType,
+		com.kdsc.protogen.runtime.types.Array<Integer> TestArray,
 		Optional<Double> TestOptionalDouble,
 		Optional<Float> TestOptionalFloat,
 		Optional<Integer> TestOptionalInt32,
 		Optional<Long> TestOptionalInt64,
 		Optional<Boolean> TestOptionalBool,
 		Optional<String> TestOptionalString,
+		Optional<com.kdsc.protogen.runtime.types.Bytes> TestOptionalBytes,
 		Optional<com.kdsc.protogen.runtime.types.Decimal> TestOptionalDecimal,
 		Optional<com.kdsc.protogen.runtime.types.Date> TestOptionalDate,
 		Optional<com.kdsc.protogen.runtime.types.DateTime> TestOptionalDatetime,
@@ -62,7 +69,8 @@ public class Type implements ProtoGenType {
 		Optional<com.kdsc.protogen.runtime.types.Map<Integer, Integer>> TestOptionalMap,
 		Optional<com.kdsc.protogen.runtime.types.Set<Integer>> TestOptionalSet,
 		Optional<com.kdsc.protogen.runtime.types.ValueOrError<Integer>> TestOptionalValueOrError,
-		Optional<simple.InnerType> TestOptionalType
+		Optional<simple.InnerType> TestOptionalType,
+		Optional<com.kdsc.protogen.runtime.types.Array<Integer>> TestOptionalArray
 	) {
 		this.TestDouble = TestDouble;
 		this.TestFloat = TestFloat;
@@ -70,6 +78,7 @@ public class Type implements ProtoGenType {
 		this.TestInt64 = TestInt64;
 		this.TestBool = TestBool;
 		this.TestString = TestString;
+		this.TestBytes = TestBytes;
 		this.TestDecimal = TestDecimal;
 		this.TestDate = TestDate;
 		this.TestDateTime = TestDateTime;
@@ -78,12 +87,14 @@ public class Type implements ProtoGenType {
 		this.TestSet = TestSet;
 		this.TestValueOrError = TestValueOrError;
 		this.TestType = TestType;
+		this.TestArray = TestArray;
 		this.TestOptionalDouble = TestOptionalDouble;
 		this.TestOptionalFloat = TestOptionalFloat;
 		this.TestOptionalInt32 = TestOptionalInt32;
 		this.TestOptionalInt64 = TestOptionalInt64;
 		this.TestOptionalBool = TestOptionalBool;
 		this.TestOptionalString = TestOptionalString;
+		this.TestOptionalBytes = TestOptionalBytes;
 		this.TestOptionalDecimal = TestOptionalDecimal;
 		this.TestOptionalDate = TestOptionalDate;
 		this.TestOptionalDatetime = TestOptionalDatetime;
@@ -92,6 +103,7 @@ public class Type implements ProtoGenType {
 		this.TestOptionalSet = TestOptionalSet;
 		this.TestOptionalValueOrError = TestOptionalValueOrError;
 		this.TestOptionalType = TestOptionalType;
+		this.TestOptionalArray = TestOptionalArray;
 	}
 
 	public double getTestDouble() {
@@ -116,6 +128,10 @@ public class Type implements ProtoGenType {
 
 	public String getTestString() {
 		return TestString;
+	}
+
+	public com.kdsc.protogen.runtime.types.Bytes getTestBytes() {
+		return TestBytes;
 	}
 
 	public com.kdsc.protogen.runtime.types.Decimal getTestDecimal() {
@@ -150,6 +166,10 @@ public class Type implements ProtoGenType {
 		return TestType;
 	}
 
+	public com.kdsc.protogen.runtime.types.Array<Integer> getTestArray() {
+		return TestArray;
+	}
+
 	public Optional<Double> getTestOptionalDouble() {
 		return TestOptionalDouble;
 	}
@@ -172,6 +192,10 @@ public class Type implements ProtoGenType {
 
 	public Optional<String> getTestOptionalString() {
 		return TestOptionalString;
+	}
+
+	public Optional<com.kdsc.protogen.runtime.types.Bytes> getTestOptionalBytes() {
+		return TestOptionalBytes;
 	}
 
 	public Optional<com.kdsc.protogen.runtime.types.Decimal> getTestOptionalDecimal() {
@@ -204,6 +228,10 @@ public class Type implements ProtoGenType {
 
 	public Optional<simple.InnerType> getTestOptionalType() {
 		return TestOptionalType;
+	}
+
+	public Optional<com.kdsc.protogen.runtime.types.Array<Integer>> getTestOptionalArray() {
+		return TestOptionalArray;
 	}
 
 	@Override

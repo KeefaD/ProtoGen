@@ -18,6 +18,7 @@ public class TestGetters {
         var testInt64Value = 1;
         var testBoolValue = false;
         var testStringValue = "Test";
+        var testBytes = new Bytes();
         var testDecimal = new Decimal();
         var testDate = new Date();
         var testDateTime = new DateTime();
@@ -26,12 +27,14 @@ public class TestGetters {
         var testSet = new Set<Integer>();
         var testValueOrError = new ValueOrError<>(1);
         var testType = new InnerType(1f);
+        var testArray = new Array<Integer>();
         var testOptionalDouble = Optional.of(1d);
         var testOptionalFloat = Optional.of(1f);
         var testOptionalInt32 = Optional.of(1);
         var testOptionalInt64 = Optional.of(1L);
         var testOptionalBool = Optional.of(false);
         var testOptionalString = Optional.of("Test");
+        var testOptionalBytes = Optional.of(new Bytes());
         var testOptionalDecimal = Optional.of(new Decimal());
         var testOptionalDate = Optional.of(new Date());
         var testOptionalDateTime = Optional.of(new DateTime());
@@ -40,6 +43,7 @@ public class TestGetters {
         var testOptionalSet = Optional.of(new Set<Integer>());
         var testOptionalValueOrError = Optional.of(new ValueOrError<>(1));
         var testOptionalType = Optional.of(new InnerType(1f));
+        var testOptionalArray = Optional.of(new Array<Integer>());
         var type = new Type(
             testDoubleValue,
             testFloatValue,
@@ -47,6 +51,7 @@ public class TestGetters {
             testInt64Value,
             testBoolValue,
             testStringValue,
+            testBytes,
             testDecimal,
             testDate,
             testDateTime,
@@ -55,12 +60,14 @@ public class TestGetters {
             testSet,
             testValueOrError,
             testType,
+            testArray,
             testOptionalDouble,
             testOptionalFloat,
             testOptionalInt32,
             testOptionalInt64,
             testOptionalBool,
             testOptionalString,
+            testOptionalBytes,
             testOptionalDecimal,
             testOptionalDate,
             testOptionalDateTime,
@@ -68,7 +75,8 @@ public class TestGetters {
             testOptionalMap,
             testOptionalSet,
             testOptionalValueOrError,
-            testOptionalType
+            testOptionalType,
+            testOptionalArray
         );
         assertEquals(testDoubleValue, type.getTestDouble(), "Unexpected value returned from getter");
         assertEquals(testFloatValue, type.getTestFloat(), "Unexpected value returned from getter");

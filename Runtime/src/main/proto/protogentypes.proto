@@ -22,3 +22,9 @@ message Set {
 
 message Map {
 }
+
+message Array {
+}
+
+message Bytes {
+}

@@ -9,7 +9,7 @@ type simple.Type {
     TestInt64 : int64
     TestBool : bool
     TestString : string
-//    TestBytes : bytes
+    TestBytes : bytes
     TestDecimal : decimal
     TestDate : date
     TestDateTime : datetime
@@ -18,14 +18,14 @@ type simple.Type {
     TestSet : set<int32>
     TestValueOrError : valueorerror<int32>
     TestType : simple.InnerType
-//    TestArray : int32[]
+    TestArray : int32[]
     TestOptionalDouble : optional double
     TestOptionalFloat : optional float
     TestOptionalInt32 : optional int32
     TestOptionalInt64 : optional int64
     TestOptionalBool : optional bool
     TestOptionalString : optional string
-//    TestOptionalBytes : optional bytes
+    TestOptionalBytes : optional bytes
     TestOptionalDecimal : optional decimal
     TestOptionalDate : optional date
     TestOptionalDatetime : optional datetime
@@ -34,5 +34,5 @@ type simple.Type {
     TestOptionalSet : optional set<int32>
     TestOptionalValueOrError : optional valueorerror<int32>
     TestOptionalType : optional simple.InnerType
-//    TestOptionalArray : optional int32[]
+    TestOptionalArray : optional int32[]
 }

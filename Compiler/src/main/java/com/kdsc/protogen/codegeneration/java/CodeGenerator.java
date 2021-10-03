@@ -169,6 +169,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                 case Int64FieldTypeNode ignored -> "Optional<Long>";
                 case BoolFieldTypeNode ignored -> "Optional<Boolean>";
                 case StringFieldTypeNode ignored -> "Optional<String>";
+                case BytesFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.Bytes>";
                 case DecimalFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.Decimal>";
                 case DateFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.Date>";
                 case DateTimeFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.DateTime>";
@@ -177,6 +178,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                 case ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode -> "Optional<com.kdsc.protogen.runtime.types.ValueOrError<" + generateFieldType(codeGeneratorContext, valueOrErrorFieldTypeNode.getFieldTypeNode(), true) + ">>";
                 case SetFieldTypeNode setFieldTypeNode -> "Optional<com.kdsc.protogen.runtime.types.Set<" + generateFieldType(codeGeneratorContext, setFieldTypeNode.getFieldTypeNode(), true) + ">>";
                 case MapFieldTypeNode mapFieldTypeNode -> "Optional<com.kdsc.protogen.runtime.types.Map<" + generateFieldType(codeGeneratorContext, mapFieldTypeNode.getKeyFieldTypeNode(), true) + ", " + generateFieldType(codeGeneratorContext, mapFieldTypeNode.getValueFieldTypeNode(), true) + ">>";
+                case ArrayFieldTypeNode arrayFieldTypeNode -> "Optional<com.kdsc.protogen.runtime.types.Array<" + generateFieldType(codeGeneratorContext, arrayFieldTypeNode.getFieldTypeNode(), true) + ">>";
                 default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
             };
         } else {
@@ -188,6 +190,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                     case Int64FieldTypeNode ignored -> "Long";
                     case BoolFieldTypeNode ignored -> "Boolean";
                     case StringFieldTypeNode ignored -> "String";
+                    case BytesFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.Bytes";
                     case DecimalFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.Decimal";
                     case DateFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.Date";
                     case DateTimeFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.DateTime";
@@ -196,6 +199,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                     case ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode -> "com.kdsc.protogen.runtime.types.ValueOrError<" + generateFieldType(codeGeneratorContext, valueOrErrorFieldTypeNode.getFieldTypeNode(), true) + ">";
                     case SetFieldTypeNode setFieldTypeNode -> "com.kdsc.protogen.runtime.types.Set<" + generateFieldType(codeGeneratorContext, setFieldTypeNode.getFieldTypeNode(), true) + ">";
                     case MapFieldTypeNode mapFieldTypeNode -> "com.kdsc.protogen.runtime.types.Map<" + generateFieldType(codeGeneratorContext, mapFieldTypeNode.getKeyFieldTypeNode(), true) + ", " + generateFieldType(codeGeneratorContext, mapFieldTypeNode.getValueFieldTypeNode(), true) + ">";
+                    case ArrayFieldTypeNode arrayFieldTypeNode -> "com.kdsc.protogen.runtime.types.Array<" + generateFieldType(codeGeneratorContext, arrayFieldTypeNode.getFieldTypeNode(), true) + ">";
                     default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
                 };
             } else {
@@ -206,6 +210,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                     case Int64FieldTypeNode ignored -> "long";
                     case BoolFieldTypeNode ignored -> "boolean";
                     case StringFieldTypeNode ignored -> "String";
+                    case BytesFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.Bytes";
                     case DecimalFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.Decimal";
                     case DateFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.Date";
                     case DateTimeFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.DateTime";
@@ -214,6 +219,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                     case ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode -> "com.kdsc.protogen.runtime.types.ValueOrError<" + generateFieldType(codeGeneratorContext, valueOrErrorFieldTypeNode.getFieldTypeNode(), true) + ">";
                     case SetFieldTypeNode setFieldTypeNode -> "com.kdsc.protogen.runtime.types.Set<" + generateFieldType(codeGeneratorContext, setFieldTypeNode.getFieldTypeNode(), true) + ">";
                     case MapFieldTypeNode mapFieldTypeNode -> "com.kdsc.protogen.runtime.types.Map<" + generateFieldType(codeGeneratorContext, mapFieldTypeNode.getKeyFieldTypeNode(), true) + ", " + generateFieldType(codeGeneratorContext, mapFieldTypeNode.getValueFieldTypeNode(), true) + ">";
+                    case ArrayFieldTypeNode arrayFieldTypeNode -> "com.kdsc.protogen.runtime.types.Array<" + generateFieldType(codeGeneratorContext, arrayFieldTypeNode.getFieldTypeNode(), true) + ">";
                     default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
                 };
             }

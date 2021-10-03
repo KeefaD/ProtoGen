@@ -51,9 +51,12 @@ public class FieldTransformer {
     }
 
     //TODO:KMD This is optional is a hack
-    private FieldTypeNode transformArrayFieldTypeNode(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.fieldtypenodes.ArrayFieldTypeNode fieldTypeNode, final boolean isOptional) {
-        //TODO:KMD Just for now
-        return null;
+    private FieldTypeNode transformArrayFieldTypeNode(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.fieldtypenodes.ArrayFieldTypeNode arrayFieldTypeNode, final boolean isOptional) {
+        return new ArrayFieldTypeNode(
+            isOptional,
+            //TODO:KMD Got a problem here with optionals in arrays
+            transformNonArrayFieldTypeNode(transformerContext, fileContext, arrayFieldTypeNode.getNonArrayFieldTypeNode(), false)
+        );
     }
 
     //TODO:KMD This is optional is a hack
@@ -78,6 +81,7 @@ public class FieldTransformer {
             case com.kdsc.protogen.parsetree.fieldtypenodes.DateFieldTypeNode ignored -> new DateFieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetree.fieldtypenodes.DateTimeFieldTypeNode ignored -> new DateTimeFieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetree.fieldtypenodes.LocalDateTimeFieldTypeNode ignored -> new LocalDateTimeFieldTypeNode(isOptional);
+            case com.kdsc.protogen.parsetree.fieldtypenodes.BytesFieldTypeNode ignored -> new BytesFieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetree.fieldtypenodes.TypeFieldTypeNode typeFieldTypeNode -> new TypeFieldTypeNode(
                 isOptional,
                 ParseTreeUtils.getNamespaceString(typeFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()), //TODO:KMD Perhaps add some helper methods here on the has namespace name interface
