@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package interfaces;
+
+import "interfaces.TypeInterface.proto";
+
+message UseInterface {
+	interfaces.TypeInterface __interface__interfaces_TypeInterface = 1;
+	interfaces.TypeInterface TestInterfaceUsage = 2;
+}

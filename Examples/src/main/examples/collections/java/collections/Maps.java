@@ -5,60 +5,60 @@ import java.util.Optional;
 
 public class Maps implements ProtoGenType {
 
-	private com.kdsc.protogen.runtime.types.Map<Integer, Integer> TestInt32Map;
-	private com.kdsc.protogen.runtime.types.Map<Long, Long> TestInt64Map;
-	private com.kdsc.protogen.runtime.types.Map<Boolean, Boolean> TestBoolMap;
-	private com.kdsc.protogen.runtime.types.Map<String, String> TestStringMap;
-	private com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Bytes, com.kdsc.protogen.runtime.types.Bytes> TestBytesMap;
-	private com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Decimal, com.kdsc.protogen.runtime.types.Decimal> TestDecimalMap;
-	private com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Date, com.kdsc.protogen.runtime.types.Date> TestDateMap;
-	private com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.DateTime, com.kdsc.protogen.runtime.types.DateTime> TestDatetimeMap;
-	private com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.LocalDateTime, com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeMap;
-	private com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Map<String, String>, com.kdsc.protogen.runtime.types.Map<String, String>> TestMapMap;
-	private com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Set<String>, com.kdsc.protogen.runtime.types.Set<String>> TestSetMap;
-	private com.kdsc.protogen.runtime.types.Map<collections.InnerType, collections.InnerType> TestObjectMap;
-	private com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Array<String>, com.kdsc.protogen.runtime.types.Array<String>> TestArrayMap;
-	private com.kdsc.protogen.runtime.types.Map<Optional<Integer>, Optional<Integer>> TestOptionalInt32Map;
-	private com.kdsc.protogen.runtime.types.Map<Optional<Long>, Optional<Long>> TestOptionalInt64Map;
-	private com.kdsc.protogen.runtime.types.Map<Optional<Boolean>, Optional<Boolean>> TestOptionalBoolMap;
-	private com.kdsc.protogen.runtime.types.Map<Optional<String>, Optional<String>> TestOptionalStringMap;
-	private com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Bytes>, Optional<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesMap;
-	private com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Decimal>, Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalMap;
-	private com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Date>, Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateSetMap;
-	private com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.DateTime>, Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeMap;
-	private com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>, Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeMap;
-	private com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>, Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapMap;
-	private com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Set<String>>, Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetMap;
-	private com.kdsc.protogen.runtime.types.Map<Optional<collections.InnerType>, Optional<collections.InnerType>> TestOptionalObjectMap;
-	private com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Array<String>>, Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArrayMap;
+	private final com.kdsc.protogen.runtime.types.Map<Integer, Integer> TestInt32Map;
+	private final com.kdsc.protogen.runtime.types.Map<Long, Long> TestInt64Map;
+	private final com.kdsc.protogen.runtime.types.Map<Boolean, Boolean> TestBoolMap;
+	private final com.kdsc.protogen.runtime.types.Map<String, String> TestStringMap;
+	private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Bytes, com.kdsc.protogen.runtime.types.Bytes> TestBytesMap;
+	private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Decimal, com.kdsc.protogen.runtime.types.Decimal> TestDecimalMap;
+	private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Date, com.kdsc.protogen.runtime.types.Date> TestDateMap;
+	private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.DateTime, com.kdsc.protogen.runtime.types.DateTime> TestDatetimeMap;
+	private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.LocalDateTime, com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeMap;
+	private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Map<String, String>, com.kdsc.protogen.runtime.types.Map<String, String>> TestMapMap;
+	private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Set<String>, com.kdsc.protogen.runtime.types.Set<String>> TestSetMap;
+	private final com.kdsc.protogen.runtime.types.Map<collections.InnerType, collections.InnerType> TestObjectMap;
+	private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Array<String>, com.kdsc.protogen.runtime.types.Array<String>> TestArrayMap;
+	private final com.kdsc.protogen.runtime.types.Map<Optional<Integer>, Optional<Integer>> TestOptionalInt32Map;
+	private final com.kdsc.protogen.runtime.types.Map<Optional<Long>, Optional<Long>> TestOptionalInt64Map;
+	private final com.kdsc.protogen.runtime.types.Map<Optional<Boolean>, Optional<Boolean>> TestOptionalBoolMap;
+	private final com.kdsc.protogen.runtime.types.Map<Optional<String>, Optional<String>> TestOptionalStringMap;
+	private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Bytes>, Optional<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesMap;
+	private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Decimal>, Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalMap;
+	private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Date>, Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateSetMap;
+	private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.DateTime>, Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeMap;
+	private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>, Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeMap;
+	private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>, Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapMap;
+	private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Set<String>>, Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetMap;
+	private final com.kdsc.protogen.runtime.types.Map<Optional<collections.InnerType>, Optional<collections.InnerType>> TestOptionalObjectMap;
+	private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Array<String>>, Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArrayMap;
 
 	public Maps(
-		com.kdsc.protogen.runtime.types.Map<Integer, Integer> TestInt32Map,
-		com.kdsc.protogen.runtime.types.Map<Long, Long> TestInt64Map,
-		com.kdsc.protogen.runtime.types.Map<Boolean, Boolean> TestBoolMap,
-		com.kdsc.protogen.runtime.types.Map<String, String> TestStringMap,
-		com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Bytes, com.kdsc.protogen.runtime.types.Bytes> TestBytesMap,
-		com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Decimal, com.kdsc.protogen.runtime.types.Decimal> TestDecimalMap,
-		com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Date, com.kdsc.protogen.runtime.types.Date> TestDateMap,
-		com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.DateTime, com.kdsc.protogen.runtime.types.DateTime> TestDatetimeMap,
-		com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.LocalDateTime, com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeMap,
-		com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Map<String, String>, com.kdsc.protogen.runtime.types.Map<String, String>> TestMapMap,
-		com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Set<String>, com.kdsc.protogen.runtime.types.Set<String>> TestSetMap,
-		com.kdsc.protogen.runtime.types.Map<collections.InnerType, collections.InnerType> TestObjectMap,
-		com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Array<String>, com.kdsc.protogen.runtime.types.Array<String>> TestArrayMap,
-		com.kdsc.protogen.runtime.types.Map<Optional<Integer>, Optional<Integer>> TestOptionalInt32Map,
-		com.kdsc.protogen.runtime.types.Map<Optional<Long>, Optional<Long>> TestOptionalInt64Map,
-		com.kdsc.protogen.runtime.types.Map<Optional<Boolean>, Optional<Boolean>> TestOptionalBoolMap,
-		com.kdsc.protogen.runtime.types.Map<Optional<String>, Optional<String>> TestOptionalStringMap,
-		com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Bytes>, Optional<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesMap,
-		com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Decimal>, Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalMap,
-		com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Date>, Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateSetMap,
-		com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.DateTime>, Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeMap,
-		com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>, Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeMap,
-		com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>, Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapMap,
-		com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Set<String>>, Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetMap,
-		com.kdsc.protogen.runtime.types.Map<Optional<collections.InnerType>, Optional<collections.InnerType>> TestOptionalObjectMap,
-		com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Array<String>>, Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArrayMap
+		final com.kdsc.protogen.runtime.types.Map<Integer, Integer> TestInt32Map,
+		final com.kdsc.protogen.runtime.types.Map<Long, Long> TestInt64Map,
+		final com.kdsc.protogen.runtime.types.Map<Boolean, Boolean> TestBoolMap,
+		final com.kdsc.protogen.runtime.types.Map<String, String> TestStringMap,
+		final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Bytes, com.kdsc.protogen.runtime.types.Bytes> TestBytesMap,
+		final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Decimal, com.kdsc.protogen.runtime.types.Decimal> TestDecimalMap,
+		final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Date, com.kdsc.protogen.runtime.types.Date> TestDateMap,
+		final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.DateTime, com.kdsc.protogen.runtime.types.DateTime> TestDatetimeMap,
+		final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.LocalDateTime, com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeMap,
+		final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Map<String, String>, com.kdsc.protogen.runtime.types.Map<String, String>> TestMapMap,
+		final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Set<String>, com.kdsc.protogen.runtime.types.Set<String>> TestSetMap,
+		final com.kdsc.protogen.runtime.types.Map<collections.InnerType, collections.InnerType> TestObjectMap,
+		final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Array<String>, com.kdsc.protogen.runtime.types.Array<String>> TestArrayMap,
+		final com.kdsc.protogen.runtime.types.Map<Optional<Integer>, Optional<Integer>> TestOptionalInt32Map,
+		final com.kdsc.protogen.runtime.types.Map<Optional<Long>, Optional<Long>> TestOptionalInt64Map,
+		final com.kdsc.protogen.runtime.types.Map<Optional<Boolean>, Optional<Boolean>> TestOptionalBoolMap,
+		final com.kdsc.protogen.runtime.types.Map<Optional<String>, Optional<String>> TestOptionalStringMap,
+		final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Bytes>, Optional<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesMap,
+		final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Decimal>, Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalMap,
+		final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Date>, Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateSetMap,
+		final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.DateTime>, Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeMap,
+		final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>, Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeMap,
+		final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>, Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapMap,
+		final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Set<String>>, Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetMap,
+		final com.kdsc.protogen.runtime.types.Map<Optional<collections.InnerType>, Optional<collections.InnerType>> TestOptionalObjectMap,
+		final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Array<String>>, Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArrayMap
 	) {
 		this.TestInt32Map = TestInt32Map;
 		this.TestInt64Map = TestInt64Map;

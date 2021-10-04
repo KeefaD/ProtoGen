@@ -1,10 +1,11 @@
-package simple;
+package interfaces;
 
 import com.kdsc.protogen.runtime.ProtoGenType;
 import java.util.Optional;
 
-public class Type implements ProtoGenType {
+public class UseInterface implements interfaces.TypeInterface, ProtoGenType {
 
+	private final interfaces.TypeInterface TestInterfaceUsage;
 	private final double TestDouble;
 	private final float TestFloat;
 	private final int TestInt32;
@@ -19,7 +20,7 @@ public class Type implements ProtoGenType {
 	private final com.kdsc.protogen.runtime.types.Map<Integer, Integer> TestMap;
 	private final com.kdsc.protogen.runtime.types.Set<Integer> TestSet;
 	private final com.kdsc.protogen.runtime.types.ValueOrError<Integer> TestValueOrError;
-	private final simple.InnerType TestType;
+	private final interfaces.InnerType TestType;
 	private final com.kdsc.protogen.runtime.types.Array<Integer> TestArray;
 	private final Optional<Double> TestOptionalDouble;
 	private final Optional<Float> TestOptionalFloat;
@@ -35,10 +36,13 @@ public class Type implements ProtoGenType {
 	private final Optional<com.kdsc.protogen.runtime.types.Map<Integer, Integer>> TestOptionalMap;
 	private final Optional<com.kdsc.protogen.runtime.types.Set<Integer>> TestOptionalSet;
 	private final Optional<com.kdsc.protogen.runtime.types.ValueOrError<Integer>> TestOptionalValueOrError;
-	private final Optional<simple.InnerType> TestOptionalType;
+	private final Optional<interfaces.InnerType> TestOptionalType;
 	private final Optional<com.kdsc.protogen.runtime.types.Array<Integer>> TestOptionalArray;
+	private final int TestBaseInterface1Field;
+	private final int TestBaseInterface2Field;
 
-	public Type(
+	public UseInterface(
+		final interfaces.TypeInterface TestInterfaceUsage,
 		final double TestDouble,
 		final float TestFloat,
 		final int TestInt32,
@@ -53,7 +57,7 @@ public class Type implements ProtoGenType {
 		final com.kdsc.protogen.runtime.types.Map<Integer, Integer> TestMap,
 		final com.kdsc.protogen.runtime.types.Set<Integer> TestSet,
 		final com.kdsc.protogen.runtime.types.ValueOrError<Integer> TestValueOrError,
-		final simple.InnerType TestType,
+		final interfaces.InnerType TestType,
 		final com.kdsc.protogen.runtime.types.Array<Integer> TestArray,
 		final Optional<Double> TestOptionalDouble,
 		final Optional<Float> TestOptionalFloat,
@@ -69,9 +73,12 @@ public class Type implements ProtoGenType {
 		final Optional<com.kdsc.protogen.runtime.types.Map<Integer, Integer>> TestOptionalMap,
 		final Optional<com.kdsc.protogen.runtime.types.Set<Integer>> TestOptionalSet,
 		final Optional<com.kdsc.protogen.runtime.types.ValueOrError<Integer>> TestOptionalValueOrError,
-		final Optional<simple.InnerType> TestOptionalType,
-		final Optional<com.kdsc.protogen.runtime.types.Array<Integer>> TestOptionalArray
+		final Optional<interfaces.InnerType> TestOptionalType,
+		final Optional<com.kdsc.protogen.runtime.types.Array<Integer>> TestOptionalArray,
+		final int TestBaseInterface1Field,
+		final int TestBaseInterface2Field
 	) {
+		this.TestInterfaceUsage = TestInterfaceUsage;
 		this.TestDouble = TestDouble;
 		this.TestFloat = TestFloat;
 		this.TestInt32 = TestInt32;
@@ -104,6 +111,12 @@ public class Type implements ProtoGenType {
 		this.TestOptionalValueOrError = TestOptionalValueOrError;
 		this.TestOptionalType = TestOptionalType;
 		this.TestOptionalArray = TestOptionalArray;
+		this.TestBaseInterface1Field = TestBaseInterface1Field;
+		this.TestBaseInterface2Field = TestBaseInterface2Field;
+	}
+
+	public interfaces.TypeInterface getTestInterfaceUsage() {
+		return TestInterfaceUsage;
 	}
 
 	public double getTestDouble() {
@@ -162,7 +175,7 @@ public class Type implements ProtoGenType {
 		return TestValueOrError;
 	}
 
-	public simple.InnerType getTestType() {
+	public interfaces.InnerType getTestType() {
 		return TestType;
 	}
 
@@ -226,12 +239,20 @@ public class Type implements ProtoGenType {
 		return TestOptionalValueOrError;
 	}
 
-	public Optional<simple.InnerType> getTestOptionalType() {
+	public Optional<interfaces.InnerType> getTestOptionalType() {
 		return TestOptionalType;
 	}
 
 	public Optional<com.kdsc.protogen.runtime.types.Array<Integer>> getTestOptionalArray() {
 		return TestOptionalArray;
+	}
+
+	public int getTestBaseInterface1Field() {
+		return TestBaseInterface1Field;
+	}
+
+	public int getTestBaseInterface2Field() {
+		return TestBaseInterface2Field;
 	}
 
 	@Override
@@ -241,7 +262,7 @@ public class Type implements ProtoGenType {
 
 	public String toFormattedString(final int indentationLevel) {
 		var stringBuilder = new StringBuilder();
-		stringBuilder.append("//simple.Type\n");
+		stringBuilder.append("//interfaces.UseInterface\n");
 		return stringBuilder.toString().indent(indentationLevel * TO_STRING_INDENTATION_LEVEL);
 	}
 

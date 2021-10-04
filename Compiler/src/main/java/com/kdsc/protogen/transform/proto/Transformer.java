@@ -36,11 +36,11 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
             fileNode
                 .getProtoGenTypeNodes()
                 .stream()
-                .map(tn -> transformTypeNode(transformerContext, tn)),
-            fileNode
-                .getProtoGenKeyNodes()
-                .stream()
-                .map(kn -> transformKeyNode(transformerContext, kn))
+                .map(tn -> transformTypeNode(transformerContext, tn))//,
+//            fileNode
+//                .getProtoGenKeyNodes()
+//                .stream()
+//                .map(kn -> transformKeyNode(transformerContext, kn))
         ).collect(Collectors.toList());
     }
 
@@ -77,7 +77,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
 
         var fileContext = new FileContext();
 
-        var fieldNodes = fieldTransformer.transformFieldsNodes(transformerContext, fileContext, typeNode.getFieldsNode().get());
+        var fieldNodes = fieldTransformer.transformFieldsNodes(transformerContext, fileContext, typeNode, true, false);
 
         return new MessageFileNode(
             TransformUtils.convertNamespaceNameNodeToName(typeNode.getNamespaceNameNode()) + TransformerContext.protoFileExtension,
@@ -90,23 +90,23 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
         );
     }
 
-    private FileNode transformKeyNode(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.ProtoGenKeyNode keyNode) {
-        var fieldTransformer = new FieldTransformer();
-
-        var fileContext = new FileContext();
-
-        var fieldNodes = fieldTransformer.transformFieldsNodes(transformerContext, fileContext, keyNode.getFieldsNode().get());
-
-        return new MessageFileNode(
-            TransformUtils.convertNamespaceNameNodeToName(keyNode.getNamespaceNameNode()) + TransformerContext.protoFileExtension,
-            "",
-            ParseTreeUtils.getNamespaceString(keyNode.getNamespaceNameNode()),
-            keyNode.getNamespaceNameNode().getNameNode().getName(),
-            fileContext.getProtoImportStatements(),
-            //TODO:KMD Warning here
-            fieldNodes
-        );
-    }
+//    private FileNode transformKeyNode(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.ProtoGenKeyNode keyNode) {
+//        var fieldTransformer = new FieldTransformer();
+//
+//        var fileContext = new FileContext();
+//
+//        var fieldNodes = fieldTransformer.transformFieldsNodes(transformerContext, fileContext, keyNode);
+//
+//        return new MessageFileNode(
+//            TransformUtils.convertNamespaceNameNodeToName(keyNode.getNamespaceNameNode()) + TransformerContext.protoFileExtension,
+//            "",
+//            ParseTreeUtils.getNamespaceString(keyNode.getNamespaceNameNode()),
+//            keyNode.getNamespaceNameNode().getNameNode().getName(),
+//            fileContext.getProtoImportStatements(),
+//            //TODO:KMD Warning here
+//            fieldNodes
+//        );
+//    }
 
     private List<EnumCaseNode> transformEnumCaseNodes(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.EnumCasesNode enumCasesNode) {
         return enumCasesNode

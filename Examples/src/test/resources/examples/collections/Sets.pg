@@ -28,7 +28,7 @@ type collections.Sets {
     TestOptionalLocaldatetimeSet : set<optional localdatetime>
     TestOptionalMapSet : set<optional map<string, string>>
     TestOptionalSetSet : set<optional set<string>>
-//    TestOptionalValueorerrorSet : set<optional valueorerror<decimal>> //Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
+//    TestOptionalValueorerrorSet : set<optional valueorerror<decimal>>
     TestOptionalObjectSet : set<optional collections.InnerType>
     TestOptionalArraySet : set<optional string[]>
 }

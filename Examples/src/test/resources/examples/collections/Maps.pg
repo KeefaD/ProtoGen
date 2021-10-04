@@ -28,7 +28,7 @@ type collections.Maps {
     TestOptionalLocaldatetimeMap : map<optional localdatetime, optional localdatetime>
     TestOptionalMapMap : map<optional map<string, string>, optional map<string, string>>
     TestOptionalSetMap : map<optional set<string>, optional set<string>>
-//    TestOptionalValueorerrorMap : map<optional valueorerror<decimal>, optional valueorerror<decimal>> //Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
+//    TestOptionalValueorerrorMap : map<optional valueorerror<decimal>, optional valueorerror<decimal>>
     TestOptionalObjectMap : map<optional collections.InnerType, optional collections.InnerType>
     TestOptionalArrayMap : map<optional string[], optional string[]>
 }

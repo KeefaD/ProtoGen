@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package interfaces;
+
+import "interfaces.InnerType.proto";
+import "interfaces.BaseInterface2.proto";
+import "interfaces.BaseInterface1.proto";
+import "protogentypes.proto";
+
+message TypeInterface {
+	interfaces.BaseInterface1 __interface__interfaces_BaseInterface1 = 1;
+	interfaces.BaseInterface2 __interface__interfaces_BaseInterface2 = 2;
+	double TestDouble = 3;
+	float TestFloat = 4;
+	int32 TestInt32 = 5;
+	int64 TestInt64 = 6;
+	bool TestBool = 7;
+	string TestString = 8;
+	protogentypes.Bytes TestBytes = 9;
+	protogentypes.Decimal TestDecimal = 10;
+	protogentypes.Date TestDate = 11;
+	protogentypes.DateTime TestDateTime = 12;
+	protogentypes.LocalDateTime TestLocalDateTime = 13;
+	protogentypes.Map TestMap = 14;
+	protogentypes.Set TestSet = 15;
+	protogentypes.ValueOrError TestValueOrError = 16;
+	interfaces.InnerType TestType = 17;
+	protogentypes.Array TestArray = 18;
+	double TestOptionalDouble = 19;
+	float TestOptionalFloat = 20;
+	int32 TestOptionalInt32 = 21;
+	int64 TestOptionalInt64 = 22;
+	bool TestOptionalBool = 23;
+	string TestOptionalString = 24;
+	protogentypes.Bytes TestOptionalBytes = 25;
+	protogentypes.Decimal TestOptionalDecimal = 26;
+	protogentypes.Date TestOptionalDate = 27;
+	protogentypes.DateTime TestOptionalDatetime = 28;
+	protogentypes.LocalDateTime TestOptionalLocalDateTime = 29;
+	protogentypes.Map TestOptionalMap = 30;
+	protogentypes.Set TestOptionalSet = 31;
+	protogentypes.ValueOrError TestOptionalValueOrError = 32;
+	interfaces.InnerType TestOptionalType = 33;
+	protogentypes.Array TestOptionalArray = 34;
+}

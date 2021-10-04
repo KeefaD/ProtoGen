@@ -28,7 +28,7 @@ type collections.ValueOrErrors {
     TestOptionalLocaldatetimeValueOrError : valueorerror<optional localdatetime>
     TestOptionalMapValueOrError : valueorerror<optional map<string, string>>
     TestOptionalSetValueOrError : valueorerror<optional set<string>>
-    TestOptionalValueOrErrorValueOrError : valueorerror<optional valueorerror<decimal>> //Is this an optional valueOrError<decimal> array or an array of optional valueOrError, make consistent with java
+    TestOptionalValueOrErrorValueOrError : valueorerror<optional valueorerror<decimal>>
     TestOptionalObjectValueOrError : valueorerror<optional collections.ValueOrErrors>
     TestOptionalArrayValueOrError : valueorerror<optional string[]>
 }

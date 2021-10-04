@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package interfaces;
+
+message BaseInterface2 {
+	int32 TestBaseInterface2Field = 1;
+}

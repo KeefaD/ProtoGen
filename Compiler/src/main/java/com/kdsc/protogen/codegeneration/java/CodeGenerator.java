@@ -3,10 +3,7 @@ package com.kdsc.protogen.codegeneration.java;
 import com.kdsc.protogen.codegeneration.CodeGeneratorContext;
 import com.kdsc.protogen.codegeneration.utils.CodeGenerateUtils;
 import com.kdsc.protogen.filegenerationtree.FileNode;
-import com.kdsc.protogen.filegenerationtree.java.ClassFileNode;
-import com.kdsc.protogen.filegenerationtree.java.EnumCaseNode;
-import com.kdsc.protogen.filegenerationtree.java.EnumFileNode;
-import com.kdsc.protogen.filegenerationtree.java.JavaFileNode;
+import com.kdsc.protogen.filegenerationtree.java.*;
 import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.*;
 
 import java.util.List;
@@ -18,6 +15,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
 
     public static final String ENUM_TEMPLATE_CLASSPATH = "/templates/java/Enum.template";
     public static final String TYPE_TEMPLATE_CLASSPATH = "/templates/java/Type.template";
+    public static final String TYPE_INTERFACE_TEMPLATE_CLASSPATH = "/templates/java/TypeInterface.template";
 
     @Override
     public void generate(final CodeGeneratorContext codeGeneratorContext, final List<FileNode> fileNodes) {
@@ -28,7 +26,8 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                 fn -> {
                     switch (fn) {
                         case EnumFileNode enumFileNode -> generateEnumNode(codeGeneratorContext, enumFileNode);
-                        case ClassFileNode typeNode -> generateTypeNode(codeGeneratorContext, typeNode);
+                        case TypeFileNode typeFileNode -> generateTypeNode(codeGeneratorContext, typeFileNode);
+                        case TypeInterfaceFileNode typeInterfaceFileNode -> generateTypeInterfaceNode(codeGeneratorContext, typeInterfaceFileNode);
                         default -> throw new IllegalStateException("Unexpected type: " + fn.getClass().getName());
                     }
                 }
@@ -45,17 +44,29 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
         CodeGenerateUtils.writeStringToPath(codeGeneratorContext.getJavaOutputDirectory() + enumFileNode.getPathAndFileName(), output);
     }
 
-    private void generateTypeNode(final CodeGeneratorContext codeGeneratorContext, final ClassFileNode classFileNode) {
-        System.out.println("Writing " + codeGeneratorContext.getJavaOutputDirectory() + classFileNode.getPathAndFileName());
+    private void generateTypeNode(final CodeGeneratorContext codeGeneratorContext, final TypeFileNode typeFileNode) {
+        System.out.println("Writing " + codeGeneratorContext.getJavaOutputDirectory() + typeFileNode.getPathAndFileName());
         var output = CodeGenerateUtils.readTemplateFromClasspath(TYPE_TEMPLATE_CLASSPATH);
-        output = CodeGenerateUtils.replace(output, "[PACKAGE_NAME]", classFileNode.getPackageName());
-        output = CodeGenerateUtils.replaceAndCollapseTwo(output, "[IMPORTS]", generateImportStatements(codeGeneratorContext, classFileNode.getImportStatements()));
-        output = CodeGenerateUtils.replace(output, "[TYPE_NAME]", classFileNode.getName());
-        output = CodeGenerateUtils.replaceAndCollapse(output, "[PRIVATE_FIELDS]", generatePrivateFields(codeGeneratorContext, classFileNode));
-        output = CodeGenerateUtils.replaceAndCollapse(output, "[CONSTRUCTOR]", generateConstructor(codeGeneratorContext, classFileNode));
-        output = CodeGenerateUtils.replaceAndCollapse(output, "[GETTERS]", generateGetters(codeGeneratorContext, classFileNode));
-        output = CodeGenerateUtils.replaceAndCollapse(output, "[TO_STRING]", generateToString(codeGeneratorContext, classFileNode));
-        CodeGenerateUtils.writeStringToPath(codeGeneratorContext.getJavaOutputDirectory() + classFileNode.getPathAndFileName(), output);
+        output = CodeGenerateUtils.replace(output, "[PACKAGE_NAME]", typeFileNode.getPackageName());
+        output = CodeGenerateUtils.replaceAndCollapseTwo(output, "[IMPORTS]", generateImportStatements(codeGeneratorContext, typeFileNode.getImportStatements()));
+        output = CodeGenerateUtils.replace(output, "[TYPE_NAME]", typeFileNode.getName());
+        output = CodeGenerateUtils.replace(output, "[IMPLEMENTS_LIST]", generateImplementsList(codeGeneratorContext, typeFileNode.getImplementsNodes()));
+        output = CodeGenerateUtils.replaceAndCollapse(output, "[PRIVATE_FIELDS]", generatePrivateFields(codeGeneratorContext, typeFileNode));
+        output = CodeGenerateUtils.replaceAndCollapse(output, "[CONSTRUCTOR]", generateConstructor(codeGeneratorContext, typeFileNode));
+        output = CodeGenerateUtils.replaceAndCollapse(output, "[GETTERS]", generateGetters(codeGeneratorContext, typeFileNode));
+        output = CodeGenerateUtils.replaceAndCollapse(output, "[TO_STRING]", generateToString(codeGeneratorContext, typeFileNode));
+        CodeGenerateUtils.writeStringToPath(codeGeneratorContext.getJavaOutputDirectory() + typeFileNode.getPathAndFileName(), output);
+    }
+
+    private void generateTypeInterfaceNode(final CodeGeneratorContext codeGeneratorContext, final TypeInterfaceFileNode typeInterfaceFileNode) {
+        System.out.println("Writing " + codeGeneratorContext.getJavaOutputDirectory() + typeInterfaceFileNode.getPathAndFileName());
+        var output = CodeGenerateUtils.readTemplateFromClasspath(TYPE_INTERFACE_TEMPLATE_CLASSPATH);
+        output = CodeGenerateUtils.replace(output, "[PACKAGE_NAME]", typeInterfaceFileNode.getPackageName());
+        output = CodeGenerateUtils.replaceAndCollapseTwo(output, "[IMPORTS]", generateImportStatements(codeGeneratorContext, typeInterfaceFileNode.getImportStatements()));
+        output = CodeGenerateUtils.replace(output, "[TYPE_NAME]", typeInterfaceFileNode.getName());
+        output = CodeGenerateUtils.replace(output, "[IMPLEMENTS_LIST]", generateImplementsList(codeGeneratorContext, typeInterfaceFileNode.getImplementsNodes()));
+        output = CodeGenerateUtils.replaceAndCollapse(output, "[GETTERS]", generateInterfaceGetters(codeGeneratorContext, typeInterfaceFileNode));
+        CodeGenerateUtils.writeStringToPath(codeGeneratorContext.getJavaOutputDirectory() + typeInterfaceFileNode.getPathAndFileName(), output);
     }
 
     private String generateEnumCases(final CodeGeneratorContext codeGeneratorContext, final List<EnumCaseNode> enumCaseNodes) {
@@ -66,6 +77,16 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
             .map(ecn -> "\t" + ecn.getName())
             .collect(Collectors.joining(",\n")) + "\n";
         stringBuilder.append(enumCaseNodesString);
+        return stringBuilder.toString();
+    }
+
+    private String generateImplementsList(final CodeGeneratorContext codeGeneratorContext, final List<ImplementsNode> implementsNodes) {
+        var stringBuilder = new StringBuilder();
+        implementsNodes
+            .forEach(
+                //TODO:KMD This "." in here is crap
+                in -> stringBuilder.append(in.getPackageName() + "." + in.getName() + ", ")
+            );
         return stringBuilder.toString();
     }
 
@@ -81,29 +102,29 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
         return stringBuilder.toString();
     }
 
-    private String generatePrivateFields(final CodeGeneratorContext codeGeneratorContext, final ClassFileNode classFileNode) {
+    private String generatePrivateFields(final CodeGeneratorContext codeGeneratorContext, final TypeFileNode typeFileNode) {
         var stringBuilder = new StringBuilder();
         stringBuilder.append("\n");
-        classFileNode
+        typeFileNode
             .getFieldNodes()
             .forEach(
-                fn -> stringBuilder.append("\tprivate " + generateFieldType(codeGeneratorContext, fn.getFieldTypeNode()) + " " + fn.getName() + ";\n")
+                fn -> stringBuilder.append("\tprivate final " + generateFieldType(codeGeneratorContext, fn.getFieldTypeNode()) + " " + fn.getName() + ";\n")
             );
         stringBuilder.append("\n");
         return stringBuilder.toString();
     }
 
-    private String generateConstructor(final CodeGeneratorContext codeGeneratorContext, final ClassFileNode classFileNode) {
+    private String generateConstructor(final CodeGeneratorContext codeGeneratorContext, final TypeFileNode typeFileNode) {
         var stringBuilder = new StringBuilder();
-        stringBuilder.append("\tpublic " + classFileNode.getName() + "(\n");
-        var constructorParameters = classFileNode
+        stringBuilder.append("\tpublic " + typeFileNode.getName() + "(\n");
+        var constructorParameters = typeFileNode
             .getFieldNodes()
             .stream()
-            .map(fn -> "\t\t" + generateFieldType(codeGeneratorContext, fn.getFieldTypeNode()) + " " + fn.getName())
+            .map(fn -> "\t\tfinal " + generateFieldType(codeGeneratorContext, fn.getFieldTypeNode()) + " " + fn.getName())
             .collect(Collectors.joining(",\n")) + "\n";
         stringBuilder.append(constructorParameters);
         stringBuilder.append("\t) {\n");
-        classFileNode
+        typeFileNode
             .getFieldNodes()
             .forEach(
                 fn -> stringBuilder.append("\t\tthis." + fn.getName() + " = " + fn.getName() + ";\n")
@@ -113,18 +134,18 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
     }
 
     //TODO:KMD Don't forget about indentation level
-    private String generateGetters(final CodeGeneratorContext codeGeneratorContext, final ClassFileNode classFileNode) {
+    private String generateGetters(final CodeGeneratorContext codeGeneratorContext, final TypeFileNode typeFileNode) {
 
-        if(classFileNode.getFieldNodes().size() == 0) return "";
+        if(typeFileNode.getFieldNodes().size() == 0) return "";
 
         var stringBuilder = new StringBuilder();
         stringBuilder.append("\n");
-        classFileNode
+        typeFileNode
             .getFieldNodes()
             .forEach(
-                fn -> {
-                    stringBuilder.append("\tpublic " + generateFieldType(codeGeneratorContext, fn.getFieldTypeNode()) + " get" + fn.getName() + "() {\n");
-                    stringBuilder.append("\t\treturn " + fn.getName() + ";\n");
+                tnf -> {
+                    stringBuilder.append("\tpublic " + generateFieldType(codeGeneratorContext, tnf.getFieldTypeNode()) + " get" + tnf.getName() + "() {\n");
+                    stringBuilder.append("\t\treturn " + tnf.getName() + ";\n");
                     stringBuilder.append("\t}\n");
                     stringBuilder.append("\n");
                 }
@@ -132,7 +153,20 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
         return stringBuilder.toString();
     }
 
-    private String generateToString(final CodeGeneratorContext codeGeneratorContext, final ClassFileNode classFileNode) {
+    private String generateInterfaceGetters(final CodeGeneratorContext codeGeneratorContext, final TypeInterfaceFileNode typeInterfaceFileNode) {
+
+        if(typeInterfaceFileNode.getFieldNodes().size() == 0) return "";
+
+        var stringBuilder = new StringBuilder();
+        stringBuilder.append("\n");
+        typeInterfaceFileNode
+            .getFieldNodes()
+            .forEach(tifn -> stringBuilder.append("\t" + generateFieldType(codeGeneratorContext, tifn.getFieldTypeNode()) + " get" + tifn.getName() + "();\n"));
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
+
+    private String generateToString(final CodeGeneratorContext codeGeneratorContext, final TypeFileNode typeFileNode) {
 
         var stringBuilder = new StringBuilder();
         stringBuilder.append("\t@Override\n");
@@ -142,14 +176,14 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
         stringBuilder.append("\n");
         stringBuilder.append("\tpublic String toFormattedString(final int indentationLevel) {\n");
         stringBuilder.append("\t\tvar stringBuilder = new StringBuilder();\n");
-        classFileNode
+        typeFileNode
             .getFieldNodes()
             .forEach(
                 fn -> {
                 }
             );
         //TODO:KMD I think we need a utility method here
-        stringBuilder.append("\t\tstringBuilder.append(\"//" + classFileNode.getPackageName() + "." + classFileNode.getName() + "\\n\");\n");
+        stringBuilder.append("\t\tstringBuilder.append(\"//" + typeFileNode.getPackageName() + "." + typeFileNode.getName() + "\\n\");\n");
         stringBuilder.append("\t\treturn stringBuilder.toString().indent(indentationLevel * TO_STRING_INDENTATION_LEVEL);\n");
         stringBuilder.append("\t}\n");
         stringBuilder.append("\n");

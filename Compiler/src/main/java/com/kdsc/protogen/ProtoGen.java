@@ -3,6 +3,10 @@ package com.kdsc.protogen;
 import com.kdsc.protogen.antlr.Parser;
 import com.kdsc.protogen.codegeneration.CodeGenerate;
 import com.kdsc.protogen.codegeneration.CodeGeneratorContext;
+import com.kdsc.protogen.parsetree.ProtoGenEnumNode;
+import com.kdsc.protogen.parsetree.ProtoGenKeyNode;
+import com.kdsc.protogen.parsetree.ProtoGenTypeNode;
+import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
 import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
 import com.kdsc.protogen.semanticanalysis.SemanticAnalyser;
 import com.kdsc.protogen.transform.Transform;
@@ -32,6 +36,19 @@ import java.util.stream.Collectors;
 //TODO:KMD Need to think about capitalisation for namespaces, should we allow uppercase packages, investigate
 //TODO:KMD Enums should always have one value, check java and dot net
 //TODO:KMD Missing LocalDate type
+//TODO:KMD Test building on Windows
+//TODO:KMD Maybe don't do versioning or type libraries yet, but leave it open to it
+//TODO:KMD Ascii art in the generated code
+//TODO:KMD Continuous calculations
+//TODO:KDM Clone in generated objects
+//TODO:KMD Builders in generated objects?
+//TODO:KMD Imports syntactic sugar?
+//TODO:KMD Maybe don't do keys yet, not that interesting until ProtoBoxes
+//TODO:KMD Think about implementing the same interface multiple times, this is really IMPORTANT
+//TODO:KMD Convert tabs to spaces
+//TODO:KMD Protogen RPC service, investigate
+//TODO:KMD Perhaps use Guava for immutable stuff
+//TODO:KMD Follow google style guide
 public class ProtoGen {
 
     public static final char OPTION_MARKER = '-';
@@ -187,7 +204,33 @@ public class ProtoGen {
 
         //TODO:KMD Perhaps this should be static
         var transform = new Transform();
-        var transformerContext = new TransformerContext(baseNamespace);
+        var transformerContext = new TransformerContext(
+            baseNamespace,
+            replacedFileNodes
+                .stream()
+                .flatMap(fn -> fn.getProtoGenEnumNodes().stream())
+                .collect(Collectors.toMap(en -> ParseTreeUtils.getNamespaceNameString(en.getNamespaceNameNode()), en -> en)),
+            replacedFileNodes
+                .stream()
+                .flatMap(fn -> fn.getProtoGenTypeNodes().stream())
+                .filter(ProtoGenTypeNode::isInterface)
+                .collect(Collectors.toMap(tn -> ParseTreeUtils.getNamespaceNameString(tn.getNamespaceNameNode()), tn -> tn)),
+            replacedFileNodes
+                .stream()
+                .flatMap(fn -> fn.getProtoGenTypeNodes().stream())
+                .filter(tn -> !tn.isInterface())
+                .collect(Collectors.toMap(tn -> ParseTreeUtils.getNamespaceNameString(tn.getNamespaceNameNode()), tn -> tn)),
+            replacedFileNodes
+                .stream()
+                .flatMap(fn -> fn.getProtoGenKeyNodes().stream())
+                .filter(ProtoGenKeyNode::isInterface)
+                .collect(Collectors.toMap(kn -> ParseTreeUtils.getNamespaceNameString(kn.getNamespaceNameNode()), kn -> kn)),
+            replacedFileNodes
+                .stream()
+                .flatMap(fn -> fn.getProtoGenKeyNodes().stream())
+                .filter(kn -> !kn.isInterface())
+                .collect(Collectors.toMap(kn -> ParseTreeUtils.getNamespaceNameString(kn.getNamespaceNameNode()), kn -> kn))
+        );
         var fileGenerationTree =  transform.transform(transformerContext, replacedFileNodes);
 
         if(showFileGenerationTree) {

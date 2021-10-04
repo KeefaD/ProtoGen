@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestArrayFieldTypeNode extends BaseTestNode {
 
+    //TODO:KMD Test minimal list entries
     @Test
     public void testCreate() {
         new ArrayFieldTypeNode(

@@ -28,7 +28,7 @@ type collections.Arrays {
     TestOptionalLocaldatetimeArray : optional localdatetime[]
     TestOptionalMapArray : optional map<string, string>[]
     TestOptionalSetArray : optional set<string>[]
-    TestOptionalValueorerrorArray : optional valueorerror<decimal>[] //Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
+    TestOptionalValueorerrorArray : optional valueorerror<decimal>[] //TODO:KMD Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
     TestOptionalObjectArray : optional collections.InnerType[]
     TestOptionalArrayArray : optional string[][]
 }

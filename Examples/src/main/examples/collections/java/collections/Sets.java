@@ -5,60 +5,60 @@ import java.util.Optional;
 
 public class Sets implements ProtoGenType {
 
-	private com.kdsc.protogen.runtime.types.Set<Integer> TestInt32Set;
-	private com.kdsc.protogen.runtime.types.Set<Long> TestInt64Set;
-	private com.kdsc.protogen.runtime.types.Set<Boolean> TestBoolSet;
-	private com.kdsc.protogen.runtime.types.Set<String> TestStringSet;
-	private com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Bytes> TestBytesSet;
-	private com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Decimal> TestDecimalSet;
-	private com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Date> TestDateSet;
-	private com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeSet;
-	private com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeSet;
-	private com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapSet;
-	private com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Set<String>> TestSetSet;
-	private com.kdsc.protogen.runtime.types.Set<collections.InnerType> TestObjectSet;
-	private com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Array<String>> TestArraySet;
-	private com.kdsc.protogen.runtime.types.Set<Optional<Integer>> TestOptionalInt32Set;
-	private com.kdsc.protogen.runtime.types.Set<Optional<Long>> TestOptionalInt64Set;
-	private com.kdsc.protogen.runtime.types.Set<Optional<Boolean>> TestOptionalBoolSet;
-	private com.kdsc.protogen.runtime.types.Set<Optional<String>> TestOptionalStringSet;
-	private com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesSet;
-	private com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalSet;
-	private com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateSet;
-	private com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeSet;
-	private com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeSet;
-	private com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapSet;
-	private com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetSet;
-	private com.kdsc.protogen.runtime.types.Set<Optional<collections.InnerType>> TestOptionalObjectSet;
-	private com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArraySet;
+	private final com.kdsc.protogen.runtime.types.Set<Integer> TestInt32Set;
+	private final com.kdsc.protogen.runtime.types.Set<Long> TestInt64Set;
+	private final com.kdsc.protogen.runtime.types.Set<Boolean> TestBoolSet;
+	private final com.kdsc.protogen.runtime.types.Set<String> TestStringSet;
+	private final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Bytes> TestBytesSet;
+	private final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Decimal> TestDecimalSet;
+	private final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Date> TestDateSet;
+	private final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeSet;
+	private final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeSet;
+	private final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapSet;
+	private final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Set<String>> TestSetSet;
+	private final com.kdsc.protogen.runtime.types.Set<collections.InnerType> TestObjectSet;
+	private final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Array<String>> TestArraySet;
+	private final com.kdsc.protogen.runtime.types.Set<Optional<Integer>> TestOptionalInt32Set;
+	private final com.kdsc.protogen.runtime.types.Set<Optional<Long>> TestOptionalInt64Set;
+	private final com.kdsc.protogen.runtime.types.Set<Optional<Boolean>> TestOptionalBoolSet;
+	private final com.kdsc.protogen.runtime.types.Set<Optional<String>> TestOptionalStringSet;
+	private final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesSet;
+	private final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalSet;
+	private final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateSet;
+	private final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeSet;
+	private final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeSet;
+	private final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapSet;
+	private final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetSet;
+	private final com.kdsc.protogen.runtime.types.Set<Optional<collections.InnerType>> TestOptionalObjectSet;
+	private final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArraySet;
 
 	public Sets(
-		com.kdsc.protogen.runtime.types.Set<Integer> TestInt32Set,
-		com.kdsc.protogen.runtime.types.Set<Long> TestInt64Set,
-		com.kdsc.protogen.runtime.types.Set<Boolean> TestBoolSet,
-		com.kdsc.protogen.runtime.types.Set<String> TestStringSet,
-		com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Bytes> TestBytesSet,
-		com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Decimal> TestDecimalSet,
-		com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Date> TestDateSet,
-		com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeSet,
-		com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeSet,
-		com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapSet,
-		com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Set<String>> TestSetSet,
-		com.kdsc.protogen.runtime.types.Set<collections.InnerType> TestObjectSet,
-		com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Array<String>> TestArraySet,
-		com.kdsc.protogen.runtime.types.Set<Optional<Integer>> TestOptionalInt32Set,
-		com.kdsc.protogen.runtime.types.Set<Optional<Long>> TestOptionalInt64Set,
-		com.kdsc.protogen.runtime.types.Set<Optional<Boolean>> TestOptionalBoolSet,
-		com.kdsc.protogen.runtime.types.Set<Optional<String>> TestOptionalStringSet,
-		com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesSet,
-		com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalSet,
-		com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateSet,
-		com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeSet,
-		com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeSet,
-		com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapSet,
-		com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetSet,
-		com.kdsc.protogen.runtime.types.Set<Optional<collections.InnerType>> TestOptionalObjectSet,
-		com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArraySet
+		final com.kdsc.protogen.runtime.types.Set<Integer> TestInt32Set,
+		final com.kdsc.protogen.runtime.types.Set<Long> TestInt64Set,
+		final com.kdsc.protogen.runtime.types.Set<Boolean> TestBoolSet,
+		final com.kdsc.protogen.runtime.types.Set<String> TestStringSet,
+		final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Bytes> TestBytesSet,
+		final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Decimal> TestDecimalSet,
+		final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Date> TestDateSet,
+		final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeSet,
+		final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeSet,
+		final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapSet,
+		final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Set<String>> TestSetSet,
+		final com.kdsc.protogen.runtime.types.Set<collections.InnerType> TestObjectSet,
+		final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Array<String>> TestArraySet,
+		final com.kdsc.protogen.runtime.types.Set<Optional<Integer>> TestOptionalInt32Set,
+		final com.kdsc.protogen.runtime.types.Set<Optional<Long>> TestOptionalInt64Set,
+		final com.kdsc.protogen.runtime.types.Set<Optional<Boolean>> TestOptionalBoolSet,
+		final com.kdsc.protogen.runtime.types.Set<Optional<String>> TestOptionalStringSet,
+		final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesSet,
+		final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalSet,
+		final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateSet,
+		final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeSet,
+		final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeSet,
+		final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapSet,
+		final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetSet,
+		final com.kdsc.protogen.runtime.types.Set<Optional<collections.InnerType>> TestOptionalObjectSet,
+		final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArraySet
 	) {
 		this.TestInt32Set = TestInt32Set;
 		this.TestInt64Set = TestInt64Set;

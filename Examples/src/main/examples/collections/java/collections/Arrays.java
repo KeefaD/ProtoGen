@@ -5,72 +5,72 @@ import java.util.Optional;
 
 public class Arrays implements ProtoGenType {
 
-	private com.kdsc.protogen.runtime.types.Array<Double> TestDoubleArray;
-	private com.kdsc.protogen.runtime.types.Array<Float> TestFloatArray;
-	private com.kdsc.protogen.runtime.types.Array<Integer> TestInt32Array;
-	private com.kdsc.protogen.runtime.types.Array<Long> TestInt64Array;
-	private com.kdsc.protogen.runtime.types.Array<Boolean> TestBoolArray;
-	private com.kdsc.protogen.runtime.types.Array<String> TestStringArray;
-	private com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Bytes> TestBytesArray;
-	private com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Decimal> TestDecimalArray;
-	private com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Date> TestDateArray;
-	private com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeArray;
-	private com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeArray;
-	private com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapArray;
-	private com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Set<String>> TestSetArray;
-	private com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueorerrorArray;
-	private com.kdsc.protogen.runtime.types.Array<collections.InnerType> TestObjectArray;
-	private com.kdsc.protogen.runtime.types.Array<String> TestArrayArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<Double>> TestOptionalDoubleArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<Float>> TestOptionalFloatArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<Integer>> TestOptionalInt32Array;
-	private Optional<com.kdsc.protogen.runtime.types.Array<Long>> TestOptionalInt64Array;
-	private Optional<com.kdsc.protogen.runtime.types.Array<Boolean>> TestOptionalBoolArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<String>> TestOptionalStringArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueorerrorArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<collections.InnerType>> TestOptionalObjectArray;
-	private Optional<com.kdsc.protogen.runtime.types.Array<String>> TestOptionalArrayArray;
+	private final com.kdsc.protogen.runtime.types.Array<Double> TestDoubleArray;
+	private final com.kdsc.protogen.runtime.types.Array<Float> TestFloatArray;
+	private final com.kdsc.protogen.runtime.types.Array<Integer> TestInt32Array;
+	private final com.kdsc.protogen.runtime.types.Array<Long> TestInt64Array;
+	private final com.kdsc.protogen.runtime.types.Array<Boolean> TestBoolArray;
+	private final com.kdsc.protogen.runtime.types.Array<String> TestStringArray;
+	private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Bytes> TestBytesArray;
+	private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Decimal> TestDecimalArray;
+	private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Date> TestDateArray;
+	private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeArray;
+	private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeArray;
+	private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapArray;
+	private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Set<String>> TestSetArray;
+	private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueorerrorArray;
+	private final com.kdsc.protogen.runtime.types.Array<collections.InnerType> TestObjectArray;
+	private final com.kdsc.protogen.runtime.types.Array<String> TestArrayArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<Double>> TestOptionalDoubleArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<Float>> TestOptionalFloatArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<Integer>> TestOptionalInt32Array;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<Long>> TestOptionalInt64Array;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<Boolean>> TestOptionalBoolArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<String>> TestOptionalStringArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueorerrorArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<collections.InnerType>> TestOptionalObjectArray;
+	private final Optional<com.kdsc.protogen.runtime.types.Array<String>> TestOptionalArrayArray;
 
 	public Arrays(
-		com.kdsc.protogen.runtime.types.Array<Double> TestDoubleArray,
-		com.kdsc.protogen.runtime.types.Array<Float> TestFloatArray,
-		com.kdsc.protogen.runtime.types.Array<Integer> TestInt32Array,
-		com.kdsc.protogen.runtime.types.Array<Long> TestInt64Array,
-		com.kdsc.protogen.runtime.types.Array<Boolean> TestBoolArray,
-		com.kdsc.protogen.runtime.types.Array<String> TestStringArray,
-		com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Bytes> TestBytesArray,
-		com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Decimal> TestDecimalArray,
-		com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Date> TestDateArray,
-		com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeArray,
-		com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeArray,
-		com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapArray,
-		com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Set<String>> TestSetArray,
-		com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueorerrorArray,
-		com.kdsc.protogen.runtime.types.Array<collections.InnerType> TestObjectArray,
-		com.kdsc.protogen.runtime.types.Array<String> TestArrayArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<Double>> TestOptionalDoubleArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<Float>> TestOptionalFloatArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<Integer>> TestOptionalInt32Array,
-		Optional<com.kdsc.protogen.runtime.types.Array<Long>> TestOptionalInt64Array,
-		Optional<com.kdsc.protogen.runtime.types.Array<Boolean>> TestOptionalBoolArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<String>> TestOptionalStringArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueorerrorArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<collections.InnerType>> TestOptionalObjectArray,
-		Optional<com.kdsc.protogen.runtime.types.Array<String>> TestOptionalArrayArray
+		final com.kdsc.protogen.runtime.types.Array<Double> TestDoubleArray,
+		final com.kdsc.protogen.runtime.types.Array<Float> TestFloatArray,
+		final com.kdsc.protogen.runtime.types.Array<Integer> TestInt32Array,
+		final com.kdsc.protogen.runtime.types.Array<Long> TestInt64Array,
+		final com.kdsc.protogen.runtime.types.Array<Boolean> TestBoolArray,
+		final com.kdsc.protogen.runtime.types.Array<String> TestStringArray,
+		final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Bytes> TestBytesArray,
+		final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Decimal> TestDecimalArray,
+		final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Date> TestDateArray,
+		final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeArray,
+		final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeArray,
+		final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapArray,
+		final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Set<String>> TestSetArray,
+		final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueorerrorArray,
+		final com.kdsc.protogen.runtime.types.Array<collections.InnerType> TestObjectArray,
+		final com.kdsc.protogen.runtime.types.Array<String> TestArrayArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<Double>> TestOptionalDoubleArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<Float>> TestOptionalFloatArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<Integer>> TestOptionalInt32Array,
+		final Optional<com.kdsc.protogen.runtime.types.Array<Long>> TestOptionalInt64Array,
+		final Optional<com.kdsc.protogen.runtime.types.Array<Boolean>> TestOptionalBoolArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<String>> TestOptionalStringArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueorerrorArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<collections.InnerType>> TestOptionalObjectArray,
+		final Optional<com.kdsc.protogen.runtime.types.Array<String>> TestOptionalArrayArray
 	) {
 		this.TestDoubleArray = TestDoubleArray;
 		this.TestFloatArray = TestFloatArray;

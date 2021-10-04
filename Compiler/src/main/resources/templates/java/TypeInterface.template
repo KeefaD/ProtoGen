@@ -1,0 +1,7 @@
+package [PACKAGE_NAME];
+
+[IMPORTS]
+
+public interface [TYPE_NAME] extends [IMPLEMENTS_LIST]ProtoGenType {
+[GETTERS]
+}

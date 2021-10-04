@@ -5,72 +5,72 @@ import java.util.Optional;
 
 public class ValueOrErrors implements ProtoGenType {
 
-	private com.kdsc.protogen.runtime.types.ValueOrError<Double> TestDoubleValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Float> TestFloatValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Integer> TestInt32ValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Long> TestInt64ValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Boolean> TestBoolValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<String> TestStringValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Bytes> TestBytesValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal> TestDecimalValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Date> TestDateValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Set<String>> TestSetValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueOrErrorValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<collections.ValueOrErrors> TestObjectValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Array<String>> TestArrayValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<Double>> TestOptionalDoubleValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<Float>> TestOptionalFloatValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<Integer>> TestOptionalInt32ValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<Long>> TestOptionalInt64ValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<Boolean>> TestOptionalBoolValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<String>> TestOptionalStringValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueOrErrorValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<collections.ValueOrErrors>> TestOptionalObjectValueOrError;
-	private com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArrayValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Double> TestDoubleValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Float> TestFloatValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Integer> TestInt32ValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Long> TestInt64ValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Boolean> TestBoolValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<String> TestStringValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Bytes> TestBytesValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal> TestDecimalValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Date> TestDateValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Set<String>> TestSetValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueOrErrorValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<collections.ValueOrErrors> TestObjectValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Array<String>> TestArrayValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<Double>> TestOptionalDoubleValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<Float>> TestOptionalFloatValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<Integer>> TestOptionalInt32ValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<Long>> TestOptionalInt64ValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<Boolean>> TestOptionalBoolValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<String>> TestOptionalStringValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueOrErrorValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<collections.ValueOrErrors>> TestOptionalObjectValueOrError;
+	private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArrayValueOrError;
 
 	public ValueOrErrors(
-		com.kdsc.protogen.runtime.types.ValueOrError<Double> TestDoubleValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Float> TestFloatValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Integer> TestInt32ValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Long> TestInt64ValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Boolean> TestBoolValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<String> TestStringValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Bytes> TestBytesValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal> TestDecimalValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Date> TestDateValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Set<String>> TestSetValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueOrErrorValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<collections.ValueOrErrors> TestObjectValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Array<String>> TestArrayValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<Double>> TestOptionalDoubleValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<Float>> TestOptionalFloatValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<Integer>> TestOptionalInt32ValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<Long>> TestOptionalInt64ValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<Boolean>> TestOptionalBoolValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<String>> TestOptionalStringValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueOrErrorValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<collections.ValueOrErrors>> TestOptionalObjectValueOrError,
-		com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArrayValueOrError
+		final com.kdsc.protogen.runtime.types.ValueOrError<Double> TestDoubleValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Float> TestFloatValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Integer> TestInt32ValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Long> TestInt64ValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Boolean> TestBoolValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<String> TestStringValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Bytes> TestBytesValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal> TestDecimalValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Date> TestDateValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Set<String>> TestSetValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueOrErrorValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<collections.ValueOrErrors> TestObjectValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Array<String>> TestArrayValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<Double>> TestOptionalDoubleValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<Float>> TestOptionalFloatValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<Integer>> TestOptionalInt32ValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<Long>> TestOptionalInt64ValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<Boolean>> TestOptionalBoolValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<String>> TestOptionalStringValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueOrErrorValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<collections.ValueOrErrors>> TestOptionalObjectValueOrError,
+		final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArrayValueOrError
 	) {
 		this.TestDoubleValueOrError = TestDoubleValueOrError;
 		this.TestFloatValueOrError = TestFloatValueOrError;

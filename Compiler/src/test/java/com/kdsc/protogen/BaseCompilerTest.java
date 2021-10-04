@@ -6,6 +6,9 @@ import com.kdsc.protogen.antlr.generated.ProtoGenParser;
 import com.kdsc.protogen.antlr.visitor.ProtoGenVisitor;
 import com.kdsc.protogen.antlr.ParserErrorListener;
 import com.kdsc.protogen.parsetree.FileNode;
+import com.kdsc.protogen.parsetree.ProtoGenKeyNode;
+import com.kdsc.protogen.parsetree.ProtoGenTypeNode;
+import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
 import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
 import com.kdsc.protogen.semanticanalysis.SemanticAnalyser;
 import com.kdsc.protogen.semanticanalysis.SemanticError;
@@ -20,6 +23,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -97,9 +101,39 @@ protected List<ParserError> runCompilerToParserReturnParserErrors(String testPro
     }
 
     protected List<com.kdsc.protogen.filegenerationtree.FileNode> runCompilerToTransformReturnProtoFileNodes(String testProgram) {
+
+        //TOOD:KMD Following method is poorly named
         var fileNode = compileTestProgramCheckNoParserOrSemanticErrors(testProgram);
         var transformer = new Transformer();
-        var transformerContext = new TransformerContext(BASE_NAMESPACE);
+
+        //TODO:KMD This is all a bit of a mess
+        var transformerContext = new TransformerContext(
+            BASE_NAMESPACE,
+            fileNode
+                .getProtoGenEnumNodes()
+                .stream()
+                .collect(Collectors.toMap(en -> ParseTreeUtils.getNamespaceNameString(en.getNamespaceNameNode()), en -> en)),
+            fileNode
+                .getProtoGenTypeNodes()
+                .stream()
+                .filter(ProtoGenTypeNode::isInterface)
+                .collect(Collectors.toMap(tn -> ParseTreeUtils.getNamespaceNameString(tn.getNamespaceNameNode()), tn -> tn)),
+            fileNode
+                .getProtoGenTypeNodes()
+                .stream()
+                .filter(tn -> !tn.isInterface())
+                .collect(Collectors.toMap(tn -> ParseTreeUtils.getNamespaceNameString(tn.getNamespaceNameNode()), tn -> tn)),
+            fileNode
+                .getProtoGenKeyNodes()
+                .stream()
+                .filter(ProtoGenKeyNode::isInterface)
+                .collect(Collectors.toMap(kn -> ParseTreeUtils.getNamespaceNameString(kn.getNamespaceNameNode()), kn -> kn)),
+            fileNode
+                .getProtoGenKeyNodes()
+                .stream()
+                .filter(kn -> !kn.isInterface())
+                .collect(Collectors.toMap(kn -> ParseTreeUtils.getNamespaceNameString(kn.getNamespaceNameNode()), kn -> kn))
+        );
         var fileGenerationTreeList =  transformer.transform(transformerContext, List.of(fileNode));
         System.out.println("//File Generation Tree");
         fileGenerationTreeList

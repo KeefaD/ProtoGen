@@ -4,10 +4,10 @@ import com.kdsc.protogen.runtime.ProtoGenType;
 
 public class InnerType implements ProtoGenType {
 
-	private int TestInt32;
+	private final int TestInt32;
 
 	public InnerType(
-		int TestInt32
+		final int TestInt32
 	) {
 		this.TestInt32 = TestInt32;
 	}
