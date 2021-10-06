@@ -9,9 +9,9 @@ import java.util.Optional;
 
 public class ProtoGenEnumNode extends BaseParseTreeNode implements TopLevelObject, HasNamespaceName {
 
-    private NamespaceNameNode namespaceNameNode;
-    private Optional<EnumVersionsNode> enumVersionsNode;
-    private Optional<EnumCasesNode> enumCasesNode;
+    private final NamespaceNameNode namespaceNameNode;
+    private final Optional<EnumVersionsNode> enumVersionsNode;
+    private final Optional<EnumCasesNode> enumCasesNode;
 
     public ProtoGenEnumNode(
         final String sourceFileName,

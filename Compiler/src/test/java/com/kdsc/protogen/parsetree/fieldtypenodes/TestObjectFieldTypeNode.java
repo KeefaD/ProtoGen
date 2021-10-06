@@ -5,7 +5,6 @@ import com.kdsc.protogen.parsetree.TestNamespaceNameGenericParametersNode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestObjectFieldTypeNode extends BaseTestNode {
 

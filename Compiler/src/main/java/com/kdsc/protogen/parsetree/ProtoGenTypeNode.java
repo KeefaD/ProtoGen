@@ -8,11 +8,11 @@ import java.util.Optional;
 
 public class ProtoGenTypeNode extends BaseParseTreeNode implements TopLevelObject, HasNamespaceName {
 
-    private boolean isInterface;
-    private NamespaceNameGenericParametersWithBoundsNode namespaceNameGenericParametersWithBoundsNode;
-    private Optional<ImplementsListNode> implementsListNode;
-    private Optional<VersionsNode> versionsNode;
-    private Optional<FieldsNode> fieldsNode;
+    private final boolean isInterface;
+    private final NamespaceNameGenericParametersWithBoundsNode namespaceNameGenericParametersWithBoundsNode;
+    private final Optional<ImplementsListNode> implementsListNode;
+    private final Optional<VersionsNode> versionsNode;
+    private final Optional<FieldsNode> fieldsNode;
 
     public ProtoGenTypeNode(
         final String sourceFileName,

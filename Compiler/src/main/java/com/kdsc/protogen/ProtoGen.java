@@ -3,7 +3,6 @@ package com.kdsc.protogen;
 import com.kdsc.protogen.antlr.Parser;
 import com.kdsc.protogen.codegeneration.CodeGenerate;
 import com.kdsc.protogen.codegeneration.CodeGeneratorContext;
-import com.kdsc.protogen.parsetree.ProtoGenEnumNode;
 import com.kdsc.protogen.parsetree.ProtoGenKeyNode;
 import com.kdsc.protogen.parsetree.ProtoGenTypeNode;
 import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;

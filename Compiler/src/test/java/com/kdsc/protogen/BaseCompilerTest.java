@@ -102,7 +102,7 @@ protected List<ParserError> runCompilerToParserReturnParserErrors(String testPro
 
     protected List<com.kdsc.protogen.filegenerationtree.FileNode> runCompilerToTransformReturnProtoFileNodes(String testProgram) {
 
-        //TOOD:KMD Following method is poorly named
+        //TODO:KMD Following method is poorly named
         var fileNode = compileTestProgramCheckNoParserOrSemanticErrors(testProgram);
         var transformer = new Transformer();
 

@@ -4,7 +4,6 @@ import com.kdsc.protogen.parsetree.fieldtypenodes.TestFieldTypeNode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestFieldNode extends BaseTestNode {
 

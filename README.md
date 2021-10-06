@@ -6,7 +6,7 @@
 2. Versioning strategies
 3. Immutable
 4. Deep equals
-5. Perhaps covariant and contravarient collections
+5. Perhaps covariant and contravariant collections
 6. Type libraries, version catalogues, guids
 
 ##Notes
@@ -41,7 +41,7 @@
 4. Valid time, transaction time?
 
 ##Default compartments
-1. Primary Key -> Dictionary but convertable to type
+1. Primary Key -> Dictionary but convertible to type
 2. Secondary Indexes -> Dictionary
 3. Context? -> Dictionary
 4. Metadata -> Dictionary
@@ -56,7 +56,7 @@ Generic box to put protogen items into, configurable
 
 1.  Stack ProtoBoxes into storage for fast retrieval
 2.  Indexes
-3.  Bitemporaral
+3.  Bitemporal
 4.  Store, lists, maps, sets, arrays into boxes
 
 # ProtoCalc
