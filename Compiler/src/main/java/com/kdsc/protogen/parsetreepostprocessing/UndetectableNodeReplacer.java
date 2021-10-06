@@ -3,6 +3,8 @@ package com.kdsc.protogen.parsetreepostprocessing;
 import com.kdsc.protogen.parsetree.*;
 import com.kdsc.protogen.parsetree.fieldtypenodes.*;
 import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
+import com.kdsc.protogen.parsetree.utils.clone.Lists;
+import com.kdsc.protogen.parsetree.utils.clone.Optionals;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,7 +13,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 //TODO:KMD This could probably be made more generic, I so wish Java had proper generics without type erasure
-//TODO:KMD Maybe I should just clone everything
 public class UndetectableNodeReplacer {
 
     public List<FileNode> replaceUndetectableNodes(final List<FileNode> fileNodes) {
@@ -66,7 +67,7 @@ public class UndetectableNodeReplacer {
             fileNode.getCharPosition(),
             replaceUndetectableNodesForProtoGenTypeNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, fileNode.getProtoGenTypeNodes()),
             replaceUndetectableNodesForProtoGenKeyNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, fileNode.getProtoGenKeyNodes()),
-            fileNode.getProtoGenEnumNodes()
+            Lists.clone(fileNode.getProtoGenEnumNodes())
         );
     }
 
@@ -83,7 +84,7 @@ public class UndetectableNodeReplacer {
             protoGenTypeNode.getLine(),
             protoGenTypeNode.getCharPosition(),
             protoGenTypeNode.isInterface(),
-            protoGenTypeNode.getNamespaceNameGenericParametersWithBoundsNode(),
+            protoGenTypeNode.getNamespaceNameGenericParametersWithBoundsNode().clone(),
             replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenTypeNode.getImplementsListNode()),
             replaceUndetectableNodesForOptionalVersionsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenTypeNode.getVersionsNode()),
             replaceUndetectableNodesForOptionalFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenTypeNode.getFieldsNode())
@@ -115,8 +116,8 @@ public class UndetectableNodeReplacer {
             versionNode.getSourceFileName(),
             versionNode.getLine(),
             versionNode.getCharPosition(),
-            versionNode.getVersionNumberNode(),
-            versionNode.getGenericParametersWithBoundsNode(),
+            versionNode.getVersionNumberNode().clone(),
+            Optionals.clone(versionNode.getGenericParametersWithBoundsNode()),
             replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, versionNode.getImplementsListNode()),
             replaceUndetectableNodesForOptionalFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, versionNode.getFieldsNode())
         );
@@ -148,7 +149,7 @@ public class UndetectableNodeReplacer {
             namespaceNameGenericParametersNode.getSourceFileName(),
             namespaceNameGenericParametersNode.getLine(),
             namespaceNameGenericParametersNode.getCharPosition(),
-            namespaceNameGenericParametersNode.getNamespaceNameNode(),
+            namespaceNameGenericParametersNode.getNamespaceNameNode().clone(),
             replaceUndetectableNodesForOptionalGenericParametersNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, namespaceNameGenericParametersNode.getGenericParametersNode())
         );
     }
@@ -186,7 +187,7 @@ public class UndetectableNodeReplacer {
             protoGenKeyNode.getLine(),
             protoGenKeyNode.getCharPosition(),
             protoGenKeyNode.isInterface(),
-            protoGenKeyNode.getNamespaceNameGenericParametersWithBoundsNode(),
+            protoGenKeyNode.getNamespaceNameGenericParametersWithBoundsNode().clone(),
             replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenKeyNode.getImplementsListNode()),
             replaceUndetectableNodesForOptionalVersionsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenKeyNode.getVersionsNode()),
             replaceUndetectableNodesForOptionalFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenKeyNode.getFieldsNode())
@@ -218,7 +219,7 @@ public class UndetectableNodeReplacer {
             fieldNode.getSourceFileName(),
             fieldNode.getLine(),
             fieldNode.getCharPosition(),
-            fieldNode.getFieldNameNode(),
+            fieldNode.getFieldNameNode().clone(),
             replaceUndetectableNodesForFieldTypeNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, fieldNode.getFieldTypeNode())
         );
     }
@@ -260,7 +261,7 @@ public class UndetectableNodeReplacer {
                     nonArrayFieldTypeNode.getSourceFileName(),
                     nonArrayFieldTypeNode.getLine(),
                     nonArrayFieldTypeNode.getCharPosition(),
-                    objectFieldTypeNode.getNamespaceNameGenericParametersNode()
+                    objectFieldTypeNode.getNamespaceNameGenericParametersNode().clone()
                 );
             }
             if(keysToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameNode()))) {
@@ -268,7 +269,7 @@ public class UndetectableNodeReplacer {
                     nonArrayFieldTypeNode.getSourceFileName(),
                     nonArrayFieldTypeNode.getLine(),
                     nonArrayFieldTypeNode.getCharPosition(),
-                    objectFieldTypeNode.getNamespaceNameGenericParametersNode()
+                    objectFieldTypeNode.getNamespaceNameGenericParametersNode().clone()
                 );
             }
             if(enumsToSearchForAsStrings.contains(ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameNode()))) {
@@ -276,7 +277,7 @@ public class UndetectableNodeReplacer {
                     nonArrayFieldTypeNode.getSourceFileName(),
                     nonArrayFieldTypeNode.getLine(),
                     nonArrayFieldTypeNode.getCharPosition(),
-                    objectFieldTypeNode.getNamespaceNameGenericParametersNode()
+                    objectFieldTypeNode.getNamespaceNameGenericParametersNode().clone()
                 );
             }
         }
