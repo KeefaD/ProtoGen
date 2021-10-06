@@ -13,8 +13,8 @@ message Maps {
     protogentypes.Map TestBytesMap = 5;
     protogentypes.Map TestDecimalMap = 6;
     protogentypes.Map TestDateMap = 7;
-    protogentypes.Map TestDatetimeMap = 8;
-    protogentypes.Map TestLocaldatetimeMap = 9;
+    protogentypes.Map TestDateTimeMap = 8;
+    protogentypes.Map TestLocalDateTimeMap = 9;
     protogentypes.Map TestMapMap = 10;
     protogentypes.Map TestSetMap = 11;
     protogentypes.Map TestObjectMap = 12;
@@ -27,7 +27,7 @@ message Maps {
     protogentypes.Map TestOptionalDecimalMap = 19;
     protogentypes.Map TestOptionalDateSetMap = 20;
     protogentypes.Map TestOptionalDatetimeMap = 21;
-    protogentypes.Map TestOptionalLocaldatetimeMap = 22;
+    protogentypes.Map TestOptionalLocalDateTimeMap = 22;
     protogentypes.Map TestOptionalMapMap = 23;
     protogentypes.Map TestOptionalSetMap = 24;
     protogentypes.Map TestOptionalObjectMap = 25;

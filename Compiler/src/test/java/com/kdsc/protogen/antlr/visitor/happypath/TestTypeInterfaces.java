@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class TestTypeInterfaces extends BaseCompilerTest {
 
     @Test
-    void singleTypeInterface() {
+    void testSingleTypeInterface() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface
         """;
@@ -14,7 +14,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void singleTypeInterfaceNestedNamespace() {
+    void testSingleTypeInterfaceNestedNamespace() {
         var testProgram = """
             type interface TestNamespace.TestNestedNamespace.TestTypeInterface
         """;
@@ -22,7 +22,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void multipleTypeInterfaces() {
+    void testMultipleTypeInterfaces() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface1
             type interface TestNamespace.TestTypeInterface2
@@ -31,7 +31,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeInterfaceNoFieldsOrBraces() {
+    void testBasicTypeInterfaceNoFieldsOrBraces() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface
         """;
@@ -39,7 +39,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeInterfaceNoFieldsWithBraces() {
+    void testBasicTypeInterfaceNoFieldsWithBraces() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface {}
         """;
@@ -47,7 +47,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeInterfaceNoFieldsWithSplitBraces() {
+    void testBasicTypeInterfaceNoFieldsWithSplitBraces() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface {
             }
@@ -56,7 +56,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeInterfaceOneField() {
+    void testBasicTypeInterfaceOneField() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface {
                 testField : int32
@@ -66,7 +66,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeInterfaceTwoFields() {
+    void testBasicTypeInterfaceTwoFields() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface {
                 testField1 : int32
@@ -77,7 +77,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeInterfaceOneImplementsNoFieldsNoBraces() {
+    void testBasicTypeInterfaceOneImplementsNoFieldsNoBraces() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface : TestNamespace.OtherTypeInterface
         """;
@@ -85,7 +85,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeInterfaceOneImplementsNoFieldsEmptyBraces() {
+    void testBasicTypeInterfaceOneImplementsNoFieldsEmptyBraces() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface : TestNamespace.OtherTypeInterface {}
         """;
@@ -93,7 +93,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeInterfaceOneImplementsNoFieldsSplitEmptyBraces() {
+    void testBasicTypeInterfaceOneImplementsNoFieldsSplitEmptyBraces() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface : TestNamespace.OtherTypeInterface {
             }
@@ -103,7 +103,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicTypeInterfaceOneImplementsNoFieldsNoBracesGenericParameter() {
+    void testBasicTypeInterfaceOneImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface : TestNamespace.OtherTypeInterface<T>
         """;
@@ -112,7 +112,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicTypeInterfaceOneImplementsNoFieldsEmptyBracesGenericParameter() {
+    void testBasicTypeInterfaceOneImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface : TestNamespace.OtherTypeInterface<T> {}
         """;
@@ -121,7 +121,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicTypeInterfaceOneImplementsNoFieldsSplitEmptyBracesGenericParameter() {
+    void testBasicTypeInterfaceOneImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface : TestNamespace.OtherTypeInterface<T> {
             }
@@ -130,7 +130,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeInterfaceTwoImplementsNoFieldsNoBraces() {
+    void testBasicTypeInterfaceTwoImplementsNoFieldsNoBraces() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface :
                 TestNamespace.OtherTypeInterface1,
@@ -140,7 +140,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeInterfaceTwoImplementsNoFieldsEmptyBraces() {
+    void testBasicTypeInterfaceTwoImplementsNoFieldsEmptyBraces() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface :
                 TestNamespace.OtherTypeInterface1,
@@ -150,7 +150,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeInterfaceTwoImplementsNoFieldsSplitEmptyBraces() {
+    void testBasicTypeInterfaceTwoImplementsNoFieldsSplitEmptyBraces() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface :
                 TestNamespace.OtherTypeInterface1,
@@ -162,7 +162,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicTypeInterfaceTwoImplementsNoFieldsNoBracesGenericParameter() {
+    void testBasicTypeInterfaceTwoImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface :
                 TestNamespace.OtherTypeInterface1<T>,
@@ -173,7 +173,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicTypeInterfaceTwoImplementsNoFieldsEmptyBracesGenericParameter() {
+    void testBasicTypeInterfaceTwoImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface :
                 TestNamespace.OtherTypeInterface1<T>,
@@ -184,7 +184,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicTypeInterfaceTwoImplementsNoFieldsSplitEmptyBracesGenericParameter() {
+    void testBasicTypeInterfaceTwoImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
             type interface TestNamespace.TestTypeInterface :
                 TestNamespace.OtherTypeInterface1<T>,
@@ -195,7 +195,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicVersionedTypeInterfaceEmptyVersion() {
+    void testBasicVersionedTypeInterfaceEmptyVersion() {
         var testProgram = """
             type interface TestNamespace.TestVersionedTypeInterface {
                 version 1 {}
@@ -205,7 +205,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicVersionedTypeInterfaceOneVersion() {
+    void testBasicVersionedTypeInterfaceOneVersion() {
         var testProgram = """
             type interface TestNamespace.TestVersionedTypeInterface {
                 version 1 {
@@ -217,7 +217,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void basicVersionedTypeInterfaceTwoVersions() {
+    void testBasicVersionedTypeInterfaceTwoVersions() {
         var testProgram = """
             type interface TestNamespace.TestVersionedTypeInterface {
                 version 1 {
@@ -232,7 +232,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericTypeInterface() {
+    void testGenericTypeInterface() {
         var testProgram = """
             type interface TestNamespace.TestGenericTypeInterface<T> {
                 testField : T
@@ -242,7 +242,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericTypeInterfaceWithImplements() {
+    void testGenericTypeInterfaceWithImplements() {
         var testProgram = """
             type interface TestNamespace.TestGenericTypeInterface<T> : TestNamespace.TestImplementsInterface {
                 testField : T
@@ -252,7 +252,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericTypeInterfaceWithImplementsGeneric() {
+    void testGenericTypeInterfaceWithImplementsGeneric() {
         var testProgram = """
             type interface TestNamespace.TestGenericTypeInterface<T> : TestNamespace.TestImplementsInterface<T> {
                 testField : T
@@ -262,7 +262,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericTypeInterfaceWithTwoImplements() {
+    void testGenericTypeInterfaceWithTwoImplements() {
         var testProgram = """
             type interface TestNamespace.TestGenericTypeInterface<T> : TestNamespace.TestImplementsInterface1, TestNamespace.TestImplementsInterface2 {
                 testField : T
@@ -272,7 +272,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericTypeInterfaceWithTwoImplementsGeneric() {
+    void testGenericTypeInterfaceWithTwoImplementsGeneric() {
         var testProgram = """
             type interface TestNamespace.TestGenericTypeInterface<T> : TestNamespace.TestImplementsInterface1<T>, TestNamespace.TestImplementsInterface2<T> {
                 testField : T
@@ -282,7 +282,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericTypeInterfaceWithBounds() {
+    void testGenericTypeInterfaceWithBounds() {
         var testProgram = """
             type interface TestNamespace.TestGenericTypeInterface<T : TestNamespace.TestTypeInterface> {
                 testField : T
@@ -292,7 +292,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericTypeInterfaceWithTwoBounds() {
+    void testGenericTypeInterfaceWithTwoBounds() {
         var testProgram = """
             type interface TestNamespace.TestGenericTypeInterface<T : TestNamespace.TestTypeInterface1 & TestNamespace.TestTypeInterface2 > {
                 testField : T
@@ -302,7 +302,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeInterfaceWithSingleGenericParameters() {
+    void testGenericVersionedTypeInterfaceWithSingleGenericParameters() {
         var testProgram = """
             type interface TestNamespace.TestVersionedGenericTypeInterface<T> {
                 version 1 {
@@ -317,7 +317,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeInterfaceWithSingleGenericParametersWithBounds() {
+    void testGenericVersionedTypeInterfaceWithSingleGenericParametersWithBounds() {
         var testProgram = """
             type interface TestNamespace.TestVersionedGenericTypeInterface<T : TestNamespace.TestTypeInterface> {
                 version 1 {
@@ -332,7 +332,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeInterfaceWithSingleGenericParametersWithTwoBounds() {
+    void testGenericVersionedTypeInterfaceWithSingleGenericParametersWithTwoBounds() {
         var testProgram = """
             type interface TestNamespace.TestVersionedGenericTypeInterface<T : TestNamespace.TestTypeInterface1 & TestNamespace.TestTypeInterface2> {
                 version 1 {
@@ -347,7 +347,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeInterfaceWithSingleGenericParametersAndOneEmptyVersion() {
+    void testGenericVersionedTypeInterfaceWithSingleGenericParametersAndOneEmptyVersion() {
         var testProgram = """
             type interface TestNamespace.TestVersionedGenericTypeInterface<T> {
                 version 1 {}
@@ -360,7 +360,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeInterfaceWithIndividualGenericParameters() {
+    void testGenericVersionedTypeInterfaceWithIndividualGenericParameters() {
         var testProgram = """
             type interface TestNamespace.TestVersionedGenericTypeInterface {
                 version 1 <T> {
@@ -375,7 +375,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeInterfaceWithIndividualGenericParametersAndDifferentOneImplements() {
+    void testGenericVersionedTypeInterfaceWithIndividualGenericParametersAndDifferentOneImplements() {
         var testProgram = """
             type interface TestNamespace.TestVersionedGenericTypeInterface {
                 version 1 <T> : TestNamespace.OtherTypeInterface1 {
@@ -390,7 +390,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeInterfaceWithIndividualGenericParametersAndDifferentOneImplementsWithOneBounds() {
+    void testGenericVersionedTypeInterfaceWithIndividualGenericParametersAndDifferentOneImplementsWithOneBounds() {
         var testProgram = """
             type interface TestNamespace.TestVersionedGenericTypeInterface {
                 version 1 <T : TestNamespace.TestTypeInterface> : TestNamespace.OtherTypeInterface1 {
@@ -405,7 +405,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeInterfaceWithIndividualGenericParametersAndDifferentOneImplementsWithTwoBounds() {
+    void testGenericVersionedTypeInterfaceWithIndividualGenericParametersAndDifferentOneImplementsWithTwoBounds() {
         var testProgram = """
             type interface TestNamespace.TestVersionedGenericTypeInterface {
                 version 1 <T : TestNamespace.TestTypeInterface1 & TestNamespace.TestTypeInterface2> : TestNamespace.OtherTypeInterface1 {
@@ -420,7 +420,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeInterfaceWithIndividualGenericParametersAndDifferentTwoImplements() {
+    void testGenericVersionedTypeInterfaceWithIndividualGenericParametersAndDifferentTwoImplements() {
         var testProgram = """
             type interface TestNamespace.TestVersionedGenericTypeInterface {
                 version 1 <T> : TestNamespace.OtherTypeInterface1, TestNamespace.OtherTypeInterface2 {
@@ -435,7 +435,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void allFieldTypeInterfaces() {
+    void testAllFieldTypeInterfaces() {
         var testProgram = """
             type interface TestNamespace.TestAllFieldTypeInterfaces<T> {
                 testDoubleField : double
@@ -460,7 +460,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void allFieldTypeInterfacesOptional() {
+    void testAllFieldTypeInterfacesOptional() {
         var testProgram = """
             type interface TestNamespace.TestAllFieldTypeInterfaces<T> {
                 testDoubleField : optional double
@@ -485,7 +485,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void allFieldTypeInterfacesOptionalOneLine() {
+    void testAllFieldTypeInterfacesOptionalOneLine() {
         var testProgram = """
             type interface TestNamespace.TestAllFieldTypeInterfaces<T> { testDoubleField : optional double testFloatField : optional float testInt32Field : optional int32 testInt64Field : optional int64 testBoolField : optional bool testStringField : optional string testByteField : optional bytes testDecimalField : optional decimal testDateField : optional date testDatetimeField : optional datetime testMapField : optional map<int32, int32> testSetField : optional set<int32> testArrayField : optional int32[] testTypeInterfaceField : optional TestNamespace.TestTypeInterface testGenericField : optional T }
         """;
@@ -493,7 +493,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void recursiveMaps() {
+    void testRecursiveMaps() {
         var testProgram = """
             type interface TestNamespace.TestRecursiveMaps {
                 testRecursiveMap : map<map<int32, int32>, map<int32, int32>>
@@ -503,7 +503,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void recursiveSets() {
+    void testRecursiveSets() {
         var testProgram = """
             type interface TestNamespace.TestRecursiveSet {
                 testRecursiveSet : set<set<int32>>
@@ -513,7 +513,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void recursiveMultiDimensionalArray() {
+    void testRecursiveMultiDimensionalArray() {
         var testProgram = """
             type interface TestNamespace.TestMultiDimensionalArray {
                 testMultiDimensionalArray : int32[][][]
@@ -523,7 +523,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void recursiveNestedMapSetArray() {
+    void testRecursiveNestedMapSetArray() {
         var testProgram = """
             type interface TestNamespace.TestMultiDimensionalArray {
                 testNestedMapSetArray : map<set<int32[][]>, set<int32[][]>>
@@ -533,7 +533,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void singleLineCommentAtTop() {
+    void testSingleLineCommentAtTop() {
         var testProgram = """
             //Comment at top
             type interface TestNamespace.TestComment {
@@ -543,7 +543,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void singleLineCommentInMiddle() {
+    void testSingleLineCommentInMiddle() {
         var testProgram = """
             type interface TestNamespace.TestComment {
                 //Comment in middle
@@ -553,7 +553,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void singleLineCommentAtBottom() {
+    void testSingleLineCommentAtBottom() {
         var testProgram = """
             type interface TestNamespace.TestComment {
             }
@@ -563,7 +563,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void singleLineCommentWithToken() {
+    void testSingleLineCommentWithToken() {
         var testProgram = """
             //type interface int32 string bool
             type interface TestNamespace.TestComment {
@@ -573,7 +573,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void multiLineCommentAtTop() {
+    void testMultiLineCommentAtTop() {
         var testProgram = """
             /*
             Comment at top
@@ -585,7 +585,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void multiLineCommentInMiddle() {
+    void testMultiLineCommentInMiddle() {
         var testProgram = """
             type interface TestNamespace.TestComment {
                 /*
@@ -597,7 +597,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void multiLineCommentAtBottom() {
+    void testMultiLineCommentAtBottom() {
         var testProgram = """
             type interface TestNamespace.TestComment {
             }
@@ -609,7 +609,7 @@ public class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
-    void multiLineCommentWithToken() {
+    void testMultiLineCommentWithToken() {
         var testProgram = """
             /*
             type interface

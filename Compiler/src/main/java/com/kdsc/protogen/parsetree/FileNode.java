@@ -3,6 +3,7 @@ package com.kdsc.protogen.parsetree;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.utils.clone.Lists;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,9 +26,9 @@ public class FileNode extends BaseParseTreeNode {
         Objects.requireNonNull(protoGenTypeNodes);
         Objects.requireNonNull(protoGenKeyNodes);
         Objects.requireNonNull(protoGenEnumNodes);
-        this.protoGenTypeNodes = protoGenTypeNodes;
-        this.protoGenKeyNodes = protoGenKeyNodes;
-        this.protoGenEnumNodes = protoGenEnumNodes;
+        this.protoGenTypeNodes = Collections.unmodifiableList(protoGenTypeNodes);
+        this.protoGenKeyNodes = Collections.unmodifiableList(protoGenKeyNodes);
+        this.protoGenEnumNodes = Collections.unmodifiableList(protoGenEnumNodes);
     }
 
     public List<ProtoGenTypeNode> getProtoGenTypeNodes() {

@@ -16,15 +16,19 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
     public void testRedefinitionOfVersionNumberOneForEnum() {
         var testProgram = """
             enum TestNamespace.Enum {
-                version 1
-                version 1
+                version 1 {
+                    enumCase1
+                }
+                version 1 {
+                    enumCase1
+                }
             }
         """;
         var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(1)),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(1)),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -34,15 +38,19 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
     public void testRedefinitionOfVersionNumberTwoForEnum() {
         var testProgram = """
             enum TestNamespace.Enum {
-                version 2
-                version 2
+                version 2 {
+                    enumCase1
+                }
+                version 2 {
+                    enumCase1
+                }
             }
         """;
         var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(2)),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(2)),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -52,22 +60,30 @@ public class TestSemanticAnalyserEnums extends BaseCompilerTest {
     public void testRedefinitionOfVersionNumberThreeForEnum() {
         var testProgram = """
             enum TestNamespace.Enum {
-                version 1
-                version 3
-                version 3
-                version 3
+                version 1 {
+                    enumCase1
+                }
+                version 3 {
+                    enumCase1
+                }
+                version 3 {
+                    enumCase1
+                }
+                version 3 {
+                    enumCase1
+                }
             }
         """;
         var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(3)),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(3)),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(3)),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_ENUM_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 11, 16, REDEFINITION_OF_ENUM_VERSION.getMessage(3)),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );

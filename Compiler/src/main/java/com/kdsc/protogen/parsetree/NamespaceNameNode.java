@@ -3,6 +3,7 @@ package com.kdsc.protogen.parsetree;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.utils.parameterchecking.Lists;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -23,7 +24,7 @@ public class NamespaceNameNode extends BaseParseTreeNode {
         Objects.requireNonNull(namespaceNodes);
         Lists.requireAtLeastOne(namespaceNodes);
         Objects.requireNonNull(nameNode);
-        this.namespaceNodes = namespaceNodes;
+        this.namespaceNodes = Collections.unmodifiableList(namespaceNodes);
         this.nameNode = nameNode;
     }
 

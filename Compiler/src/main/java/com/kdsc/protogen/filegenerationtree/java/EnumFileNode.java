@@ -1,8 +1,11 @@
 package com.kdsc.protogen.filegenerationtree.java;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
+import com.kdsc.protogen.utils.parameterchecking.Lists;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public class EnumFileNode extends JavaFileNode {
 
@@ -20,7 +23,9 @@ public class EnumFileNode extends JavaFileNode {
         super(fileName, path);
         this.namespace = namespace;
         this.name = name;
-        this.enumCaseNodes = enumCaseNodes;
+        Objects.requireNonNull(enumCaseNodes);
+        Lists.requireAtLeastOne(enumCaseNodes);
+        this.enumCaseNodes = Collections.unmodifiableList(enumCaseNodes);
     }
 
     public String getNamespace() {

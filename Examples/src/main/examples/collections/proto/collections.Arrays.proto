@@ -15,11 +15,11 @@ message Arrays {
     protogentypes.Array TestBytesArray = 7;
     protogentypes.Array TestDecimalArray = 8;
     protogentypes.Array TestDateArray = 9;
-    protogentypes.Array TestDatetimeArray = 10;
-    protogentypes.Array TestLocaldatetimeArray = 11;
+    protogentypes.Array TestDateTimeArray = 10;
+    protogentypes.Array TestLocalDateTimeArray = 11;
     protogentypes.Array TestMapArray = 12;
     protogentypes.Array TestSetArray = 13;
-    protogentypes.Array TestValueorerrorArray = 14;
+    protogentypes.Array TestValueOrErrorArray = 14;
     protogentypes.Array TestObjectArray = 15;
     protogentypes.Array TestArrayArray = 16;
     protogentypes.Array TestOptionalDoubleArray = 17;
@@ -31,11 +31,11 @@ message Arrays {
     protogentypes.Array TestOptionalBytesArray = 23;
     protogentypes.Array TestOptionalDecimalArray = 24;
     protogentypes.Array TestOptionalDateArray = 25;
-    protogentypes.Array TestOptionalDatetimeArray = 26;
-    protogentypes.Array TestOptionalLocaldatetimeArray = 27;
+    protogentypes.Array TestOptionalDateTimeArray = 26;
+    protogentypes.Array TestOptionalLocalDateTimeArray = 27;
     protogentypes.Array TestOptionalMapArray = 28;
     protogentypes.Array TestOptionalSetArray = 29;
-    protogentypes.Array TestOptionalValueorerrorArray = 30;
+    protogentypes.Array TestOptionalValueOrErrorArray = 30;
     protogentypes.Array TestOptionalObjectArray = 31;
     protogentypes.Array TestOptionalArrayArray = 32;
 }

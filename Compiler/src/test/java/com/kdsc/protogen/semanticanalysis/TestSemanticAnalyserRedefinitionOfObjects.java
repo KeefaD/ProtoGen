@@ -45,14 +45,18 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
     @Test
     public void testRedefinitionOfEnum() {
         var testProgram = """
-            enum TestNamespace.Enum
-            enum TestNamespace.Enum
+            enum TestNamespace.Enum {
+                enumCase1
+            }
+            enum TestNamespace.Enum {
+                enumCase1
+            }
         """;
         var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -105,20 +109,26 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
     @Test
     public void testRedefinitionOfEnumTwice() {
         var testProgram = """
-            enum TestNamespace.Enum
-            enum TestNamespace.Enum
-            enum TestNamespace.Enum
+            enum TestNamespace.Enum {
+                enumCase1
+            }
+            enum TestNamespace.Enum {
+                enumCase1
+            }
+            enum TestNamespace.Enum {
+                enumCase1
+            }
         """;
         var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 2, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
+            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 7, 4, REDEFINITION_OF_OBJECT.getMessage("TestNamespace.Enum")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -144,7 +154,9 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
     public void testRedefinitionOfTypeAsEnum() {
         var testProgram = """
             type TestNamespace.Type
-            enum TestNamespace.Type
+            enum TestNamespace.Type {
+                enumCase1
+            }
         """;
         var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
@@ -176,7 +188,9 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
     public void testRedefinitionOfKeyAsEnum() {
         var testProgram = """
             key TestNamespace.Key
-            enum TestNamespace.Key
+            enum TestNamespace.Key {
+                enumCase1
+            }
         """;
         var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
@@ -191,7 +205,9 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
     @Test
     public void testRedefinitionOfEnumAsType() {
         var testProgram = """
-            enum TestNamespace.Enum
+            enum TestNamespace.Enum {
+                enumCase1
+            }
             type TestNamespace.Enum
         """;
         var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
@@ -207,7 +223,9 @@ public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest 
     @Test
     public void testRedefinitionOfEnumAsKey() {
         var testProgram = """
-            enum TestNamespace.Enum
+            enum TestNamespace.Enum {
+                enumCase1
+            }
             key TestNamespace.Enum
         """;
         var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);

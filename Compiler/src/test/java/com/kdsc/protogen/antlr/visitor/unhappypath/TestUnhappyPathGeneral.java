@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class TestUnhappyPathGeneral extends BaseCompilerTest {
 
     @Test
-    void singleCharacter() {
+    void testSingleCharacter() {
         var testProgram = """
             a
         """;
@@ -25,7 +25,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
     }
 
     @Test
-    void misspelledTypeKeyWord() {
+    void testMisspelledTypeKeyWord() {
         var testProgram = """
             ttype TestNamespace.TestType
         """;
@@ -40,7 +40,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
     }
 
     @Test
-    void missingNamespace() {
+    void testMissingNamespace() {
         var testProgram = """
             type TestType
         """;
@@ -55,7 +55,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
     }
 
     @Test
-    void missingNamespaceWithBraces() {
+    void testMissingNamespaceWithBraces() {
         var testProgram = """
             type TestType {}
         """;
@@ -70,7 +70,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
     }
 
     @Test
-    void mismatchedBraces() {
+    void testMismatchedBraces() {
         var testProgram = """
             type TestNamespace.TestType {
         """;
@@ -85,7 +85,7 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
     }
 
     @Test
-    void mismatchedSquareBracketsForArray() {
+    void testMismatchedSquareBracketsForArray() {
         var testProgram = """
             type TestNamespace.TestType {
                 testArray : int32[
@@ -175,9 +175,60 @@ public class TestUnhappyPathGeneral extends BaseCompilerTest {
         """;
         var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
         assertNotNull(parserErrors, "Parser errors are unexpectedly null");
-        assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
+        assertEquals(2, parserErrors.size(), "Unexpected parser errors size");
         assertEquals(
             ParserError.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 9, "mismatched input '{' expecting IDENTIFIER"),
+            parserErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            ParserError.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 2, 4, "no viable alternative at input '}'"),
+            parserErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    void testEnumWithNoCasesOrVersionsNoBraces() {
+        var testProgram = """
+            enum TestNamespace.TestEnum
+        """;
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
+        assertNotNull(parserErrors, "Parser errors are unexpectedly null");
+        assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            ParserError.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 2, 0, "mismatched input '<EOF>' expecting '{'"),
+            parserErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    void testEnumWithNoCasesOrVersionsBraces() {
+        var testProgram = """
+            enum TestNamespace.TestEnum {}
+        """;
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
+        assertNotNull(parserErrors, "Parser errors are unexpectedly null");
+        assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            ParserError.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 33, "no viable alternative at input '}'"),
+            parserErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    void testEnumWithNoCasesOrVersionsSplitBraces() {
+        var testProgram = """
+            enum TestNamespace.TestEnum {
+            }
+        """;
+        var parserErrors = runCompilerToParserReturnParserErrors(testProgram);
+        assertNotNull(parserErrors, "Parser errors are unexpectedly null");
+        assertEquals(1, parserErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            ParserError.PARSER_ERROR_MESSAGE.formatted(FAKE_SOURCE_FILE_NAME_AND_PATH, 2, 4, "no viable alternative at input '}'"),
             parserErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );

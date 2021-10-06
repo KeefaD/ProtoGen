@@ -3,6 +3,7 @@ package com.kdsc.protogen.parsetree;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.utils.clone.Lists;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class VersionsNode extends BaseParseTreeNode {
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(versionNodes);
-        this.versionNodes = versionNodes;
+        this.versionNodes = Collections.unmodifiableList(versionNodes);
     }
 
     public List<VersionNode> getVersionNodes() {

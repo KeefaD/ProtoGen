@@ -1,6 +1,7 @@
 package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
+import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 public class TypeFieldTypeNode extends FieldTypeNode {
 
@@ -13,6 +14,8 @@ public class TypeFieldTypeNode extends FieldTypeNode {
         final String name
     ) {
         super(isOptional);
+        Strings.requireNonBlank(namespace);
+        Strings.requireNonBlank(name);
         this.namespace = namespace;
         this.name = name;
     }

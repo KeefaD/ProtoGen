@@ -9,14 +9,14 @@ import java.util.Optional;
 public class EnumVersionNode extends BaseParseTreeNode {
 
     private final VersionNumberNode versionNumberNode;
-    private final Optional<EnumCasesNode> enumCasesNode;
+    private final EnumCasesNode enumCasesNode;
 
     public EnumVersionNode(
         final String sourceFileName,
         final long line,
         final long charPosition,
         final VersionNumberNode versionNumberNode,
-        final Optional<EnumCasesNode> enumCasesNode
+        final EnumCasesNode enumCasesNode
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(versionNumberNode);
@@ -29,7 +29,7 @@ public class EnumVersionNode extends BaseParseTreeNode {
         return versionNumberNode;
     }
 
-    public Optional<EnumCasesNode> getEnumCasesNode() {
+    public EnumCasesNode getEnumCasesNode() {
         return enumCasesNode;
     }
 
@@ -50,7 +50,7 @@ public class EnumVersionNode extends BaseParseTreeNode {
             getLine(),
             getCharPosition(),
             versionNumberNode.clone(),
-            Optionals.clone(enumCasesNode)
+            enumCasesNode.clone()
         );
     }
 

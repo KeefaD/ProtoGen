@@ -6,32 +6,7 @@ import org.junit.jupiter.api.Test;
 public class TestEnums extends BaseCompilerTest {
 
     @Test
-    void basicEmptyEnum() {
-        var testProgram = """
-            enum TestNamespace.TestEnum
-        """;
-        runCompilerToParserCheckNoErrors(testProgram);
-    }
-
-    @Test
-    void basicEmptyEnumWithBracesOnOneLine() {
-        var testProgram = """
-            enum TestNamespace.TestEnum {}
-        """;
-        runCompilerToParserCheckNoErrors(testProgram);
-    }
-
-    @Test
-    void basicEmptyEnumWithSplitBraces() {
-        var testProgram = """
-            enum TestNamespace.TestEnum {
-            }
-        """;
-        runCompilerToParserCheckNoErrors(testProgram);
-    }
-
-    @Test
-    void basicEnumWithOneCase() {
+    void testBasicEnumWithOneCase() {
         var testProgram = """
             enum TestNamespace.TestEnum {
                 testEnumCase
@@ -41,7 +16,7 @@ public class TestEnums extends BaseCompilerTest {
     }
 
     @Test
-    void basicEnumWithTwoCases() {
+    void testBasicEnumWithTwoCases() {
         var testProgram = """
             enum TestNamespace.TestEnum {
                 testEnumCase1
@@ -52,7 +27,7 @@ public class TestEnums extends BaseCompilerTest {
     }
 
     @Test
-    void versionedEnumWithOneCase() {
+    void testVersionedEnumWithOneCase() {
         var testProgram = """
             enum TestNamespace.TestEnum {
                 version 1 {
@@ -64,7 +39,7 @@ public class TestEnums extends BaseCompilerTest {
     }
 
     @Test
-    void versionedEnumWithTwoCases() {
+    void testVersionedEnumWithTwoCases() {
         var testProgram = """
             enum TestNamespace.TestEnum {
                 version 1 {
@@ -81,14 +56,15 @@ public class TestEnums extends BaseCompilerTest {
     }
 
     @Test
-    void versionedEnumWithTwoCasesOneEmpty() {
+    void testVersionedEnumWithTwoCasesOneEmpty() {
         var testProgram = """
             enum TestNamespace.TestEnum {
                 version 1 {
-                    test EnumCase1
+                    testEnumCase1
                     testEnumCase2
                 }
                 version 2 {
+                    testEnumCase1
                 }
             }
         """;

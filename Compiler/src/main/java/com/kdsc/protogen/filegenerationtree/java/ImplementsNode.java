@@ -2,6 +2,7 @@ package com.kdsc.protogen.filegenerationtree.java;
 
 import com.kdsc.protogen.filegenerationtree.BaseFileGenerationTreeNode;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
+import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 public class ImplementsNode extends BaseFileGenerationTreeNode {
 
@@ -13,6 +14,8 @@ public class ImplementsNode extends BaseFileGenerationTreeNode {
         final String name
     ) {
         //TODO:KMD Don't like the name name
+        Strings.requireNonBlank(packageName);
+        Strings.requireNonBlank(name);
         this.packageName = packageName;
         this.name = name;
     }

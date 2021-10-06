@@ -134,7 +134,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
             (VersionNumberNode) visit(ctx.version_number()),
-            ctx.enum_cases() == null ? Optional.empty() : Optional.of((EnumCasesNode) visit(ctx.enum_cases()))
+            (EnumCasesNode) visit(ctx.enum_cases())
         );
     }
 

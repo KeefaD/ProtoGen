@@ -13,8 +13,8 @@ message Sets {
     protogentypes.Set TestBytesSet = 5;
     protogentypes.Set TestDecimalSet = 6;
     protogentypes.Set TestDateSet = 7;
-    protogentypes.Set TestDatetimeSet = 8;
-    protogentypes.Set TestLocaldatetimeSet = 9;
+    protogentypes.Set TestDateTimeSet = 8;
+    protogentypes.Set TestLocalDateTimeSet = 9;
     protogentypes.Set TestMapSet = 10;
     protogentypes.Set TestSetSet = 11;
     protogentypes.Set TestObjectSet = 12;
@@ -27,7 +27,7 @@ message Sets {
     protogentypes.Set TestOptionalDecimalSet = 19;
     protogentypes.Set TestOptionalDateSet = 20;
     protogentypes.Set TestOptionalDatetimeSet = 21;
-    protogentypes.Set TestOptionalLocaldatetimeSet = 22;
+    protogentypes.Set TestOptionalLocalDateTimeSet = 22;
     protogentypes.Set TestOptionalMapSet = 23;
     protogentypes.Set TestOptionalSetSet = 24;
     protogentypes.Set TestOptionalObjectSet = 25;

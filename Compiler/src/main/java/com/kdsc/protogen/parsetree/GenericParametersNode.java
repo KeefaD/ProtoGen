@@ -4,6 +4,7 @@ import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.fieldtypenodes.FieldTypeNode;
 import com.kdsc.protogen.parsetree.utils.clone.Lists;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ public class GenericParametersNode extends BaseParseTreeNode {
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(fieldTypeNodes);
-        this.fieldTypeNodes = fieldTypeNodes;
+        this.fieldTypeNodes = Collections.unmodifiableList(fieldTypeNodes);
     }
 
     public List<FieldTypeNode> getFieldTypeNodes() {

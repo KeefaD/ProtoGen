@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class TestKeys extends BaseCompilerTest {
 
     @Test
-    void singleKey() {
+    void testSingleKey() {
         var testProgram = """
             key TestNamespace.TestKey
         """;
@@ -14,7 +14,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void singleKeyNestedNamespace() {
+    void testSingleKeyNestedNamespace() {
         var testProgram = """
             key TestNamespace.TestNestedNamespace.TestKey
         """;
@@ -22,7 +22,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void multipleKeys() {
+    void testMultipleKeys() {
         var testProgram = """
             key TestNamespace.TestKey1
             key TestNamespace.TestKey2
@@ -31,7 +31,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicKeyNoFieldsOrBraces() {
+    void testBasicKeyNoFieldsOrBraces() {
         var testProgram = """
             key TestNamespace.TestKey
         """;
@@ -39,7 +39,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicKeyNoFieldsWithBraces() {
+    void testBasicKeyNoFieldsWithBraces() {
         var testProgram = """
             key TestNamespace.TestKey {}
         """;
@@ -47,7 +47,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicKeyNoFieldsWithSplitBraces() {
+    void testBasicKeyNoFieldsWithSplitBraces() {
         var testProgram = """
             key TestNamespace.TestKey {
             }
@@ -56,7 +56,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicKeyOneField() {
+    void testBasicKeyOneField() {
         var testProgram = """
             key TestNamespace.TestKey {
                 testField : int32
@@ -66,7 +66,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicKeyTwoFields() {
+    void testBasicKeyTwoFields() {
         var testProgram = """
             key TestNamespace.TestKey {
                 testField1 : int32
@@ -77,7 +77,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicKeyOneImplementsNoFieldsNoBraces() {
+    void testBasicKeyOneImplementsNoFieldsNoBraces() {
         var testProgram = """
             key TestNamespace.TestKey : TestNamespace.OtherKey
         """;
@@ -85,7 +85,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicKeyOneImplementsNoFieldsEmptyBraces() {
+    void testBasicKeyOneImplementsNoFieldsEmptyBraces() {
         var testProgram = """
             key TestNamespace.TestKey : TestNamespace.OtherKey {}
         """;
@@ -93,7 +93,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicKeyOneImplementsNoFieldsSplitEmptyBraces() {
+    void testBasicKeyOneImplementsNoFieldsSplitEmptyBraces() {
         var testProgram = """
             key TestNamespace.TestKey : TestNamespace.OtherKey {
             }
@@ -103,7 +103,7 @@ public class TestKeys extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicKeyOneImplementsNoFieldsNoBracesGenericParameter() {
+    void testBasicKeyOneImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
             key TestNamespace.TestKey : TestNamespace.OtherKey<T>
         """;
@@ -112,7 +112,7 @@ public class TestKeys extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicKeyOneImplementsNoFieldsEmptyBracesGenericParameter() {
+    void testBasicKeyOneImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
             key TestNamespace.TestKey : TestNamespace.OtherKey<T> {}
         """;
@@ -121,7 +121,7 @@ public class TestKeys extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicKeyOneImplementsNoFieldsSplitEmptyBracesGenericParameter() {
+    void testBasicKeyOneImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
             key TestNamespace.TestKey : TestNamespace.OtherKey<T> {
             }
@@ -130,7 +130,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicKeyTwoImplementsNoFieldsNoBraces() {
+    void testBasicKeyTwoImplementsNoFieldsNoBraces() {
         var testProgram = """
             key TestNamespace.TestKey :
                 TestNamespace.OtherKey1,
@@ -140,7 +140,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicKeyTwoImplementsNoFieldsEmptyBraces() {
+    void testBasicKeyTwoImplementsNoFieldsEmptyBraces() {
         var testProgram = """
             key TestNamespace.TestKey :
                 TestNamespace.OtherKey1,
@@ -150,7 +150,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicKeyTwoImplementsNoFieldsSplitEmptyBraces() {
+    void testBasicKeyTwoImplementsNoFieldsSplitEmptyBraces() {
         var testProgram = """
             key TestNamespace.TestKey :
                 TestNamespace.OtherKey1,
@@ -162,7 +162,7 @@ public class TestKeys extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicKeyTwoImplementsNoFieldsNoBracesGenericParameter() {
+    void testBasicKeyTwoImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
             key TestNamespace.TestKey :
                 TestNamespace.OtherKey1<T>,
@@ -173,7 +173,7 @@ public class TestKeys extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicKeyTwoImplementsNoFieldsEmptyBracesGenericParameter() {
+    void testBasicKeyTwoImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
             key TestNamespace.TestKey :
                 TestNamespace.OtherKey1<T>,
@@ -184,7 +184,7 @@ public class TestKeys extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicKeyTwoImplementsNoFieldsSplitEmptyBracesGenericParameter() {
+    void testBasicKeyTwoImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
             key TestNamespace.TestKey :
                 TestNamespace.OtherKey1<T>,
@@ -195,7 +195,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicVersionedKeyEmptyVersion() {
+    void testBasicVersionedKeyEmptyVersion() {
         var testProgram = """
             key TestNamespace.TestVersionedKey {
                 version 1 {}
@@ -205,7 +205,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicVersionedKeyOneVersion() {
+    void testBasicVersionedKeyOneVersion() {
         var testProgram = """
             key TestNamespace.TestVersionedKey {
                 version 1 {
@@ -217,7 +217,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void basicVersionedKeyTwoVersions() {
+    void testBasicVersionedKeyTwoVersions() {
         var testProgram = """
             key TestNamespace.TestVersionedKey {
                 version 1 {
@@ -232,7 +232,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericKey() {
+    void testGenericKey() {
         var testProgram = """
             key TestNamespace.TestGenericKey<T> {
                 testField : T
@@ -242,7 +242,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericKeyWithImplements() {
+    void testGenericKeyWithImplements() {
         var testProgram = """
             key TestNamespace.TestGenericKey<T> : TestNamespace.TestImplements {
                 testField : T
@@ -252,7 +252,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericKeyWithImplementsGeneric() {
+    void testGenericKeyWithImplementsGeneric() {
         var testProgram = """
             key TestNamespace.TestGenericKey<T> : TestNamespace.TestImplements<T> {
                 testField : T
@@ -262,7 +262,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericKeyWithTwoImplements() {
+    void testGenericKeyWithTwoImplements() {
         var testProgram = """
             key TestNamespace.TestGenericKey<T> : TestNamespace.TestImplements1, TestNamespace.TestImplements2 {
                 testField : T
@@ -272,7 +272,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericKeyWithTwoImplementsGeneric() {
+    void testGenericKeyWithTwoImplementsGeneric() {
         var testProgram = """
             key TestNamespace.TestGenericKey<T> : TestNamespace.TestImplements1<T>, TestNamespace.TestImplements2<T> {
                 testField : T
@@ -282,7 +282,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericKeyWithBounds() {
+    void testGenericKeyWithBounds() {
         var testProgram = """
             key TestNamespace.TestGenericKey<T : TestNamespace.TestKey> {
                 testField : T
@@ -292,7 +292,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericKeyWithTwoBounds() {
+    void testGenericKeyWithTwoBounds() {
         var testProgram = """
             key TestNamespace.TestGenericKey<T : TestNamespace.TestKey1 & TestNamespace.TestKey2 > {
                 testField : T
@@ -302,7 +302,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedKeyWithSingleGenericParameters() {
+    void testGenericVersionedKeyWithSingleGenericParameters() {
         var testProgram = """
             key TestNamespace.TestVersionedGenericKey<T> {
                 version 1 {
@@ -317,7 +317,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedKeyWithSingleGenericParametersWithBounds() {
+    void testGenericVersionedKeyWithSingleGenericParametersWithBounds() {
         var testProgram = """
             key TestNamespace.TestVersionedGenericKey<T : TestNamespace.TestKey> {
                 version 1 {
@@ -332,7 +332,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedKeyWithSingleGenericParametersWithTwoBounds() {
+    void testGenericVersionedKeyWithSingleGenericParametersWithTwoBounds() {
         var testProgram = """
             key TestNamespace.TestVersionedGenericKey<T : TestNamespace.TestKey1 & TestNamespace.TestKey2> {
                 version 1 {
@@ -347,7 +347,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedKeyWithSingleGenericParametersAndOneEmptyVersion() {
+    void testGenericVersionedKeyWithSingleGenericParametersAndOneEmptyVersion() {
         var testProgram = """
             key TestNamespace.TestVersionedGenericKey<T> {
                 version 1 {}
@@ -360,7 +360,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedKeyWithIndividualGenericParameters() {
+    void testGenericVersionedKeyWithIndividualGenericParameters() {
         var testProgram = """
             key TestNamespace.TestVersionedGenericKey {
                 version 1 <T> {
@@ -375,7 +375,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedKeyWithIndividualGenericParametersAndDifferentOneImplements() {
+    void testGenericVersionedKeyWithIndividualGenericParametersAndDifferentOneImplements() {
         var testProgram = """
             key TestNamespace.TestVersionedGenericKey {
                 version 1 <T> : TestNamespace.OtherKey1 {
@@ -390,7 +390,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedKeyWithIndividualGenericParametersAndDifferentOneImplementsWithOneBounds() {
+    void testGenericVersionedKeyWithIndividualGenericParametersAndDifferentOneImplementsWithOneBounds() {
         var testProgram = """
             key TestNamespace.TestVersionedGenericKey {
                 version 1 <T : TestNamespace.TestKey> : TestNamespace.OtherKey1 {
@@ -405,7 +405,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedKeyWithIndividualGenericParametersAndDifferentOneImplementsWithTwoBounds() {
+    void testGenericVersionedKeyWithIndividualGenericParametersAndDifferentOneImplementsWithTwoBounds() {
         var testProgram = """
             key TestNamespace.TestVersionedGenericKey {
                 version 1 <T : TestNamespace.TestKey1 & TestNamespace.TestKey2> : TestNamespace.OtherKey1 {
@@ -420,7 +420,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedKeyWithIndividualGenericParametersAndDifferentTwoImplements() {
+    void testGenericVersionedKeyWithIndividualGenericParametersAndDifferentTwoImplements() {
         var testProgram = """
             key TestNamespace.TestVersionedGenericKey {
                 version 1 <T> : TestNamespace.OtherKey1, TestNamespace.OtherKey2 {
@@ -435,7 +435,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void allFieldKeys() {
+    void testAllFieldKeys() {
         var testProgram = """
             key TestNamespace.TestAllFieldKeys<T> {
                 testDoubleField : double
@@ -460,7 +460,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void allFieldKeysOptional() {
+    void testAllFieldKeysOptional() {
         var testProgram = """
             key TestNamespace.TestAllFieldKeys<T> {
                 testDoubleField : optional double
@@ -485,7 +485,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void allFieldKeysOptionalOneLine() {
+    void testAllFieldKeysOptionalOneLine() {
         var testProgram = """
             key TestNamespace.TestAllFieldTypes<T> { testDoubleField : optional double testFloatField : optional float testInt32Field : optional int32 testInt64Field : optional int64 testBoolField : optional bool testStringField : optional string testByteField : optional bytes testDecimalField : optional decimal testDateField : optional date testDatetimeField : optional datetime testMapField : optional map<int32, int32> testSetField : optional set<int32> testArrayField : optional int32[] testTypeField : optional TestNamespace.TestType testGenericField : optional T }
         """;
@@ -493,7 +493,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void recursiveMaps() {
+    void testRecursiveMaps() {
         var testProgram = """
             key TestNamespace.TestRecursiveMaps {
                 testRecursiveMap : map<map<int32, int32>, map<int32, int32>>
@@ -503,7 +503,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void recursiveSets() {
+    void testRecursiveSets() {
         var testProgram = """
             key TestNamespace.TestRecursiveSet {
                 testRecursiveSet : set<set<int32>>
@@ -513,7 +513,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void recursiveMultiDimensionalArray() {
+    void testRecursiveMultiDimensionalArray() {
         var testProgram = """
             key TestNamespace.TestMultiDimensionalArray {
                 testMultiDimensionalArray : int32[][][]
@@ -523,7 +523,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void recursiveNestedMapSetArray() {
+    void testRecursiveNestedMapSetArray() {
         var testProgram = """
             key TestNamespace.TestMultiDimensionalArray {
                 testNestedMapSetArray : map<set<int32[][]>, set<int32[][]>>
@@ -533,7 +533,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void singleLineCommentAtTop() {
+    void testSingleLineCommentAtTop() {
         var testProgram = """
             //Comment at top
             key TestNamespace.TestComment {
@@ -543,7 +543,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void singleLineCommentInMiddle() {
+    void testSingleLineCommentInMiddle() {
         var testProgram = """
             key TestNamespace.TestComment {
                 //Comment in middle
@@ -553,7 +553,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void singleLineCommentAtBottom() {
+    void testSingleLineCommentAtBottom() {
         var testProgram = """
             key TestNamespace.TestComment {
             }
@@ -563,7 +563,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void singleLineCommentWithToken() {
+    void testSingleLineCommentWithToken() {
         var testProgram = """
             //type int32 string bool
             key TestNamespace.TestComment {
@@ -573,7 +573,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void multiLineCommentAtTop() {
+    void testMultiLineCommentAtTop() {
         var testProgram = """
             /*
             Comment at top
@@ -585,7 +585,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void multiLineCommentInMiddle() {
+    void testMultiLineCommentInMiddle() {
         var testProgram = """
             key TestNamespace.TestComment {
                 /*
@@ -597,7 +597,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void multiLineCommentAtBottom() {
+    void testMultiLineCommentAtBottom() {
         var testProgram = """
             key TestNamespace.TestComment {
             }
@@ -609,7 +609,7 @@ public class TestKeys extends BaseCompilerTest {
     }
 
     @Test
-    void multiLineCommentWithToken() {
+    void testMultiLineCommentWithToken() {
         var testProgram = """
             /*
             type

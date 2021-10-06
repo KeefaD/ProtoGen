@@ -3,7 +3,7 @@ package com.kdsc.protogen.filegenerationtree.java;
 import com.kdsc.protogen.filegenerationtree.FileNode;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 
-public class JavaFileNode extends FileNode {
+public abstract class JavaFileNode extends FileNode {
 
     public JavaFileNode(final String fileName, final String path) {
         super(fileName, path);

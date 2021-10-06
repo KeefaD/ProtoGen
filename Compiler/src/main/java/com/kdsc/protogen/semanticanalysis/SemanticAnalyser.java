@@ -426,9 +426,7 @@ public class SemanticAnalyser {
             );
 
         versions
-            .stream()
-            .filter(evn -> evn.getEnumCasesNode().isPresent())
-            .forEach(evn -> checkEnumCases(semanticErrors, evn.getEnumCasesNode().get()));
+            .forEach(evn -> checkEnumCases(semanticErrors, evn.getEnumCasesNode()));
 
         if (enumNode.getEnumCasesNode().isPresent()) checkEnumCases(semanticErrors, enumNode.getEnumCasesNode().get());
     }

@@ -12,8 +12,8 @@ public class Maps implements ProtoGenType {
     private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Bytes, com.kdsc.protogen.runtime.types.Bytes> TestBytesMap;
     private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Decimal, com.kdsc.protogen.runtime.types.Decimal> TestDecimalMap;
     private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Date, com.kdsc.protogen.runtime.types.Date> TestDateMap;
-    private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.DateTime, com.kdsc.protogen.runtime.types.DateTime> TestDatetimeMap;
-    private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.LocalDateTime, com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeMap;
+    private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.DateTime, com.kdsc.protogen.runtime.types.DateTime> TestDateTimeMap;
+    private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.LocalDateTime, com.kdsc.protogen.runtime.types.LocalDateTime> TestLocalDateTimeMap;
     private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Map<String, String>, com.kdsc.protogen.runtime.types.Map<String, String>> TestMapMap;
     private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Set<String>, com.kdsc.protogen.runtime.types.Set<String>> TestSetMap;
     private final com.kdsc.protogen.runtime.types.Map<collections.InnerType, collections.InnerType> TestObjectMap;
@@ -26,7 +26,7 @@ public class Maps implements ProtoGenType {
     private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Decimal>, Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalMap;
     private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Date>, Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateSetMap;
     private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.DateTime>, Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeMap;
-    private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>, Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeMap;
+    private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>, Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocalDateTimeMap;
     private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>, Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapMap;
     private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Set<String>>, Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetMap;
     private final com.kdsc.protogen.runtime.types.Map<Optional<collections.InnerType>, Optional<collections.InnerType>> TestOptionalObjectMap;
@@ -40,8 +40,8 @@ public class Maps implements ProtoGenType {
         final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Bytes, com.kdsc.protogen.runtime.types.Bytes> TestBytesMap,
         final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Decimal, com.kdsc.protogen.runtime.types.Decimal> TestDecimalMap,
         final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Date, com.kdsc.protogen.runtime.types.Date> TestDateMap,
-        final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.DateTime, com.kdsc.protogen.runtime.types.DateTime> TestDatetimeMap,
-        final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.LocalDateTime, com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeMap,
+        final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.DateTime, com.kdsc.protogen.runtime.types.DateTime> TestDateTimeMap,
+        final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.LocalDateTime, com.kdsc.protogen.runtime.types.LocalDateTime> TestLocalDateTimeMap,
         final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Map<String, String>, com.kdsc.protogen.runtime.types.Map<String, String>> TestMapMap,
         final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Set<String>, com.kdsc.protogen.runtime.types.Set<String>> TestSetMap,
         final com.kdsc.protogen.runtime.types.Map<collections.InnerType, collections.InnerType> TestObjectMap,
@@ -54,7 +54,7 @@ public class Maps implements ProtoGenType {
         final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Decimal>, Optional<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalMap,
         final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Date>, Optional<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateSetMap,
         final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.DateTime>, Optional<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeMap,
-        final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>, Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeMap,
+        final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>, Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocalDateTimeMap,
         final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>, Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapMap,
         final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Set<String>>, Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetMap,
         final com.kdsc.protogen.runtime.types.Map<Optional<collections.InnerType>, Optional<collections.InnerType>> TestOptionalObjectMap,
@@ -67,8 +67,8 @@ public class Maps implements ProtoGenType {
         this.TestBytesMap = TestBytesMap;
         this.TestDecimalMap = TestDecimalMap;
         this.TestDateMap = TestDateMap;
-        this.TestDatetimeMap = TestDatetimeMap;
-        this.TestLocaldatetimeMap = TestLocaldatetimeMap;
+        this.TestDateTimeMap = TestDateTimeMap;
+        this.TestLocalDateTimeMap = TestLocalDateTimeMap;
         this.TestMapMap = TestMapMap;
         this.TestSetMap = TestSetMap;
         this.TestObjectMap = TestObjectMap;
@@ -81,7 +81,7 @@ public class Maps implements ProtoGenType {
         this.TestOptionalDecimalMap = TestOptionalDecimalMap;
         this.TestOptionalDateSetMap = TestOptionalDateSetMap;
         this.TestOptionalDatetimeMap = TestOptionalDatetimeMap;
-        this.TestOptionalLocaldatetimeMap = TestOptionalLocaldatetimeMap;
+        this.TestOptionalLocalDateTimeMap = TestOptionalLocalDateTimeMap;
         this.TestOptionalMapMap = TestOptionalMapMap;
         this.TestOptionalSetMap = TestOptionalSetMap;
         this.TestOptionalObjectMap = TestOptionalObjectMap;
@@ -116,12 +116,12 @@ public class Maps implements ProtoGenType {
         return TestDateMap;
     }
 
-    public com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.DateTime, com.kdsc.protogen.runtime.types.DateTime> getTestDatetimeMap() {
-        return TestDatetimeMap;
+    public com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.DateTime, com.kdsc.protogen.runtime.types.DateTime> getTestDateTimeMap() {
+        return TestDateTimeMap;
     }
 
-    public com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.LocalDateTime, com.kdsc.protogen.runtime.types.LocalDateTime> getTestLocaldatetimeMap() {
-        return TestLocaldatetimeMap;
+    public com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.LocalDateTime, com.kdsc.protogen.runtime.types.LocalDateTime> getTestLocalDateTimeMap() {
+        return TestLocalDateTimeMap;
     }
 
     public com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Map<String, String>, com.kdsc.protogen.runtime.types.Map<String, String>> getTestMapMap() {
@@ -172,8 +172,8 @@ public class Maps implements ProtoGenType {
         return TestOptionalDatetimeMap;
     }
 
-    public com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>, Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> getTestOptionalLocaldatetimeMap() {
-        return TestOptionalLocaldatetimeMap;
+    public com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>, Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> getTestOptionalLocalDateTimeMap() {
+        return TestOptionalLocalDateTimeMap;
     }
 
     public com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>, Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> getTestOptionalMapMap() {

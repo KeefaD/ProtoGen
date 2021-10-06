@@ -4,6 +4,7 @@ import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.utils.clone.Lists;
 import com.kdsc.protogen.utils.parameterchecking.Strings;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +25,7 @@ public class GenericParameterWithBoundsNode extends BaseParseTreeNode {
         Strings.requireNonBlank(identifier);
         Objects.requireNonNull(namespaceNameGenericParametersNodes);
         this.identifier = identifier;
-        this.namespaceNameGenericParametersNodes = namespaceNameGenericParametersNodes;
+        this.namespaceNameGenericParametersNodes = Collections.unmodifiableList(namespaceNameGenericParametersNodes);
     }
 
     public String getIdentifier() {

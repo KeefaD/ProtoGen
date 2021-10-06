@@ -4,7 +4,7 @@ grammar ProtoGen;
     package com.kdsc.protogen.antlr.generated;
 }
 
-//CANTFIX I can't prevent this warning in the IntelliJ Antlr Plugin at the moment, see here https://github.com/antlr/antlr4/issues/1069
+//CAN'TFIX I can't prevent this warning in the IntelliJ Antlr Plugin at the moment, see here https://github.com/antlr/antlr4/issues/1069
 file:
     (
         protogen_type |
@@ -20,7 +20,7 @@ protogen_key:
     'key' 'interface'? namespace_name_generic_parameters_with_bounds implements_list? ( '{' (versions | fields)? '}' )?;
 
 protogen_enum:
-    'enum' namespace_name ( '{' (enum_versions | enum_cases)? '}' )?;
+    'enum' namespace_name ( '{' (enum_versions | enum_cases) '}' );
 
 implements_list:
     ':' namespace_name_generic_parameters (',' namespace_name_generic_parameters)*;
@@ -35,7 +35,7 @@ enum_versions:
     enum_version+;
 
 enum_version:
-    'version' version_number ( '{' enum_cases? '}' )?;
+    'version' version_number ( '{' enum_cases '}' );
 
 enum_cases:
     enum_name+ (enum_name)*;

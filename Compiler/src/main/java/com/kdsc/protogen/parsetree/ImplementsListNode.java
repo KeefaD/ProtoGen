@@ -3,6 +3,7 @@ package com.kdsc.protogen.parsetree;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.utils.clone.Lists;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class ImplementsListNode extends BaseParseTreeNode {
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(namespaceNameGenericParametersNodes);
-        this.namespaceNameGenericParametersNodes = namespaceNameGenericParametersNodes;
+        this.namespaceNameGenericParametersNodes = Collections.unmodifiableList(namespaceNameGenericParametersNodes);
     }
 
     public List<NamespaceNameGenericParametersNode> getNamespaceNameGenericParametersNodes() {

@@ -3,6 +3,9 @@ package com.kdsc.protogen.filegenerationtree.shared;
 import com.kdsc.protogen.filegenerationtree.BaseFileGenerationTreeNode;
 import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.FieldTypeNode;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
+import com.kdsc.protogen.utils.parameterchecking.Strings;
+
+import java.util.Objects;
 
 public class FieldNode extends BaseFileGenerationTreeNode {
 
@@ -13,6 +16,8 @@ public class FieldNode extends BaseFileGenerationTreeNode {
         final String name,
         final FieldTypeNode fieldTypeNode
     ) {
+        Strings.requireNonBlank(name);
+        Objects.requireNonNull(fieldTypeNode);
         this.name = name;
         this.fieldTypeNode = fieldTypeNode;
     }

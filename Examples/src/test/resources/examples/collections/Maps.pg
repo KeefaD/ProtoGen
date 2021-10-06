@@ -8,11 +8,11 @@ type collections.Maps {
     TestBytesMap : map<bytes, bytes>
     TestDecimalMap : map<decimal, decimal>
     TestDateMap : map<date, date>
-    TestDatetimeMap : map<datetime, datetime>
-    TestLocaldatetimeMap : map<localdatetime, localdatetime>
+    TestDateTimeMap : map<datetime, datetime>
+    TestLocalDateTimeMap : map<localdatetime, localdatetime>
     TestMapMap : map<map<string, string>, map<string, string>>
     TestSetMap : map<set<string>, set<string>>
-//    TestValueorerrorMap : map<valueorerror<decimal>, valueorerror<decimal>> //Hmm what does this mean if there is an error
+//    TestValueOrErrorMap : map<valueorerror<decimal>, valueorerror<decimal>> //Hmm what does this mean if there is an error
     TestObjectMap : map<collections.InnerType, collections.InnerType>
     TestArrayMap : map<string[], string[]>
 //    TestOptionalDoubleMap : map<optional double, optional double>
@@ -25,10 +25,10 @@ type collections.Maps {
     TestOptionalDecimalMap : map<optional decimal, optional decimal>
     TestOptionalDateSetMap : map<optional date, optional date>
     TestOptionalDatetimeMap : map<optional datetime, optional datetime>
-    TestOptionalLocaldatetimeMap : map<optional localdatetime, optional localdatetime>
+    TestOptionalLocalDateTimeMap : map<optional localdatetime, optional localdatetime>
     TestOptionalMapMap : map<optional map<string, string>, optional map<string, string>>
     TestOptionalSetMap : map<optional set<string>, optional set<string>>
-//    TestOptionalValueorerrorMap : map<optional valueorerror<decimal>, optional valueorerror<decimal>>
+//    TestOptionalValueOrErrorMap : map<optional valueorerror<decimal>, optional valueorerror<decimal>>
     TestOptionalObjectMap : map<optional collections.InnerType, optional collections.InnerType>
     TestOptionalArrayMap : map<optional string[], optional string[]>
 }

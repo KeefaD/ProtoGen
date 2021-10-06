@@ -14,11 +14,11 @@ public class Arrays implements ProtoGenType {
     private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Bytes> TestBytesArray;
     private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Decimal> TestDecimalArray;
     private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Date> TestDateArray;
-    private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeArray;
-    private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeArray;
+    private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime> TestDateTimeArray;
+    private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocalDateTimeArray;
     private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapArray;
     private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Set<String>> TestSetArray;
-    private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueorerrorArray;
+    private final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueOrErrorArray;
     private final com.kdsc.protogen.runtime.types.Array<collections.InnerType> TestObjectArray;
     private final com.kdsc.protogen.runtime.types.Array<String> TestArrayArray;
     private final Optional<com.kdsc.protogen.runtime.types.Array<Double>> TestOptionalDoubleArray;
@@ -30,11 +30,11 @@ public class Arrays implements ProtoGenType {
     private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesArray;
     private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalArray;
     private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateArray;
-    private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeArray;
-    private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeArray;
+    private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDateTimeArray;
+    private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocalDateTimeArray;
     private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapArray;
     private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetArray;
-    private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueorerrorArray;
+    private final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueOrErrorArray;
     private final Optional<com.kdsc.protogen.runtime.types.Array<collections.InnerType>> TestOptionalObjectArray;
     private final Optional<com.kdsc.protogen.runtime.types.Array<String>> TestOptionalArrayArray;
 
@@ -48,11 +48,11 @@ public class Arrays implements ProtoGenType {
         final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Bytes> TestBytesArray,
         final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Decimal> TestDecimalArray,
         final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Date> TestDateArray,
-        final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime> TestDatetimeArray,
-        final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocaldatetimeArray,
+        final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime> TestDateTimeArray,
+        final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocalDateTimeArray,
         final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapArray,
         final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Set<String>> TestSetArray,
-        final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueorerrorArray,
+        final com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueOrErrorArray,
         final com.kdsc.protogen.runtime.types.Array<collections.InnerType> TestObjectArray,
         final com.kdsc.protogen.runtime.types.Array<String> TestArrayArray,
         final Optional<com.kdsc.protogen.runtime.types.Array<Double>> TestOptionalDoubleArray,
@@ -64,11 +64,11 @@ public class Arrays implements ProtoGenType {
         final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Bytes>> TestOptionalBytesArray,
         final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Decimal>> TestOptionalDecimalArray,
         final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Date>> TestOptionalDateArray,
-        final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDatetimeArray,
-        final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocaldatetimeArray,
+        final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime>> TestOptionalDateTimeArray,
+        final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocalDateTimeArray,
         final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapArray,
         final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetArray,
-        final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueorerrorArray,
+        final Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueOrErrorArray,
         final Optional<com.kdsc.protogen.runtime.types.Array<collections.InnerType>> TestOptionalObjectArray,
         final Optional<com.kdsc.protogen.runtime.types.Array<String>> TestOptionalArrayArray
     ) {
@@ -81,11 +81,11 @@ public class Arrays implements ProtoGenType {
         this.TestBytesArray = TestBytesArray;
         this.TestDecimalArray = TestDecimalArray;
         this.TestDateArray = TestDateArray;
-        this.TestDatetimeArray = TestDatetimeArray;
-        this.TestLocaldatetimeArray = TestLocaldatetimeArray;
+        this.TestDateTimeArray = TestDateTimeArray;
+        this.TestLocalDateTimeArray = TestLocalDateTimeArray;
         this.TestMapArray = TestMapArray;
         this.TestSetArray = TestSetArray;
-        this.TestValueorerrorArray = TestValueorerrorArray;
+        this.TestValueOrErrorArray = TestValueOrErrorArray;
         this.TestObjectArray = TestObjectArray;
         this.TestArrayArray = TestArrayArray;
         this.TestOptionalDoubleArray = TestOptionalDoubleArray;
@@ -97,11 +97,11 @@ public class Arrays implements ProtoGenType {
         this.TestOptionalBytesArray = TestOptionalBytesArray;
         this.TestOptionalDecimalArray = TestOptionalDecimalArray;
         this.TestOptionalDateArray = TestOptionalDateArray;
-        this.TestOptionalDatetimeArray = TestOptionalDatetimeArray;
-        this.TestOptionalLocaldatetimeArray = TestOptionalLocaldatetimeArray;
+        this.TestOptionalDateTimeArray = TestOptionalDateTimeArray;
+        this.TestOptionalLocalDateTimeArray = TestOptionalLocalDateTimeArray;
         this.TestOptionalMapArray = TestOptionalMapArray;
         this.TestOptionalSetArray = TestOptionalSetArray;
-        this.TestOptionalValueorerrorArray = TestOptionalValueorerrorArray;
+        this.TestOptionalValueOrErrorArray = TestOptionalValueOrErrorArray;
         this.TestOptionalObjectArray = TestOptionalObjectArray;
         this.TestOptionalArrayArray = TestOptionalArrayArray;
     }
@@ -142,12 +142,12 @@ public class Arrays implements ProtoGenType {
         return TestDateArray;
     }
 
-    public com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime> getTestDatetimeArray() {
-        return TestDatetimeArray;
+    public com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime> getTestDateTimeArray() {
+        return TestDateTimeArray;
     }
 
-    public com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime> getTestLocaldatetimeArray() {
-        return TestLocaldatetimeArray;
+    public com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime> getTestLocalDateTimeArray() {
+        return TestLocalDateTimeArray;
     }
 
     public com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>> getTestMapArray() {
@@ -158,8 +158,8 @@ public class Arrays implements ProtoGenType {
         return TestSetArray;
     }
 
-    public com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> getTestValueorerrorArray() {
-        return TestValueorerrorArray;
+    public com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> getTestValueOrErrorArray() {
+        return TestValueOrErrorArray;
     }
 
     public com.kdsc.protogen.runtime.types.Array<collections.InnerType> getTestObjectArray() {
@@ -206,12 +206,12 @@ public class Arrays implements ProtoGenType {
         return TestOptionalDateArray;
     }
 
-    public Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime>> getTestOptionalDatetimeArray() {
-        return TestOptionalDatetimeArray;
+    public Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.DateTime>> getTestOptionalDateTimeArray() {
+        return TestOptionalDateTimeArray;
     }
 
-    public Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime>> getTestOptionalLocaldatetimeArray() {
-        return TestOptionalLocaldatetimeArray;
+    public Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.LocalDateTime>> getTestOptionalLocalDateTimeArray() {
+        return TestOptionalLocalDateTimeArray;
     }
 
     public Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.Map<String, String>>> getTestOptionalMapArray() {
@@ -222,8 +222,8 @@ public class Arrays implements ProtoGenType {
         return TestOptionalSetArray;
     }
 
-    public Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> getTestOptionalValueorerrorArray() {
-        return TestOptionalValueorerrorArray;
+    public Optional<com.kdsc.protogen.runtime.types.Array<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> getTestOptionalValueOrErrorArray() {
+        return TestOptionalValueOrErrorArray;
     }
 
     public Optional<com.kdsc.protogen.runtime.types.Array<collections.InnerType>> getTestOptionalObjectArray() {

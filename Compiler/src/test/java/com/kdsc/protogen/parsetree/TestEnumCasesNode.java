@@ -15,7 +15,7 @@ public class TestEnumCasesNode extends BaseTestNode {
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            Collections.emptyList()
+            List.of(TestEnumNameNode.createPopulatedTestNode())
         );
     }
 
@@ -39,7 +39,7 @@ public class TestEnumCasesNode extends BaseTestNode {
 
     @Test
     public void testGetters() {
-        List<EnumNameNode> enumNamesNodes = Collections.emptyList();
+        var enumNamesNodes = List.of(TestEnumNameNode.createPopulatedTestNode());
         var node = new EnumCasesNode(
             BaseTestNode.fileName,
             BaseTestNode.line,

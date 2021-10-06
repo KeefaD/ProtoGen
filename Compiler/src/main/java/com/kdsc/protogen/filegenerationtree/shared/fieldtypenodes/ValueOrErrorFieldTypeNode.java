@@ -2,6 +2,8 @@ package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 
+import java.util.Objects;
+
 public class ValueOrErrorFieldTypeNode extends FieldTypeNode {
 
     private final FieldTypeNode fieldTypeNode;
@@ -11,6 +13,7 @@ public class ValueOrErrorFieldTypeNode extends FieldTypeNode {
         final FieldTypeNode fieldTypeNode
     ) {
         super(isOptional);
+        Objects.requireNonNull(fieldTypeNode);
         this.fieldTypeNode = fieldTypeNode;
     }
 

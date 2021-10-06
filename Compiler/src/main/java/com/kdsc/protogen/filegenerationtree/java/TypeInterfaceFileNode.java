@@ -2,8 +2,11 @@ package com.kdsc.protogen.filegenerationtree.java;
 
 import com.kdsc.protogen.filegenerationtree.shared.FieldNode;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
+import com.kdsc.protogen.utils.parameterchecking.Strings;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class TypeInterfaceFileNode extends JavaFileNode {
@@ -24,11 +27,16 @@ public class TypeInterfaceFileNode extends JavaFileNode {
         final List<FieldNode> fieldNodes
     ) {
         super(fileName, path);
+        Strings.requireNonBlank(packageName);
+        Strings.requireNonBlank(name);
+        Objects.requireNonNull(importStatements);
+        Objects.requireNonNull(implementsNodes);
+        Objects.requireNonNull(fieldNodes);
         this.packageName = packageName;
         this.name = name;
-        this.importStatements = importStatements;
-        this.implementsNodes = implementsNodes;
-        this.fieldNodes = fieldNodes;
+        this.importStatements = Collections.unmodifiableSet(importStatements);
+        this.implementsNodes = Collections.unmodifiableList(implementsNodes);
+        this.fieldNodes = Collections.unmodifiableList(fieldNodes);
     }
 
     public String getPackageName() {

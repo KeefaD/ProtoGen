@@ -22,12 +22,11 @@ public class ProtoGenEnumNode extends BaseParseTreeNode implements TopLevelObjec
         final Optional<EnumVersionsNode> enumVersionsNode,
         final Optional<EnumCasesNode> enumCasesNode
     ) {
-        //TODO:KMD Also need to make all lists immutable
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(namespaceNameNode);
         Objects.requireNonNull(enumVersionsNode);
         Objects.requireNonNull(enumCasesNode);
-        Optionals.requireAtMostOne(enumVersionsNode, enumCasesNode);
+        Optionals.requireOne(enumVersionsNode, enumCasesNode);
         this.namespaceNameNode = namespaceNameNode;
         this.enumVersionsNode = enumVersionsNode;
         this.enumCasesNode = enumCasesNode;

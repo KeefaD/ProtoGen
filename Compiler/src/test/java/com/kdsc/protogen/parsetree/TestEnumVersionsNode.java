@@ -2,7 +2,6 @@ package com.kdsc.protogen.parsetree;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,7 +14,7 @@ public class TestEnumVersionsNode extends BaseTestNode {
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            Collections.emptyList()
+            List.of(TestEnumVersionNode.createPopulatedTestNode())
         );
     }
 
@@ -40,7 +39,7 @@ public class TestEnumVersionsNode extends BaseTestNode {
 
     @Test
     public void testGetters() {
-        List<EnumVersionNode> enumVersionNode = Collections.emptyList();
+        var enumVersionNode = List.of(TestEnumVersionNode.createPopulatedTestNode());
         var node = new EnumVersionsNode(
             BaseTestNode.fileName,
             BaseTestNode.line,

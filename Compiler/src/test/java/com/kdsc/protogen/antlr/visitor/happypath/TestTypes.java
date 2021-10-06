@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 public class TestTypes extends BaseCompilerTest {
 
     @Test
-    void singleType() {
+    void testSingleType() {
         var testProgram = """
             type TestNamespace.TestType
         """;
@@ -14,7 +14,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void singleTypeNestedNamespace() {
+    void testSingleTypeNestedNamespace() {
         var testProgram = """
             type TestNamespace.TestNestedNamespace.TestType
         """;
@@ -22,7 +22,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void multipleTypes() {
+    void testMultipleTypes() {
         var testProgram = """
             type TestNamespace.TestType1
             type TestNamespace.TestType2
@@ -31,7 +31,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeNoFieldsOrBraces() {
+    void testBasicTypeNoFieldsOrBraces() {
         var testProgram = """
             type TestNamespace.TestType
         """;
@@ -39,7 +39,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeNoFieldsWithBraces() {
+    void testBasicTypeNoFieldsWithBraces() {
         var testProgram = """
             type TestNamespace.TestType {}
         """;
@@ -47,7 +47,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeNoFieldsWithSplitBraces() {
+    void testBasicTypeNoFieldsWithSplitBraces() {
         var testProgram = """
             type TestNamespace.TestType {
             }
@@ -56,7 +56,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeOneField() {
+    void testBasicTypeOneField() {
         var testProgram = """
             type TestNamespace.TestType {
                 testField : int32
@@ -66,7 +66,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeTwoFields() {
+    void testBasicTypeTwoFields() {
         var testProgram = """
             type TestNamespace.TestType {
                 testField1 : int32
@@ -77,7 +77,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeOneImplementsNoFieldsNoBraces() {
+    void testBasicTypeOneImplementsNoFieldsNoBraces() {
         var testProgram = """
             type TestNamespace.TestType : TestNamespace.OtherType
         """;
@@ -85,7 +85,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeOneImplementsNoFieldsEmptyBraces() {
+    void testBasicTypeOneImplementsNoFieldsEmptyBraces() {
         var testProgram = """
             type TestNamespace.TestType : TestNamespace.OtherType {}
         """;
@@ -93,7 +93,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeOneImplementsNoFieldsSplitEmptyBraces() {
+    void testBasicTypeOneImplementsNoFieldsSplitEmptyBraces() {
         var testProgram = """
             type TestNamespace.TestType : TestNamespace.OtherType {
             }
@@ -103,7 +103,7 @@ public class TestTypes extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicTypeOneImplementsNoFieldsNoBracesGenericParameter() {
+    void testBasicTypeOneImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
             type TestNamespace.TestType : TestNamespace.OtherType<T>
         """;
@@ -112,7 +112,7 @@ public class TestTypes extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicTypeOneImplementsNoFieldsEmptyBracesGenericParameter() {
+    void testBasicTypeOneImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
             type TestNamespace.TestType : TestNamespace.OtherType<T> {}
         """;
@@ -121,7 +121,7 @@ public class TestTypes extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicTypeOneImplementsNoFieldsSplitEmptyBracesGenericParameter() {
+    void testBasicTypeOneImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
             type TestNamespace.TestType : TestNamespace.OtherType<T> {
             }
@@ -130,7 +130,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeTwoImplementsNoFieldsNoBraces() {
+    void testBasicTypeTwoImplementsNoFieldsNoBraces() {
         var testProgram = """
             type TestNamespace.TestType :
                 TestNamespace.OtherType1,
@@ -140,7 +140,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeTwoImplementsNoFieldsEmptyBraces() {
+    void testBasicTypeTwoImplementsNoFieldsEmptyBraces() {
         var testProgram = """
             type TestNamespace.TestType :
                 TestNamespace.OtherType1,
@@ -150,7 +150,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicTypeTwoImplementsNoFieldsSplitEmptyBraces() {
+    void testBasicTypeTwoImplementsNoFieldsSplitEmptyBraces() {
         var testProgram = """
             type TestNamespace.TestType :
                 TestNamespace.OtherType1,
@@ -162,7 +162,7 @@ public class TestTypes extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicTypeTwoImplementsNoFieldsNoBracesGenericParameter() {
+    void testBasicTypeTwoImplementsNoFieldsNoBracesGenericParameter() {
         var testProgram = """
             type TestNamespace.TestType :
                 TestNamespace.OtherType1<T>,
@@ -173,7 +173,7 @@ public class TestTypes extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicTypeTwoImplementsNoFieldsEmptyBracesGenericParameter() {
+    void testBasicTypeTwoImplementsNoFieldsEmptyBracesGenericParameter() {
         var testProgram = """
             type TestNamespace.TestType :
                 TestNamespace.OtherType1<T>,
@@ -184,7 +184,7 @@ public class TestTypes extends BaseCompilerTest {
 
     //This should produce a parse tree but not pass semantic analysis as it doesn't make sense
     @Test
-    void basicTypeTwoImplementsNoFieldsSplitEmptyBracesGenericParameter() {
+    void testBasicTypeTwoImplementsNoFieldsSplitEmptyBracesGenericParameter() {
         var testProgram = """
             type TestNamespace.TestType :
                 TestNamespace.OtherType1<T>,
@@ -195,7 +195,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicVersionedTypeEmptyVersion() {
+    void testBasicVersionedTypeEmptyVersion() {
         var testProgram = """
             type TestNamespace.TestVersionedType {
                 version 1 {}
@@ -205,7 +205,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicVersionedTypeOneVersion() {
+    void testBasicVersionedTypeOneVersion() {
         var testProgram = """
             type TestNamespace.TestVersionedType {
                 version 1 {
@@ -217,7 +217,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void basicVersionedTypeTwoVersions() {
+    void testBasicVersionedTypeTwoVersions() {
         var testProgram = """
             type TestNamespace.TestVersionedType {
                 version 1 {
@@ -232,7 +232,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericType() {
+    void testGenericType() {
         var testProgram = """
             type TestNamespace.TestGenericType<T> {
                 testField : T
@@ -242,7 +242,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericTypeWithImplements() {
+    void testGenericTypeWithImplements() {
         var testProgram = """
             type TestNamespace.TestGenericType<T> : TestNamespace.TestImplements {
                 testField : T
@@ -252,7 +252,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericTypeWithImplementsGeneric() {
+    void testGenericTypeWithImplementsGeneric() {
         var testProgram = """
             type TestNamespace.TestGenericType<T> : TestNamespace.TestImplements<T> {
                 testField : T
@@ -262,7 +262,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericTypeWithTwoImplements() {
+    void testGenericTypeWithTwoImplements() {
         var testProgram = """
             type TestNamespace.TestGenericType<T> : TestNamespace.TestImplements1, TestNamespace.TestImplements2 {
                 testField : T
@@ -272,7 +272,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericTypeWithTwoImplementsGeneric() {
+    void testGenericTypeWithTwoImplementsGeneric() {
         var testProgram = """
             type TestNamespace.TestGenericType<T> : TestNamespace.TestImplements1<T>, TestNamespace.TestImplements2<T> {
                 testField : T
@@ -282,7 +282,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericTypeWithBounds() {
+    void testGenericTypeWithBounds() {
         var testProgram = """
             type TestNamespace.TestGenericType<T : TestNamespace.TestType> {
                 testField : T
@@ -292,7 +292,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericTypeWithTwoBounds() {
+    void testGenericTypeWithTwoBounds() {
         var testProgram = """
             type TestNamespace.TestGenericType<T : TestNamespace.TestType1 & TestNamespace.TestType2 > {
                 testField : T
@@ -302,7 +302,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeWithSingleGenericParameters() {
+    void testGenericVersionedTypeWithSingleGenericParameters() {
         var testProgram = """
             type TestNamespace.TestVersionedGenericType<T> {
                 version 1 {
@@ -317,7 +317,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeWithSingleGenericParametersWithBounds() {
+    void testGenericVersionedTypeWithSingleGenericParametersWithBounds() {
         var testProgram = """
             type TestNamespace.TestVersionedGenericType<T : TestNamespace.TestType> {
                 version 1 {
@@ -332,7 +332,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeWithSingleGenericParametersWithTwoBounds() {
+    void testGenericVersionedTypeWithSingleGenericParametersWithTwoBounds() {
         var testProgram = """
             type TestNamespace.TestVersionedGenericType<T : TestNamespace.TestType1 & TestNamespace.TestType2> {
                 version 1 {
@@ -347,7 +347,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeWithSingleGenericParametersAndOneEmptyVersion() {
+    void testGenericVersionedTypeWithSingleGenericParametersAndOneEmptyVersion() {
         var testProgram = """
             type TestNamespace.TestVersionedGenericType<T> {
                 version 1 {}
@@ -360,7 +360,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeWithIndividualGenericParameters() {
+    void testGenericVersionedTypeWithIndividualGenericParameters() {
         var testProgram = """
             type TestNamespace.TestVersionedGenericType {
                 version 1 <T> {
@@ -375,7 +375,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeWithIndividualGenericParametersAndDifferentOneImplements() {
+    void testGenericVersionedTypeWithIndividualGenericParametersAndDifferentOneImplements() {
         var testProgram = """
             type TestNamespace.TestVersionedGenericType {
                 version 1 <T> : TestNamespace.OtherType1 {
@@ -390,7 +390,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeWithIndividualGenericParametersAndDifferentOneImplementsWithOneBounds() {
+    void testGenericVersionedTypeWithIndividualGenericParametersAndDifferentOneImplementsWithOneBounds() {
         var testProgram = """
             type TestNamespace.TestVersionedGenericType {
                 version 1 <T : TestNamespace.TestType> : TestNamespace.OtherType1 {
@@ -405,7 +405,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeWithIndividualGenericParametersAndDifferentOneImplementsWithTwoBounds() {
+    void testGenericVersionedTypeWithIndividualGenericParametersAndDifferentOneImplementsWithTwoBounds() {
         var testProgram = """
             type TestNamespace.TestVersionedGenericType {
                 version 1 <T : TestNamespace.TestType1 & TestNamespace.TestType2> : TestNamespace.OtherType1 {
@@ -420,7 +420,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void genericVersionedTypeWithIndividualGenericParametersAndDifferentTwoImplements() {
+    void testGenericVersionedTypeWithIndividualGenericParametersAndDifferentTwoImplements() {
         var testProgram = """
             type TestNamespace.TestVersionedGenericType {
                 version 1 <T> : TestNamespace.OtherType1, TestNamespace.OtherType2 {
@@ -435,7 +435,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void allFieldTypes() {
+    void testAllFieldTypes() {
         var testProgram = """
             type TestNamespace.TestAllFieldTypes<T> {
                 testDoubleField : double
@@ -460,7 +460,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void allFieldTypesOptional() {
+    void testAllFieldTypesOptional() {
         var testProgram = """
             type TestNamespace.TestAllFieldTypes<T> {
                 testDoubleField : optional double
@@ -485,7 +485,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void allFieldTypesOptionalOneLine() {
+    void testAllFieldTypesOptionalOneLine() {
         var testProgram = """
             type TestNamespace.TestAllFieldTypes<T> { testDoubleField : optional double testFloatField : optional float testInt32Field : optional int32 testInt64Field : optional int64 testBoolField : optional bool testStringField : optional string testByteField : optional bytes testDecimalField : optional decimal testDateField : optional date testDatetimeField : optional datetime testMapField : optional map<int32, int32> testSetField : optional set<int32> testArrayField : optional int32[] testTypeField : optional TestNamespace.TestType testGenericField : optional T }
         """;
@@ -493,7 +493,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void recursiveMaps() {
+    void testRecursiveMaps() {
         var testProgram = """
             type TestNamespace.TestRecursiveMaps{
                 testRecursiveMap : map<map<int32, int32>, map<int32, int32>>
@@ -503,7 +503,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void recursiveSets() {
+    void testRecursiveSets() {
         var testProgram = """
             type TestNamespace.TestRecursiveSet {
                 testRecursiveSet : set<set<int32>>
@@ -513,7 +513,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void recursiveMultiDimensionalArray() {
+    void testRecursiveMultiDimensionalArray() {
         var testProgram = """
             type TestNamespace.TestMultiDimensionalArray {
                 testMultiDimensionalArray : int32[][][]
@@ -523,7 +523,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void recursiveNestedMapSetArray() {
+    void testRecursiveNestedMapSetArray() {
         var testProgram = """
             type TestNamespace.TestMultiDimensionalArray {
                 testNestedMapSetArray : map<set<int[][]>, set<int32[][]>>
@@ -533,7 +533,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void singleLineCommentAtTop() {
+    void testSingleLineCommentAtTop() {
         var testProgram = """
             //Comment at top
             type TestNamespace.TestComment {
@@ -543,7 +543,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void singleLineCommentInMiddle() {
+    void testSingleLineCommentInMiddle() {
         var testProgram = """
             type TestNamespace.TestComment {
                 //Comment in middle
@@ -553,7 +553,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void singleLineCommentAtBottom() {
+    void testSingleLineCommentAtBottom() {
         var testProgram = """
             type TestNamespace.TestComment {
             }
@@ -563,7 +563,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void singleLineCommentWithToken() {
+    void testSingleLineCommentWithToken() {
         var testProgram = """
             //type int32 string bool
             type TestNamespace.TestComment {
@@ -573,7 +573,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void multiLineCommentAtTop() {
+    void testMultiLineCommentAtTop() {
         var testProgram = """
             /*
             Comment at top
@@ -585,7 +585,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void multiLineCommentInMiddle() {
+    void testMultiLineCommentInMiddle() {
         var testProgram = """
             type TestNamespace.TestComment {
                 /*
@@ -597,7 +597,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void multiLineCommentAtBottom() {
+    void testMultiLineCommentAtBottom() {
         var testProgram = """
             type TestNamespace.TestComment {
             }
@@ -609,7 +609,7 @@ public class TestTypes extends BaseCompilerTest {
     }
 
     @Test
-    void multiLineCommentWithToken() {
+    void testMultiLineCommentWithToken() {
         var testProgram = """
             /*
             type

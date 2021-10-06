@@ -8,8 +8,8 @@ type collections.ValueOrErrors {
     TestBytesValueOrError : valueorerror<bytes>
     TestDecimalValueOrError : valueorerror<decimal>
     TestDateValueOrError : valueorerror<date>
-    TestDatetimeValueOrError : valueorerror<datetime>
-    TestLocaldatetimeValueOrError : valueorerror<localdatetime>
+    TestDateTimeValueOrError : valueorerror<datetime>
+    TestLocalDateTimeValueOrError : valueorerror<localdatetime>
     TestMapValueOrError : valueorerror<map<string, string>>
     TestSetValueOrError : valueorerror<set<string>>
     TestValueOrErrorValueOrError : valueorerror<valueorerror<decimal>> //Hmm what does this mean if there is an error
@@ -25,7 +25,7 @@ type collections.ValueOrErrors {
     TestOptionalDecimalValueOrError : valueorerror<optional decimal>
     TestOptionalDateValueOrError : valueorerror<optional date>
     TestOptionalDatetimeValueOrError : valueorerror<optional datetime>
-    TestOptionalLocaldatetimeValueOrError : valueorerror<optional localdatetime>
+    TestOptionalLocalDateTimeValueOrError : valueorerror<optional localdatetime>
     TestOptionalMapValueOrError : valueorerror<optional map<string, string>>
     TestOptionalSetValueOrError : valueorerror<optional set<string>>
     TestOptionalValueOrErrorValueOrError : valueorerror<optional valueorerror<decimal>>

@@ -2,6 +2,8 @@ package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 
+import java.util.Objects;
+
 public class MapFieldTypeNode extends FieldTypeNode {
 
     private final FieldTypeNode keyFieldTypeNode;
@@ -13,6 +15,8 @@ public class MapFieldTypeNode extends FieldTypeNode {
         final FieldTypeNode valueFieldTypeNode
     ) {
         super(isOptional);
+        Objects.requireNonNull(keyFieldTypeNode);
+        Objects.requireNonNull(valueFieldTypeNode);
         this.keyFieldTypeNode = keyFieldTypeNode;
         this.valueFieldTypeNode = valueFieldTypeNode;
     }

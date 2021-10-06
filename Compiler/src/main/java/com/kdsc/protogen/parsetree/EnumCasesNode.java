@@ -3,6 +3,7 @@ package com.kdsc.protogen.parsetree;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.utils.clone.Lists;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,7 +19,8 @@ public class EnumCasesNode extends BaseParseTreeNode {
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(enumNameNodes);
-        this.enumNameNodes = enumNameNodes;
+        com.kdsc.protogen.utils.parameterchecking.Lists.requireAtLeastOne(enumNameNodes);
+        this.enumNameNodes = Collections.unmodifiableList(enumNameNodes);
     }
 
     public List<EnumNameNode> getEnumNameNodes() {

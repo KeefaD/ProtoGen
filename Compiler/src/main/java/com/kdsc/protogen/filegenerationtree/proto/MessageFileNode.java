@@ -4,7 +4,9 @@ import com.kdsc.protogen.filegenerationtree.shared.FieldNode;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.utils.parameterchecking.Strings;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class MessageFileNode extends ProtoFileNode {
@@ -25,10 +27,12 @@ public class MessageFileNode extends ProtoFileNode {
         super(fileName, path);
         Strings.requireNonBlank(name);
         Strings.requireNonBlank(packageName);
+        Objects.requireNonNull(importStatements);
+        Objects.requireNonNull(fieldNodes);
         this.packageName = packageName;
         this.name = name;
-        this.importStatements = importStatements;
-        this.fieldNodes = fieldNodes;
+        this.importStatements = Collections.unmodifiableSet(importStatements);
+        this.fieldNodes = Collections.unmodifiableList(fieldNodes);
     }
 
     public String getPackageName() {

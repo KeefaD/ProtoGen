@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 public class TestHappyPathGeneral extends BaseCompilerTest {
 
     @Test
-    void emptyFile() {
+    void testEmptyFile() {
         var testProgram = """
         """;
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
     @Test
-    void typeKeyAndEnum() {
+    void testTypeKeyAndEnum() {
         var testProgram = """
             
             //TYPE

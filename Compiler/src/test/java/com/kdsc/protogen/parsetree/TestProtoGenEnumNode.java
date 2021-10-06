@@ -16,7 +16,7 @@ public class TestProtoGenEnumNode extends BaseTestNode {
             BaseTestNode.charPosition,
             TestNamespaceNameNode.createPopulatedTestNode(),
             Optional.empty(),
-            Optional.empty()
+            Optional.of(TestEnumCasesNode.createPopulatedTestNode())
         );
     }
 
@@ -81,7 +81,7 @@ public class TestProtoGenEnumNode extends BaseTestNode {
     public void testGetters() {
         var namespaceName = TestNamespaceNameNode.createPopulatedTestNode();
         Optional<EnumVersionsNode> enumVersions = Optional.empty();
-        Optional<EnumCasesNode> enumCases = Optional.empty();
+        Optional<EnumCasesNode> enumCases = Optional.of(TestEnumCasesNode.createPopulatedTestNode());
         var node = new ProtoGenEnumNode(
             BaseTestNode.fileName,
             BaseTestNode.line,

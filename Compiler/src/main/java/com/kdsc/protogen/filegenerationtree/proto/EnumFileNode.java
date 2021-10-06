@@ -1,7 +1,10 @@
 package com.kdsc.protogen.filegenerationtree.proto;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
+import com.kdsc.protogen.utils.parameterchecking.Lists;
+import com.kdsc.protogen.utils.parameterchecking.Strings;
 
+import java.util.Collections;
 import java.util.List;
 
 public class EnumFileNode extends ProtoFileNode {
@@ -18,10 +21,12 @@ public class EnumFileNode extends ProtoFileNode {
         List<EnumCaseNode> enumCaseNodes
     ) {
         super(fileName, path);
-        //TODO:KMD Pre-conditions
+        Lists.requireAtLeastOne(enumCaseNodes);
+        Strings.requireNonBlank(packageName);
+        Strings.requireNonBlank(enumName);
         this.packageName = packageName;
         this.enumName = enumName;
-        this.enumCaseNodes = enumCaseNodes;
+        this.enumCaseNodes = Collections.unmodifiableList(enumCaseNodes);
     }
 
     public String getPackageName() {
