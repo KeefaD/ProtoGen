@@ -4,7 +4,6 @@ import java.util.List;
 
 public class EnumFileNode extends JavaFileNode {
 
-    //TODO:KMD Should these be private or protected
     private final String namespace;
     private final String name;
     private final List<EnumCaseNode> enumCaseNodes;
