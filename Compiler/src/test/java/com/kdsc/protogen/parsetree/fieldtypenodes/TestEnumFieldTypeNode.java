@@ -108,6 +108,7 @@ public class TestEnumFieldTypeNode extends BaseTestNode {
         var node1 = createPopulatedTestNode();
         var node2 = createPopulatedTestNode();
         assertEquals(node1, node2, "Expected objects to be equal");
+        assertEquals(node1.toString(), node2.toString(), "Expected objects toString to be equal");
     }
 
     @Test
@@ -123,6 +124,7 @@ public class TestEnumFieldTypeNode extends BaseTestNode {
         var node2 = node1.clone();
         assertEquals(node1, node2, "Expected cloned objects to be equal");
         assertEquals(node1.hashCode(), node2.hashCode(), "Expected cloned objects hashcode to be equal");
+        assertEquals(node1.toString(), node2.toString(), "Expected cloned objects toString to be equal");
     }
 
     public static EnumFieldTypeNode createPopulatedTestNode() {
