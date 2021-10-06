@@ -1,5 +1,7 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
+import com.kdsc.protogen.nodes.FormattedStringOptions;
+
 import java.util.Objects;
 
 public class MapFieldTypeNode extends NonArrayFieldTypeNode {
@@ -30,13 +32,13 @@ public class MapFieldTypeNode extends NonArrayFieldTypeNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, MapFieldTypeNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        fieldToFormattedStringField(stringBuilder, "Key", keyFieldTypeNode);
-        fieldToFormattedStringField(stringBuilder, "Value", valueFieldTypeNode);
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, MapFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Key", keyFieldTypeNode);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Value", valueFieldTypeNode);
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override
@@ -51,7 +53,7 @@ public class MapFieldTypeNode extends NonArrayFieldTypeNode {
     }
 
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;

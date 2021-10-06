@@ -1,5 +1,6 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.commoninterfaces.HasNamespaceName;
 import com.kdsc.protogen.parsetree.commoninterfaces.TopLevelObject;
 
@@ -66,16 +67,16 @@ public class ProtoGenKeyNode extends BaseParseTreeNode implements TopLevelObject
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, ProtoGenKeyNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        fieldToFormattedStringField(stringBuilder, "IsInterface", isInterface);
-        fieldToFormattedStringField(stringBuilder, namespaceNameGenericParametersWithBoundsNode);
-        fieldToFormattedStringField(stringBuilder, implementsListNode);
-        fieldToFormattedStringField(stringBuilder, versionsNode);
-        fieldToFormattedStringField(stringBuilder, fieldsNode);
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, ProtoGenKeyNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "IsInterface", isInterface);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNameGenericParametersWithBoundsNode);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, implementsListNode);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, versionsNode);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldsNode);
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override
@@ -93,7 +94,7 @@ public class ProtoGenKeyNode extends BaseParseTreeNode implements TopLevelObject
     }
 
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;

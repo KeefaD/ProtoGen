@@ -1,5 +1,7 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
+import com.kdsc.protogen.nodes.FormattedStringOptions;
+
 public class BoolFieldTypeNode extends NonArrayFieldTypeNode {
 
     public BoolFieldTypeNode(
@@ -11,11 +13,11 @@ public class BoolFieldTypeNode extends NonArrayFieldTypeNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, BoolFieldTypeNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, BoolFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

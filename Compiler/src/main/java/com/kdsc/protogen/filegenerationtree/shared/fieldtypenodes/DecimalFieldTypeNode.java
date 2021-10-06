@@ -1,5 +1,7 @@
 package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
+import com.kdsc.protogen.nodes.FormattedStringOptions;
+
 public class DecimalFieldTypeNode extends FieldTypeNode {
 
     public DecimalFieldTypeNode(
@@ -9,11 +11,11 @@ public class DecimalFieldTypeNode extends FieldTypeNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, DecimalFieldTypeNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, DecimalFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

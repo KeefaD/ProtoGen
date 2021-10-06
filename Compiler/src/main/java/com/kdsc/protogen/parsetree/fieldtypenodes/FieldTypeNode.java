@@ -1,5 +1,6 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
+import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.BaseParseTreeNode;
 import com.kdsc.protogen.utils.parameterchecking.Optionals;
 
@@ -42,14 +43,14 @@ public class FieldTypeNode extends BaseParseTreeNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, FieldTypeNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        fieldToFormattedStringField(stringBuilder, "Optional", optional);
-        fieldToFormattedStringField(stringBuilder, arrayFieldTypeNode);
-        fieldToFormattedStringField(stringBuilder, nonArrayFieldTypeNode);
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, FieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Optional", optional);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, arrayFieldTypeNode);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, nonArrayFieldTypeNode);
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override
@@ -65,7 +66,7 @@ public class FieldTypeNode extends BaseParseTreeNode {
     }
 
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;

@@ -1,5 +1,6 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.utils.clone.Lists;
 
 import java.util.List;
@@ -42,14 +43,14 @@ public class FileNode extends BaseParseTreeNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, FileNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        fieldToFormattedStringField(stringBuilder, protoGenTypeNodes);
-        fieldToFormattedStringField(stringBuilder, protoGenKeyNodes);
-        fieldToFormattedStringField(stringBuilder, protoGenEnumNodes);
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, FileNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        fieldToFormattedStringField(formattedStringOptions, stringBuilder, protoGenTypeNodes);
+        fieldToFormattedStringField(formattedStringOptions, stringBuilder, protoGenKeyNodes);
+        fieldToFormattedStringField(formattedStringOptions, stringBuilder, protoGenEnumNodes);
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override
@@ -65,7 +66,7 @@ public class FileNode extends BaseParseTreeNode {
     }
 
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;

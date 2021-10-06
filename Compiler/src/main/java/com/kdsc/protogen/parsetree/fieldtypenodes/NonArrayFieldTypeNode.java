@@ -1,5 +1,6 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
+import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.BaseParseTreeNode;
 
 //TODO:KMD Perhaps make sealed
@@ -14,11 +15,11 @@ public abstract class NonArrayFieldTypeNode extends BaseParseTreeNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, NonArrayFieldTypeNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, NonArrayFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     public abstract NonArrayFieldTypeNode clone();

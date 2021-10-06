@@ -1,6 +1,7 @@
 package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
 import com.kdsc.protogen.filegenerationtree.BaseFileGenerationTreeNode;
+import com.kdsc.protogen.nodes.FormattedStringOptions;
 
 public abstract class FieldTypeNode extends BaseFileGenerationTreeNode {
 
@@ -17,12 +18,12 @@ public abstract class FieldTypeNode extends BaseFileGenerationTreeNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, FieldTypeNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        fieldToFormattedStringField(stringBuilder, "IsOptional", isOptional);
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, FieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "IsOptional", isOptional);
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

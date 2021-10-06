@@ -2,6 +2,7 @@ package com.kdsc.protogen.filegenerationtree.shared;
 
 import com.kdsc.protogen.filegenerationtree.BaseFileGenerationTreeNode;
 import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.FieldTypeNode;
+import com.kdsc.protogen.nodes.FormattedStringOptions;
 
 public class FieldNode extends BaseFileGenerationTreeNode {
 
@@ -25,12 +26,13 @@ public class FieldNode extends BaseFileGenerationTreeNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, FieldNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        fieldToFormattedStringField(stringBuilder, "Name", name);
-        fieldToFormattedStringField(stringBuilder, fieldTypeNode);
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, FieldNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Name", name);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldTypeNode);
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
+
 }

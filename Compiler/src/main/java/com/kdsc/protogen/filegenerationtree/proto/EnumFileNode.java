@@ -1,5 +1,7 @@
 package com.kdsc.protogen.filegenerationtree.proto;
 
+import com.kdsc.protogen.nodes.FormattedStringOptions;
+
 import java.util.List;
 
 public class EnumFileNode extends ProtoFileNode {
@@ -35,14 +37,14 @@ public class EnumFileNode extends ProtoFileNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, EnumFileNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        fieldToFormattedStringField(stringBuilder, "PackageName", packageName);
-        fieldToFormattedStringField(stringBuilder, "Name", enumName);
-        fieldToFormattedStringField(stringBuilder, enumCaseNodes);
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, EnumFileNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "PackageName", packageName);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Name", enumName);
+        fieldToFormattedStringField(formattedStringOptions, stringBuilder, enumCaseNodes);
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

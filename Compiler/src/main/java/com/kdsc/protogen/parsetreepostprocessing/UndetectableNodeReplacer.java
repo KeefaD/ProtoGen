@@ -12,7 +12,6 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-//TODO:KMD This could probably be made more generic, I so wish Java had proper generics without type erasure
 public class UndetectableNodeReplacer {
 
     public List<FileNode> replaceUndetectableNodes(final List<FileNode> fileNodes) {

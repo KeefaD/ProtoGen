@@ -1,5 +1,7 @@
 package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
+import com.kdsc.protogen.nodes.FormattedStringOptions;
+
 public class TypeFieldTypeNode extends FieldTypeNode {
 
     private final String namespace;
@@ -28,13 +30,13 @@ public class TypeFieldTypeNode extends FieldTypeNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, TypeFieldTypeNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        fieldToFormattedStringField(stringBuilder, "Namespace", namespace);
-        fieldToFormattedStringField(stringBuilder, "Name", name);
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, TypeFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Namespace", namespace);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Name", name);
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

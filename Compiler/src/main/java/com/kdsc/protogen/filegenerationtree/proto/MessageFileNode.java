@@ -1,6 +1,7 @@
 package com.kdsc.protogen.filegenerationtree.proto;
 
 import com.kdsc.protogen.filegenerationtree.shared.FieldNode;
+import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.List;
@@ -47,14 +48,14 @@ public class MessageFileNode extends ProtoFileNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, MessageFileNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        fieldToFormattedStringField(stringBuilder, "PackageName", packageName);
-        fieldToFormattedStringField(stringBuilder, "Name", name);
-        fieldToFormattedStringField(stringBuilder, fieldNodes);
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, MessageFileNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "PackageName", packageName);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Name", name);
+        fieldToFormattedStringField(formattedStringOptions, stringBuilder, fieldNodes);
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

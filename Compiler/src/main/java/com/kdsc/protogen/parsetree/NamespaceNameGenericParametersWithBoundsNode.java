@@ -1,5 +1,6 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.utils.clone.Optionals;
 
 import java.util.Objects;
@@ -33,13 +34,13 @@ public class NamespaceNameGenericParametersWithBoundsNode extends BaseParseTreeN
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, NamespaceNameGenericParametersWithBoundsNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        fieldToFormattedStringField(stringBuilder, namespaceNameNode);
-        fieldToFormattedStringField(stringBuilder, genericParametersWithBoundsNode);
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, NamespaceNameGenericParametersWithBoundsNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNameNode);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, genericParametersWithBoundsNode);
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override
@@ -54,7 +55,7 @@ public class NamespaceNameGenericParametersWithBoundsNode extends BaseParseTreeN
     }
 
     @Override
-    public boolean equals(Object object) {
+    public boolean equals(final Object object) {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;

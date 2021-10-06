@@ -1,5 +1,7 @@
 package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
+import com.kdsc.protogen.nodes.FormattedStringOptions;
+
 public class MapFieldTypeNode extends FieldTypeNode {
 
     private final FieldTypeNode keyFieldTypeNode;
@@ -24,13 +26,13 @@ public class MapFieldTypeNode extends FieldTypeNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, MapFieldTypeNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        fieldToFormattedStringField(stringBuilder, keyFieldTypeNode);
-        fieldToFormattedStringField(stringBuilder, valueFieldTypeNode);
-        return indentString(stringBuilder, indentationLevel);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, MapFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, keyFieldTypeNode);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, valueFieldTypeNode);
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

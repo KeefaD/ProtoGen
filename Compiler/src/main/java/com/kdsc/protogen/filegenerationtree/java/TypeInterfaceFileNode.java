@@ -1,6 +1,7 @@
 package com.kdsc.protogen.filegenerationtree.java;
 
 import com.kdsc.protogen.filegenerationtree.shared.FieldNode;
+import com.kdsc.protogen.nodes.FormattedStringOptions;
 
 import java.util.List;
 import java.util.Set;
@@ -52,19 +53,19 @@ public class TypeInterfaceFileNode extends JavaFileNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel) {
+    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, TypeInterfaceFileNode.class);
-        superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
-        fieldToFormattedStringField(stringBuilder, "PackageName", packageName);
-        fieldToFormattedStringField(stringBuilder, "Name", name);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, TypeInterfaceFileNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "PackageName", packageName);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Name", name);
         //TODO:KMD Fix this
         stringBuilder.append(oneIndent() + "ImportStatements\n");
 //        fieldToFormattedStringField(stringBuilder, importStatements);
         importStatements.forEach(is -> stringBuilder.append(is.indent(INDENTATION_SPACE_COUNT)));
-        fieldToFormattedStringField(stringBuilder, implementsNodes);
-        fieldToFormattedStringField(stringBuilder, fieldNodes);
-        return indentString(stringBuilder, indentationLevel);
+        fieldToFormattedStringField(formattedStringOptions, stringBuilder, implementsNodes);
+        fieldToFormattedStringField(formattedStringOptions, stringBuilder, fieldNodes);
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

@@ -20,65 +20,67 @@ public abstract class BaseNode {
 
     public abstract String toFormattedString(final int indentationLevel);
 
-    public void classToFormattedStringTitle(final StringBuilder stringBuilder, final Class clazz) {
+    public abstract String toFormattedString(final int indentationLevel, FormattedStringOptions formattedStringOptions);
+
+    public void classToFormattedStringTitle(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final Class clazz) {
         stringBuilder.append("//" + clazz.getSimpleName() + "\n");
     }
 
-    public void superToFormattedStringSuper(final StringBuilder stringBuilder, final String superFormattedToString) {
+    public void superToFormattedStringSuper(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final String superFormattedToString) {
         var outputString = "//Super -> " + superFormattedToString;
         stringBuilder.append(outputString.indent(INDENTATION_SPACE_COUNT));
     }
 
-    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final String fieldName, final String fieldValue) {
+    public void fieldToFormattedStringField(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final String fieldName, final String fieldValue) {
         stringBuilder.append(oneIndent() + fieldName + " : " + fieldValue + "\n");
     }
 
-    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final String fieldName, final int fieldValue) {
+    public void fieldToFormattedStringField(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final String fieldName, final int fieldValue) {
         stringBuilder.append(oneIndent() + fieldName + " : " + fieldValue + "\n");
     }
 
-    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final String fieldName, final long fieldValue) {
+    public void fieldToFormattedStringField(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final String fieldName, final long fieldValue) {
         stringBuilder.append(oneIndent() + fieldName + " : " + fieldValue + "\n");
     }
 
-    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final String fieldName, final boolean fieldValue) {
+    public void fieldToFormattedStringField(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final String fieldName, final boolean fieldValue) {
         stringBuilder.append(oneIndent() + fieldName + " : " + fieldValue + "\n");
     }
 
-    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final String fieldName, final BaseNode baseNode) {
-        fieldToFormattedStringField(stringBuilder, fieldName, baseNode, 1);
+    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final String fieldName, final BaseNode baseNode) {
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldName, baseNode, 1);
     }
 
-    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final String fieldName, final BaseNode baseNode, final int indentationLevel) {
+    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final String fieldName, final BaseNode baseNode, final int indentationLevel) {
         stringBuilder.append(oneIndent() + fieldName + "\n");
-        stringBuilder.append(baseNode.toFormattedString(indentationLevel + 1));
+        stringBuilder.append(baseNode.toFormattedString(indentationLevel + 1, formattedStringOptions));
     }
 
-    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final BaseNode baseNode) {
-        fieldToFormattedStringField(stringBuilder, baseNode, 1);
+    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final BaseNode baseNode) {
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, baseNode, 1);
     }
 
-    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final BaseNode baseNode, final int indentationLevel) {
-        stringBuilder.append(baseNode.toFormattedString(indentationLevel));
+    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final BaseNode baseNode, final int indentationLevel) {
+        stringBuilder.append(baseNode.toFormattedString(indentationLevel, formattedStringOptions));
     }
 
-    public <T extends BaseNode> void  fieldToFormattedStringField(final StringBuilder stringBuilder, final Optional<T> baseNode) {
-        fieldToFormattedStringField(stringBuilder, baseNode, 1);
+    public <T extends BaseNode> void  fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final Optional<T> baseNode) {
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, baseNode, 1);
     }
 
-    public <T extends BaseNode> void  fieldToFormattedStringField(final StringBuilder stringBuilder, final Optional<T> baseNode, int indentationLevel) {
-        baseNode.ifPresent(bn -> stringBuilder.append(bn.toFormattedString(indentationLevel)));
+    public <T extends BaseNode> void  fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final Optional<T> baseNode, int indentationLevel) {
+        baseNode.ifPresent(bn -> stringBuilder.append(bn.toFormattedString(indentationLevel, formattedStringOptions)));
     }
 
-    public <T extends BaseNode> void fieldToFormattedStringField(final StringBuilder stringBuilder, final List<T> baseNodes) {
-        fieldToFormattedStringField(stringBuilder, baseNodes, 1);
+    public <T extends BaseNode> void fieldToFormattedStringField(final FormattedStringOptions formattedStringOptions, final StringBuilder stringBuilder, final List<T> baseNodes) {
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, baseNodes, 1);
     }
 
-    public <T extends BaseNode> void fieldToFormattedStringField(final StringBuilder stringBuilder, final List<T> baseNodes, final int indentationLevel) {
-        baseNodes.forEach(bn -> stringBuilder.append(bn.toFormattedString(indentationLevel)));
+    public <T extends BaseNode> void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final List<T> baseNodes, final int indentationLevel) {
+        baseNodes.forEach(bn -> stringBuilder.append(bn.toFormattedString(indentationLevel, formattedStringOptions)));
     }
 
-    public String indentString(final StringBuilder stringBuilder, final int indentationLevel) {
+    public String indentString(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final int indentationLevel) {
         return stringBuilder.toString().indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
 
