@@ -1,5 +1,6 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.parsetree.utils.clone.Lists;
 import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.List;
@@ -41,6 +42,31 @@ public class GenericParameterWithBoundsNode extends BaseParseTreeNode {
         fieldToFormattedStringField(stringBuilder, "Identifier", identifier);
         fieldToFormattedStringField(stringBuilder, namespaceNameGenericParametersNodes);
         return indentString(stringBuilder, indentationLevel);
+    }
+
+    @Override
+    public GenericParameterWithBoundsNode clone() {
+        return new GenericParameterWithBoundsNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            identifier,
+            Lists.clone(namespaceNameGenericParametersNodes)
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        GenericParameterWithBoundsNode that = (GenericParameterWithBoundsNode) object;
+        return identifier.equals(that.identifier) && namespaceNameGenericParametersNodes.equals(that.namespaceNameGenericParametersNodes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), identifier, namespaceNameGenericParametersNodes);
     }
 
 }

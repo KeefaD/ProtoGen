@@ -5,7 +5,6 @@ import com.kdsc.protogen.utils.parameterchecking.Lists;
 import java.util.List;
 import java.util.Objects;
 
-//TODO:KMD Need to do a day just working on TODO:KMD's to keep the numbers down otherwise it is going ot get out of control
 public class NamespaceNameNode extends BaseParseTreeNode {
 
     private final List<NamespaceNode> namespaceNodes;
@@ -43,6 +42,31 @@ public class NamespaceNameNode extends BaseParseTreeNode {
         fieldToFormattedStringField(stringBuilder, namespaceNodes);
         fieldToFormattedStringField(stringBuilder, nameNode);
         return indentString(stringBuilder, indentationLevel);
+    }
+
+    @Override
+    public NamespaceNameNode clone() {
+        return new NamespaceNameNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            com.kdsc.protogen.parsetree.utils.clone.Lists.clone(namespaceNodes),
+            nameNode.clone()
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        NamespaceNameNode that = (NamespaceNameNode) object;
+        return namespaceNodes.equals(that.namespaceNodes) && nameNode.equals(that.nameNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), namespaceNodes, nameNode);
     }
 
 }

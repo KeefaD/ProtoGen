@@ -1,6 +1,7 @@
 package com.kdsc.protogen.parsetree;
 
-public class BaseTestNode {
+//TODO:KMD Perhaps I should put some abstract methods in here
+public abstract class BaseTestNode {
 
     public static final String fileName = "TestFileName.pg";
     public static final long line = 1;

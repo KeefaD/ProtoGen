@@ -33,4 +33,28 @@ public class EnumNameNode extends BaseParseTreeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public Object clone() {
+        return new EnumNameNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            enumName
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        EnumNameNode that = (EnumNameNode) object;
+        return Objects.equals(enumName, that.enumName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), enumName);
+    }
+
 }

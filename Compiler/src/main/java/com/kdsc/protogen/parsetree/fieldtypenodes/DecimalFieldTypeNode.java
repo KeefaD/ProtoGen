@@ -18,4 +18,13 @@ public class DecimalFieldTypeNode extends NonArrayFieldTypeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public DecimalFieldTypeNode clone() {
+        return new DecimalFieldTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition()
+        );
+    }
+
 }

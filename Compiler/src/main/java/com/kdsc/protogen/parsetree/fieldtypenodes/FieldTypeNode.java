@@ -52,4 +52,30 @@ public class FieldTypeNode extends BaseParseTreeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public FieldTypeNode clone() {
+        return new FieldTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            optional,
+            com.kdsc.protogen.parsetree.utils.clone.Optionals.clone(arrayFieldTypeNode),
+            com.kdsc.protogen.parsetree.utils.clone.Optionals.clone(nonArrayFieldTypeNode)
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        FieldTypeNode that = (FieldTypeNode) object;
+        return optional == that.optional && arrayFieldTypeNode.equals(that.arrayFieldTypeNode) && nonArrayFieldTypeNode.equals(that.nonArrayFieldTypeNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), optional, arrayFieldTypeNode, nonArrayFieldTypeNode);
+    }
+
 }

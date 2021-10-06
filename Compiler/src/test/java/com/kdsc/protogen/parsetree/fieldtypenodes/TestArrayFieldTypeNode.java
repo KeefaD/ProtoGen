@@ -3,21 +3,25 @@ package com.kdsc.protogen.parsetree.fieldtypenodes;
 import com.kdsc.protogen.parsetree.BaseTestNode;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestArrayFieldTypeNode extends BaseTestNode {
 
-    //TODO:KMD Test minimal list entries
     @Test
-    public void testCreate() {
+    public void testCreateMinimal() {
         new ArrayFieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            TestBoolFieldTypeNode.createTestNode(),
+            TestBoolFieldTypeNode.createPopulatedTestNode(),
             1
         );
+    }
+
+    @Test
+    public void testCreatePopulated() {
+        createPopulatedTestNode();
     }
 
     @Test
@@ -44,7 +48,7 @@ public class TestArrayFieldTypeNode extends BaseTestNode {
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
-                TestBoolFieldTypeNode.createTestNode(),
+                TestBoolFieldTypeNode.createPopulatedTestNode(),
                 0
             )
         );
@@ -55,7 +59,7 @@ public class TestArrayFieldTypeNode extends BaseTestNode {
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
-                TestBoolFieldTypeNode.createTestNode(),
+                TestBoolFieldTypeNode.createPopulatedTestNode(),
                 -1
             )
         );
@@ -63,7 +67,7 @@ public class TestArrayFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testGetters() {
-        var nonArrayFieldTypeNode = TestBoolFieldTypeNode.createTestNode();
+        var nonArrayFieldTypeNode = TestBoolFieldTypeNode.createPopulatedTestNode();
         var dimensions = 1;
         var node = new ArrayFieldTypeNode(
             BaseTestNode.fileName,
@@ -78,13 +82,7 @@ public class TestArrayFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testToString() {
-        var node = new ArrayFieldTypeNode(
-            BaseTestNode.fileName,
-            BaseTestNode.line,
-            BaseTestNode.charPosition,
-            TestBoolFieldTypeNode.createTestNode(),
-            1
-        );
+        var node = createPopulatedTestNode();
         var expectedToStringOutput = """
         //ArrayFieldTypeNode
             //Super -> //BaseParseTreeNode
@@ -100,6 +98,38 @@ public class TestArrayFieldTypeNode extends BaseTestNode {
             Dimensions : 1
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testEquals() {
+        var node1 = createPopulatedTestNode();
+        var node2 = createPopulatedTestNode();
+        assertEquals(node1, node2, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testHashcode() {
+        var node1Hashcode = createPopulatedTestNode().hashCode();
+        var node2Hashcode = createPopulatedTestNode().hashCode();
+        assertEquals(node1Hashcode, node2Hashcode, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testClone() {
+        var node1 = createPopulatedTestNode();
+        var node2 = node1.clone();
+        assertEquals(node1, node2, "Expected cloned objects to be equal");
+        assertEquals(node1.hashCode(), node2.hashCode(), "Expected cloned objects hashcode to be equal");
+    }
+
+    public static ArrayFieldTypeNode createPopulatedTestNode() {
+        return new ArrayFieldTypeNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition,
+            TestBoolFieldTypeNode.createPopulatedTestNode(),
+            1
+        );
     }
 
 }

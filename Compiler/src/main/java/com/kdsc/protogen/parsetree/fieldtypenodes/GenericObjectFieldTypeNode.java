@@ -32,4 +32,28 @@ public class GenericObjectFieldTypeNode extends NonArrayFieldTypeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public GenericObjectFieldTypeNode clone() {
+        return new GenericObjectFieldTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            genericParameterNode.clone()
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        GenericObjectFieldTypeNode that = (GenericObjectFieldTypeNode) object;
+        return genericParameterNode.equals(that.genericParameterNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), genericParameterNode);
+    }
+
 }

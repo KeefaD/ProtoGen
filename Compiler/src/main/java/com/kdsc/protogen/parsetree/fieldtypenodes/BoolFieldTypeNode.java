@@ -18,4 +18,13 @@ public class BoolFieldTypeNode extends NonArrayFieldTypeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public BoolFieldTypeNode clone() {
+        return new BoolFieldTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition()
+        );
+    }
+
 }

@@ -154,7 +154,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
             TransformUtils.convertNamespaceNameNodeToPath(typeNode.getNamespaceNameNode()),
             TransformUtils.convertNamespaceNameNodeToNamespace(typeNode.getNamespaceNameNode()),
             typeNode.getNamespaceNameNode().getNameNode().getName(),
-            Collections.emptySet(),
+            fileContext.getJavaImportStatements(),
             implementsNodes,
             Collections.emptyList()
         );

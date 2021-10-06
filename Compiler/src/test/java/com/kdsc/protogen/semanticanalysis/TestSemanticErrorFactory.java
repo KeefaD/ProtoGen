@@ -13,7 +13,7 @@ public class TestSemanticErrorFactory {
 
     @Test
     public void testCreateSemanticError() {
-        var semanticError = SemanticErrorFactory.createSemanticError(SemanticErrorType.REDEFINITION_OF_OBJECT, TestProtoGenEnumNode.createTestNode(), "Namespace.Name");
+        var semanticError = SemanticErrorFactory.createSemanticError(SemanticErrorType.REDEFINITION_OF_OBJECT, TestProtoGenEnumNode.createPopulatedTestNode(), "Namespace.Name");
         assertNotNull(semanticError.semanticErrorType(), "Unexpected null for semantic error type");
         assertEquals(BaseTestNode.fileName, semanticError.sourceFileName(), "Unexpected file name");
         assertEquals(BaseTestNode.line, semanticError.line(), "Unexpected line number");

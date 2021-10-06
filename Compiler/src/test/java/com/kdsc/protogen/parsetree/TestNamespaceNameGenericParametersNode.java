@@ -4,20 +4,25 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestNamespaceNameGenericParametersNode extends BaseTestNode {
 
     @Test
-    public void testCreate() {
+    public void testCreateMinimal() {
         new NamespaceNameGenericParametersNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            TestNamespaceNameNode.createTestNode(),
+            TestNamespaceNameNode.createPopulatedTestNode(),
             Optional.empty()
         );
+    }
+
+    @Test
+    public void testCreatePopulated() {
+        createPopulatedTestNode();
     }
 
     @Test
@@ -40,7 +45,7 @@ public class TestNamespaceNameGenericParametersNode extends BaseTestNode {
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
-                TestNamespaceNameNode.createTestNode(),
+                TestNamespaceNameNode.createPopulatedTestNode(),
                 null
             )
         );
@@ -48,7 +53,7 @@ public class TestNamespaceNameGenericParametersNode extends BaseTestNode {
 
     @Test
     public void testGetters() {
-        var name = TestNamespaceNameNode.createTestNode();
+        var name = TestNamespaceNameNode.createPopulatedTestNode();
         Optional<GenericParametersNode> genericParameters = Optional.empty();
         var node = new NamespaceNameGenericParametersNode(
             BaseTestNode.fileName,
@@ -63,13 +68,7 @@ public class TestNamespaceNameGenericParametersNode extends BaseTestNode {
 
     @Test
     public void testToString() {
-        var node = new NamespaceNameGenericParametersNode(
-            BaseTestNode.fileName,
-            BaseTestNode.line,
-            BaseTestNode.charPosition,
-            TestNamespaceNameNode.createTestNode(),
-            Optional.empty()
-        );
+        var node = createPopulatedTestNode();
         var expectedToStringOutput = """
         //NamespaceNameGenericParametersNode
             //Super -> //BaseParseTreeNode
@@ -93,17 +92,56 @@ public class TestNamespaceNameGenericParametersNode extends BaseTestNode {
                         Line : 1
                         CharPosition : 0
                     Name : Name
+            //GenericParametersNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
+                //FieldTypeNode
+                    //Super -> //BaseParseTreeNode
+                        SourceFileName : TestFileName.pg
+                        Line : 1
+                        CharPosition : 0
+                    Optional : false
+                    //BoolFieldTypeNode
+                        //Super -> //NonArrayFieldTypeNode
+                            //Super -> //BaseParseTreeNode
+                                SourceFileName : TestFileName.pg
+                                Line : 1
+                                CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
 
-    public static NamespaceNameGenericParametersNode createTestNode() {
+    @Test
+    public void testEquals() {
+        var node1 = createPopulatedTestNode();
+        var node2 = createPopulatedTestNode();
+        assertEquals(node1, node2, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testHashcode() {
+        var node1Hashcode = createPopulatedTestNode().hashCode();
+        var node2Hashcode = createPopulatedTestNode().hashCode();
+        assertEquals(node1Hashcode, node2Hashcode, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testClone() {
+        var node1 = createPopulatedTestNode();
+        var node2 = node1.clone();
+        assertEquals(node1, node2, "Expected cloned objects to be equal");
+        assertEquals(node1.hashCode(), node2.hashCode(), "Expected cloned objects hashcode to be equal");
+    }
+
+    public static NamespaceNameGenericParametersNode createPopulatedTestNode() {
         return new NamespaceNameGenericParametersNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            TestNamespaceNameNode.createTestNode(),
-            Optional.empty()
+            TestNamespaceNameNode.createPopulatedTestNode(),
+            Optional.of(TestGenericParametersNode.createPopulatedTestNode())
         );
     }
 

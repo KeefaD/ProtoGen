@@ -18,4 +18,13 @@ public class DateTimeFieldTypeNode extends NonArrayFieldTypeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public DateTimeFieldTypeNode clone() {
+        return new DateTimeFieldTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition()
+        );
+    }
+
 }

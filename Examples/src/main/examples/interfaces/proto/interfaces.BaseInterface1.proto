@@ -3,5 +3,5 @@ syntax = "proto3";
 package interfaces;
 
 message BaseInterface1 {
-	int32 TestBaseInterface1Field = 1;
+    int32 TestBaseInterface1Field = 1;
 }

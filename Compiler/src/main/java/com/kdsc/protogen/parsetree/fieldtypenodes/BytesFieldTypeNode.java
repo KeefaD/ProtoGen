@@ -18,4 +18,13 @@ public class BytesFieldTypeNode extends NonArrayFieldTypeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public BytesFieldTypeNode clone() {
+        return new BytesFieldTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition()
+        );
+    }
+
 }

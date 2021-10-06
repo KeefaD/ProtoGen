@@ -1,5 +1,7 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.parsetree.utils.clone.Lists;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -29,6 +31,30 @@ public class ImplementsListNode extends BaseParseTreeNode {
         superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
         fieldToFormattedStringField(stringBuilder, namespaceNameGenericParametersNodes);
         return indentString(stringBuilder, indentationLevel);
+    }
+
+    @Override
+    public ImplementsListNode clone() {
+        return new ImplementsListNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            Lists.clone(namespaceNameGenericParametersNodes)
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        ImplementsListNode that = (ImplementsListNode) object;
+        return namespaceNameGenericParametersNodes.equals(that.namespaceNameGenericParametersNodes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), namespaceNameGenericParametersNodes);
     }
 
 }

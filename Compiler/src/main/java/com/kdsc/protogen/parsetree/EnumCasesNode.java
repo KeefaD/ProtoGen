@@ -1,5 +1,7 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.parsetree.utils.clone.Lists;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -14,9 +16,8 @@ public class EnumCasesNode extends BaseParseTreeNode {
         final List<EnumNameNode> enumNameNodes
     ) {
         super(sourceFileName, line, charPosition);
-        this.enumNameNodes = enumNameNodes;
-        //TODO:KMD Check order of all these pre conditions
         Objects.requireNonNull(enumNameNodes);
+        this.enumNameNodes = enumNameNodes;
     }
 
     public List<EnumNameNode> getEnumNameNodes() {
@@ -30,6 +31,30 @@ public class EnumCasesNode extends BaseParseTreeNode {
         superToFormattedStringSuper(stringBuilder, super.toFormattedString(0));
         fieldToFormattedStringField(stringBuilder, enumNameNodes);
         return indentString(stringBuilder, indentationLevel);
+    }
+
+    @Override
+    public EnumCasesNode clone() {
+        return new EnumCasesNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            Lists.clone(enumNameNodes)
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        EnumCasesNode that = (EnumCasesNode) object;
+        return enumNameNodes.equals(that.enumNameNodes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), enumNameNodes);
     }
 
 }

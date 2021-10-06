@@ -30,4 +30,28 @@ public class ValueOrErrorFieldTypeNode extends NonArrayFieldTypeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public ValueOrErrorFieldTypeNode clone() {
+        return new ValueOrErrorFieldTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            fieldTypeNode.clone()
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        ValueOrErrorFieldTypeNode that = (ValueOrErrorFieldTypeNode) object;
+        return fieldTypeNode.equals(that.fieldTypeNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), fieldTypeNode);
+    }
+
 }

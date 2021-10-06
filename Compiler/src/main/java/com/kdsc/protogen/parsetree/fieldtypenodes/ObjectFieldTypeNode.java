@@ -38,4 +38,28 @@ public class ObjectFieldTypeNode extends NonArrayFieldTypeNode implements HasNam
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public ObjectFieldTypeNode clone() {
+        return new ObjectFieldTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            namespaceNameGenericParametersNode.clone()
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        ObjectFieldTypeNode that = (ObjectFieldTypeNode) object;
+        return namespaceNameGenericParametersNode.equals(that.namespaceNameGenericParametersNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), namespaceNameGenericParametersNode);
+    }
+
 }

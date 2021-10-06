@@ -14,6 +14,7 @@ sourceSets {
         java {
             srcDirs = [
                 'src/main/examples/collections/java',
+                'src/main/examples/empty/java',
                 'src/main/examples/enums/java',
                 'src/main/examples/interfaces/java',
                 'src/main/examples/simple/java'
@@ -25,6 +26,7 @@ sourceSets {
             srcDirs = [
                 'src/test/java',
                 'src/test/examples/collections/java',
+                'src/test/examples/empty/java',
                 'src/test/examples/enums/java',
                 'src/test/examples/interfaces/java',
                 'src/test/examples/simple/java'

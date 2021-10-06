@@ -18,4 +18,13 @@ public class Int64FieldTypeNode extends NonArrayFieldTypeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public Int64FieldTypeNode clone() {
+        return new Int64FieldTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition()
+        );
+    }
+
 }

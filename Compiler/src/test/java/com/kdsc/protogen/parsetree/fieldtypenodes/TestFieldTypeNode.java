@@ -5,21 +5,38 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestFieldTypeNode extends BaseTestNode {
 
     @Test
-    public void testCreate() {
+    public void testCreateMinimal() {
         new FieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
             false,
             Optional.empty(),
-            Optional.of(TestBoolFieldTypeNode.createTestNode())
+            Optional.of(TestBoolFieldTypeNode.createPopulatedTestNode())
         );
+    }
+
+    @Test
+    public void testCreatePopulatedWithArrayFieldTypeNode() {
+        new FieldTypeNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition,
+            false,
+            Optional.of(TestArrayFieldTypeNode.createPopulatedTestNode()),
+            Optional.empty()
+        );
+    }
+
+    @Test
+    public void testCreatePopulatedWithNonArrayFieldTypeNode() {
+        createPopulatedTestNode();
     }
 
     @Test
@@ -27,26 +44,26 @@ public class TestFieldTypeNode extends BaseTestNode {
 
         assertThrows(NullPointerException.class,
             () ->
-                new FieldTypeNode(
-                    BaseTestNode.fileName,
-                    BaseTestNode.line,
-                    BaseTestNode.charPosition,
-                    false,
-                    null,
-                    Optional.empty()
-                )
+            new FieldTypeNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                false,
+                null,
+                Optional.empty()
+            )
         );
 
         assertThrows(NullPointerException.class,
             () ->
-                new FieldTypeNode(
-                    BaseTestNode.fileName,
-                    BaseTestNode.line,
-                    BaseTestNode.charPosition,
-                    false,
-                    Optional.empty(),
-                    null
-                )
+            new FieldTypeNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                false,
+                Optional.empty(),
+                null
+            )
         );
 
         assertThrows(NullPointerException.class,
@@ -60,14 +77,26 @@ public class TestFieldTypeNode extends BaseTestNode {
                 null
             )
         );
+
+        assertThrows(IllegalArgumentException.class,
+            () ->
+            new FieldTypeNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                false,
+                Optional.of(TestArrayFieldTypeNode.createPopulatedTestNode()),
+                Optional.of(TestBoolFieldTypeNode.createPopulatedTestNode())
+            )
+        );
     }
 
     @Test
     public void testGetters() {
         var optional = true;
         Optional<ArrayFieldTypeNode> arrayFieldTypeNodes = Optional.empty();
-        Optional<NonArrayFieldTypeNode> nonArrayFieldTypeNodes = Optional.of(TestBoolFieldTypeNode.createTestNode());
-        @SuppressWarnings("ConstantConditions") var node = new FieldTypeNode(
+        Optional<NonArrayFieldTypeNode> nonArrayFieldTypeNodes = Optional.of(TestBoolFieldTypeNode.createPopulatedTestNode());
+        var node = new FieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
@@ -75,7 +104,6 @@ public class TestFieldTypeNode extends BaseTestNode {
             arrayFieldTypeNodes,
             nonArrayFieldTypeNodes
         );
-        //noinspection ConstantConditions
         assertEquals(optional, node.isOptional(), "Created and retrieved objects don't match");
         assertEquals(arrayFieldTypeNodes, node.getArrayFieldTypeNode(), "Created and retrieved objects don't match");
         assertEquals(nonArrayFieldTypeNodes, node.getNonArrayFieldTypeNode(), "Created and retrieved objects don't match");
@@ -83,14 +111,7 @@ public class TestFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testToString() {
-        var node = new FieldTypeNode(
-            BaseTestNode.fileName,
-            BaseTestNode.line,
-            BaseTestNode.charPosition,
-            false,
-            Optional.empty(),
-            Optional.of(TestBoolFieldTypeNode.createTestNode())
-        );
+        var node = createPopulatedTestNode();
         var expectedToStringOutput = """
         //FieldTypeNode
             //Super -> //BaseParseTreeNode
@@ -108,14 +129,36 @@ public class TestFieldTypeNode extends BaseTestNode {
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
 
-    public static FieldTypeNode createTestNode() {
+    @Test
+    public void testEquals() {
+        var node1 = createPopulatedTestNode();
+        var node2 = createPopulatedTestNode();
+        assertEquals(node1, node2, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testHashcode() {
+        var node1Hashcode = createPopulatedTestNode().hashCode();
+        var node2Hashcode = createPopulatedTestNode().hashCode();
+        assertEquals(node1Hashcode, node2Hashcode, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testClone() {
+        var node1 = createPopulatedTestNode();
+        var node2 = node1.clone();
+        assertEquals(node1, node2, "Expected cloned objects to be equal");
+        assertEquals(node1.hashCode(), node2.hashCode(), "Expected cloned objects hashcode to be equal");
+    }
+
+    public static FieldTypeNode createPopulatedTestNode() {
         return new FieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
             false,
             Optional.empty(),
-            Optional.of(TestBoolFieldTypeNode.createTestNode())
+            Optional.of(TestBoolFieldTypeNode.createPopulatedTestNode())
         );
     }
 

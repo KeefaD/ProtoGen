@@ -4,19 +4,24 @@ import com.kdsc.protogen.parsetree.BaseTestNode;
 import com.kdsc.protogen.parsetree.TestNamespaceNameGenericParametersNode;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestEnumFieldTypeNode extends BaseTestNode {
 
     @Test
-    public void testCreate() {
+    public void testCreateMinimal() {
         new EnumFieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            TestNamespaceNameGenericParametersNode.createTestNode()
+            TestNamespaceNameGenericParametersNode.createPopulatedTestNode()
         );
+    }
+
+    @Test
+    public void testCreatePopulated() {
+        createPopulatedTestNode();
     }
 
     @Test
@@ -36,7 +41,7 @@ public class TestEnumFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testGetters() {
-        var namespaceNameGenericParametersNode = TestNamespaceNameGenericParametersNode.createTestNode();
+        var namespaceNameGenericParametersNode = TestNamespaceNameGenericParametersNode.createPopulatedTestNode();
         var node = new EnumFieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
@@ -48,12 +53,7 @@ public class TestEnumFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testToString() {
-        var node = new EnumFieldTypeNode(
-            BaseTestNode.fileName,
-            BaseTestNode.line,
-            BaseTestNode.charPosition,
-            TestNamespaceNameGenericParametersNode.createTestNode()
-        );
+        var node = createPopulatedTestNode();
         var expectedToStringOutput = """
         //EnumFieldTypeNode
             //Super -> //NonArrayFieldTypeNode
@@ -83,8 +83,56 @@ public class TestEnumFieldTypeNode extends BaseTestNode {
                             Line : 1
                             CharPosition : 0
                         Name : Name
+                //GenericParametersNode
+                    //Super -> //BaseParseTreeNode
+                        SourceFileName : TestFileName.pg
+                        Line : 1
+                        CharPosition : 0
+                    //FieldTypeNode
+                        //Super -> //BaseParseTreeNode
+                            SourceFileName : TestFileName.pg
+                            Line : 1
+                            CharPosition : 0
+                        Optional : false
+                        //BoolFieldTypeNode
+                            //Super -> //NonArrayFieldTypeNode
+                                //Super -> //BaseParseTreeNode
+                                    SourceFileName : TestFileName.pg
+                                    Line : 1
+                                    CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testEquals() {
+        var node1 = createPopulatedTestNode();
+        var node2 = createPopulatedTestNode();
+        assertEquals(node1, node2, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testHashcode() {
+        var node1Hashcode = createPopulatedTestNode().hashCode();
+        var node2Hashcode = createPopulatedTestNode().hashCode();
+        assertEquals(node1Hashcode, node2Hashcode, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testClone() {
+        var node1 = createPopulatedTestNode();
+        var node2 = node1.clone();
+        assertEquals(node1, node2, "Expected cloned objects to be equal");
+        assertEquals(node1.hashCode(), node2.hashCode(), "Expected cloned objects hashcode to be equal");
+    }
+
+    public static EnumFieldTypeNode createPopulatedTestNode() {
+        return new EnumFieldTypeNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition,
+            TestNamespaceNameGenericParametersNode.createPopulatedTestNode()
+        );
     }
 
 }

@@ -1,5 +1,7 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.parsetree.utils.clone.Optionals;
+
 import java.util.Objects;
 import java.util.Optional;
 
@@ -38,6 +40,31 @@ public class EnumVersionNode extends BaseParseTreeNode {
         fieldToFormattedStringField(stringBuilder, versionNumberNode);
         fieldToFormattedStringField(stringBuilder, enumCasesNode);
         return indentString(stringBuilder, indentationLevel);
+    }
+
+    @Override
+    public EnumVersionNode clone() {
+        return new EnumVersionNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            versionNumberNode.clone(),
+            Optionals.clone(enumCasesNode)
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        EnumVersionNode that = (EnumVersionNode) object;
+        return versionNumberNode.equals(that.versionNumberNode) && enumCasesNode.equals(that.enumCasesNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), versionNumberNode, enumCasesNode);
     }
 
 }

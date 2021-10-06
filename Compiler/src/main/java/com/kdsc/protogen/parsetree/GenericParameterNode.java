@@ -33,4 +33,28 @@ public class GenericParameterNode extends BaseParseTreeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public GenericParameterNode clone() {
+        return new GenericParameterNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            identifier
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        GenericParameterNode that = (GenericParameterNode) object;
+        return identifier.equals(that.identifier);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), identifier);
+    }
+
 }

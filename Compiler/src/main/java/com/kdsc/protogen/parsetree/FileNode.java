@@ -1,5 +1,7 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.parsetree.utils.clone.Lists;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -48,6 +50,32 @@ public class FileNode extends BaseParseTreeNode {
         fieldToFormattedStringField(stringBuilder, protoGenKeyNodes);
         fieldToFormattedStringField(stringBuilder, protoGenEnumNodes);
         return indentString(stringBuilder, indentationLevel);
+    }
+
+    @Override
+    public FileNode clone() {
+        return new FileNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            Lists.clone(protoGenTypeNodes),
+            Lists.clone(protoGenKeyNodes),
+            Lists.clone(protoGenEnumNodes)
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        FileNode fileNode = (FileNode) object;
+        return protoGenTypeNodes.equals(fileNode.protoGenTypeNodes) && protoGenKeyNodes.equals(fileNode.protoGenKeyNodes) && protoGenEnumNodes.equals(fileNode.protoGenEnumNodes);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), protoGenTypeNodes, protoGenKeyNodes, protoGenEnumNodes);
     }
 
 }

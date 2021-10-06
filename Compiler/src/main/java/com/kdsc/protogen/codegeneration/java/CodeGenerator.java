@@ -103,7 +103,12 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
     }
 
     private String generatePrivateFields(final CodeGeneratorContext codeGeneratorContext, final TypeFileNode typeFileNode) {
+        if(typeFileNode.getFieldNodes().isEmpty()) {
+            return "\n";
+        }
+
         var stringBuilder = new StringBuilder();
+
         stringBuilder.append("\n");
         typeFileNode
             .getFieldNodes()
@@ -116,6 +121,13 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
 
     private String generateConstructor(final CodeGeneratorContext codeGeneratorContext, final TypeFileNode typeFileNode) {
         var stringBuilder = new StringBuilder();
+        if(typeFileNode.getFieldNodes().isEmpty()) {
+            stringBuilder.append("\tpublic " + typeFileNode.getName() + "()\n");
+            stringBuilder.append("\t{\n");
+            stringBuilder.append("\t}\n");
+            stringBuilder.append("\n");
+            return stringBuilder.toString();
+        }
         stringBuilder.append("\tpublic " + typeFileNode.getName() + "(\n");
         var constructorParameters = typeFileNode
             .getFieldNodes()

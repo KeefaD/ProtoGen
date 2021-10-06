@@ -2,13 +2,13 @@ package com.kdsc.protogen.transform.shared;
 
 import com.kdsc.protogen.filegenerationtree.shared.FieldNode;
 import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.*;
+import com.kdsc.protogen.parsetree.ImplementsListNode;
+import com.kdsc.protogen.parsetree.NamespaceNameGenericParametersNode;
 import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
 import com.kdsc.protogen.transform.TransformerContext;
 import com.kdsc.protogen.transform.FileContext;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 //TODO:KDM Should this be called FieldsTransformer
@@ -23,10 +23,85 @@ public class FieldTransformer {
         protogenTypes.add(com.kdsc.protogen.parsetree.fieldtypenodes.LocalDateTimeFieldTypeNode.class);
     }
 
-    public List<FieldNode> transformFieldsNodes(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.FieldsNode fieldsNodes) {
+    public List<FieldNode> transformFieldsNodes(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.ProtoGenTypeNode typeNode, final boolean protoMode, final boolean interfaceMode) {
+        List<com.kdsc.protogen.parsetree.FieldNode> fieldNodes = typeNode.getFieldsNode().isPresent()
+            ? new ArrayList<>(typeNode.getFieldsNode().get().getFieldNodes())
+            : Collections.emptyList();
+        if(protoMode) {
+
+            //TODO:KMD Why do I have to not use var here, a bit strange
+            List<FieldNode> interfaceFieldsNode = typeNode.getImplementsListNode().isPresent()
+                ? typeNode
+                    .getImplementsListNode()
+                    .stream()
+                    .flatMap(
+                        iln -> iln.getNamespaceNameGenericParametersNodes().stream()
+                    )
+                    .filter(nngp ->transformerContext.getTypeInterfaces().containsKey(ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode())))
+                    .map(
+                        nngp ->
+                        {
+                            fileContext.addProtoImport(ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode()));
+                            return new FieldNode(
+                                "__interface__" + ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode()).replace(".", "_"),
+                                new TypeFieldTypeNode(
+                                        false,
+                                        ParseTreeUtils.getNamespaceString(nngp.getNamespaceNameNode()),
+                                        nngp.getNamespaceNameNode().getNameNode().getName()
+                                )
+                            );
+                        }
+                    )
+                    .collect(Collectors.toList())
+                : Collections.emptyList();
+
+
+            var transformedFieldsNode = new ArrayList<FieldNode>();
+            transformedFieldsNode.addAll(interfaceFieldsNode);
+            transformedFieldsNode.addAll(transformFieldsNodes(transformerContext, fileContext, fieldNodes));
+            return transformedFieldsNode;
+        } else {
+            if(!interfaceMode) {
+                collectAllFieldNodes(transformerContext, fieldNodes, typeNode.getImplementsListNode());
+            }
+            return transformFieldsNodes(transformerContext, fileContext, fieldNodes);
+        }
+    }
+
+    //TODO:KMD This is an utter hack, just making it work for now
+    public void collectAllFieldNodes(final TransformerContext transformerContext, final List<com.kdsc.protogen.parsetree.FieldNode> fieldNodes, final Optional<ImplementsListNode> implementsListNode) {
+        implementsListNode.ifPresent(
+            listNode -> listNode
+                .getNamespaceNameGenericParametersNodes()
+                .forEach(
+                    nngp -> collectAllFieldNodes(transformerContext, fieldNodes, nngp)
+                )
+        );
+    }
+
+    public void collectAllFieldNodes(final TransformerContext transformerContext, final List<com.kdsc.protogen.parsetree.FieldNode> fieldNodes, final NamespaceNameGenericParametersNode namespaceNameGenericParametersNode) {
+        var typeInterface = transformerContext.getTypeInterfaces().get(ParseTreeUtils.getNamespaceNameString(namespaceNameGenericParametersNode.getNamespaceNameNode()));
+        if(typeInterface.getFieldsNode().isPresent()) {
+            fieldNodes.addAll(typeInterface.getFieldsNode().get().getFieldNodes());
+        }
+        typeInterface
+            .getImplementsListNode()
+            .stream()
+            .flatMap(iln -> iln.getNamespaceNameGenericParametersNodes().stream())
+            .forEach(nngp -> collectAllFieldNodes(transformerContext, fieldNodes, nngp));
+    }
+
+    private List<FieldNode> transformFieldsNodes(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.FieldsNode fieldsNodes) {
 
         return fieldsNodes
             .getFieldNodes()
+            .stream()
+            .map(fn -> transformFieldNode(transformerContext, fileContext, fn))
+            .collect(Collectors.toList());
+    }
+
+    private List<FieldNode> transformFieldsNodes(final TransformerContext transformerContext, final FileContext fileContext, final List<com.kdsc.protogen.parsetree.FieldNode> fieldNodes) {
+        return fieldNodes
             .stream()
             .map(fn -> transformFieldNode(transformerContext, fileContext, fn))
             .collect(Collectors.toList());

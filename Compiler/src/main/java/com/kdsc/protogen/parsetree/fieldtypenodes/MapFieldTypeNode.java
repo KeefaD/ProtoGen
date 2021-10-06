@@ -39,4 +39,29 @@ public class MapFieldTypeNode extends NonArrayFieldTypeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public MapFieldTypeNode clone() {
+        return new MapFieldTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            keyFieldTypeNode.clone(),
+            valueFieldTypeNode.clone()
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        MapFieldTypeNode that = (MapFieldTypeNode) object;
+        return keyFieldTypeNode.equals(that.keyFieldTypeNode) && valueFieldTypeNode.equals(that.valueFieldTypeNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), keyFieldTypeNode, valueFieldTypeNode);
+    }
+
 }

@@ -2,19 +2,24 @@ package com.kdsc.protogen.parsetree;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestNamespaceNode extends BaseTestNode {
 
     @Test
-    public void testCreate() {
+    public void testCreateMinimal() {
         new NamespaceNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
             "Namespace"
         );
+    }
+
+    @Test
+    public void testCreatePopulated() {
+        createPopulatedTestNode();
     }
 
     @Test
@@ -55,12 +60,7 @@ public class TestNamespaceNode extends BaseTestNode {
 
     @Test
     public void testToString() {
-        var node = new NamespaceNode(
-            BaseTestNode.fileName,
-            BaseTestNode.line,
-            BaseTestNode.charPosition,
-            "Namespace"
-        );
+        var node = createPopulatedTestNode();
         var expectedToStringOutput = """
         //NamespaceNode
             //Super -> //BaseParseTreeNode
@@ -72,7 +72,29 @@ public class TestNamespaceNode extends BaseTestNode {
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
 
-    public static NamespaceNode createTestNode() {
+    @Test
+    public void testEquals() {
+        var node1 = createPopulatedTestNode();
+        var node2 = createPopulatedTestNode();
+        assertEquals(node1, node2, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testHashcode() {
+        var node1Hashcode = createPopulatedTestNode().hashCode();
+        var node2Hashcode = createPopulatedTestNode().hashCode();
+        assertEquals(node1Hashcode, node2Hashcode, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testClone() {
+        var node1 = createPopulatedTestNode();
+        var node2 = node1.clone();
+        assertEquals(node1, node2, "Expected cloned objects to be equal");
+        assertEquals(node1.hashCode(), node2.hashCode(), "Expected cloned objects hashcode to be equal");
+    }
+
+    public static NamespaceNode createPopulatedTestNode() {
         return new NamespaceNode(
             BaseTestNode.fileName,
             BaseTestNode.line,

@@ -21,4 +21,6 @@ public abstract class NonArrayFieldTypeNode extends BaseParseTreeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    public abstract NonArrayFieldTypeNode clone();
+
 }

@@ -4,22 +4,27 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestVersionNode extends BaseTestNode {
 
     @Test
-    public void testCreate() {
+    public void testCreateMinimal() {
         new VersionNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            TestVersionNumberNode.createTestNode(),
+            TestVersionNumberNode.createPopulatedTestNode(),
             Optional.empty(),
             Optional.empty(),
             Optional.empty()
         );
+    }
+
+    @Test
+    public void testCreatePopulated() {
+        createPopulatedTestNode();
     }
 
     @Test
@@ -44,7 +49,7 @@ public class TestVersionNode extends BaseTestNode {
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
-                TestVersionNumberNode.createTestNode(),
+                TestVersionNumberNode.createPopulatedTestNode(),
                 null,
                 Optional.empty(),
                 Optional.empty()
@@ -57,7 +62,7 @@ public class TestVersionNode extends BaseTestNode {
                     BaseTestNode.fileName,
                     BaseTestNode.line,
                     BaseTestNode.charPosition,
-                    TestVersionNumberNode.createTestNode(),
+                    TestVersionNumberNode.createPopulatedTestNode(),
                     Optional.empty(),
                     null,
                     Optional.empty()
@@ -70,7 +75,7 @@ public class TestVersionNode extends BaseTestNode {
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
-                TestVersionNumberNode.createTestNode(),
+                TestVersionNumberNode.createPopulatedTestNode(),
                 Optional.empty(),
                 Optional.empty(),
                 null
@@ -80,7 +85,7 @@ public class TestVersionNode extends BaseTestNode {
 
     @Test
     public void testGetters() {
-        var versionNumberNode = TestVersionNumberNode.createTestNode();
+        var versionNumberNode = TestVersionNumberNode.createPopulatedTestNode();
         Optional<FieldsNode> fieldsNode = Optional.empty();
         Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode = Optional.empty();
         Optional<ImplementsListNode> implementsListNode = Optional.empty();
@@ -101,15 +106,7 @@ public class TestVersionNode extends BaseTestNode {
 
     @Test
     public void testToString() {
-        var node = new VersionNode(
-            BaseTestNode.fileName,
-            BaseTestNode.line,
-            BaseTestNode.charPosition,
-            TestVersionNumberNode.createTestNode(),
-            Optional.empty(),
-            Optional.empty(),
-            Optional.empty()
-        );
+        var node = createPopulatedTestNode();
         var expectedToStringOutput = """
         //VersionNode
             //Super -> //BaseParseTreeNode
@@ -122,8 +119,164 @@ public class TestVersionNode extends BaseTestNode {
                     Line : 1
                     CharPosition : 0
                 VersionNumber : 1
+            //GenericParametersWithBoundsNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
+                //GenericParameterWithBoundsNode
+                    //Super -> //BaseParseTreeNode
+                        SourceFileName : TestFileName.pg
+                        Line : 1
+                        CharPosition : 0
+                    Identifier : T
+                    //NamespaceNameGenericParametersNode
+                        //Super -> //BaseParseTreeNode
+                            SourceFileName : TestFileName.pg
+                            Line : 1
+                            CharPosition : 0
+                        //NamespaceNameNode
+                            //Super -> //BaseParseTreeNode
+                                SourceFileName : TestFileName.pg
+                                Line : 1
+                                CharPosition : 0
+                            //NamespaceNode
+                                //Super -> //BaseParseTreeNode
+                                    SourceFileName : TestFileName.pg
+                                    Line : 1
+                                    CharPosition : 0
+                                Namespace : Namespace
+                            //NameNode
+                                //Super -> //BaseParseTreeNode
+                                    SourceFileName : TestFileName.pg
+                                    Line : 1
+                                    CharPosition : 0
+                                Name : Name
+                        //GenericParametersNode
+                            //Super -> //BaseParseTreeNode
+                                SourceFileName : TestFileName.pg
+                                Line : 1
+                                CharPosition : 0
+                            //FieldTypeNode
+                                //Super -> //BaseParseTreeNode
+                                    SourceFileName : TestFileName.pg
+                                    Line : 1
+                                    CharPosition : 0
+                                Optional : false
+                                //BoolFieldTypeNode
+                                    //Super -> //NonArrayFieldTypeNode
+                                        //Super -> //BaseParseTreeNode
+                                            SourceFileName : TestFileName.pg
+                                            Line : 1
+                                            CharPosition : 0
+            //ImplementsListNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
+                //NamespaceNameGenericParametersNode
+                    //Super -> //BaseParseTreeNode
+                        SourceFileName : TestFileName.pg
+                        Line : 1
+                        CharPosition : 0
+                    //NamespaceNameNode
+                        //Super -> //BaseParseTreeNode
+                            SourceFileName : TestFileName.pg
+                            Line : 1
+                            CharPosition : 0
+                        //NamespaceNode
+                            //Super -> //BaseParseTreeNode
+                                SourceFileName : TestFileName.pg
+                                Line : 1
+                                CharPosition : 0
+                            Namespace : Namespace
+                        //NameNode
+                            //Super -> //BaseParseTreeNode
+                                SourceFileName : TestFileName.pg
+                                Line : 1
+                                CharPosition : 0
+                            Name : Name
+                    //GenericParametersNode
+                        //Super -> //BaseParseTreeNode
+                            SourceFileName : TestFileName.pg
+                            Line : 1
+                            CharPosition : 0
+                        //FieldTypeNode
+                            //Super -> //BaseParseTreeNode
+                                SourceFileName : TestFileName.pg
+                                Line : 1
+                                CharPosition : 0
+                            Optional : false
+                            //BoolFieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+                                    //Super -> //BaseParseTreeNode
+                                        SourceFileName : TestFileName.pg
+                                        Line : 1
+                                        CharPosition : 0
+            //FieldsNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
+                //FieldNode
+                    //Super -> //BaseParseTreeNode
+                        SourceFileName : TestFileName.pg
+                        Line : 1
+                        CharPosition : 0
+                    //FieldNameNode
+                        //Super -> //BaseParseTreeNode
+                            SourceFileName : TestFileName.pg
+                            Line : 1
+                            CharPosition : 0
+                        FieldName : FieldName
+                    //FieldTypeNode
+                        //Super -> //BaseParseTreeNode
+                            SourceFileName : TestFileName.pg
+                            Line : 1
+                            CharPosition : 0
+                        Optional : false
+                        //BoolFieldTypeNode
+                            //Super -> //NonArrayFieldTypeNode
+                                //Super -> //BaseParseTreeNode
+                                    SourceFileName : TestFileName.pg
+                                    Line : 1
+                                    CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testEquals() {
+        var node1 = createPopulatedTestNode();
+        var node2 = createPopulatedTestNode();
+        assertEquals(node1, node2, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testHashcode() {
+        var node1Hashcode = createPopulatedTestNode().hashCode();
+        var node2Hashcode = createPopulatedTestNode().hashCode();
+        assertEquals(node1Hashcode, node2Hashcode, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testClone() {
+        var node1 = createPopulatedTestNode();
+        var node2 = node1.clone();
+        assertEquals(node1, node2, "Expected cloned objects to be equal");
+        assertEquals(node1.hashCode(), node2.hashCode(), "Expected cloned objects hashcode to be equal");
+    }
+
+    public static VersionNode createPopulatedTestNode() {
+        return new VersionNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition,
+            TestVersionNumberNode.createPopulatedTestNode(),
+            Optional.of(TestGenericParametersWithBoundsNode.createPopulatedTestNode()),
+            Optional.of(TestImplementsListNode.createPopulatedTestNode()),
+            Optional.of(TestFieldsNode.createPopulatedTestNode())
+        );
     }
 
 }

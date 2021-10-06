@@ -78,4 +78,32 @@ public class ProtoGenTypeNode extends BaseParseTreeNode implements TopLevelObjec
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public ProtoGenTypeNode clone() {
+        return new ProtoGenTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            isInterface,
+            namespaceNameGenericParametersWithBoundsNode.clone(),
+            com.kdsc.protogen.parsetree.utils.clone.Optionals.clone(implementsListNode),
+            com.kdsc.protogen.parsetree.utils.clone.Optionals.clone(versionsNode),
+            com.kdsc.protogen.parsetree.utils.clone.Optionals.clone(fieldsNode)
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        ProtoGenTypeNode that = (ProtoGenTypeNode) object;
+        return isInterface == that.isInterface && namespaceNameGenericParametersWithBoundsNode.equals(that.namespaceNameGenericParametersWithBoundsNode) && implementsListNode.equals(that.implementsListNode) && versionsNode.equals(that.versionsNode) && fieldsNode.equals(that.fieldsNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), isInterface, namespaceNameGenericParametersWithBoundsNode, implementsListNode, versionsNode, fieldsNode);
+    }
+
 }

@@ -4,20 +4,25 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestEnumVersionNode extends BaseTestNode {
 
     @Test
-    public void testCreate() {
+    public void testCreateMinimal() {
         new EnumVersionNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            TestVersionNumberNode.createTestNode(),
+            TestVersionNumberNode.createPopulatedTestNode(),
             Optional.empty()
         );
+    }
+
+    @Test
+    public void testCreatePopulated() {
+        createPopulatedTestNode();
     }
 
     @Test
@@ -40,7 +45,7 @@ public class TestEnumVersionNode extends BaseTestNode {
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
-                TestVersionNumberNode.createTestNode(),
+                TestVersionNumberNode.createPopulatedTestNode(),
                 null
             )
         );
@@ -48,7 +53,7 @@ public class TestEnumVersionNode extends BaseTestNode {
 
     @Test
     public void testGetters() {
-        var versionNumberNode = TestVersionNumberNode.createTestNode();
+        var versionNumberNode = TestVersionNumberNode.createPopulatedTestNode();
         Optional<EnumCasesNode> enumCases = Optional.empty();
         var node = new EnumVersionNode(
             BaseTestNode.fileName,
@@ -63,13 +68,7 @@ public class TestEnumVersionNode extends BaseTestNode {
 
     @Test
     public void testToString() {
-        var node = new EnumVersionNode(
-            BaseTestNode.fileName,
-            BaseTestNode.line,
-            BaseTestNode.charPosition,
-            TestVersionNumberNode.createTestNode(),
-            Optional.empty()
-        );
+        var node = createPopulatedTestNode();
         var expectedToStringOutput = """
         //EnumVersionNode
             //Super -> //BaseParseTreeNode
@@ -82,8 +81,51 @@ public class TestEnumVersionNode extends BaseTestNode {
                     Line : 1
                     CharPosition : 0
                 VersionNumber : 1
+            //EnumCasesNode
+                //Super -> //BaseParseTreeNode
+                    SourceFileName : TestFileName.pg
+                    Line : 1
+                    CharPosition : 0
+                //EnumNameNode
+                    //Super -> //BaseParseTreeNode
+                        SourceFileName : TestFileName.pg
+                        Line : 1
+                        CharPosition : 0
+                    EnumName : EnumName
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testEquals() {
+        var node1 = createPopulatedTestNode();
+        var node2 = createPopulatedTestNode();
+        assertEquals(node1, node2, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testHashcode() {
+        var node1Hashcode = createPopulatedTestNode().hashCode();
+        var node2Hashcode = createPopulatedTestNode().hashCode();
+        assertEquals(node1Hashcode, node2Hashcode, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testClone() {
+        var node1 = createPopulatedTestNode();
+        var node2 = node1.clone();
+        assertEquals(node1, node2, "Expected cloned objects to be equal");
+        assertEquals(node1.hashCode(), node2.hashCode(), "Expected cloned objects hashcode to be equal");
+    }
+
+    public static EnumVersionNode createPopulatedTestNode() {
+        return new EnumVersionNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition,
+            TestVersionNumberNode.createPopulatedTestNode(),
+            Optional.of(TestEnumCasesNode.createPopulatedTestNode())
+        );
     }
 
 }

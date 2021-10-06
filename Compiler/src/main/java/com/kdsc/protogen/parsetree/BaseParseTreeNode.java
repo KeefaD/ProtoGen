@@ -6,7 +6,7 @@ import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
 
-public abstract class BaseParseTreeNode extends BaseNode {
+public abstract class BaseParseTreeNode extends BaseNode implements Cloneable {
 
     private final String sourceFileName;
     private final long line;
@@ -42,6 +42,21 @@ public abstract class BaseParseTreeNode extends BaseNode {
         fieldToFormattedStringField(stringBuilder, "Line", line);
         fieldToFormattedStringField(stringBuilder, "CharPosition", charPosition);
         return indentString(stringBuilder, indentationLevel);
+    }
+
+    public abstract Object clone();
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        BaseParseTreeNode that = (BaseParseTreeNode) object;
+        return line == that.line && charPosition == that.charPosition && sourceFileName.equals(that.sourceFileName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sourceFileName, line, charPosition);
     }
 
 }

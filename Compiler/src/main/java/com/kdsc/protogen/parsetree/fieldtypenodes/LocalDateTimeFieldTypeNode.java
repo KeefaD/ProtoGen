@@ -18,4 +18,13 @@ public class LocalDateTimeFieldTypeNode extends NonArrayFieldTypeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public LocalDateTimeFieldTypeNode clone() {
+        return new LocalDateTimeFieldTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition()
+        );
+    }
+
 }

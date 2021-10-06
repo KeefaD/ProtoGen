@@ -33,4 +33,28 @@ public class NameNode extends BaseParseTreeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public NameNode clone() {
+        return new NameNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            name
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        NameNode nameNode = (NameNode) object;
+        return name.equals(nameNode.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), name);
+    }
+
 }

@@ -3,6 +3,6 @@ syntax = "proto3";
 package enums;
 
 enum Enum {
-	enumCase1 = 0;
-	enumCase2 = 1;
+    enumCase1 = 0;
+    enumCase2 = 1;
 }

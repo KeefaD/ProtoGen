@@ -20,8 +20,11 @@ public class CodeGenerateUtils {
             parentFile.mkdirs();
         }
 
+        //TODO:KMD Make this nicer
+        var stringToWrite = textToWrite.replace("\t", "    ");
+
         try {
-            Files.writeString(path, textToWrite);
+            Files.writeString(path, stringToWrite);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

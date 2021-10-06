@@ -1,5 +1,7 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.parsetree.utils.clone.Optionals;
+
 import java.util.Objects;
 import java.util.Optional;
 
@@ -38,6 +40,31 @@ public class NamespaceNameGenericParametersWithBoundsNode extends BaseParseTreeN
         fieldToFormattedStringField(stringBuilder, namespaceNameNode);
         fieldToFormattedStringField(stringBuilder, genericParametersWithBoundsNode);
         return indentString(stringBuilder, indentationLevel);
+    }
+
+    @Override
+    public NamespaceNameGenericParametersWithBoundsNode clone() {
+        return new NamespaceNameGenericParametersWithBoundsNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            namespaceNameNode.clone(),
+            Optionals.clone(genericParametersWithBoundsNode)
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        NamespaceNameGenericParametersWithBoundsNode that = (NamespaceNameGenericParametersWithBoundsNode) object;
+        return namespaceNameNode.equals(that.namespaceNameNode) && genericParametersWithBoundsNode.equals(that.genericParametersWithBoundsNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), namespaceNameNode, genericParametersWithBoundsNode);
     }
 
 }

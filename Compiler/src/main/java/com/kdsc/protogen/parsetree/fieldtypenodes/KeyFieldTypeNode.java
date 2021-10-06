@@ -32,4 +32,28 @@ public class KeyFieldTypeNode extends NonArrayFieldTypeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public KeyFieldTypeNode clone() {
+        return new KeyFieldTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            namespaceNameGenericParametersNode.clone()
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        KeyFieldTypeNode that = (KeyFieldTypeNode) object;
+        return namespaceNameGenericParametersNode.equals(that.namespaceNameGenericParametersNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), namespaceNameGenericParametersNode);
+    }
+
 }

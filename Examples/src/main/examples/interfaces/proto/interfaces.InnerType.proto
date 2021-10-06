@@ -3,5 +3,5 @@ syntax = "proto3";
 package interfaces;
 
 message InnerType {
-	int32 TestInt32 = 1;
+    int32 TestInt32 = 1;
 }

@@ -1,0 +1,2 @@
+type interface empty.EmptyTypeInterface
+type empty.EmptyType : empty.EmptyTypeInterface

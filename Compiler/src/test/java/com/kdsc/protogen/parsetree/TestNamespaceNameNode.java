@@ -5,20 +5,25 @@ import org.junit.jupiter.api.Test;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestNamespaceNameNode extends BaseTestNode {
 
     @Test
-    public void testCreate() {
+    public void testCreateMinimal() {
         new NamespaceNameNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            List.of(TestNamespaceNode.createTestNode()),
-            TestNameNode.createTestNode()
+            List.of(TestNamespaceNode.createPopulatedTestNode()),
+            TestNameNode.createPopulatedTestNode()
         );
+    }
+
+    @Test
+    public void testCreatePopulated() {
+        createPopulatedTestNode();
     }
 
     @Test
@@ -31,7 +36,7 @@ public class TestNamespaceNameNode extends BaseTestNode {
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
                 null,
-                TestNameNode.createTestNode()
+                TestNameNode.createPopulatedTestNode()
             )
         );
 
@@ -42,7 +47,7 @@ public class TestNamespaceNameNode extends BaseTestNode {
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
                 Collections.emptyList(),
-                TestNameNode.createTestNode()
+                TestNameNode.createPopulatedTestNode()
             )
         );
 
@@ -52,7 +57,7 @@ public class TestNamespaceNameNode extends BaseTestNode {
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
-                List.of(TestNamespaceNode.createTestNode()),
+                List.of(TestNamespaceNode.createPopulatedTestNode()),
                 null
             )
         );
@@ -60,8 +65,8 @@ public class TestNamespaceNameNode extends BaseTestNode {
 
     @Test
     public void testGetters() {
-        List<NamespaceNode> namespaceNodes = List.of(TestNamespaceNode.createTestNode());
-        var nameNode = TestNameNode.createTestNode();
+        List<NamespaceNode> namespaceNodes = List.of(TestNamespaceNode.createPopulatedTestNode());
+        var nameNode = TestNameNode.createPopulatedTestNode();
         var node = new NamespaceNameNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
@@ -75,13 +80,7 @@ public class TestNamespaceNameNode extends BaseTestNode {
 
     @Test
     public void testToString() {
-        var node = new NamespaceNameNode(
-            BaseTestNode.fileName,
-            BaseTestNode.line,
-            BaseTestNode.charPosition,
-            List.of(TestNamespaceNode.createTestNode()),
-            TestNameNode.createTestNode()
-        );
+        var node = createPopulatedTestNode();
         var expectedToStringOutput = """
         //NamespaceNameNode
             //Super -> //BaseParseTreeNode
@@ -104,13 +103,35 @@ public class TestNamespaceNameNode extends BaseTestNode {
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
 
-    public static NamespaceNameNode createTestNode() {
+    @Test
+    public void testEquals() {
+        var node1 = createPopulatedTestNode();
+        var node2 = createPopulatedTestNode();
+        assertEquals(node1, node2, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testHashcode() {
+        var node1Hashcode = createPopulatedTestNode().hashCode();
+        var node2Hashcode = createPopulatedTestNode().hashCode();
+        assertEquals(node1Hashcode, node2Hashcode, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testClone() {
+        var node1 = createPopulatedTestNode();
+        var node2 = node1.clone();
+        assertEquals(node1, node2, "Expected cloned objects to be equal");
+        assertEquals(node1.hashCode(), node2.hashCode(), "Expected cloned objects hashcode to be equal");
+    }
+
+    public static NamespaceNameNode createPopulatedTestNode() {
         return new NamespaceNameNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            List.of(TestNamespaceNode.createTestNode()),
-            TestNameNode.createTestNode()
+            List.of(TestNamespaceNode.createPopulatedTestNode()),
+            TestNameNode.createPopulatedTestNode()
         );
     }
 

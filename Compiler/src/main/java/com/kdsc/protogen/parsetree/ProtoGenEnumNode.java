@@ -60,4 +60,30 @@ public class ProtoGenEnumNode extends BaseParseTreeNode implements TopLevelObjec
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public ProtoGenEnumNode clone() {
+        return new ProtoGenEnumNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            namespaceNameNode.clone(),
+            com.kdsc.protogen.parsetree.utils.clone.Optionals.clone(enumVersionsNode),
+            com.kdsc.protogen.parsetree.utils.clone.Optionals.clone(enumCasesNode)
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        ProtoGenEnumNode that = (ProtoGenEnumNode) object;
+        return namespaceNameNode.equals(that.namespaceNameNode) && enumVersionsNode.equals(that.enumVersionsNode) && enumCasesNode.equals(that.enumCasesNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), namespaceNameNode, enumVersionsNode, enumCasesNode);
+    }
+
 }

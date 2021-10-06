@@ -4,11 +4,12 @@ import com.kdsc.protogen.parsetree.BaseTestNode;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestBytesFieldTypeNode extends BaseTestNode {
 
     @Test
-    public void testCreate() {
+    public void testCreateMinimal() {
         new BytesFieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
@@ -17,12 +18,13 @@ public class TestBytesFieldTypeNode extends BaseTestNode {
     }
 
     @Test
+    public void testCreatePopulated() {
+        createPopulatedTestNode();
+    }
+
+    @Test
     public void testToString() {
-        var node = new BytesFieldTypeNode(
-            BaseTestNode.fileName,
-            BaseTestNode.line,
-            BaseTestNode.charPosition
-        );
+        var node = createPopulatedTestNode();
         var expectedToStringOutput = """
         //BytesFieldTypeNode
             //Super -> //NonArrayFieldTypeNode
@@ -32,6 +34,36 @@ public class TestBytesFieldTypeNode extends BaseTestNode {
                     CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testEquals() {
+        var node1 = createPopulatedTestNode();
+        var node2 = createPopulatedTestNode();
+        assertEquals(node1, node2, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testHashcode() {
+        var node1Hashcode = createPopulatedTestNode().hashCode();
+        var node2Hashcode = createPopulatedTestNode().hashCode();
+        assertEquals(node1Hashcode, node2Hashcode, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testClone() {
+        var node1 = createPopulatedTestNode();
+        var node2 = node1.clone();
+        assertEquals(node1, node2, "Expected cloned objects to be equal");
+        assertEquals(node1.hashCode(), node2.hashCode(), "Expected cloned objects hashcode to be equal");
+    }
+
+    public static BytesFieldTypeNode createPopulatedTestNode() {
+        return new BytesFieldTypeNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition
+        );
     }
 
 }

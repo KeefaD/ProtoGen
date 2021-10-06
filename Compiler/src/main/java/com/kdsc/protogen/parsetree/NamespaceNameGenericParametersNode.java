@@ -1,6 +1,7 @@
 package com.kdsc.protogen.parsetree;
 
 import com.kdsc.protogen.parsetree.commoninterfaces.HasNamespaceName;
+import com.kdsc.protogen.parsetree.utils.clone.Optionals;
 
 import java.util.Objects;
 import java.util.Optional;
@@ -40,6 +41,31 @@ public class NamespaceNameGenericParametersNode extends BaseParseTreeNode implem
         fieldToFormattedStringField(stringBuilder, namespaceNameNode);
         fieldToFormattedStringField(stringBuilder, genericParametersNode);
         return indentString(stringBuilder, indentationLevel);
+    }
+
+    @Override
+    public NamespaceNameGenericParametersNode clone() {
+        return new NamespaceNameGenericParametersNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            namespaceNameNode.clone(),
+            Optionals.clone(genericParametersNode)
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        NamespaceNameGenericParametersNode that = (NamespaceNameGenericParametersNode) object;
+        return namespaceNameNode.equals(that.namespaceNameNode) && genericParametersNode.equals(that.genericParametersNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), namespaceNameNode, genericParametersNode);
     }
 
 }

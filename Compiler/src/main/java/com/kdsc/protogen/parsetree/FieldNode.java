@@ -41,4 +41,29 @@ public class FieldNode extends BaseParseTreeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public FieldNode clone() {
+        return new FieldNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            fieldNameNode.clone(),
+            fieldTypeNode.clone()
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        FieldNode fieldNode = (FieldNode) object;
+        return fieldNameNode.equals(fieldNode.fieldNameNode) && fieldTypeNode.equals(fieldNode.fieldTypeNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), fieldNameNode, fieldTypeNode);
+    }
+
 }

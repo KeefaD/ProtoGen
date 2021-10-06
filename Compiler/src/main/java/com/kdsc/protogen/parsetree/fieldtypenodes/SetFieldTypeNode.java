@@ -30,4 +30,28 @@ public class SetFieldTypeNode extends NonArrayFieldTypeNode {
         return indentString(stringBuilder, indentationLevel);
     }
 
+    @Override
+    public SetFieldTypeNode clone() {
+        return new SetFieldTypeNode(
+            getSourceFileName(),
+            getLine(),
+            getCharPosition(),
+            fieldTypeNode.clone()
+        );
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        if (!super.equals(object)) return false;
+        SetFieldTypeNode that = (SetFieldTypeNode) object;
+        return fieldTypeNode.equals(that.fieldTypeNode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), fieldTypeNode);
+    }
+
 }

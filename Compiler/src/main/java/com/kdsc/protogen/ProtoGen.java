@@ -49,6 +49,10 @@ import java.util.stream.Collectors;
 //TODO:KMD Protogen RPC service, investigate
 //TODO:KMD Perhaps use Guava for immutable stuff
 //TODO:KMD Follow google style guide
+//TODO:KMD Deal with Double/Float NAN and equals
+//TODO:KMD Make a reflection test for equals and hashcode in nodes
+//TODO:KMD Need to do a day just working on TODO:KMD's to keep the numbers down otherwise it is going ot get out of control
+//TODO:KMD ParseTree equals and hash code, how are we going to know if a field gets added, perhaps we should add a reflection test, or make equals hashcode reflection
 public class ProtoGen {
 
     public static final char OPTION_MARKER = '-';

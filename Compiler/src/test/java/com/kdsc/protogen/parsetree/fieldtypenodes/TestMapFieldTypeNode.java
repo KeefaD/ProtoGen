@@ -3,20 +3,25 @@ package com.kdsc.protogen.parsetree.fieldtypenodes;
 import com.kdsc.protogen.parsetree.BaseTestNode;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestMapFieldTypeNode extends BaseTestNode {
 
     @Test
-    public void testCreate() {
+    public void testCreateMinimal() {
         new MapFieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            TestFieldTypeNode.createTestNode(),
-            TestFieldTypeNode.createTestNode()
+            TestFieldTypeNode.createPopulatedTestNode(),
+            TestFieldTypeNode.createPopulatedTestNode()
         );
+    }
+
+    @Test
+    public void testCreatePopulated() {
+        createPopulatedTestNode();
     }
 
     @Test
@@ -29,7 +34,7 @@ public class TestMapFieldTypeNode extends BaseTestNode {
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
                 null,
-                TestFieldTypeNode.createTestNode()
+                TestFieldTypeNode.createPopulatedTestNode()
             )
         );
 
@@ -39,7 +44,7 @@ public class TestMapFieldTypeNode extends BaseTestNode {
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
-                TestFieldTypeNode.createTestNode(),
+                TestFieldTypeNode.createPopulatedTestNode(),
                 null
             )
         );
@@ -59,8 +64,8 @@ public class TestMapFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testGetters() {
-        var keyFieldTypeNode = TestFieldTypeNode.createTestNode();
-        var valueFieldTypeNode = TestFieldTypeNode.createTestNode();
+        var keyFieldTypeNode = TestFieldTypeNode.createPopulatedTestNode();
+        var valueFieldTypeNode = TestFieldTypeNode.createPopulatedTestNode();
         var node = new MapFieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
@@ -74,13 +79,7 @@ public class TestMapFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testToString() {
-        var node = new MapFieldTypeNode(
-            BaseTestNode.fileName,
-            BaseTestNode.line,
-            BaseTestNode.charPosition,
-            TestFieldTypeNode.createTestNode(),
-            TestFieldTypeNode.createTestNode()
-        );
+        var node = createPopulatedTestNode();
         var expectedToStringOutput = """
         //MapFieldTypeNode
             //Super -> //NonArrayFieldTypeNode
@@ -116,6 +115,38 @@ public class TestMapFieldTypeNode extends BaseTestNode {
                                 CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
+    }
+
+    @Test
+    public void testEquals() {
+        var node1 = createPopulatedTestNode();
+        var node2 = createPopulatedTestNode();
+        assertEquals(node1, node2, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testHashcode() {
+        var node1Hashcode = createPopulatedTestNode().hashCode();
+        var node2Hashcode = createPopulatedTestNode().hashCode();
+        assertEquals(node1Hashcode, node2Hashcode, "Expected objects to be equal");
+    }
+
+    @Test
+    public void testClone() {
+        var node1 = createPopulatedTestNode();
+        var node2 = node1.clone();
+        assertEquals(node1, node2, "Expected cloned objects to be equal");
+        assertEquals(node1.hashCode(), node2.hashCode(), "Expected cloned objects hashcode to be equal");
+    }
+
+    public static MapFieldTypeNode createPopulatedTestNode() {
+        return new MapFieldTypeNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition,
+            TestFieldTypeNode.createPopulatedTestNode(),
+            TestFieldTypeNode.createPopulatedTestNode()
+        );
     }
 
 }
