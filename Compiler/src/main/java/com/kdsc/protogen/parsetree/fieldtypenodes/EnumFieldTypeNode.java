@@ -28,7 +28,7 @@ public class EnumFieldTypeNode extends NonArrayFieldTypeNode {
     public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, EnumFieldTypeNode.class);
-        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), NonArrayFieldTypeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNameGenericParametersNode);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }

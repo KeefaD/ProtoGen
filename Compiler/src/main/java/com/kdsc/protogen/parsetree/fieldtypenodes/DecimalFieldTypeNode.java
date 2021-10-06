@@ -16,7 +16,7 @@ public class DecimalFieldTypeNode extends NonArrayFieldTypeNode {
     public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, DecimalFieldTypeNode.class);
-        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), NonArrayFieldTypeNode.class);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 

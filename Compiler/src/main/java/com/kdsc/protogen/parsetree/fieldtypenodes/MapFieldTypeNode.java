@@ -35,7 +35,7 @@ public class MapFieldTypeNode extends NonArrayFieldTypeNode {
     public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, MapFieldTypeNode.class);
-        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), NonArrayFieldTypeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Key", keyFieldTypeNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Value", valueFieldTypeNode);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);

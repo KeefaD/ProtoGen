@@ -37,7 +37,7 @@ public class NamespaceNameGenericParametersWithBoundsNode extends BaseParseTreeN
     public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, NamespaceNameGenericParametersWithBoundsNode.class);
-        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNameNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, genericParametersWithBoundsNode);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);

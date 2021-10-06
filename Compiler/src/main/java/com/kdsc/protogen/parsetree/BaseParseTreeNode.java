@@ -44,16 +44,26 @@ public abstract class BaseParseTreeNode extends BaseNode implements Cloneable {
 
     @Override
     public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
+        var stringBuilder = new StringBuilder();
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, BaseParseTreeNode.class);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "SourceFileName", sourceFileName);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Line", line);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, "CharPosition", charPosition);
+        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+    }
+
+    public void superToFormattedStringSuper(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final String superFormattedToString, final Class baseClass) {
+
         var parseTreeFormattedStringOptions = (ParseTreeFormattedStringOptions)formattedStringOptions;
-        if(!parseTreeFormattedStringOptions.hideBaseParseTreeNodeParameter()) {
-            var stringBuilder = new StringBuilder();
-            classToFormattedStringTitle(stringBuilder, formattedStringOptions, BaseParseTreeNode.class);
-            fieldToFormattedStringField(stringBuilder, formattedStringOptions, "SourceFileName", sourceFileName);
-            fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Line", line);
-            fieldToFormattedStringField(stringBuilder, formattedStringOptions, "CharPosition", charPosition);
-            return indentString(stringBuilder, formattedStringOptions, indentationLevel);
-        }
-        return "";
+        if(parseTreeFormattedStringOptions.hideBaseParseTreeNodeParameter() && baseClass.getName().equals(BaseParseTreeNode.class.getName())) return;
+
+        var outputString = "//Super -> " + superFormattedToString;
+        stringBuilder.append(outputString.indent(INDENTATION_SPACE_COUNT));
+    }
+
+    @Override
+    public void superToFormattedStringSuper(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final String superFormattedToString) {
+        throw new UnsupportedOperationException("superToFormattedStringSuper(StringBuilder, FormattedStringOptions, String) is unsupported for ParseTreeNodes");
     }
 
     public abstract Object clone();

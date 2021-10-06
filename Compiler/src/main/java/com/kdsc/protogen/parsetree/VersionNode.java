@@ -53,7 +53,7 @@ public class VersionNode extends BaseParseTreeNode {
     public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, VersionNode.class);
-        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, versionNumberNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, genericParametersWithBoundsNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, implementsListNode);

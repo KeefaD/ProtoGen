@@ -6,6 +6,7 @@ import com.kdsc.protogen.antlr.generated.ProtoGenParser;
 import com.kdsc.protogen.antlr.visitor.ProtoGenVisitor;
 import com.kdsc.protogen.antlr.ParserErrorListener;
 import com.kdsc.protogen.parsetree.FileNode;
+import com.kdsc.protogen.parsetree.ParseTreeFormattedStringOptions;
 import com.kdsc.protogen.parsetree.ProtoGenKeyNode;
 import com.kdsc.protogen.parsetree.ProtoGenTypeNode;
 import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
@@ -53,7 +54,7 @@ public abstract class BaseCompilerTest {
         var fileNode = (FileNode) visitor.visit(parseTree);
 
         System.out.println("//Parse Tree");
-        System.out.println(fileNode.toFormattedString(1));
+        System.out.println(fileNode.toFormattedString(1, ParseTreeFormattedStringOptions.hideBaseParseTreeNode));
 
         return fileNode;
     }
@@ -82,7 +83,7 @@ protected List<ParserError> runCompilerToParserReturnParserErrors(String testPro
         var undetectableNodeReplacer = new UndetectableNodeReplacer();
         var returnFileNode = undetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
         System.out.println("//Replaced Parse Tree");
-        System.out.println(returnFileNode.toFormattedString(1));
+        System.out.println(returnFileNode.toFormattedString(1, ParseTreeFormattedStringOptions.hideBaseParseTreeNode));
         return returnFileNode;
     }
 
