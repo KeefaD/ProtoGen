@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package petstore;
+
+import "protogentypes.proto";
+import "petstore.LineItem.proto";
+
+message Basket {
+    protogentypes.Set LineItems = 1;
+}

@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package petstore;
+
+import "petstore.SellableItemId.proto";
+
+message LineItem {
+    petstore.SellableItemId Id = 1;
+    int64 Quantity = 2;
+}

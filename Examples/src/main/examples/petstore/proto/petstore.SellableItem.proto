@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package petstore;
+
+import "petstore.SellableItemId.proto";
+import "protogentypes.proto";
+
+message SellableItem {
+    petstore.SellableItemId Id = 1;
+    protogentypes.Bytes SmallPicture = 2;
+    protogentypes.Bytes LargePicture = 3;
+    string Name = 4;
+    string Description = 5;
+}

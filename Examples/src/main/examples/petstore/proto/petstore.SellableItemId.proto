@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package petstore;
+
+message SellableItemId {
+    int64 Id = 1;
+}

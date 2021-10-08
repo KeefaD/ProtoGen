@@ -1,0 +1,20 @@
+type petstore.SellableItemId {
+    Id : int64
+}
+
+type petstore.SellableItem {
+    Id : petstore.SellableItemId
+    SmallPicture : bytes
+    LargePicture : bytes
+    Name : string
+    Description : string
+}
+
+type petstore.LineItem {
+    Id : petstore.SellableItemId
+    Quantity : int64
+}
+
+type petstore.Basket {
+    LineItems : set<petstore.LineItem>
+}

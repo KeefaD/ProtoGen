@@ -22,6 +22,12 @@ public class FieldsTransformer {
         protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.DateFieldTypeNode.class);
         protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.DateTimeFieldTypeNode.class);
         protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.LocalDateTimeFieldTypeNode.class);
+        protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.SetFieldTypeNode.class);
+        protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.MapFieldTypeNode.class);
+        protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.ArrayFieldTypeNode.class);
+        protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.LocalDateFieldTypeNode.class);
+        protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.BytesFieldTypeNode.class);
+        protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.ValueOrErrorFieldTypeNode.class);
     }
 
     public List<FieldNode> transformFieldsNodes(final CompilerResults compilerResults, final TransformerContext transformerContext, final FileContext fileContext, final TypeNode typeNode, final boolean protoMode, final boolean interfaceMode) {
