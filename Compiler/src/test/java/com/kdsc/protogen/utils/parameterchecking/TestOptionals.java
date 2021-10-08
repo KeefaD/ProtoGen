@@ -39,4 +39,9 @@ public class TestOptionals extends BaseTestNode {
         Optionals.requireOne(Optional.of(1), Optional.empty(), Optional.empty());
     }
 
+    @Test
+    public void TestRequireOneNull() {
+        assertThrows(NullPointerException.class, () -> Optionals.requireOne(null));
+    }
+
 }

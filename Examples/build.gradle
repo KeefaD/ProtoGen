@@ -3,7 +3,7 @@ plugins {
 }
 
 group 'com.kdsc.protogen.examples'
-version 'unspecified'
+version '0'
 
 repositories {
     mavenCentral()

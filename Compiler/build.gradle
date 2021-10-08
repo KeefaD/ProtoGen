@@ -27,7 +27,7 @@ application {
 }
 
 generateGrammarSource {
-    arguments += ["-visitor", "-long-messages"]
+    arguments += ["-no-listener", "-visitor", "-long-messages"]
 }
 
 test {

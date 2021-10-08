@@ -137,6 +137,12 @@ public class TestProtoGenTypeNode extends BaseTestNode {
     }
 
     @Test
+    public void testIsLibraryNode() {
+        var node = createPopulatedTestNode();
+        assertFalse(node.isLibraryNode(), "Expected isLibraryNode to return false for the time being");
+    }
+
+    @Test
     public void testToString() {
         var node = createPopulatedTestNode();
         var expectedToStringOutput = """
