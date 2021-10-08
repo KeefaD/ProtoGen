@@ -7,4 +7,5 @@ public class [TYPE_NAME] implements [IMPLEMENTS_LIST]ProtoGenType {
 [CONSTRUCTOR]
 [GETTERS]
 [TO_STRING]
+[EQUALS_HASH_CODE]
 }

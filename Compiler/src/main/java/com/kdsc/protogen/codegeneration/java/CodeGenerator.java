@@ -55,6 +55,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
         output = CodeGenerateUtils.replaceAndCollapse(output, "[CONSTRUCTOR]", generateConstructor(codeGeneratorContext, typeFileNode));
         output = CodeGenerateUtils.replaceAndCollapse(output, "[GETTERS]", generateGetters(codeGeneratorContext, typeFileNode));
         output = CodeGenerateUtils.replaceAndCollapse(output, "[TO_STRING]", generateToString(codeGeneratorContext, typeFileNode));
+        output = CodeGenerateUtils.replaceAndCollapse(output, "[EQUALS_HASH_CODE]", generateEqualsHashCode(codeGeneratorContext, typeFileNode));
         CodeGenerateUtils.writeStringToPath(codeGeneratorContext.getJavaOutputDirectory() + typeFileNode.getPathAndFileName(), output);
     }
 
@@ -183,10 +184,10 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
         var stringBuilder = new StringBuilder();
         stringBuilder.append("\t@Override\n");
         stringBuilder.append("\tpublic String toString() {\n");
-        stringBuilder.append("\t\treturn toFormattedString(0);\n");
+        stringBuilder.append("\t\treturn toFormattedString(ToStringOptions.defaultToStringOptions, 0);\n");
         stringBuilder.append("\t}\n");
         stringBuilder.append("\n");
-        stringBuilder.append("\tpublic String toFormattedString(final int indentationLevel) {\n");
+        stringBuilder.append("\tpublic String toFormattedString(final ToStringOptions toStringOptions, final int indentationLevel) {\n");
         stringBuilder.append("\t\tvar stringBuilder = new StringBuilder();\n");
         typeFileNode
             .getFieldNodes()
@@ -197,6 +198,23 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
         //TODO:KMD I think we need a utility method here
         stringBuilder.append("\t\tstringBuilder.append(\"//" + typeFileNode.getPackageName() + "." + typeFileNode.getName() + "\\n\");\n");
         stringBuilder.append("\t\treturn stringBuilder.toString().indent(indentationLevel * TO_STRING_INDENTATION_LEVEL);\n");
+        stringBuilder.append("\t}\n");
+        stringBuilder.append("\n");
+        return stringBuilder.toString();
+    }
+
+    private String generateEqualsHashCode(final CodeGeneratorContext codeGeneratorContext, final TypeFileNode typeFileNode) {
+
+        var stringBuilder = new StringBuilder();
+        stringBuilder.append("\t@Override\n");
+        stringBuilder.append("\tpublic boolean equals(final Object object) {\n");
+        stringBuilder.append("\t\treturn equals(EqualsHashCodeOptions.defaultEqualsHashCodeOptions, object);\n");
+        stringBuilder.append("\t}\n");
+        stringBuilder.append("\n");
+        stringBuilder.append("\tpublic boolean equals(final EqualsHashCodeOptions equalsHashCodeOptions, final Object object) {\n");
+
+        //TODO:KMD Just return false for now
+        stringBuilder.append("\t\treturn false;\n");
         stringBuilder.append("\t}\n");
         stringBuilder.append("\n");
         return stringBuilder.toString();

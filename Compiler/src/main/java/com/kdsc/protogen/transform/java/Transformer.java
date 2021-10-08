@@ -72,6 +72,8 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
 
         //TODO:KMD Obviously we need to do this all nicely
         fileContext.addJavaImport("com.kdsc.protogen.runtime.ProtoGenType");
+        fileContext.addJavaImport("com.kdsc.protogen.runtime.options.ToStringOptions");
+        fileContext.addJavaImport("com.kdsc.protogen.runtime.options.EqualsHashCodeOptions");
 
         var fieldTransformer = new FieldsTransformer();
 
