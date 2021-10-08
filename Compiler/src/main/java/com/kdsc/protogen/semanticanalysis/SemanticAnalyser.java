@@ -1,5 +1,5 @@
 package com.kdsc.protogen.semanticanalysis;
-
+import com.kdsc.protogen.compilerresults.CompilerResults;
 import com.kdsc.protogen.parsetree.*;
 import com.kdsc.protogen.parsetree.fieldtypenodes.*;
 import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
@@ -17,43 +17,14 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 //TODO:KMD Obviously we need to make this work for keys but there is no point until Types are 1005
 public class SemanticAnalyser {
 
-    private record Objects(
-        Map<String, ProtoGenTypeNode> typeNodeMap,
-        Map<String, ProtoGenKeyNode> keyNodeMap,
-        Map<String, ProtoGenEnumNode> enumNodeMap
-    ) {
-        private Objects {
-            java.util.Objects.requireNonNull(typeNodeMap);
-            java.util.Objects.requireNonNull(keyNodeMap);
-            java.util.Objects.requireNonNull(enumNodeMap);
-        }
-    }
-
-    public List<SemanticError> runSemanticAnalysis(final List<FileNode> fileNodes) {
+    public List<SemanticError> runSemanticAnalysis(final CompilerResults compilerResults) {
 
         var returnSemanticErrors = new ArrayList<SemanticError>();
 
-        checkRedefinitionOfObject(returnSemanticErrors, fileNodes);
+        checkRedefinitionOfObject(compilerResults, returnSemanticErrors);
 
-        var typeNodes = fileNodes
-            .stream()
-            .flatMap(fn -> fn.getProtoGenTypeNodes().stream())
-            .collect(Collectors.toMap(tn -> ParseTreeUtils.getNamespaceNameString(tn.getNamespaceNameNode()), tn -> tn, (tn1, tn2) -> tn1));
-
-        var keyNodes = fileNodes
-            .stream()
-            .flatMap(fn -> fn.getProtoGenKeyNodes().stream())
-            .collect(Collectors.toMap(kn -> ParseTreeUtils.getNamespaceNameString(kn.getNamespaceNameNode()), kn -> kn, (kn1, kn2) -> kn2));
-
-        var enumNodes = fileNodes
-            .stream()
-            .flatMap(fn -> fn.getProtoGenEnumNodes().stream())
-            .collect(Collectors.toMap(en -> ParseTreeUtils.getNamespaceNameString(en.getNamespaceNameNode()), en -> en, (en1, en2) -> en2));
-
-        var objects = new Objects(typeNodes, keyNodes, enumNodes);
-
-        checkTypes(returnSemanticErrors, objects);
-        checkEnums(returnSemanticErrors, objects);
+        checkTypes(compilerResults, returnSemanticErrors);
+        checkEnums(compilerResults, returnSemanticErrors);
 
         return returnSemanticErrors
             .stream()
@@ -65,9 +36,10 @@ public class SemanticAnalyser {
             .collect(Collectors.toList());
     }
 
-    private void checkRedefinitionOfObject(final List<SemanticError> semanticErrors, final List<FileNode> fileNodes) {
+    private void checkRedefinitionOfObject(final CompilerResults compilerResults, final List<SemanticError> semanticErrors) {
 
-        var topLevelObjects = fileNodes
+        var topLevelObjects = compilerResults
+            .getFileNodes()
             .stream()
             .flatMap(
                 fn -> Stream.of(
@@ -93,15 +65,15 @@ public class SemanticAnalyser {
             );
     }
 
-    private void checkTypes(final List<SemanticError> semanticErrors, final Objects objects) {
-        objects.typeNodeMap
+    private void checkTypes(final CompilerResults compilerResults, final List<SemanticError> semanticErrors) {
+        compilerResults.getAllTypeNodeMap()
             .values()
-            .forEach(tn -> checkType(semanticErrors, objects, tn));
+            .forEach(tn -> checkType(compilerResults, semanticErrors, tn));
     }
 
-    private void checkType(final List<SemanticError> semanticErrors, final Objects objects, final ProtoGenTypeNode typeNode) {
+    private void checkType(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final ProtoGenTypeNode typeNode) {
 
-        checkInheritanceLoop(semanticErrors, objects, new HashSet<>(), "", typeNode, typeNode);
+        checkInheritanceLoop(compilerResults, semanticErrors, new HashSet<>(), "", typeNode, typeNode);
 
         //Generic Parameters
         var genericParameters = typeNode
@@ -134,7 +106,7 @@ public class SemanticAnalyser {
                         .getNamespaceNameGenericParametersNodes()
                         .forEach(
                             nngpwb -> {
-                                if (!objects.typeNodeMap.containsKey(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode()))) {
+                                if (!compilerResults.getAllTypeNodeMap().containsKey(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode()))) {
                                     semanticErrors.add(createSemanticError(GENERIC_PARAMETER_BOUNDS_REFERS_TO_NON_EXISTENT_TYPE, nngpwb, gpwb.getIdentifier(), ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())));
                                 } else if (namespaceNameAsStringSet.contains(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode()))) {
                                     semanticErrors.add(createSemanticError(GENERIC_PARAMETER_BOUNDS_REFERS_TO_TYPE_MULTIPLE_TIMES, nngpwb, gpwb.getIdentifier(), ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())));
@@ -161,7 +133,7 @@ public class SemanticAnalyser {
         if (typeNode.getImplementsListNode().isPresent()) {
             typeNode
                 .getImplementsListNode()
-                .ifPresent(iln -> checkImplementsList(semanticErrors, objects, typeNode, genericParametersSet, iln));
+                .ifPresent(iln -> checkImplementsList(compilerResults, semanticErrors, typeNode, genericParametersSet, iln));
         }
 
         typeNode
@@ -170,7 +142,7 @@ public class SemanticAnalyser {
             .flatMap(vn -> vn.getVersionNodes().stream())
             .flatMap(vn -> vn.getImplementsListNode().stream())
             //TODO:KMD This is wrong, it is using the wrong set of generic parameters
-            .forEach(iln -> checkImplementsList(semanticErrors, objects, typeNode, genericParametersSet, iln));
+            .forEach(iln -> checkImplementsList(compilerResults, semanticErrors, typeNode, genericParametersSet, iln));
 
         var versions = typeNode
             .getVersionsNode()
@@ -193,13 +165,13 @@ public class SemanticAnalyser {
                 }
             );
 
-        checkFields(semanticErrors, objects, typeNode.getFieldsNode());
+        checkFields(compilerResults, semanticErrors, typeNode.getFieldsNode());
 
         typeNode
             .getVersionsNode()
             .stream()
             .flatMap(vn -> vn.getVersionNodes().stream())
-            .forEach(vn -> checkFields(semanticErrors, objects, vn.getFieldsNode()));
+            .forEach(vn -> checkFields(compilerResults, semanticErrors, vn.getFieldsNode()));
 
         typeNode
             .getImplementsListNode()
@@ -208,7 +180,7 @@ public class SemanticAnalyser {
             .map(NamespaceNameGenericParametersNode::getGenericParametersNode)
             .flatMap(Optional::stream)
             .flatMap(gpn -> gpn.getFieldTypeNodes().stream())
-            .forEach(ftn -> checkFieldType(semanticErrors, objects, ftn));
+            .forEach(ftn -> checkFieldType(compilerResults, semanticErrors, ftn));
 
         typeNode
             .getVersionsNode()
@@ -219,19 +191,19 @@ public class SemanticAnalyser {
             .map(NamespaceNameGenericParametersNode::getGenericParametersNode)
             .flatMap(Optional::stream)
             .flatMap(gpn -> gpn.getFieldTypeNodes().stream())
-            .forEach(ftn -> checkFieldType(semanticErrors, objects, ftn));
+            .forEach(ftn -> checkFieldType(compilerResults, semanticErrors, ftn));
     }
 
-    private void checkImplementsList(final List<SemanticError> semanticErrors, final Objects objects, final ProtoGenTypeNode typeNode, final Set<String> genericParametersSet, final ImplementsListNode implementsListNode) {
+    private void checkImplementsList(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final ProtoGenTypeNode typeNode, final Set<String> genericParametersSet, final ImplementsListNode implementsListNode) {
         implementsListNode
             .getNamespaceNameGenericParametersNodes()
             .forEach(
                 nngp -> {
                     var namespaceNameAsString = ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode());
-                    if (!objects.typeNodeMap.containsKey(namespaceNameAsString)) {
+                    if (!compilerResults.getAllTypeNodeMap().containsKey(namespaceNameAsString)) {
                         semanticErrors.add(createSemanticError(TYPE_REFERS_TO_NON_EXISTENT_TYPE_IN_IMPLEMENTS_LIST, nngp, ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode()), namespaceNameAsString));
                     } else {
-                        checkGenericParameters(semanticErrors, objects, typeNode, nngp);
+                        checkGenericParameters(compilerResults, semanticErrors, typeNode, nngp);
                     }
                     var usedGenericParameterIdentifiers = nngp
                         .getGenericParametersNode()
@@ -253,8 +225,8 @@ public class SemanticAnalyser {
         var nonInterfaceTypeNodes = implementsListNode
             .getNamespaceNameGenericParametersNodes()
             .stream()
-            .filter(nngpwb -> objects.typeNodeMap.containsKey(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())))
-            .filter(nngpwb -> !objects.typeNodeMap.get(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())).isInterface())
+            .filter(nngpwb -> compilerResults.getAllTypeNodeMap().containsKey(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())))
+            .filter(nngpwb -> !compilerResults.getAllTypeNodeMap().get(ParseTreeUtils.getNamespaceNameString(nngpwb.getNamespaceNameNode())).isInterface())
             .collect(Collectors.toList());
 
         if (typeNode.isInterface()) {
@@ -274,7 +246,7 @@ public class SemanticAnalyser {
         }
     }
 
-    private void checkInheritanceLoop(final List<SemanticError> semanticErrors, final Objects objects, final Set<String> alreadyVisitedTypes, final String path, final ProtoGenTypeNode initialTypeNode, final ProtoGenTypeNode typeNode) {
+    private void checkInheritanceLoop(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Set<String> alreadyVisitedTypes, final String path, final ProtoGenTypeNode initialTypeNode, final ProtoGenTypeNode typeNode) {
         var namespaceNameAsString = ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode());
         var newPath = path + namespaceNameAsString;
         if (alreadyVisitedTypes.contains(namespaceNameAsString)) {
@@ -290,50 +262,50 @@ public class SemanticAnalyser {
             .forEach(
                 iln -> {
                     var newAlreadyVisitedTypes = new HashSet<>(alreadyVisitedTypes);
-                    var newTypeNode = objects.typeNodeMap.get(ParseTreeUtils.getNamespaceNameString(iln.getNamespaceNameNode()));
+                    var newTypeNode = compilerResults.getAllTypeNodeMap().get(ParseTreeUtils.getNamespaceNameString(iln.getNamespaceNameNode()));
 
                     //It is possible that the type node can refer to a non-existent type at this stage, that will get picked up somewhere else in the analysis
                     if (newTypeNode == null) return;
-                    checkInheritanceLoop(semanticErrors, objects, newAlreadyVisitedTypes, newPath + "->", initialTypeNode, newTypeNode);
+                    checkInheritanceLoop(compilerResults, semanticErrors, newAlreadyVisitedTypes, newPath + "->", initialTypeNode, newTypeNode);
                 }
             );
     }
 
-    private void checkFields(final List<SemanticError> semanticErrors, final Objects objects, final Optional<FieldsNode> fieldsNode) {
+    private void checkFields(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Optional<FieldsNode> fieldsNode) {
         fieldsNode
             .stream()
             .flatMap(fn -> fn.getFieldNodes().stream())
             .map(FieldNode::getFieldTypeNode)
-            .forEach(fn -> checkFieldType(semanticErrors, objects, fn));
+            .forEach(fn -> checkFieldType(compilerResults, semanticErrors, fn));
     }
 
-    private void checkFieldType(final List<SemanticError> semanticErrors, final Objects objects, final FieldTypeNode fieldTypeNode) {
+    private void checkFieldType(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final FieldTypeNode fieldTypeNode) {
         if (fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
-            checkArrayFieldType(semanticErrors, objects, fieldTypeNode.getArrayFieldTypeNode().get());
+            checkArrayFieldType(compilerResults, semanticErrors, fieldTypeNode.getArrayFieldTypeNode().get());
         } else if (fieldTypeNode.getNonArrayFieldTypeNode().isPresent()) {
-            checkNonArrayFieldType(semanticErrors, objects, fieldTypeNode.getNonArrayFieldTypeNode().get());
+            checkNonArrayFieldType(compilerResults, semanticErrors, fieldTypeNode.getNonArrayFieldTypeNode().get());
         }
     }
 
-    private void checkNonArrayFieldType(final List<SemanticError> semanticErrors, final Objects objects, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
+    private void checkNonArrayFieldType(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
         if (nonArrayFieldTypeNode instanceof MapFieldTypeNode mapFieldTypeNode) {
-            checkFieldType(semanticErrors, objects, mapFieldTypeNode.getKeyFieldTypeNode());
-            checkFieldType(semanticErrors, objects, mapFieldTypeNode.getValueFieldTypeNode());
+            checkFieldType(compilerResults, semanticErrors, mapFieldTypeNode.getKeyFieldTypeNode());
+            checkFieldType(compilerResults, semanticErrors, mapFieldTypeNode.getValueFieldTypeNode());
         }
         //TODO:KMD Put this to the bottom
         if (nonArrayFieldTypeNode instanceof ObjectFieldTypeNode objectFieldTypeNode) {
             semanticErrors.add(createSemanticError(UNKNOWN_OBJECT, objectFieldTypeNode, ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameNode())));
         }
         if (nonArrayFieldTypeNode instanceof SetFieldTypeNode setFieldTypeNode) {
-            checkFieldType(semanticErrors, objects, setFieldTypeNode.getFieldTypeNode());
+            checkFieldType(compilerResults, semanticErrors, setFieldTypeNode.getFieldTypeNode());
         }
         if (nonArrayFieldTypeNode instanceof ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode) {
-            checkFieldType(semanticErrors, objects, valueOrErrorFieldTypeNode.getFieldTypeNode());
+            checkFieldType(compilerResults, semanticErrors, valueOrErrorFieldTypeNode.getFieldTypeNode());
         }
     }
 
-    private void checkArrayFieldType(final List<SemanticError> semanticErrors, final Objects objects, final ArrayFieldTypeNode arrayFieldTypeNode) {
-        checkNonArrayFieldType(semanticErrors, objects, arrayFieldTypeNode.getNonArrayFieldTypeNode());
+    private void checkArrayFieldType(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final ArrayFieldTypeNode arrayFieldTypeNode) {
+        checkNonArrayFieldType(compilerResults, semanticErrors, arrayFieldTypeNode.getNonArrayFieldTypeNode());
     }
 
     private List<GenericObjectFieldTypeNode> getGenericParametersFieldTypeNode(final FieldTypeNode fieldTypeNode) {
@@ -370,7 +342,7 @@ public class SemanticAnalyser {
         getGenericParametersNonArrayFieldTypeNode(foundGenericParameters, arrayFieldTypeNode.getNonArrayFieldTypeNode());
     }
 
-    private void checkGenericParameters(final List<SemanticError> semanticErrors, final Objects objects, final ProtoGenTypeNode typeNode, final NamespaceNameGenericParametersNode implementsTypeNamespaceNameGenericParametersNode) {
+    private void checkGenericParameters(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final ProtoGenTypeNode typeNode, final NamespaceNameGenericParametersNode implementsTypeNamespaceNameGenericParametersNode) {
 
         var numberOfGenericParametersOnImplementsListDefinition = implementsTypeNamespaceNameGenericParametersNode.getGenericParametersNode().isPresent()
             ? implementsTypeNamespaceNameGenericParametersNode
@@ -383,7 +355,7 @@ public class SemanticAnalyser {
                 .count()
             : 0;
 
-        var implementsTypeDefinition = objects.typeNodeMap.get(ParseTreeUtils.getNamespaceNameString(implementsTypeNamespaceNameGenericParametersNode.getNamespaceNameNode()));
+        var implementsTypeDefinition = compilerResults.getAllTypeNodeMap().get(ParseTreeUtils.getNamespaceNameString(implementsTypeNamespaceNameGenericParametersNode.getNamespaceNameNode()));
         var numberOfGenericParametersOnTypeDefinition = implementsTypeDefinition.getNamespaceNameGenericParametersWithBoundsNode().getGenericParametersWithBoundsNode().isPresent()
             ? implementsTypeDefinition.getNamespaceNameGenericParametersWithBoundsNode().getGenericParametersWithBoundsNode().get().getGenericParameterWithBoundsNodes().size()
             : 0;
@@ -397,8 +369,9 @@ public class SemanticAnalyser {
         }
     }
 
-    private void checkEnums(final List<SemanticError> semanticErrors, final Objects objects) {
-    objects.enumNodeMap
+    private void checkEnums(final CompilerResults compilerResults, final List<SemanticError> semanticErrors) {
+        compilerResults
+            .getEnumNodeMap()
             .values()
             .forEach(en -> checkEnum(semanticErrors, en));
     }
@@ -445,4 +418,5 @@ public class SemanticAnalyser {
                 }
             );
     }
+
 }

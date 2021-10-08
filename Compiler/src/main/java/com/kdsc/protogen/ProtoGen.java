@@ -3,9 +3,7 @@ package com.kdsc.protogen;
 import com.kdsc.protogen.antlr.Parser;
 import com.kdsc.protogen.codegeneration.CodeGenerate;
 import com.kdsc.protogen.codegeneration.CodeGeneratorContext;
-import com.kdsc.protogen.parsetree.ProtoGenKeyNode;
-import com.kdsc.protogen.parsetree.ProtoGenTypeNode;
-import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
+import com.kdsc.protogen.compilerresults.CompilerResults;
 import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
 import com.kdsc.protogen.semanticanalysis.SemanticAnalyser;
 import com.kdsc.protogen.transform.Transform;
@@ -185,17 +183,18 @@ public class ProtoGen {
         }
 
         var undetectableNodeReplacer = new UndetectableNodeReplacer();
-        var replacedFileNodes = undetectableNodeReplacer.replaceUndetectableNodes(parserResults.getFileNodes());
+        var compilerResults = new CompilerResults(undetectableNodeReplacer.replaceUndetectableNodes(parserResults));
 
         if(showReplacedParseTree) {
             System.out.println();
             System.out.println("//Replaced Parse Tree");
-            replacedFileNodes
+            compilerResults
+                .getFileNodes()
                 .forEach(pf -> System.out.println(pf.toFormattedString(1)));
         }
 
         var semanticAnalyser = new SemanticAnalyser();
-        var semanticErrors = semanticAnalyser.runSemanticAnalysis(replacedFileNodes);
+        var semanticErrors = semanticAnalyser.runSemanticAnalysis(compilerResults);
 
         if(semanticErrors.size() > 0) {
             System.out.println();
@@ -208,33 +207,9 @@ public class ProtoGen {
         //TODO:KMD Perhaps this should be static
         var transform = new Transform();
         var transformerContext = new TransformerContext(
-            baseNamespace,
-            replacedFileNodes
-                .stream()
-                .flatMap(fn -> fn.getProtoGenEnumNodes().stream())
-                .collect(Collectors.toMap(en -> ParseTreeUtils.getNamespaceNameString(en.getNamespaceNameNode()), en -> en)),
-            replacedFileNodes
-                .stream()
-                .flatMap(fn -> fn.getProtoGenTypeNodes().stream())
-                .filter(ProtoGenTypeNode::isInterface)
-                .collect(Collectors.toMap(tn -> ParseTreeUtils.getNamespaceNameString(tn.getNamespaceNameNode()), tn -> tn)),
-            replacedFileNodes
-                .stream()
-                .flatMap(fn -> fn.getProtoGenTypeNodes().stream())
-                .filter(tn -> !tn.isInterface())
-                .collect(Collectors.toMap(tn -> ParseTreeUtils.getNamespaceNameString(tn.getNamespaceNameNode()), tn -> tn)),
-            replacedFileNodes
-                .stream()
-                .flatMap(fn -> fn.getProtoGenKeyNodes().stream())
-                .filter(ProtoGenKeyNode::isInterface)
-                .collect(Collectors.toMap(kn -> ParseTreeUtils.getNamespaceNameString(kn.getNamespaceNameNode()), kn -> kn)),
-            replacedFileNodes
-                .stream()
-                .flatMap(fn -> fn.getProtoGenKeyNodes().stream())
-                .filter(kn -> !kn.isInterface())
-                .collect(Collectors.toMap(kn -> ParseTreeUtils.getNamespaceNameString(kn.getNamespaceNameNode()), kn -> kn))
+            baseNamespace
         );
-        var fileGenerationTree =  transform.transform(transformerContext, replacedFileNodes);
+        var fileGenerationTree =  transform.transform(compilerResults, transformerContext);
 
         if(showFileGenerationTree) {
             System.out.println();

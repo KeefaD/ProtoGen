@@ -1,5 +1,6 @@
 package com.kdsc.protogen.parsetreepostprocessing;
 
+import com.kdsc.protogen.antlr.ParserResults;
 import com.kdsc.protogen.parsetree.*;
 import com.kdsc.protogen.parsetree.fieldtypenodes.*;
 import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
@@ -14,9 +15,9 @@ import java.util.stream.Stream;
 
 public class UndetectableNodeReplacer {
 
-    public List<FileNode> replaceUndetectableNodes(final List<FileNode> fileNodes) {
+    public List<FileNode> replaceUndetectableNodes(final ParserResults parserResults) {
 
-        var topLevelObjects = fileNodes
+        var topLevelObjects = parserResults.getFileNodes()
             .stream()
             .flatMap(
                 fn -> Stream.of(
@@ -45,7 +46,7 @@ public class UndetectableNodeReplacer {
             .map(tlo -> ParseTreeUtils.getNamespaceNameString(tlo.getNamespaceNameNode()))
             .collect(Collectors.toSet());
 
-        return replaceUndetectableNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, fileNodes);
+        return replaceUndetectableNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, parserResults.getFileNodes());
     }
 
     private List<FileNode> replaceUndetectableNodes(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final List<FileNode> fileNodes) {

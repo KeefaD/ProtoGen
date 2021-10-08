@@ -11,6 +11,9 @@ message Date {
 message DateTime {
 }
 
+message LocalDate {
+}
+
 message LocalDateTime {
 }
 
@@ -27,4 +30,10 @@ message Array {
 }
 
 message Bytes {
+}
+
+message TypeWrapper {
+    string BaseType = 1;
+    string ActualType = 2;
+    bytes SerialisedType = 3;
 }

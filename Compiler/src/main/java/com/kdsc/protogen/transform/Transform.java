@@ -1,5 +1,6 @@
 package com.kdsc.protogen.transform;
 
+import com.kdsc.protogen.compilerresults.CompilerResults;
 import com.kdsc.protogen.filegenerationtree.FileNode;
 import com.kdsc.protogen.transform.proto.Transformer;
 
@@ -10,11 +11,14 @@ import java.util.stream.Stream;
 public class Transform implements com.kdsc.protogen.transform.Transformer {
 
     @Override
-    public List<FileNode> transform(TransformerContext transformerContext, List<com.kdsc.protogen.parsetree.FileNode> fileNodes) {
+    public List<FileNode> transform(final CompilerResults compilerResults, final TransformerContext transformerContext) {
+
         var protoTransformer = new Transformer();
-        var protoFiles = protoTransformer.transform(transformerContext, fileNodes);
+        var protoFiles = protoTransformer.transform(compilerResults, transformerContext);
+
         var javaTransformer = new com.kdsc.protogen.transform.java.Transformer();
-        var javaFiles = javaTransformer.transform(transformerContext, fileNodes);
+        var javaFiles = javaTransformer.transform(compilerResults, transformerContext);
+
         return Stream.concat(
             protoFiles.stream(),
             javaFiles.stream()

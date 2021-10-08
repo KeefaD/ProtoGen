@@ -9,15 +9,18 @@ import org.antlr.v4.runtime.CommonTokenStream;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class Parser {
 
     public ParserResults parse(final List<String> pathsToParse) {
-        var parserResults = new ParserResults();
-        var fileNodes = pathsToParse
+
+        var parserErrors = new ArrayList<ParserError>();
+        var fileNodes = new ArrayList<FileNode>();
+
+        pathsToParse
             .stream()
             .map(
                 p -> {
@@ -44,7 +47,7 @@ public class Parser {
                     parser.addErrorListener(errorListener);
                     var parseTree = parser.file();
                     if(errorListener.errorOccurred()) {
-                        parserResults.getParserErrors().addAll(errorListener.getErrors());
+                        parserErrors.addAll(errorListener.getErrors());
                         return Optional.<FileNode>empty();
                     }
 
@@ -54,10 +57,9 @@ public class Parser {
             )
             .filter(Optional::isPresent)
             .map(Optional::get)
-            .collect(Collectors.toList());
+            .forEach(fileNodes::add);
 
-        parserResults.getFileNodes().addAll(fileNodes);
-        return parserResults;
+        return new ParserResults(parserErrors, fileNodes);
     }
 
 }

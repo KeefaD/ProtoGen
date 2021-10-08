@@ -2,24 +2,28 @@ package com.kdsc.protogen.antlr;
 
 import com.kdsc.protogen.parsetree.FileNode;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class ParserResults {
+public record ParserResults(
+    List<ParserError> parserErrors,
+    List<FileNode> fileNodes
+) {
 
-    private final List<ParserError> parserErrors = new ArrayList<>();
-    private final List<FileNode> fileNodes = new ArrayList<>();
+    public ParserResults {
+        Objects.requireNonNull(parserErrors);
+        Objects.requireNonNull(fileNodes);
+    }
 
     public List<ParserError> getParserErrors() {
         return parserErrors;
     }
 
-    public List<FileNode> getFileNodes() {
-        return fileNodes;
+    public boolean hasParserErrorOccurred() {
+        return !parserErrors.isEmpty();
     }
 
-    public boolean hasParserErrorOccurred() {
-        return parserErrors.size() != 0;
+    public List<FileNode> getFileNodes() {
+        return fileNodes;
     }
 
 }

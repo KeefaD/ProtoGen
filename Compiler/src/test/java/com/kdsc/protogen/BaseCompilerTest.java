@@ -1,15 +1,14 @@
 package com.kdsc.protogen;
 
 import com.kdsc.protogen.antlr.ParserError;
+import com.kdsc.protogen.antlr.ParserResults;
 import com.kdsc.protogen.antlr.generated.ProtoGenLexer;
 import com.kdsc.protogen.antlr.generated.ProtoGenParser;
 import com.kdsc.protogen.antlr.visitor.ProtoGenVisitor;
 import com.kdsc.protogen.antlr.ParserErrorListener;
+import com.kdsc.protogen.compilerresults.CompilerResults;
 import com.kdsc.protogen.parsetree.FileNode;
 import com.kdsc.protogen.parsetree.ParseTreeFormattedStringOptions;
-import com.kdsc.protogen.parsetree.ProtoGenKeyNode;
-import com.kdsc.protogen.parsetree.ProtoGenTypeNode;
-import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
 import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
 import com.kdsc.protogen.semanticanalysis.SemanticAnalyser;
 import com.kdsc.protogen.semanticanalysis.SemanticError;
@@ -23,8 +22,8 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -38,7 +37,6 @@ public abstract class BaseCompilerTest {
         System.out.println("//Test Program");
         System.out.println(testProgram);
 
-        //TODO:KMD Not keen on having this source file name in two places
         var errorListener = new ParserErrorListener(FAKE_SOURCE_FILE_NAME_AND_PATH);
 
         var parseTree = compileTestProgramAndReturnParseTree(errorListener, testProgram);
@@ -59,7 +57,7 @@ public abstract class BaseCompilerTest {
         return fileNode;
     }
 
-protected List<ParserError> runCompilerToParserReturnParserErrors(String testProgram) {
+    protected List<ParserError> runCompilerToParserReturnParserErrors(String testProgram) {
 
         System.out.println("//Test Program");
         System.out.println(testProgram);
@@ -79,68 +77,57 @@ protected List<ParserError> runCompilerToParserReturnParserErrors(String testPro
     }
 
     protected FileNode runCompilerToParseTreePostProcessReturnFileNode(String testProgram) {
+
         var fileNode = runCompilerToParserCheckNoErrors(testProgram);
+
+        var parserResult = new ParserResults(Collections.emptyList(), List.of(fileNode));
+
         var undetectableNodeReplacer = new UndetectableNodeReplacer();
-        var returnFileNode = undetectableNodeReplacer.replaceUndetectableNodes(List.of(fileNode)).get(0);
+        var returnFileNode = undetectableNodeReplacer.replaceUndetectableNodes(parserResult).get(0);
+
         System.out.println("//Replaced Parse Tree");
         System.out.println(returnFileNode.toFormattedString(1, ParseTreeFormattedStringOptions.hideBaseParseTreeNode));
+
         return returnFileNode;
     }
 
     protected List<SemanticError> runCompilerToSemanticAnalyserReturnSemanticErrors(String testProgram) {
+
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+
+        var compilerResults = new CompilerResults(List.of(fileNode));
         var semanticAnalyser = new SemanticAnalyser();
-        var semanticErrors = semanticAnalyser.runSemanticAnalysis(List.of(fileNode));
+        var semanticErrors = semanticAnalyser.runSemanticAnalysis(compilerResults);
+
         System.out.println("//Semantic Errors");
         if(semanticErrors.size() == 0) {
             System.out.println("None".indent(4));
         }
-        //TODO:KMD Why are we getting extra newlines here
+
         semanticErrors
-            .forEach(se -> System.out.println(se.toString().indent(4)));
+            .forEach(se -> System.out.print(se.toString().indent(4)));
+
         return semanticErrors;
     }
 
     protected List<com.kdsc.protogen.filegenerationtree.FileNode> runCompilerToTransformReturnProtoFileNodes(String testProgram) {
 
-        //TODO:KMD Following method is poorly named
         var fileNode = compileTestProgramCheckNoParserOrSemanticErrors(testProgram);
+
+        var compilerResults = new CompilerResults(List.of(fileNode));
         var transformer = new Transformer();
 
-        //TODO:KMD This is all a bit of a mess
         var transformerContext = new TransformerContext(
-            BASE_NAMESPACE,
-            fileNode
-                .getProtoGenEnumNodes()
-                .stream()
-                .collect(Collectors.toMap(en -> ParseTreeUtils.getNamespaceNameString(en.getNamespaceNameNode()), en -> en)),
-            fileNode
-                .getProtoGenTypeNodes()
-                .stream()
-                .filter(ProtoGenTypeNode::isInterface)
-                .collect(Collectors.toMap(tn -> ParseTreeUtils.getNamespaceNameString(tn.getNamespaceNameNode()), tn -> tn)),
-            fileNode
-                .getProtoGenTypeNodes()
-                .stream()
-                .filter(tn -> !tn.isInterface())
-                .collect(Collectors.toMap(tn -> ParseTreeUtils.getNamespaceNameString(tn.getNamespaceNameNode()), tn -> tn)),
-            fileNode
-                .getProtoGenKeyNodes()
-                .stream()
-                .filter(ProtoGenKeyNode::isInterface)
-                .collect(Collectors.toMap(kn -> ParseTreeUtils.getNamespaceNameString(kn.getNamespaceNameNode()), kn -> kn)),
-            fileNode
-                .getProtoGenKeyNodes()
-                .stream()
-                .filter(kn -> !kn.isInterface())
-                .collect(Collectors.toMap(kn -> ParseTreeUtils.getNamespaceNameString(kn.getNamespaceNameNode()), kn -> kn))
+            BASE_NAMESPACE
         );
-        var fileGenerationTreeList =  transformer.transform(transformerContext, List.of(fileNode));
+        var fileGenerationTreeList =  transformer.transform(compilerResults, transformerContext);
+
         System.out.println("//File Generation Tree");
         fileGenerationTreeList
             .forEach(
                 fgt -> System.out.println(fgt.toFormattedString(1))
             );
+
         return fileGenerationTreeList;
     }
 
@@ -161,19 +148,24 @@ protected List<ParserError> runCompilerToParserReturnParserErrors(String testPro
 
         parser.removeErrorListeners();
         parser.addErrorListener(errorListener);
+
         return parser.file();
     }
 
-    //TODO:KMD Sort out all this list of stuff it seems a bit inconsistent
     private FileNode compileTestProgramCheckNoParserOrSemanticErrors(String testProgram) {
+
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+
+        var compilerResults = new CompilerResults(List.of(fileNode));
         var semanticAnalyser = new SemanticAnalyser();
-        var semanticErrors = semanticAnalyser.runSemanticAnalysis(List.of(fileNode));
+        var semanticErrors = semanticAnalyser.runSemanticAnalysis(compilerResults);
+
         if(semanticErrors.size() != 0) {
             semanticErrors
-                    .forEach(System.out::println);
+                .forEach(System.out::println);
             fail("Unexpected semantic errors");
         }
+
         return fileNode;
     }
 

@@ -1,5 +1,6 @@
 package com.kdsc.protogen.transform.shared;
 
+import com.kdsc.protogen.compilerresults.CompilerResults;
 import com.kdsc.protogen.filegenerationtree.shared.FieldNode;
 import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.*;
 import com.kdsc.protogen.parsetree.ImplementsListNode;
@@ -23,7 +24,7 @@ public class FieldTransformer {
         protogenTypes.add(com.kdsc.protogen.parsetree.fieldtypenodes.LocalDateTimeFieldTypeNode.class);
     }
 
-    public List<FieldNode> transformFieldsNodes(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.ProtoGenTypeNode typeNode, final boolean protoMode, final boolean interfaceMode) {
+    public List<FieldNode> transformFieldsNodes(final CompilerResults compilerResults, final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.ProtoGenTypeNode typeNode, final boolean protoMode, final boolean interfaceMode) {
         List<com.kdsc.protogen.parsetree.FieldNode> fieldNodes = typeNode.getFieldsNode().isPresent()
             ? new ArrayList<>(typeNode.getFieldsNode().get().getFieldNodes())
             : Collections.emptyList();
@@ -37,7 +38,7 @@ public class FieldTransformer {
                     .flatMap(
                         iln -> iln.getNamespaceNameGenericParametersNodes().stream()
                     )
-                    .filter(nngp ->transformerContext.getTypeInterfaces().containsKey(ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode())))
+                    .filter(nngp ->compilerResults.getTypeInterfaceNodeMap().containsKey(ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode())))
                     .map(
                         nngp ->
                         {
@@ -58,29 +59,29 @@ public class FieldTransformer {
 
             var transformedFieldsNode = new ArrayList<FieldNode>();
             transformedFieldsNode.addAll(interfaceFieldsNode);
-            transformedFieldsNode.addAll(transformFieldsNodes(transformerContext, fileContext, fieldNodes));
+            transformedFieldsNode.addAll(transformFieldsNodes(compilerResults, transformerContext, fileContext, fieldNodes));
             return transformedFieldsNode;
         } else {
             if(!interfaceMode) {
-                collectAllFieldNodes(transformerContext, fieldNodes, typeNode.getImplementsListNode());
+                collectAllFieldNodes(compilerResults, transformerContext, fieldNodes, typeNode.getImplementsListNode());
             }
-            return transformFieldsNodes(transformerContext, fileContext, fieldNodes);
+            return transformFieldsNodes(compilerResults, transformerContext, fileContext, fieldNodes);
         }
     }
 
     //TODO:KMD This is an utter hack, just making it work for now
-    public void collectAllFieldNodes(final TransformerContext transformerContext, final List<com.kdsc.protogen.parsetree.FieldNode> fieldNodes, final Optional<ImplementsListNode> implementsListNode) {
+    public void collectAllFieldNodes(final CompilerResults compilerResults, final TransformerContext transformerContext, final List<com.kdsc.protogen.parsetree.FieldNode> fieldNodes, final Optional<ImplementsListNode> implementsListNode) {
         implementsListNode.ifPresent(
             listNode -> listNode
                 .getNamespaceNameGenericParametersNodes()
                 .forEach(
-                    nngp -> collectAllFieldNodes(transformerContext, fieldNodes, nngp)
+                    nngp -> collectAllFieldNodes(compilerResults, transformerContext, fieldNodes, nngp)
                 )
         );
     }
 
-    public void collectAllFieldNodes(final TransformerContext transformerContext, final List<com.kdsc.protogen.parsetree.FieldNode> fieldNodes, final NamespaceNameGenericParametersNode namespaceNameGenericParametersNode) {
-        var typeInterface = transformerContext.getTypeInterfaces().get(ParseTreeUtils.getNamespaceNameString(namespaceNameGenericParametersNode.getNamespaceNameNode()));
+    public void collectAllFieldNodes(final CompilerResults compilerResults, final TransformerContext transformerContext, final List<com.kdsc.protogen.parsetree.FieldNode> fieldNodes, final NamespaceNameGenericParametersNode namespaceNameGenericParametersNode) {
+        var typeInterface = compilerResults.getTypeInterfaceNodeMap().get(ParseTreeUtils.getNamespaceNameString(namespaceNameGenericParametersNode.getNamespaceNameNode()));
         if(typeInterface.getFieldsNode().isPresent()) {
             fieldNodes.addAll(typeInterface.getFieldsNode().get().getFieldNodes());
         }
@@ -88,57 +89,48 @@ public class FieldTransformer {
             .getImplementsListNode()
             .stream()
             .flatMap(iln -> iln.getNamespaceNameGenericParametersNodes().stream())
-            .forEach(nngp -> collectAllFieldNodes(transformerContext, fieldNodes, nngp));
+            .forEach(nngp -> collectAllFieldNodes(compilerResults, transformerContext, fieldNodes, nngp));
     }
 
-    private List<FieldNode> transformFieldsNodes(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.FieldsNode fieldsNodes) {
-
-        return fieldsNodes
-            .getFieldNodes()
-            .stream()
-            .map(fn -> transformFieldNode(transformerContext, fileContext, fn))
-            .collect(Collectors.toList());
-    }
-
-    private List<FieldNode> transformFieldsNodes(final TransformerContext transformerContext, final FileContext fileContext, final List<com.kdsc.protogen.parsetree.FieldNode> fieldNodes) {
+    private List<FieldNode> transformFieldsNodes(final CompilerResults compilerResults, final TransformerContext transformerContext, final FileContext fileContext, final List<com.kdsc.protogen.parsetree.FieldNode> fieldNodes) {
         return fieldNodes
             .stream()
-            .map(fn -> transformFieldNode(transformerContext, fileContext, fn))
+            .map(fn -> transformFieldNode(compilerResults, transformerContext, fileContext, fn))
             .collect(Collectors.toList());
     }
 
-    private FieldNode transformFieldNode(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.FieldNode fieldNode) {
+    private FieldNode transformFieldNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.FieldNode fieldNode) {
         return new FieldNode(
             fieldNode.getFieldNameNode().getFieldName(),
-            transformFieldTypeNode(transformerContext, fileContext, fieldNode.getFieldTypeNode())
+            transformFieldTypeNode(compilerResults, transformerContext, fileContext, fieldNode.getFieldTypeNode())
         );
     }
 
-    private FieldTypeNode transformFieldTypeNode(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.fieldtypenodes.FieldTypeNode fieldTypeNode) {
+    private FieldTypeNode transformFieldTypeNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.fieldtypenodes.FieldTypeNode fieldTypeNode) {
 
         if(fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
-            return transformArrayFieldTypeNode(transformerContext, fileContext, fieldTypeNode.getArrayFieldTypeNode().get(), fieldTypeNode.isOptional());
+            return transformArrayFieldTypeNode(compilerResults, transformerContext, fileContext, fieldTypeNode.getArrayFieldTypeNode().get(), fieldTypeNode.isOptional());
         } else if (fieldTypeNode.getNonArrayFieldTypeNode().isPresent()) {
-            return transformNonArrayFieldTypeNode(transformerContext, fileContext, fieldTypeNode.getNonArrayFieldTypeNode().get(), fieldTypeNode.isOptional());
+            return transformNonArrayFieldTypeNode(compilerResults, transformerContext, fileContext, fieldTypeNode.getNonArrayFieldTypeNode().get(), fieldTypeNode.isOptional());
         }
 
         throw new RuntimeException("This should never happen");
     }
 
     //TODO:KMD This is optional is a hack
-    private FieldTypeNode transformArrayFieldTypeNode(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.fieldtypenodes.ArrayFieldTypeNode arrayFieldTypeNode, final boolean isOptional) {
+    private FieldTypeNode transformArrayFieldTypeNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.fieldtypenodes.ArrayFieldTypeNode arrayFieldTypeNode, final boolean isOptional) {
         if(isOptional) {
             fileContext.addJavaImport("java.util.Optional");
         }
         return new ArrayFieldTypeNode(
             isOptional,
             //TODO:KMD Got a problem here with optionals in arrays
-            transformNonArrayFieldTypeNode(transformerContext, fileContext, arrayFieldTypeNode.getNonArrayFieldTypeNode(), false)
+            transformNonArrayFieldTypeNode(compilerResults, transformerContext, fileContext, arrayFieldTypeNode.getNonArrayFieldTypeNode(), false)
         );
     }
 
     //TODO:KMD This is optional is a hack
-    private FieldTypeNode transformNonArrayFieldTypeNode(final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.fieldtypenodes.NonArrayFieldTypeNode fieldTypeNode, final boolean isOptional) {
+    private FieldTypeNode transformNonArrayFieldTypeNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetree.fieldtypenodes.NonArrayFieldTypeNode fieldTypeNode, final boolean isOptional) {
         if(isOptional) {
             fileContext.addJavaImport("java.util.Optional");
         }
@@ -168,16 +160,16 @@ public class FieldTransformer {
             );
             case com.kdsc.protogen.parsetree.fieldtypenodes.ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode -> new ValueOrErrorFieldTypeNode(
                 isOptional,
-                transformFieldTypeNode(transformerContext, fileContext, valueOrErrorFieldTypeNode.getFieldTypeNode())
+                transformFieldTypeNode(compilerResults, transformerContext, fileContext, valueOrErrorFieldTypeNode.getFieldTypeNode())
             );
             case com.kdsc.protogen.parsetree.fieldtypenodes.SetFieldTypeNode setFieldTypeNode -> new SetFieldTypeNode(
                 isOptional,
-                transformFieldTypeNode(transformerContext, fileContext, setFieldTypeNode.getFieldTypeNode())
+                transformFieldTypeNode(compilerResults, transformerContext, fileContext, setFieldTypeNode.getFieldTypeNode())
             );
             case com.kdsc.protogen.parsetree.fieldtypenodes.MapFieldTypeNode mapFieldTypeNode -> new MapFieldTypeNode(
                 isOptional,
-                transformFieldTypeNode(transformerContext, fileContext, mapFieldTypeNode.getKeyFieldTypeNode()),
-                transformFieldTypeNode(transformerContext, fileContext, mapFieldTypeNode.getValueFieldTypeNode())
+                transformFieldTypeNode(compilerResults, transformerContext, fileContext, mapFieldTypeNode.getKeyFieldTypeNode()),
+                transformFieldTypeNode(compilerResults, transformerContext, fileContext, mapFieldTypeNode.getValueFieldTypeNode())
             );
             default -> throw new IllegalStateException("Unexpected value: " + fieldTypeNode);
         };

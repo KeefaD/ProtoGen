@@ -1,5 +1,6 @@
 package com.kdsc.protogen.transform.java;
 
+import com.kdsc.protogen.compilerresults.CompilerResults;
 import com.kdsc.protogen.filegenerationtree.FileNode;
 import com.kdsc.protogen.filegenerationtree.java.*;
 import com.kdsc.protogen.parsetree.*;
@@ -19,34 +20,35 @@ import java.util.stream.Collectors;
 public class Transformer implements com.kdsc.protogen.transform.Transformer {
 
     @Override
-    public List<FileNode> transform(TransformerContext transformerContext, List<com.kdsc.protogen.parsetree.FileNode> fileNodes) {
-        return fileNodes
+    public List<FileNode> transform(final CompilerResults compilerResults, TransformerContext transformerContext) {
+        return compilerResults
+            .getFileNodes()
             .stream()
-            .flatMap(fn -> transformFileNode(transformerContext, fn).stream())
+            .flatMap(fn -> transformFileNode(compilerResults, transformerContext, fn).stream())
             .collect(Collectors.toList());
     }
 
-    private List<FileNode> transformFileNode(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.FileNode fileNode) {
+    private List<FileNode> transformFileNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.FileNode fileNode) {
         return Streams.concat(
             fileNode
                 .getProtoGenEnumNodes()
                 .stream()
-                .map(en -> transformEnumNode(transformerContext, en)),
+                .map(en -> transformEnumNode(compilerResults, transformerContext, en)),
             fileNode
                 .getProtoGenTypeNodes()
                 .stream()
-                .map(en -> transformTypeNode(transformerContext, en))
+                .map(en -> transformTypeNode(compilerResults, transformerContext, en))
         ).collect(Collectors.toList());
     }
 
-    private FileNode transformEnumNode(final TransformerContext transformerContext, final ProtoGenEnumNode enumNode) {
+    private FileNode transformEnumNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final ProtoGenEnumNode enumNode) {
         if(enumNode.getEnumCasesNode().isPresent()) {
             return new EnumFileNode(
                 enumNode.getNamespaceNameNode().getNameNode().getName() + TransformerContext.javaFileExtension,
                 TransformUtils.convertNamespaceNameNodeToPath(enumNode.getNamespaceNameNode()),
                 TransformUtils.convertNamespaceNameNodeToNamespace(enumNode.getNamespaceNameNode()),
                 enumNode.getNamespaceNameNode().getNameNode().getName(),
-                transformEnumCaseNodes(transformerContext, enumNode.getEnumCasesNode().get())
+                transformEnumCaseNodes(compilerResults, transformerContext, enumNode.getEnumCasesNode().get())
             );
         }
         return new EnumFileNode(
@@ -58,13 +60,13 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
         );
     }
 
-    private FileNode transformTypeNode(final TransformerContext transformerContext, final ProtoGenTypeNode typeNode) {
+    private FileNode transformTypeNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final ProtoGenTypeNode typeNode) {
         return typeNode.isInterface()
-            ? transformTypeInterfaceNode(transformerContext, typeNode)
-            : transformTypeNonInterfaceNode(transformerContext, typeNode);
+            ? transformTypeInterfaceNode(compilerResults, transformerContext, typeNode)
+            : transformTypeNonInterfaceNode(compilerResults, transformerContext, typeNode);
     }
 
-    private FileNode transformTypeNonInterfaceNode(final TransformerContext transformerContext, final ProtoGenTypeNode typeNode) {
+    private FileNode transformTypeNonInterfaceNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final ProtoGenTypeNode typeNode) {
 
         var fileContext = new FileContext();
 
@@ -73,9 +75,9 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
 
         var fieldTransformer = new FieldTransformer();
 
-        var fieldNodes = fieldTransformer.transformFieldsNodes(transformerContext, fileContext, typeNode, false, false);
+        var fieldNodes = fieldTransformer.transformFieldsNodes(compilerResults, transformerContext, fileContext, typeNode, false, false);
 
-        var implementsNodes = transformImplementsListNode(transformerContext, fileContext, typeNode.getImplementsListNode());
+        var implementsNodes = transformImplementsListNode(compilerResults, transformerContext, fileContext, typeNode.getImplementsListNode());
 
         if(typeNode.getFieldsNode().isPresent()) {
             return new TypeFileNode(
@@ -99,21 +101,21 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
         );
     }
 
-    private List<ImplementsNode> transformImplementsListNode(final TransformerContext transformerContext, final FileContext fileContext, final Optional<ImplementsListNode> implementsListNode) {
+    private List<ImplementsNode> transformImplementsListNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final FileContext fileContext, final Optional<ImplementsListNode> implementsListNode) {
         return implementsListNode.isEmpty()
             ? Collections.emptyList()
-            : transformImplementsListNode(transformerContext, fileContext, implementsListNode.get());
+            : transformImplementsListNode(compilerResults, transformerContext, fileContext, implementsListNode.get());
     }
 
-    private List<ImplementsNode> transformImplementsListNode(final TransformerContext transformerContext, final FileContext fileContext, final ImplementsListNode implementsListNode) {
+    private List<ImplementsNode> transformImplementsListNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final FileContext fileContext, final ImplementsListNode implementsListNode) {
         return implementsListNode
             .getNamespaceNameGenericParametersNodes()
             .stream()
-            .map(nngp -> transformImplementsListNode(transformerContext, fileContext, nngp))
+            .map(nngp -> transformImplementsListNode(compilerResults, transformerContext, fileContext, nngp))
             .collect(Collectors.toList());
     }
 
-    private ImplementsNode transformImplementsListNode(final TransformerContext transformerContext, final FileContext fileContext, final NamespaceNameGenericParametersNode namespaceNameGenericParametersNode) {
+    private ImplementsNode transformImplementsListNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final FileContext fileContext, final NamespaceNameGenericParametersNode namespaceNameGenericParametersNode) {
 
         //TODO:KMD Makes sure you don't put your own package in this set
         //Don't need this because we are going to leave everything fully qualified for now
@@ -125,7 +127,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
         );
     }
 
-    private FileNode transformTypeInterfaceNode(final TransformerContext transformerContext, final ProtoGenTypeNode typeNode) {
+    private FileNode transformTypeInterfaceNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final ProtoGenTypeNode typeNode) {
 
         var fileContext = new FileContext();
 
@@ -134,9 +136,9 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
 
         var fieldTransformer = new FieldTransformer();
 
-        var fieldNodes = fieldTransformer.transformFieldsNodes(transformerContext, fileContext, typeNode, false, true);
+        var fieldNodes = fieldTransformer.transformFieldsNodes(compilerResults, transformerContext, fileContext, typeNode, false, true);
 
-        var implementsNodes = transformImplementsListNode(transformerContext, fileContext, typeNode.getImplementsListNode());
+        var implementsNodes = transformImplementsListNode(compilerResults, transformerContext, fileContext, typeNode.getImplementsListNode());
 
         if(typeNode.getFieldsNode().isPresent()) {
             return new TypeInterfaceFileNode(
@@ -160,15 +162,15 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
         );
     }
 
-    private List<EnumCaseNode> transformEnumCaseNodes(final TransformerContext transformerContext, final EnumCasesNode enumCasesNode) {
+    private List<EnumCaseNode> transformEnumCaseNodes(final CompilerResults compilerResults, final TransformerContext transformerContext, final EnumCasesNode enumCasesNode) {
         return enumCasesNode
             .getEnumNameNodes()
             .stream()
-            .map(enn -> transformEnumCaseNode(transformerContext, enn))
+            .map(enn -> transformEnumCaseNode(compilerResults, transformerContext, enn))
             .collect(Collectors.toList());
     }
 
-    private EnumCaseNode transformEnumCaseNode(final TransformerContext transformerContext, final EnumNameNode enumNameNode) {
+    private EnumCaseNode transformEnumCaseNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final EnumNameNode enumNameNode) {
         return new EnumCaseNode(
             enumNameNode.getEnumName()
         );
