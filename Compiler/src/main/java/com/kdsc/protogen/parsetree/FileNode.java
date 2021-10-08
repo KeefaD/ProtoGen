@@ -48,9 +48,9 @@ public class FileNode extends BaseParseTreeNode {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, FileNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), BaseParseTreeNode.class);
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, protoGenTypeNodes);
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, protoGenKeyNodes);
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, protoGenEnumNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, protoGenTypeNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, protoGenKeyNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, protoGenEnumNodes);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 

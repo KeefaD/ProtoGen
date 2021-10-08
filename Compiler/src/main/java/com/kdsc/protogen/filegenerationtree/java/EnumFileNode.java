@@ -47,7 +47,7 @@ public class EnumFileNode extends JavaFileNode {
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Namespace", namespace);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Name", namespace);
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, enumCaseNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, enumCaseNodes);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 

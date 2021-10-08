@@ -54,7 +54,6 @@ public class CompilerResults {
             fileNodes
                 .stream()
                 .flatMap(fn -> fn.getProtoGenKeyNodes().stream())
-                .filter(kn -> !kn.isInterface())
                 .collect(Collectors.toMap(kn -> ParseTreeUtils.getNamespaceNameString(kn.getNamespaceNameNode()), kn -> kn, (kn1, kn2) -> kn2))
         );
 

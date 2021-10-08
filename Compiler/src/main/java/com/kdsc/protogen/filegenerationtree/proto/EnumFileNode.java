@@ -48,7 +48,7 @@ public class EnumFileNode extends ProtoFileNode {
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "PackageName", packageName);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Name", enumName);
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, enumCaseNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, enumCaseNodes);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 

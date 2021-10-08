@@ -32,7 +32,7 @@ public class EnumCasesNode extends BaseParseTreeNode {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, EnumCasesNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), BaseParseTreeNode.class);
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, enumNameNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, enumNameNodes);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 

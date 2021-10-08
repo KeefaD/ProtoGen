@@ -32,7 +32,7 @@ public class EnumVersionsNode extends BaseParseTreeNode {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, EnumVersionsNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), BaseParseTreeNode.class);
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, enumVersionNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, enumVersionNodes);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 

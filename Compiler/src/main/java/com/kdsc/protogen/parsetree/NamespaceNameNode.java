@@ -41,7 +41,7 @@ public class NamespaceNameNode extends BaseParseTreeNode {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, NamespaceNameNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), BaseParseTreeNode.class);
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, namespaceNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNodes);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, nameNode);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }

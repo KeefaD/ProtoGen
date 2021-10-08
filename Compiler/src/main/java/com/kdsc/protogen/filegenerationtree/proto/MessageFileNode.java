@@ -58,7 +58,7 @@ public class MessageFileNode extends ProtoFileNode {
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions));
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "PackageName", packageName);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Name", name);
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, fieldNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldNodes);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 

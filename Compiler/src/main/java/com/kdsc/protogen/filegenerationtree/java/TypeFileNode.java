@@ -73,8 +73,8 @@ public class TypeFileNode extends JavaFileNode {
         stringBuilder.append(oneIndent() + "ImportStatements\n");
 //        fieldToFormattedStringField(stringBuilder, importStatements);
         importStatements.forEach(is -> stringBuilder.append(is.indent(INDENTATION_SPACE_COUNT)));
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, implementsNodes);
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, fieldNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, implementsNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldNodes);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 

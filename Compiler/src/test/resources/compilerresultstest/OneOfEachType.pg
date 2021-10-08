@@ -1,0 +1,11 @@
+type compilerresultstest.Type
+
+type interface compilerresultstest.TypeInterface
+
+key compilerresultstest.Key
+
+key interface compilerresultstest.KeyInterface
+
+enum compilerresultstest.Enum {
+    enumCase
+}

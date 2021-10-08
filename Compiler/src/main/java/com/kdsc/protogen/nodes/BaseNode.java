@@ -52,7 +52,8 @@ public abstract class BaseNode {
     }
 
     public void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final String fieldName, final BaseNode baseNode, final int indentationLevel) {
-        stringBuilder.append(oneIndent() + fieldName + "\n");
+        var outputString = (fieldName + "\n").indent(indentationLevel * INDENTATION_SPACE_COUNT);
+        stringBuilder.append(outputString);
         stringBuilder.append(baseNode.toFormattedString(indentationLevel + 1, formattedStringOptions));
     }
 
@@ -72,7 +73,7 @@ public abstract class BaseNode {
         baseNode.ifPresent(bn -> stringBuilder.append(bn.toFormattedString(indentationLevel, formattedStringOptions)));
     }
 
-    public <T extends BaseNode> void fieldToFormattedStringField(final FormattedStringOptions formattedStringOptions, final StringBuilder stringBuilder, final List<T> baseNodes) {
+    public <T extends BaseNode> void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final List<T> baseNodes) {
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, baseNodes, 1);
     }
 
@@ -80,6 +81,7 @@ public abstract class BaseNode {
         baseNodes.forEach(bn -> stringBuilder.append(bn.toFormattedString(indentationLevel, formattedStringOptions)));
     }
 
+    //TODO:KMD This seems a bit inconsistent
     public String indentString(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final int indentationLevel) {
         return stringBuilder.toString().indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }

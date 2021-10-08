@@ -31,7 +31,7 @@ public class ImplementsListNode extends BaseParseTreeNode {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, ImplementsListNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), BaseParseTreeNode.class);
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, namespaceNameGenericParametersNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNameGenericParametersNodes);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 

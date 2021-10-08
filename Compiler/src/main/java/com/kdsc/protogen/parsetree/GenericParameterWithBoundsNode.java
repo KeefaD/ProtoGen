@@ -42,7 +42,7 @@ public class GenericParameterWithBoundsNode extends BaseParseTreeNode {
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, GenericParameterWithBoundsNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Identifier", identifier);
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, namespaceNameGenericParametersNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNameGenericParametersNodes);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 

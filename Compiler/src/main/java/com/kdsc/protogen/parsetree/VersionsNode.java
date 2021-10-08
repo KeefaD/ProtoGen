@@ -31,7 +31,7 @@ public class VersionsNode extends BaseParseTreeNode {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, VersionsNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), BaseParseTreeNode.class);
-        fieldToFormattedStringField(formattedStringOptions, stringBuilder, versionNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, versionNodes);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
