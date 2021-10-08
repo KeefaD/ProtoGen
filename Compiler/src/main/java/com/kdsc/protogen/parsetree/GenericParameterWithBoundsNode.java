@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class GenericParameterWithBoundsNode extends BaseParseTreeNode {
+public final class GenericParameterWithBoundsNode extends BaseParseTreeNode {
 
     private final String identifier;
     private final List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes;

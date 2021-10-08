@@ -4,7 +4,7 @@ import com.kdsc.protogen.nodes.FormattedStringOptions;
 
 import java.util.Objects;
 
-public class ValueOrErrorFieldTypeNode extends NonArrayFieldTypeNode {
+public final class ValueOrErrorFieldTypeNode extends NonArrayFieldTypeNode {
 
     private final FieldTypeNode fieldTypeNode;
 

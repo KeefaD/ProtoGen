@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class ImplementsListNode extends BaseParseTreeNode {
+public final class ImplementsListNode extends BaseParseTreeNode {
 
     private final List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes;
 

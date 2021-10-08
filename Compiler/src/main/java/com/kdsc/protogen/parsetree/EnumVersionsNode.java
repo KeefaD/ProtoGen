@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class EnumVersionsNode extends BaseParseTreeNode {
+public final class EnumVersionsNode extends BaseParseTreeNode {
 
     private final List<EnumVersionNode> enumVersionNodes;
 

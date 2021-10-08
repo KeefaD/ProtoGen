@@ -6,7 +6,7 @@ import com.kdsc.protogen.parsetree.utils.clone.Optionals;
 import java.util.Objects;
 import java.util.Optional;
 
-public class VersionNode extends BaseParseTreeNode {
+public final class VersionNode extends BaseParseTreeNode {
 
     private final VersionNumberNode versionNumberNode;
     private final Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode;

@@ -7,7 +7,7 @@ import com.kdsc.protogen.parsetree.*;
 import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
 import com.kdsc.protogen.transform.FileContext;
 import com.kdsc.protogen.transform.TransformerContext;
-import com.kdsc.protogen.transform.shared.FieldTransformer;
+import com.kdsc.protogen.transform.shared.FieldsTransformer;
 import com.kdsc.protogen.transform.utils.TransformUtils;
 import com.kdsc.protogen.utils.Streams;
 
@@ -73,7 +73,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
         //TODO:KMD Obviously we need to do this all nicely
         fileContext.addJavaImport("com.kdsc.protogen.runtime.ProtoGenType");
 
-        var fieldTransformer = new FieldTransformer();
+        var fieldTransformer = new FieldsTransformer();
 
         var fieldNodes = fieldTransformer.transformFieldsNodes(compilerResults, transformerContext, fileContext, typeNode, false, false);
 
@@ -134,7 +134,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
         //TODO:KMD Obviously we need to do this all nicely
         fileContext.addJavaImport("com.kdsc.protogen.runtime.ProtoGenType");
 
-        var fieldTransformer = new FieldTransformer();
+        var fieldTransformer = new FieldsTransformer();
 
         var fieldNodes = fieldTransformer.transformFieldsNodes(compilerResults, transformerContext, fileContext, typeNode, false, true);
 

@@ -5,7 +5,7 @@ import com.kdsc.protogen.parsetree.fieldtypenodes.FieldTypeNode;
 
 import java.util.Objects;
 
-public class FieldNode extends BaseParseTreeNode {
+public final class FieldNode extends BaseParseTreeNode {
 
     private final FieldNameNode fieldNameNode;
     private final FieldTypeNode fieldTypeNode;

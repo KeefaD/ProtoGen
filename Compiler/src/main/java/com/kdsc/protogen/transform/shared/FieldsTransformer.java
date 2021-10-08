@@ -12,8 +12,7 @@ import com.kdsc.protogen.transform.FileContext;
 import java.util.*;
 import java.util.stream.Collectors;
 
-//TODO:KDM Should this be called FieldsTransformer
-public class FieldTransformer {
+public class FieldsTransformer {
 
     private static final Set<Class> protogenTypes = new HashSet<>();
 

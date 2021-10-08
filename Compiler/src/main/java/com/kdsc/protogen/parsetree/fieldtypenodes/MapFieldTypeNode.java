@@ -4,7 +4,7 @@ import com.kdsc.protogen.nodes.FormattedStringOptions;
 
 import java.util.Objects;
 
-public class MapFieldTypeNode extends NonArrayFieldTypeNode {
+public final class MapFieldTypeNode extends NonArrayFieldTypeNode {
 
     private final FieldTypeNode keyFieldTypeNode;
     private final FieldTypeNode valueFieldTypeNode;

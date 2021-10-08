@@ -4,7 +4,7 @@ import com.kdsc.protogen.nodes.FormattedStringOptions;
 
 import java.util.Objects;
 
-public class SetFieldTypeNode extends NonArrayFieldTypeNode {
+public final class SetFieldTypeNode extends NonArrayFieldTypeNode {
 
     private final FieldTypeNode fieldTypeNode;
 

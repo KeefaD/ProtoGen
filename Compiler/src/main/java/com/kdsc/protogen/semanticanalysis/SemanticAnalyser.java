@@ -14,7 +14,10 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 //TODO:KMD Redefinition of field in interface with different type
 //TODO:KMD Generic parameters on outer type and versions
 //TODO:KMD This really needs to be refactored to be super neat
-//TODO:KMD Obviously we need to make this work for keys but there is no point until Types are 1005
+//TODO:KMD Obviously we need to make this work for keys but there is no point until Types are done
+//TODO:KMD Test unordered versions, should this be an error?
+//TODO:KMD Test disallowed map / set key types
+//TODO:KMD Test disallowed key types
 public class SemanticAnalyser {
 
     public List<SemanticError> runSemanticAnalysis(final CompilerResults compilerResults) {

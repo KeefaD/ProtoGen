@@ -19,8 +19,11 @@ public class FileUtils {
             Files.walk(path)
                 .sorted(Comparator.reverseOrder())
                 .map(Path::toFile)
-                //TODO:KMD Sort out this warning
-                .forEach(File::delete);
+                .forEach(
+                    f -> {
+                        if(!f.delete()) throw new RuntimeException("Unable to delete file " + f.toPath());
+                    }
+                );
         } catch (IOException ioException) {
             throw new RuntimeException(ioException);
         }
@@ -43,6 +46,7 @@ public class FileUtils {
         if(file.exists()) {
             throw new RuntimeException("Directory already exists " + pathToDirectory);
         }
+        //noinspection ResultOfMethodCallIgnored
         file.mkdirs();
     }
 

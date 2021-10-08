@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class GenericParametersNode extends BaseParseTreeNode {
+public final class GenericParametersNode extends BaseParseTreeNode {
 
     private final List<FieldTypeNode> fieldTypeNodes;
 

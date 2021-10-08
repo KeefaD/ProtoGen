@@ -5,7 +5,7 @@ import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
 
-public class EnumNameNode extends BaseParseTreeNode {
+public final class EnumNameNode extends BaseParseTreeNode {
 
     private final String enumName;
 

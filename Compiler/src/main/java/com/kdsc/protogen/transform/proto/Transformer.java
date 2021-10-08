@@ -9,7 +9,7 @@ import com.kdsc.protogen.filegenerationtree.proto.MessageFileNode;
 import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
 import com.kdsc.protogen.transform.TransformerContext;
 import com.kdsc.protogen.transform.FileContext;
-import com.kdsc.protogen.transform.shared.FieldTransformer;
+import com.kdsc.protogen.transform.shared.FieldsTransformer;
 import com.kdsc.protogen.transform.utils.TransformUtils;
 import com.kdsc.protogen.utils.Streams;
 
@@ -75,7 +75,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
     }
 
     private FileNode transformTypeNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.ProtoGenTypeNode typeNode) {
-        var fieldTransformer = new FieldTransformer();
+        var fieldTransformer = new FieldsTransformer();
 
         var fileContext = new FileContext();
 

@@ -2,7 +2,7 @@ package com.kdsc.protogen.parsetree.fieldtypenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 
-public class BoolFieldTypeNode extends NonArrayFieldTypeNode {
+public final class BoolFieldTypeNode extends NonArrayFieldTypeNode {
 
     public BoolFieldTypeNode(
         final String sourceFileName,

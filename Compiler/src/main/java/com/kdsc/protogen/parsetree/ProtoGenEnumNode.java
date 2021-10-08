@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class ProtoGenEnumNode extends BaseParseTreeNode implements TopLevelObject, HasNamespaceName {
+public final class ProtoGenEnumNode extends BaseParseTreeNode implements TopLevelObject, HasNamespaceName {
 
     private final NamespaceNameNode namespaceNameNode;
     private final Optional<EnumVersionsNode> enumVersionsNode;

@@ -10,7 +10,7 @@ import com.kdsc.protogen.parsetree.commoninterfaces.HasNamespaceName;
 import java.util.List;
 import java.util.Objects;
 
-public class ObjectFieldTypeNode extends NonArrayFieldTypeNode implements HasNamespaceName {
+public final class ObjectFieldTypeNode extends NonArrayFieldTypeNode implements HasNamespaceName {
 
     private final NamespaceNameGenericParametersNode namespaceNameGenericParametersNode;
 

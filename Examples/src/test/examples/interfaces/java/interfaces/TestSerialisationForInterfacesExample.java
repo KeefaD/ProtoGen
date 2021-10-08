@@ -1,8 +1,8 @@
-package enums;
+package interfaces;
 
 import org.junit.jupiter.api.Test;
 
-public class TestSerialisation {
+public class TestSerialisationForInterfacesExample {
 
     @Test
     public void testSerialisation() {

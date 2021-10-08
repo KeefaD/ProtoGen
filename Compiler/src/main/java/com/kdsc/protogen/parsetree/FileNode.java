@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 //TODO:KMD Check consistency of all these nodes in terms of Antlr lists and optionals, it's only going to get harder to change later
-public class FileNode extends BaseParseTreeNode {
+public final class FileNode extends BaseParseTreeNode {
 
     private final List<ProtoGenTypeNode> protoGenTypeNodes;
     private final List<ProtoGenKeyNode> protoGenKeyNodes;

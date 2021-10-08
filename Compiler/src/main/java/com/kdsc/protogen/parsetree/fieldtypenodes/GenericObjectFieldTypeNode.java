@@ -5,7 +5,7 @@ import com.kdsc.protogen.parsetree.GenericParameterNode;
 
 import java.util.Objects;
 
-public class GenericObjectFieldTypeNode extends NonArrayFieldTypeNode {
+public final class GenericObjectFieldTypeNode extends NonArrayFieldTypeNode {
 
     private final GenericParameterNode genericParameterNode;
 

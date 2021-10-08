@@ -2,7 +2,7 @@ package com.kdsc.protogen.parsetree.fieldtypenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 
-public class DecimalFieldTypeNode extends NonArrayFieldTypeNode {
+public final class DecimalFieldTypeNode extends NonArrayFieldTypeNode {
 
     public DecimalFieldTypeNode(
         final String sourceFileName,

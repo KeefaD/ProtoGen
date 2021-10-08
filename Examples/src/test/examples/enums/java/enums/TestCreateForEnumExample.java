@@ -2,7 +2,7 @@ package enums;
 
 import org.junit.jupiter.api.Test;
 
-public class TestCreateEnum {
+public class TestCreateForEnumExample {
 
     @Test
     public void testCreateEnum() {

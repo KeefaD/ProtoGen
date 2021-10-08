@@ -3,7 +3,6 @@ package com.kdsc.protogen.transform;
 import java.util.HashSet;
 import java.util.Set;
 
-//TODO:KMD Have a think about file contexts and proto and java, we have to share them or come up with something clever because of the shared FieldTypeNodes
 public class FileContext {
 
     private final Set<String> javaImportStatements = new HashSet<>();

@@ -5,7 +5,7 @@ import com.kdsc.protogen.utils.parameterchecking.Numbers;
 
 import java.util.Objects;
 
-public class VersionNumberNode extends BaseParseTreeNode {
+public final class VersionNumberNode extends BaseParseTreeNode {
 
     private final long versionNumber;
 

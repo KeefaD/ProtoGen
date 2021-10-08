@@ -11,7 +11,6 @@ public class TransformUtils {
 
     public static final String NAMESPACE_IN_FILENAME_SEPARATOR = ".";
 
-    //TODO:KMD Should this take namespace name node or a list of namespace nodes?
     public static String convertNamespaceNameNodeToName(final NamespaceNameNode namespaceNameNode) {
 //TODO:KMD Sort this
 //        var baseNamespaceAsPath =

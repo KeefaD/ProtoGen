@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class EnumCasesNode extends BaseParseTreeNode {
+public final class EnumCasesNode extends BaseParseTreeNode {
 
     private final List<EnumNameNode> enumNameNodes;
 

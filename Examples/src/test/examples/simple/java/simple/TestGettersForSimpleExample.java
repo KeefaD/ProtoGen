@@ -8,7 +8,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 //TODO:KMD Put max range stuff in here in a base class
-public class TestGetters {
+public class TestGettersForSimpleExample {
 
     @Test
     public void testGetters() {

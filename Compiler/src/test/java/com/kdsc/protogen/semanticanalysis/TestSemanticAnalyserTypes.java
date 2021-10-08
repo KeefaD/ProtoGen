@@ -8,9 +8,6 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-//TODO:KMD Test disallowed map / set key types
-//TODO:KMD Test disallowed key types
-//TODO:KMD Test unordered versions, should this be an error?
 public class TestSemanticAnalyserTypes extends BaseCompilerTest {
 
     @Test

@@ -7,7 +7,7 @@ import com.kdsc.protogen.utils.parameterchecking.Optionals;
 import java.util.Objects;
 import java.util.Optional;
 
-public class FieldTypeNode extends BaseParseTreeNode {
+public final class FieldTypeNode extends BaseParseTreeNode {
 
     private final boolean optional;
     private final Optional<ArrayFieldTypeNode> arrayFieldTypeNode;

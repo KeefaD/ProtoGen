@@ -1,8 +1,8 @@
-package empty;
+package collections;
 
 import org.junit.jupiter.api.Test;
 
-public class TestEqualsAndHashCode {
+public class TestEqualsAndHashCodeForCollectionsExample {
 
     @Test
     public void testEqualsAndHashCode() {

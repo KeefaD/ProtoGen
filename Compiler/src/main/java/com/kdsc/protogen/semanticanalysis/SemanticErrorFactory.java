@@ -2,7 +2,6 @@ package com.kdsc.protogen.semanticanalysis;
 
 import com.kdsc.protogen.parsetree.BaseParseTreeNode;
 
-//TODO:KMD Do we really need this class?
 public class SemanticErrorFactory {
 
     public static SemanticError createSemanticError(final SemanticErrorType semanticErrorType, final BaseParseTreeNode node, final Object... arguments) {

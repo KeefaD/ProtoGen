@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Optional;
 
 //TODO:KMD Put max range stuff in here in a base class
-public class TestConstructor {
+public class TestConstructorForSimpleExample {
 
     @Test
     public void testConstructor() {

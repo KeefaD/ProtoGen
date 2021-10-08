@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class NamespaceNameNode extends BaseParseTreeNode {
+public final class NamespaceNameNode extends BaseParseTreeNode {
 
     private final List<NamespaceNode> namespaceNodes;
     private final NameNode nameNode;

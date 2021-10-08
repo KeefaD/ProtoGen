@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class FieldsNode extends BaseParseTreeNode {
+public final class FieldsNode extends BaseParseTreeNode {
 
     private final List<FieldNode> fieldNodes;
 

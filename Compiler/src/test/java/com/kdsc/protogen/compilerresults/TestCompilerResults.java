@@ -35,7 +35,7 @@ public class TestCompilerResults {
     @Test
     public void testGetters() {
 
-        //TODO:KMD Need to do something about the reporting of filenames as th message looks really bad and it is inconsistent
+        //TODO:KMD Need to do something about the reporting of filenames as the message looks really bad and it is inconsistent
         final var filename = fullPathToSourceCodeDirectory + "OneOfEachType.pg";
         var fileList = List.of(filename);
         var parser = new Parser();

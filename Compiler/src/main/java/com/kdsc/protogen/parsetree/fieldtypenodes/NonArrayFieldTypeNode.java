@@ -3,7 +3,6 @@ package com.kdsc.protogen.parsetree.fieldtypenodes;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.BaseParseTreeNode;
 
-//TODO:KMD Perhaps make sealed
 public abstract class NonArrayFieldTypeNode extends BaseParseTreeNode {
 
     public NonArrayFieldTypeNode(

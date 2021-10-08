@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class NamespaceNameGenericParametersNode extends BaseParseTreeNode implements HasNamespaceName {
+public final class NamespaceNameGenericParametersNode extends BaseParseTreeNode implements HasNamespaceName {
 
     private final NamespaceNameNode namespaceNameNode;
     private final Optional<GenericParametersNode> genericParametersNode;

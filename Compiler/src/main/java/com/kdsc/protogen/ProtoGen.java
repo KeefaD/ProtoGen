@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 //TODO:KMD I think you can end up with optional optional as a field type optional T where T is optional, close this down
 //TODO:KMD We need to see if we can categorise the unit tests and make them show up in those categories in the unit test results
 //TODO:KMD We need to run protobuf on the examples
-//TODO:KMD Starting to not put unit tests everywhere for every class, you should do it even if they are empty to fill them out later
 //TODO:KMD How are we going to represent versions in Proto
 //TODO:KMD We need to do proto name escaping
 //TODO:KMD We need to to do name escaping in general or prevent keywords, need to make up your mind soon, keywords is going to be annoying once you add more languages, as long as the types come out with the right name it is ok
@@ -29,9 +28,7 @@ import java.util.stream.Collectors;
 //TODO:KMD Think about capitalisation of fields
 //TODO:KMD Check isProtoGen type for types that have generic parameters, it's all going to go to shit if they are not
 //TODO:KMD Need to test moving all the directories around
-//TODO:KMD Need to be able to do a comparison on all the examples at the same time or it is pointless
 //TODO:KMD Need to think about capitalisation for namespaces, should we allow uppercase packages, investigate
-//TODO:KMD Enums should always have one value, check java and dot net
 //TODO:KMD Missing LocalDate type
 //TODO:KMD Test building on Windows
 //TODO:KMD Maybe don't do versioning or type libraries yet, but leave it open to it
@@ -42,7 +39,6 @@ import java.util.stream.Collectors;
 //TODO:KMD Imports syntactic sugar?
 //TODO:KMD Maybe don't do keys yet, not that interesting until ProtoBoxes
 //TODO:KMD Think about implementing the same interface multiple times, this is really IMPORTANT
-//TODO:KMD Convert tabs to spaces
 //TODO:KMD Protogen RPC service, investigate
 //TODO:KMD Perhaps use Guava for immutable stuff
 //TODO:KMD Follow google style guide
@@ -50,6 +46,10 @@ import java.util.stream.Collectors;
 //TODO:KMD Make a reflection test for equals and hashcode in nodes
 //TODO:KMD Need to do a day just working on TODO:KMD's to keep the numbers down otherwise it is going ot get out of control
 //TODO:KMD ParseTree equals and hash code, how are we going to know if a field gets added, perhaps we should add a reflection test, or make equals hashcode reflection
+//TODO:KMD Generate standard example tests
+//TODO:KMD Think about the names ProtoGenType etc, not happy with it
+//TODO:KMD Have a think about file contexts and proto and java, we have to share them or come up with something clever because of the shared FieldTypeNodes
+//TODO:KMD Make file generation tree nodes consistent with parse tree nodes
 public class ProtoGen {
 
     public static final char OPTION_MARKER = '-';

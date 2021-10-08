@@ -2,7 +2,7 @@ package com.kdsc.protogen.parsetree.fieldtypenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 
-public class StringFieldTypeNode extends NonArrayFieldTypeNode {
+public final class StringFieldTypeNode extends NonArrayFieldTypeNode {
 
     public StringFieldTypeNode(
         final String sourceFileName,

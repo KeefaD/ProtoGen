@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class GenericParametersWithBoundsNode extends BaseParseTreeNode {
+public final class GenericParametersWithBoundsNode extends BaseParseTreeNode {
 
     private final List<GenericParameterWithBoundsNode> genericParameterWithBoundsNodes;
 

@@ -6,8 +6,7 @@ import com.kdsc.protogen.utils.parameterchecking.Numbers;
 
 import java.util.Objects;
 
-//TODO:KMD Think about the names ProtoGenType etc, not happy with it
-public class ArrayFieldTypeNode extends BaseParseTreeNode {
+public final class ArrayFieldTypeNode extends BaseParseTreeNode {
 
     private final NonArrayFieldTypeNode nonArrayFieldTypeNode;
     private final long dimensions;

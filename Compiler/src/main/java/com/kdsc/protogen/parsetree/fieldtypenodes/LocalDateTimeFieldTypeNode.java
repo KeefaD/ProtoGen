@@ -2,7 +2,7 @@ package com.kdsc.protogen.parsetree.fieldtypenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 
-public class LocalDateTimeFieldTypeNode extends NonArrayFieldTypeNode {
+public final class LocalDateTimeFieldTypeNode extends NonArrayFieldTypeNode {
 
     public LocalDateTimeFieldTypeNode(
         final String sourceFileName,

@@ -2,7 +2,7 @@ package simple;
 
 import org.junit.jupiter.api.Test;
 
-public class TestEqualsAndHashCode {
+public class TestEqualsAndHashCodeForSimpleExample {
 
     @Test
     public void testEqualsAndHashCode() {

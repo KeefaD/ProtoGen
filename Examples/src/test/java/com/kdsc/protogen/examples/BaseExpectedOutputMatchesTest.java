@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -99,14 +100,12 @@ public class BaseExpectedOutputMatchesTest {
         }
 
         var expectedFileNames = Arrays
-            //TODO:KMD listFiles can be null
-            .stream(expectedResultsDirectory.listFiles())
+            .stream(Objects.requireNonNull(expectedResultsDirectory.listFiles()))
             .filter(f -> !f.isDirectory())
             .map(File::getName)
             .collect(Collectors.toSet());
         var actualFileNames = Arrays
-            //TODO:KMD listFiles can be null
-            .stream(actualResultsDirectory.listFiles())
+            .stream(Objects.requireNonNull(actualResultsDirectory.listFiles()))
             .filter(f -> !f.isDirectory())
             .map(File::getName)
             .collect(Collectors.toSet());
@@ -124,14 +123,12 @@ public class BaseExpectedOutputMatchesTest {
         }
 
         var expectedDirectoryNames = Arrays
-            //TODO:KMD listFiles can be null
-            .stream(expectedResultsDirectory.listFiles())
+            .stream(Objects.requireNonNull(expectedResultsDirectory.listFiles()))
             .filter(File::isDirectory)
             .map(File::getName)
             .collect(Collectors.toSet());
         var actualDirectoryNames = Arrays
-            //TODO:KMD listFiles can be null
-            .stream(actualResultsDirectory.listFiles())
+            .stream(Objects.requireNonNull(actualResultsDirectory.listFiles()))
             .filter(File::isDirectory)
             .map(File::getName)
             .collect(Collectors.toSet());

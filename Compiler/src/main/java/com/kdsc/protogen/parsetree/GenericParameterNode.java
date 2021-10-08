@@ -5,7 +5,7 @@ import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
 
-public class GenericParameterNode extends BaseParseTreeNode {
+public final class GenericParameterNode extends BaseParseTreeNode {
 
     private final String identifier;
 

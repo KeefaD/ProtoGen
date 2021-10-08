@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public class ProtoGenKeyNode extends BaseParseTreeNode implements TopLevelObject, HasNamespaceName {
+public final class ProtoGenKeyNode extends BaseParseTreeNode implements TopLevelObject, HasNamespaceName {
 
     private final boolean isInterface;
     private final NamespaceNameGenericParametersWithBoundsNode namespaceNameGenericParametersWithBoundsNode;

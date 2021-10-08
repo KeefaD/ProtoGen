@@ -1,12 +1,10 @@
 package com.kdsc.protogen.parsetree;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
-import com.kdsc.protogen.parsetree.utils.clone.Optionals;
 
 import java.util.Objects;
-import java.util.Optional;
 
-public class EnumVersionNode extends BaseParseTreeNode {
+public final class EnumVersionNode extends BaseParseTreeNode {
 
     private final VersionNumberNode versionNumberNode;
     private final EnumCasesNode enumCasesNode;

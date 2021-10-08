@@ -5,7 +5,7 @@ import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
 
-public class NamespaceNode extends BaseParseTreeNode {
+public final class NamespaceNode extends BaseParseTreeNode {
 
     private final String namespace;
 

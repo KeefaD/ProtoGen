@@ -1,8 +1,8 @@
-package collections;
+package simple;
 
 import org.junit.jupiter.api.Test;
 
-public class TestSerialisation {
+public class TestSerialisationForSimpleExample {
 
     @Test
     public void testSerialisation() {

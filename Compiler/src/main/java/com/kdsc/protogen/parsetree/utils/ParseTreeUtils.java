@@ -7,16 +7,15 @@ import java.util.stream.Collectors;
 
 public class ParseTreeUtils {
 
-    //TODO:KMD Is delimiter the right name
-    public static final String DELIMITER = ".";
+    public static final String NAMESPACE_SEPARATOR = ".";
 
     public static String getNamespaceNameString(final NamespaceNameNode namespaceNameNode) {
         var returnString = namespaceNameNode
             .getNamespaceNodes()
             .stream()
             .map(NamespaceNode::getNamespace)
-            .collect(Collectors.joining(DELIMITER));
-        return returnString + "." + namespaceNameNode.getNameNode().getName();
+            .collect(Collectors.joining(NAMESPACE_SEPARATOR));
+        return returnString + NAMESPACE_SEPARATOR + namespaceNameNode.getNameNode().getName();
     }
 
     public static String getNamespaceString(final NamespaceNameNode namespaceNameNode) {
@@ -24,7 +23,7 @@ public class ParseTreeUtils {
             .getNamespaceNodes()
             .stream()
             .map(NamespaceNode::getNamespace)
-            .collect(Collectors.joining(DELIMITER));
+            .collect(Collectors.joining(NAMESPACE_SEPARATOR));
     }
 
 }

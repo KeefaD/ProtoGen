@@ -5,7 +5,7 @@ import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
 
-public class FieldNameNode extends BaseParseTreeNode {
+public final class FieldNameNode extends BaseParseTreeNode {
 
     private final String fieldName;
 
