@@ -33,7 +33,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitFile(final ProtoGenParser.FileContext ctx) {
+    public FileNode visitFile(final ProtoGenParser.FileContext ctx) {
         return new FileNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -45,7 +45,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitProtogen_type(final ProtoGenParser.Protogen_typeContext ctx) {
+    public ProtoGenTypeNode visitProtogen_type(final ProtoGenParser.Protogen_typeContext ctx) {
         return new ProtoGenTypeNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -59,7 +59,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitProtogen_key(final ProtoGenParser.Protogen_keyContext ctx) {
+    public ProtoGenKeyNode visitProtogen_key(final ProtoGenParser.Protogen_keyContext ctx) {
         return new ProtoGenKeyNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -73,7 +73,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitProtogen_enum(final ProtoGenParser.Protogen_enumContext ctx) {
+    public ProtoGenEnumNode visitProtogen_enum(final ProtoGenParser.Protogen_enumContext ctx) {
         return new ProtoGenEnumNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -85,7 +85,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitImplements_list(final ProtoGenParser.Implements_listContext ctx) {
+    public ImplementsListNode visitImplements_list(final ProtoGenParser.Implements_listContext ctx) {
         return new ImplementsListNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -95,7 +95,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitVersions(final ProtoGenParser.VersionsContext ctx) {
+    public VersionsNode visitVersions(final ProtoGenParser.VersionsContext ctx) {
         return new VersionsNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -105,7 +105,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitVersion(final ProtoGenParser.VersionContext ctx) {
+    public VersionNode visitVersion(final ProtoGenParser.VersionContext ctx) {
         return new VersionNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -118,7 +118,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitEnum_versions(final ProtoGenParser.Enum_versionsContext ctx) {
+    public EnumVersionsNode visitEnum_versions(final ProtoGenParser.Enum_versionsContext ctx) {
         return new EnumVersionsNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -128,7 +128,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitEnum_version(final ProtoGenParser.Enum_versionContext ctx) {
+    public EnumVersionNode visitEnum_version(final ProtoGenParser.Enum_versionContext ctx) {
         return new EnumVersionNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -139,7 +139,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitEnum_cases(final ProtoGenParser.Enum_casesContext ctx) {
+    public EnumCasesNode visitEnum_cases(final ProtoGenParser.Enum_casesContext ctx) {
         return new EnumCasesNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -149,7 +149,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitNamespace_name_generic_parameters_with_bounds(final ProtoGenParser.Namespace_name_generic_parameters_with_boundsContext ctx) {
+    public NamespaceNameGenericParametersWithBoundsNode visitNamespace_name_generic_parameters_with_bounds(final ProtoGenParser.Namespace_name_generic_parameters_with_boundsContext ctx) {
         return new NamespaceNameGenericParametersWithBoundsNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -160,7 +160,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitNamespace_name_generic_parameters(final ProtoGenParser.Namespace_name_generic_parametersContext ctx) {
+    public NamespaceNameGenericParametersNode visitNamespace_name_generic_parameters(final ProtoGenParser.Namespace_name_generic_parametersContext ctx) {
         return new NamespaceNameGenericParametersNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -171,7 +171,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitNamespace_name(final ProtoGenParser.Namespace_nameContext ctx) {
+    public NamespaceNameNode visitNamespace_name(final ProtoGenParser.Namespace_nameContext ctx) {
         return new NamespaceNameNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -182,7 +182,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitGeneric_parameters_with_bounds(final ProtoGenParser.Generic_parameters_with_boundsContext ctx) {
+    public GenericParametersWithBoundsNode visitGeneric_parameters_with_bounds(final ProtoGenParser.Generic_parameters_with_boundsContext ctx) {
         return new GenericParametersWithBoundsNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -192,7 +192,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitGeneric_parameters(final ProtoGenParser.Generic_parametersContext ctx) {
+    public GenericParametersNode visitGeneric_parameters(final ProtoGenParser.Generic_parametersContext ctx) {
         return new GenericParametersNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -202,7 +202,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitFields(final ProtoGenParser.FieldsContext ctx) {
+    public FieldsNode visitFields(final ProtoGenParser.FieldsContext ctx) {
         return new FieldsNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -212,7 +212,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitField(final ProtoGenParser.FieldContext ctx) {
+    public FieldNode visitField(final ProtoGenParser.FieldContext ctx) {
         return new FieldNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -223,7 +223,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitField_type(final ProtoGenParser.Field_typeContext ctx) {
+    public FieldTypeNode visitField_type(final ProtoGenParser.Field_typeContext ctx) {
         return new FieldTypeNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -235,18 +235,18 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitNon_array_field_type(final ProtoGenParser.Non_array_field_typeContext ctx) {
+    public NonArrayFieldTypeNode visitNon_array_field_type(final ProtoGenParser.Non_array_field_typeContext ctx) {
 
         if(ctx.map() != null) {
-            return visit(ctx.map());
+            return (NonArrayFieldTypeNode) visit(ctx.map());
         } else if(ctx.set() != null) {
-            return visit(ctx.set());
+            return (NonArrayFieldTypeNode)visit(ctx.set());
         } else if(ctx.value_or_error() != null) {
-            return visit(ctx.value_or_error());
+            return (NonArrayFieldTypeNode)visit(ctx.value_or_error());
         } else if(ctx.object_field_type() != null) {
-            return visit(ctx.object_field_type());
+            return (NonArrayFieldTypeNode)visit(ctx.object_field_type());
         } else if(ctx.generic_object_field_type() != null) {
-            return visit(ctx.generic_object_field_type());
+            return (NonArrayFieldTypeNode)visit(ctx.generic_object_field_type());
         }
 
         return switch (ctx.children.get(0).getText()) {
@@ -321,7 +321,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitMap(final ProtoGenParser.MapContext ctx) {
+    public MapFieldTypeNode visitMap(final ProtoGenParser.MapContext ctx) {
         return new MapFieldTypeNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -332,7 +332,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitSet(ProtoGenParser.SetContext ctx) {
+    public SetFieldTypeNode visitSet(ProtoGenParser.SetContext ctx) {
         return new SetFieldTypeNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -342,7 +342,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitValue_or_error(final ProtoGenParser.Value_or_errorContext ctx) {
+    public ValueOrErrorFieldTypeNode visitValue_or_error(final ProtoGenParser.Value_or_errorContext ctx) {
         return new ValueOrErrorFieldTypeNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -352,7 +352,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitArray_field_type(final ProtoGenParser.Array_field_typeContext ctx) {
+    public ArrayFieldTypeNode visitArray_field_type(final ProtoGenParser.Array_field_typeContext ctx) {
 
         var openSquareBracketCount = ctx
             .children
@@ -382,7 +382,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitObject_field_type(final ProtoGenParser.Object_field_typeContext ctx) {
+    public ObjectFieldTypeNode visitObject_field_type(final ProtoGenParser.Object_field_typeContext ctx) {
         return new ObjectFieldTypeNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -392,7 +392,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitGeneric_object_field_type(final ProtoGenParser.Generic_object_field_typeContext ctx) {
+    public GenericObjectFieldTypeNode visitGeneric_object_field_type(final ProtoGenParser.Generic_object_field_typeContext ctx) {
         return new GenericObjectFieldTypeNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -402,7 +402,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitGeneric_parameter_with_bounds(final ProtoGenParser.Generic_parameter_with_boundsContext ctx) {
+    public GenericParameterWithBoundsNode visitGeneric_parameter_with_bounds(final ProtoGenParser.Generic_parameter_with_boundsContext ctx) {
         return new GenericParameterWithBoundsNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -413,7 +413,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitGeneric_parameter(final ProtoGenParser.Generic_parameterContext ctx) {
+    public GenericParameterNode visitGeneric_parameter(final ProtoGenParser.Generic_parameterContext ctx) {
         return new GenericParameterNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -423,7 +423,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitNamespace(final ProtoGenParser.NamespaceContext ctx) {
+    public NamespaceNode visitNamespace(final ProtoGenParser.NamespaceContext ctx) {
         return new NamespaceNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -433,7 +433,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitName(final ProtoGenParser.NameContext ctx) {
+    public NameNode visitName(final ProtoGenParser.NameContext ctx) {
         return new NameNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -443,7 +443,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitField_name(final ProtoGenParser.Field_nameContext ctx) {
+    public FieldNameNode visitField_name(final ProtoGenParser.Field_nameContext ctx) {
         return new FieldNameNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -453,7 +453,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitVersion_number(final ProtoGenParser.Version_numberContext ctx) {
+    public VersionNumberNode visitVersion_number(final ProtoGenParser.Version_numberContext ctx) {
         return new VersionNumberNode(
             sourceFileName,
             ctx.getStart().getLine(),
@@ -463,7 +463,7 @@ public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenB
     }
 
     @Override
-    public Object visitEnum_name(final ProtoGenParser.Enum_nameContext ctx) {
+    public EnumNameNode visitEnum_name(final ProtoGenParser.Enum_nameContext ctx) {
         return new EnumNameNode(
             sourceFileName,
             ctx.getStart().getLine(),
