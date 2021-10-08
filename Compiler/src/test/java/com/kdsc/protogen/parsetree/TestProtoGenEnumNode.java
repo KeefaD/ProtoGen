@@ -96,6 +96,24 @@ public class TestProtoGenEnumNode extends BaseTestNode {
     }
 
     @Test
+    public void testHasNamespaceNameGetters() {
+        var namespaceName = TestNamespaceNameNode.createPopulatedTestNode();
+        Optional<EnumVersionsNode> enumVersions = Optional.empty();
+        Optional<EnumCasesNode> enumCases = Optional.of(TestEnumCasesNode.createPopulatedTestNode());
+        var node = new ProtoGenEnumNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition,
+            namespaceName,
+            enumVersions,
+            enumCases
+        );
+        assertEquals(namespaceName, node.getNamespaceNameNode(), "Created and retrieved objects don't match");
+        assertEquals(namespaceName.getNamespaceNodes(), node.getNamespaceNodes(), "Created and retrieved objects don't match");
+        assertEquals(namespaceName.getNameNode(), node.getNameNode(), "Created and retrieved objects don't match");
+    }
+
+    @Test
     public void testToString() {
         var node = createPopulatedTestNode();
         var expectedToStringOutput = """

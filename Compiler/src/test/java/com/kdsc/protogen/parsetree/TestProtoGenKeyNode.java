@@ -96,7 +96,7 @@ public class TestProtoGenKeyNode extends BaseTestNode {
         Optional<ImplementsListNode> implementsListNode = Optional.empty();
         Optional<VersionsNode> versionsNode = Optional.empty();
         Optional<FieldsNode> fieldsNode = Optional.empty();
-        @SuppressWarnings("ConstantConditions") var node = new ProtoGenKeyNode(
+        var node = new ProtoGenKeyNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
@@ -106,12 +106,34 @@ public class TestProtoGenKeyNode extends BaseTestNode {
             versionsNode,
             fieldsNode
         );
-        //noinspection ConstantConditions
         assertEquals(isInterface, node.isInterface(), "Created and retrieved objects don't match");
         assertEquals(namespaceNameGenericParametersWithBounds, node.getNamespaceNameGenericParametersWithBoundsNode(), "Created and retrieved objects don't match");
         assertEquals(implementsListNode, node.getImplementsListNode(), "Created and retrieved objects don't match");
         assertEquals(versionsNode, node.getVersionsNode(), "Created and retrieved objects don't match");
         assertEquals(fieldsNode, node.getFieldsNode(), "Created and retrieved objects don't match");
+    }
+
+    @Test
+    public void testHasNamespaceNameGetters() {
+
+        var isInterface = false;
+        var namespaceNameGenericParametersWithBounds = TestNamespaceNameGenericParametersWithBoundsNode.createPopulatedTestNode();
+        Optional<ImplementsListNode> implementsListNode = Optional.empty();
+        Optional<VersionsNode> versionsNode = Optional.empty();
+        Optional<FieldsNode> fieldsNode = Optional.empty();
+        var node = new ProtoGenKeyNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition,
+            isInterface,
+            namespaceNameGenericParametersWithBounds,
+            implementsListNode,
+            versionsNode,
+            fieldsNode
+        );
+        assertEquals(namespaceNameGenericParametersWithBounds.getNamespaceNameNode(), node.getNamespaceNameNode(), "Created and retrieved objects don't match");
+        assertEquals(namespaceNameGenericParametersWithBounds.getNamespaceNameNode().getNamespaceNodes(), node.getNamespaceNodes(), "Created and retrieved objects don't match");
+        assertEquals(namespaceNameGenericParametersWithBounds.getNamespaceNameNode().getNameNode(), node.getNameNode(), "Created and retrieved objects don't match");
     }
 
     @Test

@@ -66,6 +66,21 @@ public class TestNamespaceNameGenericParametersNode extends BaseTestNode {
     }
 
     @Test
+    public void testHasNamespaceNameGetters() {
+        var namespaceNameNode = TestNamespaceNameNode.createPopulatedTestNode();
+        Optional<GenericParametersNode> genericParameters = Optional.empty();
+        var node = new NamespaceNameGenericParametersNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition,
+            namespaceNameNode,
+            genericParameters
+        );
+        assertEquals(namespaceNameNode.getNamespaceNodes(), node.getNamespaceNodes(), "Created and retrieved objects don't match");
+        assertEquals(namespaceNameNode.getNameNode(), node.getNameNode(), "Created and retrieved objects don't match");
+    }
+
+    @Test
     public void testToString() {
         var node = createPopulatedTestNode();
         var expectedToStringOutput = """

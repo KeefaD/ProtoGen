@@ -51,6 +51,20 @@ public class TestEnumFieldTypeNode extends BaseTestNode {
     }
 
     @Test
+    public void testHasNamespaceNameGetters() {
+        var namespaceNameGenericParametersNode = TestNamespaceNameGenericParametersNode.createPopulatedTestNode();
+        var node = new EnumFieldTypeNode(
+            BaseTestNode.fileName,
+            BaseTestNode.line,
+            BaseTestNode.charPosition,
+            namespaceNameGenericParametersNode
+        );
+        assertEquals(namespaceNameGenericParametersNode.getNamespaceNameNode(), node.getNamespaceNameNode(), "Created and retrieved objects don't match");
+        assertEquals(namespaceNameGenericParametersNode.getNamespaceNameNode().getNamespaceNodes(), node.getNamespaceNodes(), "Created and retrieved objects don't match");
+        assertEquals(namespaceNameGenericParametersNode.getNamespaceNameNode().getNameNode(), node.getNameNode(), "Created and retrieved objects don't match");
+    }
+
+    @Test
     public void testToString() {
         var node = createPopulatedTestNode();
         var expectedToStringOutput = """

@@ -5,6 +5,7 @@ import com.kdsc.protogen.parsetree.commoninterfaces.HasNamespaceName;
 import com.kdsc.protogen.parsetree.commoninterfaces.TopLevelObject;
 import com.kdsc.protogen.utils.parameterchecking.Optionals;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -42,6 +43,14 @@ public class ProtoGenEnumNode extends BaseParseTreeNode implements TopLevelObjec
 
     public Optional<EnumCasesNode> getEnumCasesNode() {
         return enumCasesNode;
+    }
+
+    public List<NamespaceNode> getNamespaceNodes() {
+        return namespaceNameNode.getNamespaceNodes();
+    }
+
+    public NameNode getNameNode() {
+        return namespaceNameNode.getNameNode();
     }
 
     @Override

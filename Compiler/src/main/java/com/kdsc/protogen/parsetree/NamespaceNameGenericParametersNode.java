@@ -4,6 +4,7 @@ import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.commoninterfaces.HasNamespaceName;
 import com.kdsc.protogen.parsetree.utils.clone.Optionals;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -32,6 +33,14 @@ public class NamespaceNameGenericParametersNode extends BaseParseTreeNode implem
 
     public Optional<GenericParametersNode> getGenericParametersNode() {
         return genericParametersNode;
+    }
+
+    public List<NamespaceNode> getNamespaceNodes() {
+        return namespaceNameNode.getNamespaceNodes();
+    }
+
+    public NameNode getNameNode() {
+        return namespaceNameNode.getNameNode();
     }
 
     @Override

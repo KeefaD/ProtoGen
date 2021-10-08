@@ -4,6 +4,7 @@ import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetree.commoninterfaces.HasNamespaceName;
 import com.kdsc.protogen.parsetree.commoninterfaces.TopLevelObject;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -59,6 +60,14 @@ public class ProtoGenKeyNode extends BaseParseTreeNode implements TopLevelObject
 
     public NamespaceNameNode getNamespaceNameNode() {
         return namespaceNameGenericParametersWithBoundsNode.getNamespaceNameNode();
+    }
+
+    public List<NamespaceNode> getNamespaceNodes() {
+        return namespaceNameGenericParametersWithBoundsNode.getNamespaceNameNode().getNamespaceNodes();
+    }
+
+    public NameNode getNameNode() {
+        return namespaceNameGenericParametersWithBoundsNode.getNamespaceNameNode().getNameNode();
     }
 
     @Override

@@ -1,10 +1,13 @@
 package com.kdsc.protogen.parsetree.fieldtypenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
+import com.kdsc.protogen.parsetree.NameNode;
 import com.kdsc.protogen.parsetree.NamespaceNameGenericParametersNode;
 import com.kdsc.protogen.parsetree.NamespaceNameNode;
+import com.kdsc.protogen.parsetree.NamespaceNode;
 import com.kdsc.protogen.parsetree.commoninterfaces.HasNamespaceName;
 
+import java.util.List;
 import java.util.Objects;
 
 public class ObjectFieldTypeNode extends NonArrayFieldTypeNode implements HasNamespaceName {
@@ -28,6 +31,14 @@ public class ObjectFieldTypeNode extends NonArrayFieldTypeNode implements HasNam
 
     public NamespaceNameNode getNamespaceNameNode() {
         return namespaceNameGenericParametersNode.getNamespaceNameNode();
+    }
+
+    public List<NamespaceNode> getNamespaceNodes() {
+        return namespaceNameGenericParametersNode.getNamespaceNameNode().getNamespaceNodes();
+    }
+
+    public NameNode getNameNode() {
+        return namespaceNameGenericParametersNode.getNamespaceNameNode().getNameNode();
     }
 
     @Override
