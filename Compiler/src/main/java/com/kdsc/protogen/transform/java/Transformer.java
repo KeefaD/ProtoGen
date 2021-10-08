@@ -31,17 +31,17 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
     private List<FileNode> transformFileNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetreenodes.FileNode fileNode) {
         return Streams.concat(
             fileNode
-                .getProtoGenEnumNodes()
+                .getEnumNodes()
                 .stream()
                 .map(en -> transformEnumNode(compilerResults, transformerContext, en)),
             fileNode
-                .getProtoGenTypeNodes()
+                .getTypeNodes()
                 .stream()
                 .map(en -> transformTypeNode(compilerResults, transformerContext, en))
         ).collect(Collectors.toList());
     }
 
-    private FileNode transformEnumNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final ProtoGenEnumNode enumNode) {
+    private FileNode transformEnumNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final EnumNode enumNode) {
         if(enumNode.getEnumCasesNode().isPresent()) {
             return new EnumFileNode(
                 enumNode.getNamespaceNameNode().getNameNode().getName() + TransformerContext.javaFileExtension,
@@ -60,13 +60,13 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
         );
     }
 
-    private FileNode transformTypeNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final ProtoGenTypeNode typeNode) {
+    private FileNode transformTypeNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final TypeNode typeNode) {
         return typeNode.isInterface()
             ? transformTypeInterfaceNode(compilerResults, transformerContext, typeNode)
             : transformTypeNonInterfaceNode(compilerResults, transformerContext, typeNode);
     }
 
-    private FileNode transformTypeNonInterfaceNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final ProtoGenTypeNode typeNode) {
+    private FileNode transformTypeNonInterfaceNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final TypeNode typeNode) {
 
         var fileContext = new FileContext();
 
@@ -127,7 +127,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
         );
     }
 
-    private FileNode transformTypeInterfaceNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final ProtoGenTypeNode typeNode) {
+    private FileNode transformTypeInterfaceNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final TypeNode typeNode) {
 
         var fileContext = new FileContext();
 

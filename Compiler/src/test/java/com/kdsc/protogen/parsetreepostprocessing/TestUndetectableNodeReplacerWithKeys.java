@@ -23,7 +23,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -39,7 +39,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -80,7 +80,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -96,7 +96,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -153,7 +153,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -169,7 +169,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -214,7 +214,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -230,7 +230,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -275,7 +275,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -291,7 +291,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -338,7 +338,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -354,7 +354,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -375,7 +375,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -438,7 +438,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -454,7 +454,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -475,7 +475,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -570,7 +570,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -586,7 +586,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -607,7 +607,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -678,7 +678,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -694,7 +694,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -715,7 +715,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -786,7 +786,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -802,7 +802,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -823,7 +823,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -891,7 +891,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -907,7 +907,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -974,7 +974,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -990,7 +990,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1089,7 +1089,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1105,7 +1105,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1180,7 +1180,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1196,7 +1196,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1271,7 +1271,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1287,7 +1287,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1362,7 +1362,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1378,7 +1378,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1399,7 +1399,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1503,7 +1503,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1519,7 +1519,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1540,7 +1540,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1644,7 +1644,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1660,7 +1660,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1681,7 +1681,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1804,7 +1804,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1820,7 +1820,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1841,7 +1841,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1964,7 +1964,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1980,7 +1980,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                             Optional : false
                             //Int32FieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -2001,7 +2001,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenKeyNode
+            //KeyNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode

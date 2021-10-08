@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class ProtoGenEnumNode extends BaseParseTreeNode implements TopLevelObject, HasNamespaceName {
+public final class EnumNode extends BaseParseTreeNode implements TopLevelObject, HasNamespaceName {
 
     private final NamespaceNameNode namespaceNameNode;
     private final Optional<EnumVersionsNode> enumVersionsNode;
     private final Optional<EnumCasesNode> enumCasesNode;
 
-    public ProtoGenEnumNode(
+    public EnumNode(
         final String sourceFileName,
         final long line,
         final long charPosition,
@@ -61,7 +61,7 @@ public final class ProtoGenEnumNode extends BaseParseTreeNode implements TopLeve
     @Override
     public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, formattedStringOptions, ProtoGenEnumNode.class);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, EnumNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNameNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, enumVersionsNode);
@@ -70,8 +70,8 @@ public final class ProtoGenEnumNode extends BaseParseTreeNode implements TopLeve
     }
 
     @Override
-    public ProtoGenEnumNode clone() {
-        return new ProtoGenEnumNode(
+    public EnumNode clone() {
+        return new EnumNode(
             getSourceFileName(),
             getLine(),
             getCharPosition(),
@@ -86,7 +86,7 @@ public final class ProtoGenEnumNode extends BaseParseTreeNode implements TopLeve
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;
-        ProtoGenEnumNode that = (ProtoGenEnumNode) object;
+        EnumNode that = (EnumNode) object;
         return namespaceNameNode.equals(that.namespaceNameNode) && enumVersionsNode.equals(that.enumVersionsNode) && enumCasesNode.equals(that.enumCasesNode);
     }
 

@@ -39,15 +39,15 @@ public final class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.Pro
             sourceFileName,
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
-            ctx.protogen_type().stream().map(t -> (ProtoGenTypeNode) visit(t)).collect(Collectors.toList()),
-            ctx.protogen_key().stream().map(k -> (ProtoGenKeyNode) visit(k)).collect(Collectors.toList()),
-            ctx.protogen_enum().stream().map(e -> (ProtoGenEnumNode) visit(e)).collect(Collectors.toList())
+            ctx.protogen_type().stream().map(t -> (TypeNode) visit(t)).collect(Collectors.toList()),
+            ctx.protogen_key().stream().map(k -> (KeyNode) visit(k)).collect(Collectors.toList()),
+            ctx.protogen_enum().stream().map(e -> (EnumNode) visit(e)).collect(Collectors.toList())
         );
     }
 
     @Override
-    public ProtoGenTypeNode visitProtogen_type(final ProtoGenParser.Protogen_typeContext ctx) {
-        return new ProtoGenTypeNode(
+    public TypeNode visitProtogen_type(final ProtoGenParser.Protogen_typeContext ctx) {
+        return new TypeNode(
             sourceFileName,
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
@@ -60,8 +60,8 @@ public final class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.Pro
     }
 
     @Override
-    public ProtoGenKeyNode visitProtogen_key(final ProtoGenParser.Protogen_keyContext ctx) {
-        return new ProtoGenKeyNode(
+    public KeyNode visitProtogen_key(final ProtoGenParser.Protogen_keyContext ctx) {
+        return new KeyNode(
             sourceFileName,
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
@@ -74,8 +74,8 @@ public final class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.Pro
     }
 
     @Override
-    public ProtoGenEnumNode visitProtogen_enum(final ProtoGenParser.Protogen_enumContext ctx) {
-        return new ProtoGenEnumNode(
+    public EnumNode visitProtogen_enum(final ProtoGenParser.Protogen_enumContext ctx) {
+        return new EnumNode(
             sourceFileName,
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),

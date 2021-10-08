@@ -6,11 +6,11 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public final class TestProtoGenEnumNode extends BaseTestNode {
+public final class TestEnumNode extends BaseTestNode {
 
     @Test
     public void testCreateMinimal() {
-        new ProtoGenEnumNode(
+        new EnumNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
@@ -30,7 +30,7 @@ public final class TestProtoGenEnumNode extends BaseTestNode {
 
         assertThrows(NullPointerException.class,
             () ->
-            new ProtoGenEnumNode(
+            new EnumNode(
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
@@ -42,7 +42,7 @@ public final class TestProtoGenEnumNode extends BaseTestNode {
 
         assertThrows(NullPointerException.class,
             () ->
-            new ProtoGenEnumNode(
+            new EnumNode(
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
@@ -54,7 +54,7 @@ public final class TestProtoGenEnumNode extends BaseTestNode {
 
         assertThrows(NullPointerException.class,
             () ->
-            new ProtoGenEnumNode(
+            new EnumNode(
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
@@ -66,7 +66,7 @@ public final class TestProtoGenEnumNode extends BaseTestNode {
 
         assertThrows(IllegalArgumentException.class,
             () ->
-            new ProtoGenEnumNode(
+            new EnumNode(
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
@@ -82,7 +82,7 @@ public final class TestProtoGenEnumNode extends BaseTestNode {
         var namespaceName = TestNamespaceNameNode.createPopulatedTestNode();
         Optional<EnumVersionsNode> enumVersions = Optional.empty();
         Optional<EnumCasesNode> enumCases = Optional.of(TestEnumCasesNode.createPopulatedTestNode());
-        var node = new ProtoGenEnumNode(
+        var node = new EnumNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
@@ -100,7 +100,7 @@ public final class TestProtoGenEnumNode extends BaseTestNode {
         var namespaceName = TestNamespaceNameNode.createPopulatedTestNode();
         Optional<EnumVersionsNode> enumVersions = Optional.empty();
         Optional<EnumCasesNode> enumCases = Optional.of(TestEnumCasesNode.createPopulatedTestNode());
-        var node = new ProtoGenEnumNode(
+        var node = new EnumNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
@@ -123,7 +123,7 @@ public final class TestProtoGenEnumNode extends BaseTestNode {
     public void testToString() {
         var node = createPopulatedTestNode();
         var expectedToStringOutput = """
-        //ProtoGenEnumNode
+        //EnumNode
             //Super -> //BaseParseTreeNode
                 SourceFileName : TestFileName.pg
                 Line : 1
@@ -184,8 +184,8 @@ public final class TestProtoGenEnumNode extends BaseTestNode {
         assertEquals(node1.toString(), node2.toString(), "Expected cloned objects toString to be equal");
     }
 
-    public static ProtoGenEnumNode createPopulatedTestNode() {
-        return new ProtoGenEnumNode(
+    public static EnumNode createPopulatedTestNode() {
+        return new EnumNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,

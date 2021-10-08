@@ -23,7 +23,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -45,7 +45,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                             Namespace : TestNamespace
                                         //NameNode
                                             Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -73,7 +73,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -111,7 +111,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                         Namespace : TestNamespace
                                                     //NameNode
                                                         Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -139,7 +139,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -165,7 +165,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                     Namespace : TestNamespace
                                                 //NameNode
                                                     Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -193,7 +193,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -219,7 +219,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                     Namespace : TestNamespace
                                                 //NameNode
                                                     Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -247,7 +247,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -271,7 +271,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                             //NameNode
                                                 Name : EnumToReplace
                                 Dimensions : 2
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -303,7 +303,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -324,7 +324,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -364,7 +364,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                             Namespace : TestNamespace
                                         //NameNode
                                             Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -396,7 +396,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -417,7 +417,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -489,7 +489,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                         Namespace : TestNamespace
                                                     //NameNode
                                                         Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -521,7 +521,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -542,7 +542,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -590,7 +590,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                     Namespace : TestNamespace
                                                 //NameNode
                                                     Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -622,7 +622,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -643,7 +643,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -691,7 +691,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                     Namespace : TestNamespace
                                                 //NameNode
                                                     Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -723,7 +723,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -744,7 +744,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -788,7 +788,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                             //NameNode
                                                 Name : EnumToReplace
                                 Dimensions : 2
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -821,7 +821,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -864,7 +864,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                     Namespace : TestNamespace
                                                 //NameNode
                                                     Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -897,7 +897,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -972,7 +972,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                                 Namespace : TestNamespace
                                                             //NameNode
                                                                 Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -1005,7 +1005,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1056,7 +1056,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                             Namespace : TestNamespace
                                                         //NameNode
                                                             Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -1089,7 +1089,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1140,7 +1140,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                             Namespace : TestNamespace
                                                         //NameNode
                                                             Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -1173,7 +1173,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1220,7 +1220,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                     //NameNode
                                                         Name : EnumToReplace
                                         Dimensions : 2
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -1258,7 +1258,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1279,7 +1279,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1358,7 +1358,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                     Namespace : TestNamespace
                                                 //NameNode
                                                     Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -1395,7 +1395,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1416,7 +1416,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1559,7 +1559,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                                 Namespace : TestNamespace
                                                             //NameNode
                                                                 Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -1596,7 +1596,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1617,7 +1617,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1712,7 +1712,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                             Namespace : TestNamespace
                                                         //NameNode
                                                             Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -1749,7 +1749,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1770,7 +1770,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1865,7 +1865,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                             Namespace : TestNamespace
                                                         //NameNode
                                                             Name : EnumToReplace
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace
@@ -1902,7 +1902,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
         var expectedToStringOutput = """
         //FileNode
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : true
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -1923,7 +1923,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                 //Super -> //NonArrayFieldTypeNode
                                 //GenericParameterNode
                                     Identifier : T
-            //ProtoGenTypeNode
+            //TypeNode
                 IsInterface : false
                 //NamespaceNameGenericParametersWithBoundsNode
                     //NamespaceNameNode
@@ -2010,7 +2010,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                                     //NameNode
                                                         Name : EnumToReplace
                                         Dimensions : 2
-            //ProtoGenEnumNode
+            //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode
                         Namespace : TestNamespace

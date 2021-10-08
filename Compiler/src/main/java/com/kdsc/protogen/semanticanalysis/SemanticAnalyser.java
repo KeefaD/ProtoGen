@@ -46,9 +46,9 @@ public class SemanticAnalyser {
             .stream()
             .flatMap(
                 fn -> Stream.of(
-                    fn.getProtoGenTypeNodes().stream(),
-                    fn.getProtoGenKeyNodes().stream(),
-                    fn.getProtoGenEnumNodes().stream()
+                    fn.getTypeNodes().stream(),
+                    fn.getKeyNodes().stream(),
+                    fn.getEnumNodes().stream()
                 ).flatMap(s -> s)
             )
             .collect(Collectors.toList());
@@ -74,7 +74,7 @@ public class SemanticAnalyser {
             .forEach(tn -> checkType(compilerResults, semanticErrors, tn));
     }
 
-    private void checkType(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final ProtoGenTypeNode typeNode) {
+    private void checkType(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final TypeNode typeNode) {
 
         checkInheritanceLoop(compilerResults, semanticErrors, new HashSet<>(), "", typeNode, typeNode);
 
@@ -197,7 +197,7 @@ public class SemanticAnalyser {
             .forEach(ftn -> checkFieldType(compilerResults, semanticErrors, ftn));
     }
 
-    private void checkImplementsList(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final ProtoGenTypeNode typeNode, final Set<String> genericParametersSet, final ImplementsListNode implementsListNode) {
+    private void checkImplementsList(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final TypeNode typeNode, final Set<String> genericParametersSet, final ImplementsListNode implementsListNode) {
         implementsListNode
             .getNamespaceNameGenericParametersNodes()
             .forEach(
@@ -249,7 +249,7 @@ public class SemanticAnalyser {
         }
     }
 
-    private void checkInheritanceLoop(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Set<String> alreadyVisitedTypes, final String path, final ProtoGenTypeNode initialTypeNode, final ProtoGenTypeNode typeNode) {
+    private void checkInheritanceLoop(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Set<String> alreadyVisitedTypes, final String path, final TypeNode initialTypeNode, final TypeNode typeNode) {
         var namespaceNameAsString = ParseTreeUtils.getNamespaceNameString(typeNode.getNamespaceNameNode());
         var newPath = path + namespaceNameAsString;
         if (alreadyVisitedTypes.contains(namespaceNameAsString)) {
@@ -345,7 +345,7 @@ public class SemanticAnalyser {
         getGenericParametersNonArrayFieldTypeNode(foundGenericParameters, arrayFieldTypeNode.getNonArrayFieldTypeNode());
     }
 
-    private void checkGenericParameters(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final ProtoGenTypeNode typeNode, final NamespaceNameGenericParametersNode implementsTypeNamespaceNameGenericParametersNode) {
+    private void checkGenericParameters(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final TypeNode typeNode, final NamespaceNameGenericParametersNode implementsTypeNamespaceNameGenericParametersNode) {
 
         var numberOfGenericParametersOnImplementsListDefinition = implementsTypeNamespaceNameGenericParametersNode.getGenericParametersNode().isPresent()
             ? implementsTypeNamespaceNameGenericParametersNode
@@ -379,7 +379,7 @@ public class SemanticAnalyser {
             .forEach(en -> checkEnum(semanticErrors, en));
     }
 
-    private void checkEnum(final List<SemanticError> semanticErrors, final ProtoGenEnumNode enumNode) {
+    private void checkEnum(final List<SemanticError> semanticErrors, final EnumNode enumNode) {
         var versions = enumNode
             .getEnumVersionsNode()
             .stream()

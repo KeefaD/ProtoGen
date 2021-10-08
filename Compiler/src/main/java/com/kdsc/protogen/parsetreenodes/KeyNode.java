@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class ProtoGenTypeNode extends BaseParseTreeNode implements TopLevelObject, HasNamespaceName {
+public final class KeyNode extends BaseParseTreeNode implements TopLevelObject, HasNamespaceName {
 
     private final boolean isInterface;
     private final NamespaceNameGenericParametersWithBoundsNode namespaceNameGenericParametersWithBoundsNode;
@@ -16,7 +16,7 @@ public final class ProtoGenTypeNode extends BaseParseTreeNode implements TopLeve
     private final Optional<VersionsNode> versionsNode;
     private final Optional<FieldsNode> fieldsNode;
 
-    public ProtoGenTypeNode(
+    public KeyNode(
         final String sourceFileName,
         final long line,
         final long charPosition,
@@ -78,7 +78,7 @@ public final class ProtoGenTypeNode extends BaseParseTreeNode implements TopLeve
     @Override
     public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
         var stringBuilder = new StringBuilder();
-        classToFormattedStringTitle(stringBuilder, formattedStringOptions, ProtoGenTypeNode.class);
+        classToFormattedStringTitle(stringBuilder, formattedStringOptions, KeyNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "IsInterface", isInterface);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNameGenericParametersWithBoundsNode);
@@ -89,8 +89,8 @@ public final class ProtoGenTypeNode extends BaseParseTreeNode implements TopLeve
     }
 
     @Override
-    public ProtoGenTypeNode clone() {
-        return new ProtoGenTypeNode(
+    public KeyNode clone() {
+        return new KeyNode(
             getSourceFileName(),
             getLine(),
             getCharPosition(),
@@ -107,7 +107,7 @@ public final class ProtoGenTypeNode extends BaseParseTreeNode implements TopLeve
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;
-        ProtoGenTypeNode that = (ProtoGenTypeNode) object;
+        KeyNode that = (KeyNode) object;
         return isInterface == that.isInterface && namespaceNameGenericParametersWithBoundsNode.equals(that.namespaceNameGenericParametersWithBoundsNode) && implementsListNode.equals(that.implementsListNode) && versionsNode.equals(that.versionsNode) && fieldsNode.equals(that.fieldsNode);
     }
 

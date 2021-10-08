@@ -1,7 +1,7 @@
 package com.kdsc.protogen.semanticanalysis;
 
 import com.kdsc.protogen.parsetreenodes.BaseTestNode;
-import com.kdsc.protogen.parsetreenodes.TestProtoGenEnumNode;
+import com.kdsc.protogen.parsetreenodes.TestEnumNode;
 import org.junit.jupiter.api.Test;
 
 import static com.kdsc.protogen.semanticanalysis.SemanticError.SEMANTIC_ERROR_MESSAGE;
@@ -13,7 +13,7 @@ public final class TestSemanticErrorFactory {
 
     @Test
     public void testCreateSemanticError() {
-        var semanticError = SemanticErrorFactory.createSemanticError(SemanticErrorType.REDEFINITION_OF_OBJECT, TestProtoGenEnumNode.createPopulatedTestNode(), "Namespace.Name");
+        var semanticError = SemanticErrorFactory.createSemanticError(SemanticErrorType.REDEFINITION_OF_OBJECT, TestEnumNode.createPopulatedTestNode(), "Namespace.Name");
         assertNotNull(semanticError.semanticErrorType(), "Unexpected null for semantic error type");
         assertEquals(BaseTestNode.fileName, semanticError.sourceFileName(), "Unexpected file name");
         assertEquals(BaseTestNode.line, semanticError.line(), "Unexpected line number");

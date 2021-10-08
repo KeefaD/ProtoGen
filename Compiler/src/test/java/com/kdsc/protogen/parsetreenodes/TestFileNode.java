@@ -68,9 +68,9 @@ public final class TestFileNode extends BaseTestNode {
 
     @Test
     public void testGetters() {
-        List<ProtoGenTypeNode> typeNodes = Collections.emptyList();
-        List<ProtoGenKeyNode> keyNodes = Collections.emptyList();
-        List<ProtoGenEnumNode> enumNodes = Collections.emptyList();
+        List<TypeNode> typeNodes = Collections.emptyList();
+        List<KeyNode> keyNodes = Collections.emptyList();
+        List<EnumNode> enumNodes = Collections.emptyList();
         var node = new FileNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
@@ -79,9 +79,9 @@ public final class TestFileNode extends BaseTestNode {
             keyNodes,
             enumNodes
         );
-        assertEquals(typeNodes, node.getProtoGenTypeNodes(), "Created and retrieved objects don't match");
-        assertEquals(keyNodes, node.getProtoGenKeyNodes(), "Created and retrieved objects don't match");
-        assertEquals(enumNodes, node.getProtoGenEnumNodes(), "Created and retrieved objects don't match");
+        assertEquals(typeNodes, node.getTypeNodes(), "Created and retrieved objects don't match");
+        assertEquals(keyNodes, node.getKeyNodes(), "Created and retrieved objects don't match");
+        assertEquals(enumNodes, node.getEnumNodes(), "Created and retrieved objects don't match");
     }
 
     @Test
@@ -93,7 +93,7 @@ public final class TestFileNode extends BaseTestNode {
                 SourceFileName : TestFileName.pg
                 Line : 1
                 CharPosition : 0
-            //ProtoGenTypeNode
+            //TypeNode
                 //Super -> //BaseParseTreeNode
                     SourceFileName : TestFileName.pg
                     Line : 1
@@ -243,7 +243,7 @@ public final class TestFileNode extends BaseTestNode {
                                         SourceFileName : TestFileName.pg
                                         Line : 1
                                         CharPosition : 0
-            //ProtoGenKeyNode
+            //KeyNode
                 //Super -> //BaseParseTreeNode
                     SourceFileName : TestFileName.pg
                     Line : 1
@@ -393,7 +393,7 @@ public final class TestFileNode extends BaseTestNode {
                                         SourceFileName : TestFileName.pg
                                         Line : 1
                                         CharPosition : 0
-            //ProtoGenEnumNode
+            //EnumNode
                 //Super -> //BaseParseTreeNode
                     SourceFileName : TestFileName.pg
                     Line : 1
@@ -459,9 +459,9 @@ public final class TestFileNode extends BaseTestNode {
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            List.of(TestProtoGenTypeNode.createPopulatedTestNode()),
-            List.of(TestProtoGenKeyNode.createPopulatedTestNode()),
-            List.of(TestProtoGenEnumNode.createPopulatedTestNode())
+            List.of(TestTypeNode.createPopulatedTestNode()),
+            List.of(TestKeyNode.createPopulatedTestNode()),
+            List.of(TestEnumNode.createPopulatedTestNode())
         );
     }
 

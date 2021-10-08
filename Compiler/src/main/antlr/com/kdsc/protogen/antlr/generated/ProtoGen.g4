@@ -13,12 +13,15 @@ file:
     )*
     EOF;
 
+//Translates to type in parse tree nodes
 protogen_type:
     'type' 'interface'? namespace_name_generic_parameters_with_bounds implements_list? ( '{' (versions | fields)? '}' )?;
 
+//Translates to key in parse tree nodes
 protogen_key:
     'key' 'interface'? namespace_name_generic_parameters_with_bounds implements_list? ( '{' (versions | fields)? '}' )?;
 
+//Translates to enum in parse tree nodes
 protogen_enum:
     'enum' namespace_name ( '{' (enum_versions | enum_cases) '}' );
 

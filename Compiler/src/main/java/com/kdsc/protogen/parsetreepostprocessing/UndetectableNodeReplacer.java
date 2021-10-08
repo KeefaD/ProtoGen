@@ -21,28 +21,28 @@ public class UndetectableNodeReplacer {
             .stream()
             .flatMap(
                 fn -> Stream.of(
-                    fn.getProtoGenTypeNodes().stream(),
-                    fn.getProtoGenKeyNodes().stream(),
-                    fn.getProtoGenEnumNodes().stream()
+                    fn.getTypeNodes().stream(),
+                    fn.getKeyNodes().stream(),
+                    fn.getEnumNodes().stream()
                 ).flatMap(s -> s)
             )
             .collect(Collectors.toList());
 
         var typesToSearchForAsStrings = topLevelObjects
             .stream()
-            .filter(t -> t instanceof ProtoGenTypeNode)
+            .filter(t -> t instanceof TypeNode)
             .map(tlo -> ParseTreeUtils.getNamespaceNameString(tlo.getNamespaceNameNode()))
             .collect(Collectors.toSet());
 
         var keysToSearchForAsStrings = topLevelObjects
             .stream()
-            .filter(t -> t instanceof ProtoGenKeyNode)
+            .filter(t -> t instanceof KeyNode)
             .map(tlo -> ParseTreeUtils.getNamespaceNameString(tlo.getNamespaceNameNode()))
             .collect(Collectors.toSet());
 
         var enumsToSearchForAsStrings = topLevelObjects
             .stream()
-            .filter(t -> t instanceof ProtoGenEnumNode)
+            .filter(t -> t instanceof EnumNode)
             .map(tlo -> ParseTreeUtils.getNamespaceNameString(tlo.getNamespaceNameNode()))
             .collect(Collectors.toSet());
 
@@ -65,29 +65,29 @@ public class UndetectableNodeReplacer {
             fileNode.getSourceFileName(),
             fileNode.getLine(),
             fileNode.getCharPosition(),
-            replaceUndetectableNodesForProtoGenTypeNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, fileNode.getProtoGenTypeNodes()),
-            replaceUndetectableNodesForProtoGenKeyNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, fileNode.getProtoGenKeyNodes()),
-            Lists.clone(fileNode.getProtoGenEnumNodes())
+            replaceUndetectableNodesForTypeNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, fileNode.getTypeNodes()),
+            replaceUndetectableNodesForKeyNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, fileNode.getKeyNodes()),
+            Lists.clone(fileNode.getEnumNodes())
         );
     }
 
-    private List<ProtoGenTypeNode> replaceUndetectableNodesForProtoGenTypeNodes(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final List<ProtoGenTypeNode> typeNodes) {
+    private List<TypeNode> replaceUndetectableNodesForTypeNodes(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final List<TypeNode> typeNodes) {
         return typeNodes
             .stream()
-            .map(tn -> replaceUndetectableNodesForProtoGenTypeNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, tn))
+            .map(tn -> replaceUndetectableNodesForTypeNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, tn))
             .collect(Collectors.toList());
     }
 
-    private ProtoGenTypeNode replaceUndetectableNodesForProtoGenTypeNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final ProtoGenTypeNode protoGenTypeNode) {
-        return new ProtoGenTypeNode(
-            protoGenTypeNode.getSourceFileName(),
-            protoGenTypeNode.getLine(),
-            protoGenTypeNode.getCharPosition(),
-            protoGenTypeNode.isInterface(),
-            protoGenTypeNode.getNamespaceNameGenericParametersWithBoundsNode().clone(),
-            replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenTypeNode.getImplementsListNode()),
-            replaceUndetectableNodesForOptionalVersionsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenTypeNode.getVersionsNode()),
-            replaceUndetectableNodesForOptionalFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenTypeNode.getFieldsNode())
+    private TypeNode replaceUndetectableNodesForTypeNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final TypeNode typeNode) {
+        return new TypeNode(
+            typeNode.getSourceFileName(),
+            typeNode.getLine(),
+            typeNode.getCharPosition(),
+            typeNode.isInterface(),
+            typeNode.getNamespaceNameGenericParametersWithBoundsNode().clone(),
+            replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, typeNode.getImplementsListNode()),
+            replaceUndetectableNodesForOptionalVersionsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, typeNode.getVersionsNode()),
+            replaceUndetectableNodesForOptionalFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, typeNode.getFieldsNode())
         );
     }
 
@@ -174,23 +174,23 @@ public class UndetectableNodeReplacer {
             .collect(Collectors.toList());
     }
 
-    private List<ProtoGenKeyNode> replaceUndetectableNodesForProtoGenKeyNodes(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final List<ProtoGenKeyNode> keyNodes) {
+    private List<KeyNode> replaceUndetectableNodesForKeyNodes(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final List<KeyNode> keyNodes) {
         return keyNodes
             .stream()
-            .map(tn -> replaceUndetectableNodesForProtoGenKeyNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, tn))
+            .map(tn -> replaceUndetectableNodesForKeyNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, tn))
             .collect(Collectors.toList());
     }
 
-    private ProtoGenKeyNode replaceUndetectableNodesForProtoGenKeyNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final ProtoGenKeyNode protoGenKeyNode) {
-        return new ProtoGenKeyNode(
-            protoGenKeyNode.getSourceFileName(),
-            protoGenKeyNode.getLine(),
-            protoGenKeyNode.getCharPosition(),
-            protoGenKeyNode.isInterface(),
-            protoGenKeyNode.getNamespaceNameGenericParametersWithBoundsNode().clone(),
-            replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenKeyNode.getImplementsListNode()),
-            replaceUndetectableNodesForOptionalVersionsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenKeyNode.getVersionsNode()),
-            replaceUndetectableNodesForOptionalFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, protoGenKeyNode.getFieldsNode())
+    private KeyNode replaceUndetectableNodesForKeyNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final KeyNode keyNode) {
+        return new KeyNode(
+            keyNode.getSourceFileName(),
+            keyNode.getLine(),
+            keyNode.getCharPosition(),
+            keyNode.isInterface(),
+            keyNode.getNamespaceNameGenericParametersWithBoundsNode().clone(),
+            replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, keyNode.getImplementsListNode()),
+            replaceUndetectableNodesForOptionalVersionsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, keyNode.getVersionsNode()),
+            replaceUndetectableNodesForOptionalFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, keyNode.getFieldsNode())
         );
     }
 

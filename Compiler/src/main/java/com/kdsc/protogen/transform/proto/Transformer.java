@@ -6,6 +6,8 @@ import com.kdsc.protogen.filegenerationtreenodes.FileNode;
 import com.kdsc.protogen.filegenerationtreenodes.proto.EnumCaseNode;
 import com.kdsc.protogen.filegenerationtreenodes.proto.EnumFileNode;
 import com.kdsc.protogen.filegenerationtreenodes.proto.MessageFileNode;
+import com.kdsc.protogen.parsetreenodes.EnumNode;
+import com.kdsc.protogen.parsetreenodes.TypeNode;
 import com.kdsc.protogen.parsetreenodes.utils.ParseTreeUtils;
 import com.kdsc.protogen.transform.TransformerContext;
 import com.kdsc.protogen.transform.FileContext;
@@ -32,22 +34,22 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
     private List<FileNode> transformFileNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetreenodes.FileNode fileNode) {
         return Streams.concat(
             fileNode
-                .getProtoGenEnumNodes()
+                .getEnumNodes()
                 .stream()
                 .map(en -> transformEnumNode(compilerResults, transformerContext, en)),
             fileNode
-                .getProtoGenTypeNodes()
+                .getTypeNodes()
                 .stream()
                 .map(tn -> transformTypeNode(compilerResults, transformerContext, tn))//,
 //            fileNode
-//                .getProtoGenKeyNodes()
+//                .getKeyNodes()
 //                .stream()
 //                .map(kn -> transformKeyNode(transformerContext, kn))
         ).collect(Collectors.toList());
     }
 
     //TODO:KMD Figure out what to do about these paths
-    private FileNode transformEnumNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetreenodes.ProtoGenEnumNode enumNode) {
+    private FileNode transformEnumNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final EnumNode enumNode) {
         if(enumNode.getEnumCasesNode().isPresent()) {
             return new EnumFileNode(
                 TransformUtils.convertNamespaceNameNodeToName(enumNode.getNamespaceNameNode()) + TransformerContext.protoFileExtension,
@@ -74,7 +76,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
         );
     }
 
-    private FileNode transformTypeNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetreenodes.ProtoGenTypeNode typeNode) {
+    private FileNode transformTypeNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final TypeNode typeNode) {
         var fieldTransformer = new FieldsTransformer();
 
         var fileContext = new FileContext();
@@ -92,7 +94,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
         );
     }
 
-//    private FileNode transformKeyNode(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.ProtoGenKeyNode keyNode) {
+//    private FileNode transformKeyNode(final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.KeyNode keyNode) {
 //        var fieldTransformer = new FieldTransformer();
 //
 //        var fileContext = new FileContext();

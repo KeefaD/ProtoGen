@@ -46,7 +46,6 @@ import java.util.stream.Collectors;
 //TODO:KMD Need to do a day just working on TODO:KMD's to keep the numbers down otherwise it is going ot get out of control
 //TODO:KMD ParseTree equals and hash code, how are we going to know if a field gets added, perhaps we should add a reflection test, or make equals hashcode reflection
 //TODO:KMD Generate standard example tests
-//TODO:KMD Think about the names ProtoGenType etc, not happy with it
 //TODO:KMD Have a think about file contexts and proto and java, we have to share them or come up with something clever because of the shared FieldTypeNodes
 //TODO:KMD Make file generation tree nodes consistent with parse tree nodes
 //TODO:KMD Need to think about charsets, perhaps write a program in a funny charset, it has to be totally reliable

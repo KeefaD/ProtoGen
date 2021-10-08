@@ -6,11 +6,11 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public final class TestProtoGenTypeNode extends BaseTestNode {
+public final class TestTypeNode extends BaseTestNode {
 
     @Test
     public void testCreateMinimal() {
-        new ProtoGenTypeNode(
+        new TypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
@@ -32,7 +32,7 @@ public final class TestProtoGenTypeNode extends BaseTestNode {
 
         assertThrows(NullPointerException.class,
             () ->
-            new ProtoGenTypeNode(
+            new TypeNode(
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
@@ -46,26 +46,26 @@ public final class TestProtoGenTypeNode extends BaseTestNode {
 
         assertThrows(NullPointerException.class,
             () ->
-            new ProtoGenTypeNode(
-                BaseTestNode.fileName,
-                BaseTestNode.line,
-                BaseTestNode.charPosition,
-                false,
-                TestNamespaceNameGenericParametersWithBoundsNode.createPopulatedTestNode(),
-                null,
-                Optional.empty(),
-                Optional.empty()
-            )
-        );
-
-        assertThrows(NullPointerException.class,
-            () ->
-            new ProtoGenTypeNode(
+            new TypeNode(
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
                 false,
                 TestNamespaceNameGenericParametersWithBoundsNode.createPopulatedTestNode(),
+                null,
+                Optional.empty(),
+                Optional.empty()
+            )
+        );
+
+        assertThrows(NullPointerException.class,
+            () ->
+            new TypeNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                false,
+                TestNamespaceNameGenericParametersWithBoundsNode.createPopulatedTestNode(),
                 Optional.empty(),
                 null,
                 Optional.empty()
@@ -74,7 +74,7 @@ public final class TestProtoGenTypeNode extends BaseTestNode {
 
         assertThrows(NullPointerException.class,
             () ->
-            new ProtoGenTypeNode(
+            new TypeNode(
                 BaseTestNode.fileName,
                 BaseTestNode.line,
                 BaseTestNode.charPosition,
@@ -96,7 +96,7 @@ public final class TestProtoGenTypeNode extends BaseTestNode {
         Optional<ImplementsListNode> implementsListNode = Optional.empty();
         Optional<VersionsNode> versionsNode = Optional.empty();
         Optional<FieldsNode> fieldsNode = Optional.empty();
-        var node = new ProtoGenTypeNode(
+        var node = new TypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
@@ -121,7 +121,7 @@ public final class TestProtoGenTypeNode extends BaseTestNode {
         Optional<ImplementsListNode> implementsListNode = Optional.empty();
         Optional<VersionsNode> versionsNode = Optional.empty();
         Optional<FieldsNode> fieldsNode = Optional.empty();
-        var node = new ProtoGenTypeNode(
+        var node = new TypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
@@ -146,7 +146,7 @@ public final class TestProtoGenTypeNode extends BaseTestNode {
     public void testToString() {
         var node = createPopulatedTestNode();
         var expectedToStringOutput = """
-        //ProtoGenTypeNode
+        //TypeNode
             //Super -> //BaseParseTreeNode
                 SourceFileName : TestFileName.pg
                 Line : 1
@@ -324,8 +324,8 @@ public final class TestProtoGenTypeNode extends BaseTestNode {
         assertEquals(node1.toString(), node2.toString(), "Expected cloned objects toString to be equal");
     }
 
-    public static ProtoGenTypeNode createPopulatedTestNode() {
-        return new ProtoGenTypeNode(
+    public static TypeNode createPopulatedTestNode() {
+        return new TypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,

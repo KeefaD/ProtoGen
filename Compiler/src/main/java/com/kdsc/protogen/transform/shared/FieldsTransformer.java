@@ -5,6 +5,7 @@ import com.kdsc.protogen.filegenerationtreenodes.shared.FieldNode;
 import com.kdsc.protogen.filegenerationtreenodes.shared.fieldtypenodes.*;
 import com.kdsc.protogen.parsetreenodes.ImplementsListNode;
 import com.kdsc.protogen.parsetreenodes.NamespaceNameGenericParametersNode;
+import com.kdsc.protogen.parsetreenodes.TypeNode;
 import com.kdsc.protogen.parsetreenodes.utils.ParseTreeUtils;
 import com.kdsc.protogen.transform.TransformerContext;
 import com.kdsc.protogen.transform.FileContext;
@@ -23,7 +24,7 @@ public class FieldsTransformer {
         protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.LocalDateTimeFieldTypeNode.class);
     }
 
-    public List<FieldNode> transformFieldsNodes(final CompilerResults compilerResults, final TransformerContext transformerContext, final FileContext fileContext, final com.kdsc.protogen.parsetreenodes.ProtoGenTypeNode typeNode, final boolean protoMode, final boolean interfaceMode) {
+    public List<FieldNode> transformFieldsNodes(final CompilerResults compilerResults, final TransformerContext transformerContext, final FileContext fileContext, final TypeNode typeNode, final boolean protoMode, final boolean interfaceMode) {
         List<com.kdsc.protogen.parsetreenodes.FieldNode> fieldNodes = typeNode.getFieldsNode().isPresent()
             ? new ArrayList<>(typeNode.getFieldsNode().get().getFieldNodes())
             : Collections.emptyList();
