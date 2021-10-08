@@ -1,6 +1,6 @@
 package com.kdsc.protogen.antlr;
 
-import com.kdsc.protogen.parsetree.TestFileNode;
+import com.kdsc.protogen.parsetreenodes.TestFileNode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;

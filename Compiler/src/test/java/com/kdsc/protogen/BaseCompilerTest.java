@@ -7,8 +7,8 @@ import com.kdsc.protogen.antlr.generated.ProtoGenParser;
 import com.kdsc.protogen.antlr.visitor.ProtoGenVisitor;
 import com.kdsc.protogen.antlr.ParserErrorListener;
 import com.kdsc.protogen.compilerresults.CompilerResults;
-import com.kdsc.protogen.parsetree.FileNode;
-import com.kdsc.protogen.parsetree.ParseTreeFormattedStringOptions;
+import com.kdsc.protogen.parsetreenodes.FileNode;
+import com.kdsc.protogen.parsetreenodes.ParseTreeFormattedStringOptions;
 import com.kdsc.protogen.parsetreepostprocessing.UndetectableNodeReplacer;
 import com.kdsc.protogen.semanticanalysis.SemanticAnalyser;
 import com.kdsc.protogen.semanticanalysis.SemanticError;
@@ -110,7 +110,7 @@ public abstract class BaseCompilerTest {
         return semanticErrors;
     }
 
-    protected List<com.kdsc.protogen.filegenerationtree.FileNode> runCompilerToTransformReturnProtoFileNodes(String testProgram) {
+    protected List<com.kdsc.protogen.filegenerationtreenodes.FileNode> runCompilerToTransformReturnProtoFileNodes(String testProgram) {
 
         var fileNode = compileTestProgramCheckNoParserOrSemanticErrors(testProgram);
 

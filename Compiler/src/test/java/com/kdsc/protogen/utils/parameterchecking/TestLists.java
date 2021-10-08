@@ -1,6 +1,6 @@
 package com.kdsc.protogen.utils.parameterchecking;
 
-import com.kdsc.protogen.parsetree.BaseTestNode;
+import com.kdsc.protogen.parsetreenodes.BaseTestNode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;

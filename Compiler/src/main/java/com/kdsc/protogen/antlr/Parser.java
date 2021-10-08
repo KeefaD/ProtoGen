@@ -3,7 +3,7 @@ package com.kdsc.protogen.antlr;
 import com.kdsc.protogen.antlr.generated.ProtoGenLexer;
 import com.kdsc.protogen.antlr.generated.ProtoGenParser;
 import com.kdsc.protogen.antlr.visitor.ProtoGenVisitor;
-import com.kdsc.protogen.parsetree.FileNode;
+import com.kdsc.protogen.parsetreenodes.FileNode;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 

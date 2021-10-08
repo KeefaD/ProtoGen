@@ -1,7 +1,7 @@
 package com.kdsc.protogen.nodes;
 
-import com.kdsc.protogen.parsetree.ParseTreeFormattedStringOptions;
-import com.kdsc.protogen.parsetree.TestNamespaceNode;
+import com.kdsc.protogen.parsetreenodes.ParseTreeFormattedStringOptions;
+import com.kdsc.protogen.parsetreenodes.TestNamespaceNode;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Spy;

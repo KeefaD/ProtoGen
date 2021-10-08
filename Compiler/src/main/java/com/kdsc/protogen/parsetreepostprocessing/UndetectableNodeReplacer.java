@@ -1,11 +1,11 @@
 package com.kdsc.protogen.parsetreepostprocessing;
 
 import com.kdsc.protogen.antlr.ParserResults;
-import com.kdsc.protogen.parsetree.*;
-import com.kdsc.protogen.parsetree.fieldtypenodes.*;
-import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
-import com.kdsc.protogen.parsetree.utils.clone.Lists;
-import com.kdsc.protogen.parsetree.utils.clone.Optionals;
+import com.kdsc.protogen.parsetreenodes.*;
+import com.kdsc.protogen.parsetreenodes.fieldtypenodes.*;
+import com.kdsc.protogen.parsetreenodes.utils.ParseTreeUtils;
+import com.kdsc.protogen.parsetreenodes.utils.clone.Lists;
+import com.kdsc.protogen.parsetreenodes.utils.clone.Optionals;
 
 import java.util.List;
 import java.util.Optional;

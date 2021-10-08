@@ -1,6 +1,6 @@
 package com.kdsc.protogen.antlr;
 
-import com.kdsc.protogen.parsetree.FileNode;
+import com.kdsc.protogen.parsetreenodes.FileNode;
 
 import java.util.*;
 

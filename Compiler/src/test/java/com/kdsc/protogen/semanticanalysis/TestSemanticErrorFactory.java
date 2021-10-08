@@ -1,7 +1,7 @@
 package com.kdsc.protogen.semanticanalysis;
 
-import com.kdsc.protogen.parsetree.BaseTestNode;
-import com.kdsc.protogen.parsetree.TestProtoGenEnumNode;
+import com.kdsc.protogen.parsetreenodes.BaseTestNode;
+import com.kdsc.protogen.parsetreenodes.TestProtoGenEnumNode;
 import org.junit.jupiter.api.Test;
 
 import static com.kdsc.protogen.semanticanalysis.SemanticError.SEMANTIC_ERROR_MESSAGE;

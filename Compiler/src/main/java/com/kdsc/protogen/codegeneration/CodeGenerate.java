@@ -1,8 +1,8 @@
 package com.kdsc.protogen.codegeneration;
 
-import com.kdsc.protogen.filegenerationtree.FileNode;
-import com.kdsc.protogen.filegenerationtree.java.JavaFileNode;
-import com.kdsc.protogen.filegenerationtree.proto.ProtoFileNode;
+import com.kdsc.protogen.filegenerationtreenodes.FileNode;
+import com.kdsc.protogen.filegenerationtreenodes.java.JavaFileNode;
+import com.kdsc.protogen.filegenerationtreenodes.proto.ProtoFileNode;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,6 +1,6 @@
 package com.kdsc.protogen.semanticanalysis;
 
-import com.kdsc.protogen.parsetree.BaseParseTreeNode;
+import com.kdsc.protogen.parsetreenodes.BaseParseTreeNode;
 
 public final class SemanticErrorFactory {
 

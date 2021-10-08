@@ -1,8 +1,8 @@
 package com.kdsc.protogen.semanticanalysis;
 import com.kdsc.protogen.compilerresults.CompilerResults;
-import com.kdsc.protogen.parsetree.*;
-import com.kdsc.protogen.parsetree.fieldtypenodes.*;
-import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
+import com.kdsc.protogen.parsetreenodes.*;
+import com.kdsc.protogen.parsetreenodes.fieldtypenodes.*;
+import com.kdsc.protogen.parsetreenodes.utils.ParseTreeUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;

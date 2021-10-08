@@ -1,8 +1,8 @@
 package com.kdsc.protogen.antlr.visitor;
 
 import com.kdsc.protogen.antlr.generated.ProtoGenParser;
-import com.kdsc.protogen.parsetree.*;
-import com.kdsc.protogen.parsetree.fieldtypenodes.*;
+import com.kdsc.protogen.parsetreenodes.*;
+import com.kdsc.protogen.parsetreenodes.fieldtypenodes.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.Optional;

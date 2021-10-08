@@ -1,7 +1,7 @@
 package com.kdsc.protogen.transform;
 
 import com.kdsc.protogen.compilerresults.CompilerResults;
-import com.kdsc.protogen.filegenerationtree.FileNode;
+import com.kdsc.protogen.filegenerationtreenodes.FileNode;
 import com.kdsc.protogen.transform.proto.Transformer;
 
 import java.util.List;

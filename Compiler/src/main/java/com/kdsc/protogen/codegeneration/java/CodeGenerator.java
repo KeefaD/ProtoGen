@@ -2,9 +2,9 @@ package com.kdsc.protogen.codegeneration.java;
 
 import com.kdsc.protogen.codegeneration.CodeGeneratorContext;
 import com.kdsc.protogen.codegeneration.utils.CodeGenerateUtils;
-import com.kdsc.protogen.filegenerationtree.FileNode;
-import com.kdsc.protogen.filegenerationtree.java.*;
-import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.*;
+import com.kdsc.protogen.filegenerationtreenodes.FileNode;
+import com.kdsc.protogen.filegenerationtreenodes.java.*;
+import com.kdsc.protogen.filegenerationtreenodes.shared.fieldtypenodes.*;
 
 import java.util.List;
 import java.util.Set;

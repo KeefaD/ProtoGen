@@ -1,7 +1,6 @@
 package com.kdsc.protogen.compilerresults;
 
 import com.kdsc.protogen.antlr.Parser;
-import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;

@@ -1,10 +1,10 @@
 package com.kdsc.protogen.transform.java;
 
 import com.kdsc.protogen.compilerresults.CompilerResults;
-import com.kdsc.protogen.filegenerationtree.FileNode;
-import com.kdsc.protogen.filegenerationtree.java.*;
-import com.kdsc.protogen.parsetree.*;
-import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
+import com.kdsc.protogen.filegenerationtreenodes.FileNode;
+import com.kdsc.protogen.filegenerationtreenodes.java.*;
+import com.kdsc.protogen.parsetreenodes.*;
+import com.kdsc.protogen.parsetreenodes.utils.ParseTreeUtils;
 import com.kdsc.protogen.transform.FileContext;
 import com.kdsc.protogen.transform.TransformerContext;
 import com.kdsc.protogen.transform.shared.FieldsTransformer;
@@ -28,7 +28,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
             .collect(Collectors.toList());
     }
 
-    private List<FileNode> transformFileNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.FileNode fileNode) {
+    private List<FileNode> transformFileNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetreenodes.FileNode fileNode) {
         return Streams.concat(
             fileNode
                 .getProtoGenEnumNodes()

@@ -1,7 +1,7 @@
 package com.kdsc.protogen.parsetreepostprocessing;
 
 import com.kdsc.protogen.BaseCompilerTest;
-import com.kdsc.protogen.parsetree.ParseTreeFormattedStringOptions;
+import com.kdsc.protogen.parsetreenodes.ParseTreeFormattedStringOptions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -2,13 +2,13 @@ package com.kdsc.protogen.codegeneration.proto;
 
 import com.kdsc.protogen.codegeneration.CodeGeneratorContext;
 import com.kdsc.protogen.codegeneration.utils.CodeGenerateUtils;
-import com.kdsc.protogen.filegenerationtree.FileNode;
-import com.kdsc.protogen.filegenerationtree.proto.EnumCaseNode;
-import com.kdsc.protogen.filegenerationtree.proto.EnumFileNode;
-import com.kdsc.protogen.filegenerationtree.proto.MessageFileNode;
-import com.kdsc.protogen.filegenerationtree.proto.ProtoFileNode;
-import com.kdsc.protogen.filegenerationtree.shared.FieldNode;
-import com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes.*;
+import com.kdsc.protogen.filegenerationtreenodes.FileNode;
+import com.kdsc.protogen.filegenerationtreenodes.proto.EnumCaseNode;
+import com.kdsc.protogen.filegenerationtreenodes.proto.EnumFileNode;
+import com.kdsc.protogen.filegenerationtreenodes.proto.MessageFileNode;
+import com.kdsc.protogen.filegenerationtreenodes.proto.ProtoFileNode;
+import com.kdsc.protogen.filegenerationtreenodes.shared.FieldNode;
+import com.kdsc.protogen.filegenerationtreenodes.shared.fieldtypenodes.*;
 
 import java.util.List;
 import java.util.Set;

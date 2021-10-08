@@ -1,10 +1,10 @@
 package com.kdsc.protogen.compilerresults;
 
-import com.kdsc.protogen.parsetree.FileNode;
-import com.kdsc.protogen.parsetree.ProtoGenEnumNode;
-import com.kdsc.protogen.parsetree.ProtoGenKeyNode;
-import com.kdsc.protogen.parsetree.ProtoGenTypeNode;
-import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
+import com.kdsc.protogen.parsetreenodes.FileNode;
+import com.kdsc.protogen.parsetreenodes.ProtoGenEnumNode;
+import com.kdsc.protogen.parsetreenodes.ProtoGenKeyNode;
+import com.kdsc.protogen.parsetreenodes.ProtoGenTypeNode;
+import com.kdsc.protogen.parsetreenodes.utils.ParseTreeUtils;
 
 import java.util.Collections;
 import java.util.List;

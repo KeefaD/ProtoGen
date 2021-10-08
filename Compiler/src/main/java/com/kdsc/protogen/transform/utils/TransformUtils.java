@@ -1,7 +1,7 @@
 package com.kdsc.protogen.transform.utils;
 
-import com.kdsc.protogen.parsetree.NamespaceNameNode;
-import com.kdsc.protogen.parsetree.NamespaceNode;
+import com.kdsc.protogen.parsetreenodes.NamespaceNameNode;
+import com.kdsc.protogen.parsetreenodes.NamespaceNode;
 
 import java.io.File;
 import java.util.stream.Collectors;

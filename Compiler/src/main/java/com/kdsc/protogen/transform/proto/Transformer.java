@@ -1,12 +1,12 @@
 package com.kdsc.protogen.transform.proto;
 
 import com.kdsc.protogen.compilerresults.CompilerResults;
-import com.kdsc.protogen.filegenerationtree.FileNode;
+import com.kdsc.protogen.filegenerationtreenodes.FileNode;
 
-import com.kdsc.protogen.filegenerationtree.proto.EnumCaseNode;
-import com.kdsc.protogen.filegenerationtree.proto.EnumFileNode;
-import com.kdsc.protogen.filegenerationtree.proto.MessageFileNode;
-import com.kdsc.protogen.parsetree.utils.ParseTreeUtils;
+import com.kdsc.protogen.filegenerationtreenodes.proto.EnumCaseNode;
+import com.kdsc.protogen.filegenerationtreenodes.proto.EnumFileNode;
+import com.kdsc.protogen.filegenerationtreenodes.proto.MessageFileNode;
+import com.kdsc.protogen.parsetreenodes.utils.ParseTreeUtils;
 import com.kdsc.protogen.transform.TransformerContext;
 import com.kdsc.protogen.transform.FileContext;
 import com.kdsc.protogen.transform.shared.FieldsTransformer;
@@ -29,7 +29,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
             .collect(Collectors.toList());
     }
 
-    private List<FileNode> transformFileNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.FileNode fileNode) {
+    private List<FileNode> transformFileNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetreenodes.FileNode fileNode) {
         return Streams.concat(
             fileNode
                 .getProtoGenEnumNodes()
@@ -47,7 +47,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
     }
 
     //TODO:KMD Figure out what to do about these paths
-    private FileNode transformEnumNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.ProtoGenEnumNode enumNode) {
+    private FileNode transformEnumNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetreenodes.ProtoGenEnumNode enumNode) {
         if(enumNode.getEnumCasesNode().isPresent()) {
             return new EnumFileNode(
                 TransformUtils.convertNamespaceNameNodeToName(enumNode.getNamespaceNameNode()) + TransformerContext.protoFileExtension,
@@ -74,7 +74,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
         );
     }
 
-    private FileNode transformTypeNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.ProtoGenTypeNode typeNode) {
+    private FileNode transformTypeNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetreenodes.ProtoGenTypeNode typeNode) {
         var fieldTransformer = new FieldsTransformer();
 
         var fileContext = new FileContext();
@@ -110,7 +110,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
 //        );
 //    }
 
-    private List<EnumCaseNode> transformEnumCaseNodes(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.EnumCasesNode enumCasesNode) {
+    private List<EnumCaseNode> transformEnumCaseNodes(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetreenodes.EnumCasesNode enumCasesNode) {
         return enumCasesNode
             .getEnumNameNodes()
             .stream()
@@ -118,7 +118,7 @@ public class Transformer implements com.kdsc.protogen.transform.Transformer {
             .collect(Collectors.toList());
     }
 
-    private EnumCaseNode transformEnumCaseNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetree.EnumNameNode enumNameNode) {
+    private EnumCaseNode transformEnumCaseNode(final CompilerResults compilerResults, final TransformerContext transformerContext, final com.kdsc.protogen.parsetreenodes.EnumNameNode enumNameNode) {
         return new EnumCaseNode(
             enumNameNode.getEnumName()
         );
