@@ -16,6 +16,7 @@ public class UseInterface implements interfaces.TypeInterface, ProtoGenType {
     private final com.kdsc.protogen.runtime.types.Decimal TestDecimal;
     private final com.kdsc.protogen.runtime.types.Date TestDate;
     private final com.kdsc.protogen.runtime.types.DateTime TestDateTime;
+    private final com.kdsc.protogen.runtime.types.LocalDate TestLocalDate;
     private final com.kdsc.protogen.runtime.types.LocalDateTime TestLocalDateTime;
     private final com.kdsc.protogen.runtime.types.Map<Integer, Integer> TestMap;
     private final com.kdsc.protogen.runtime.types.Set<Integer> TestSet;
@@ -32,6 +33,7 @@ public class UseInterface implements interfaces.TypeInterface, ProtoGenType {
     private final Optional<com.kdsc.protogen.runtime.types.Decimal> TestOptionalDecimal;
     private final Optional<com.kdsc.protogen.runtime.types.Date> TestOptionalDate;
     private final Optional<com.kdsc.protogen.runtime.types.DateTime> TestOptionalDatetime;
+    private final Optional<com.kdsc.protogen.runtime.types.LocalDate> TestOptionalLocalDate;
     private final Optional<com.kdsc.protogen.runtime.types.LocalDateTime> TestOptionalLocalDateTime;
     private final Optional<com.kdsc.protogen.runtime.types.Map<Integer, Integer>> TestOptionalMap;
     private final Optional<com.kdsc.protogen.runtime.types.Set<Integer>> TestOptionalSet;
@@ -53,6 +55,7 @@ public class UseInterface implements interfaces.TypeInterface, ProtoGenType {
         final com.kdsc.protogen.runtime.types.Decimal TestDecimal,
         final com.kdsc.protogen.runtime.types.Date TestDate,
         final com.kdsc.protogen.runtime.types.DateTime TestDateTime,
+        final com.kdsc.protogen.runtime.types.LocalDate TestLocalDate,
         final com.kdsc.protogen.runtime.types.LocalDateTime TestLocalDateTime,
         final com.kdsc.protogen.runtime.types.Map<Integer, Integer> TestMap,
         final com.kdsc.protogen.runtime.types.Set<Integer> TestSet,
@@ -69,6 +72,7 @@ public class UseInterface implements interfaces.TypeInterface, ProtoGenType {
         final Optional<com.kdsc.protogen.runtime.types.Decimal> TestOptionalDecimal,
         final Optional<com.kdsc.protogen.runtime.types.Date> TestOptionalDate,
         final Optional<com.kdsc.protogen.runtime.types.DateTime> TestOptionalDatetime,
+        final Optional<com.kdsc.protogen.runtime.types.LocalDate> TestOptionalLocalDate,
         final Optional<com.kdsc.protogen.runtime.types.LocalDateTime> TestOptionalLocalDateTime,
         final Optional<com.kdsc.protogen.runtime.types.Map<Integer, Integer>> TestOptionalMap,
         final Optional<com.kdsc.protogen.runtime.types.Set<Integer>> TestOptionalSet,
@@ -89,6 +93,7 @@ public class UseInterface implements interfaces.TypeInterface, ProtoGenType {
         this.TestDecimal = TestDecimal;
         this.TestDate = TestDate;
         this.TestDateTime = TestDateTime;
+        this.TestLocalDate = TestLocalDate;
         this.TestLocalDateTime = TestLocalDateTime;
         this.TestMap = TestMap;
         this.TestSet = TestSet;
@@ -105,6 +110,7 @@ public class UseInterface implements interfaces.TypeInterface, ProtoGenType {
         this.TestOptionalDecimal = TestOptionalDecimal;
         this.TestOptionalDate = TestOptionalDate;
         this.TestOptionalDatetime = TestOptionalDatetime;
+        this.TestOptionalLocalDate = TestOptionalLocalDate;
         this.TestOptionalLocalDateTime = TestOptionalLocalDateTime;
         this.TestOptionalMap = TestOptionalMap;
         this.TestOptionalSet = TestOptionalSet;
@@ -157,6 +163,10 @@ public class UseInterface implements interfaces.TypeInterface, ProtoGenType {
 
     public com.kdsc.protogen.runtime.types.DateTime getTestDateTime() {
         return TestDateTime;
+    }
+
+    public com.kdsc.protogen.runtime.types.LocalDate getTestLocalDate() {
+        return TestLocalDate;
     }
 
     public com.kdsc.protogen.runtime.types.LocalDateTime getTestLocalDateTime() {
@@ -221,6 +231,10 @@ public class UseInterface implements interfaces.TypeInterface, ProtoGenType {
 
     public Optional<com.kdsc.protogen.runtime.types.DateTime> getTestOptionalDatetime() {
         return TestOptionalDatetime;
+    }
+
+    public Optional<com.kdsc.protogen.runtime.types.LocalDate> getTestOptionalLocalDate() {
+        return TestOptionalLocalDate;
     }
 
     public Optional<com.kdsc.protogen.runtime.types.LocalDateTime> getTestOptionalLocalDateTime() {

@@ -9,6 +9,7 @@ type collections.ValueOrErrors {
     TestDecimalValueOrError : valueorerror<decimal>
     TestDateValueOrError : valueorerror<date>
     TestDateTimeValueOrError : valueorerror<datetime>
+    TestLocalDateValueOrError : valueorerror<localdate>
     TestLocalDateTimeValueOrError : valueorerror<localdatetime>
     TestMapValueOrError : valueorerror<map<string, string>>
     TestSetValueOrError : valueorerror<set<string>>
@@ -25,6 +26,7 @@ type collections.ValueOrErrors {
     TestOptionalDecimalValueOrError : valueorerror<optional decimal>
     TestOptionalDateValueOrError : valueorerror<optional date>
     TestOptionalDatetimeValueOrError : valueorerror<optional datetime>
+    TestOptionalLocalDateValueOrError : valueorerror<optional localdate>
     TestOptionalLocalDateTimeValueOrError : valueorerror<optional localdatetime>
     TestOptionalMapValueOrError : valueorerror<optional map<string, string>>
     TestOptionalSetValueOrError : valueorerror<optional set<string>>

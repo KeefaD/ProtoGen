@@ -21,8 +21,9 @@ public final class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.Pro
     private static final String BYTES = "bytes";
     private static final String DECIMAL = "decimal";
     private static final String DATE = "date";
-    private static final String DATETIME = "datetime";
-    private static final String LOCALDATETIME = "localdatetime";
+    private static final String DATE_TIME = "datetime";
+    private static final String LOCAL_DATE = "localdate";
+    private static final String LOCAL_DATE_TIME = "localdatetime";
     private static final String OPEN_SQUARE_BRACKET = "[";
     private static final String CLOSE_SQUARE_BRACKET = "]";
 
@@ -304,13 +305,19 @@ public final class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.Pro
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
-            case DATETIME ->
+            case DATE_TIME ->
                 new DateTimeFieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),
                     ctx.getStart().getCharPositionInLine()
                 );
-            case LOCALDATETIME ->
+            case LOCAL_DATE ->
+                new LocalDateFieldTypeNode(
+                    sourceFileName,
+                    ctx.getStart().getLine(),
+                    ctx.getStart().getCharPositionInLine()
+                );
+            case LOCAL_DATE_TIME ->
                 new LocalDateTimeFieldTypeNode(
                     sourceFileName,
                     ctx.getStart().getLine(),

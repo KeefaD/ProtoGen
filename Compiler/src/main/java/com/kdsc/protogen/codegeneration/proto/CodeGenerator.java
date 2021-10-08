@@ -98,6 +98,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
             case DecimalFieldTypeNode ignored -> "protogentypes.Decimal";
             case DateFieldTypeNode ignored -> "protogentypes.Date";
             case DateTimeFieldTypeNode ignored -> "protogentypes.DateTime";
+            case LocalDateFieldTypeNode ignored -> "protogentypes.LocalDate";
             case LocalDateTimeFieldTypeNode ignored -> "protogentypes.LocalDateTime";
             case ValueOrErrorFieldTypeNode ignored -> "protogentypes.ValueOrError";
             case SetFieldTypeNode ignored -> "protogentypes.Set";

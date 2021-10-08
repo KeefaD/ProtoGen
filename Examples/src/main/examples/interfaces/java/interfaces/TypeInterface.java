@@ -15,6 +15,7 @@ public interface TypeInterface extends interfaces.BaseInterface1, interfaces.Bas
     com.kdsc.protogen.runtime.types.Decimal getTestDecimal();
     com.kdsc.protogen.runtime.types.Date getTestDate();
     com.kdsc.protogen.runtime.types.DateTime getTestDateTime();
+    com.kdsc.protogen.runtime.types.LocalDate getTestLocalDate();
     com.kdsc.protogen.runtime.types.LocalDateTime getTestLocalDateTime();
     com.kdsc.protogen.runtime.types.Map<Integer, Integer> getTestMap();
     com.kdsc.protogen.runtime.types.Set<Integer> getTestSet();
@@ -31,6 +32,7 @@ public interface TypeInterface extends interfaces.BaseInterface1, interfaces.Bas
     Optional<com.kdsc.protogen.runtime.types.Decimal> getTestOptionalDecimal();
     Optional<com.kdsc.protogen.runtime.types.Date> getTestOptionalDate();
     Optional<com.kdsc.protogen.runtime.types.DateTime> getTestOptionalDatetime();
+    Optional<com.kdsc.protogen.runtime.types.LocalDate> getTestOptionalLocalDate();
     Optional<com.kdsc.protogen.runtime.types.LocalDateTime> getTestOptionalLocalDateTime();
     Optional<com.kdsc.protogen.runtime.types.Map<Integer, Integer>> getTestOptionalMap();
     Optional<com.kdsc.protogen.runtime.types.Set<Integer>> getTestOptionalSet();

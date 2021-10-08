@@ -9,6 +9,7 @@ type collections.Maps {
     TestDecimalMap : map<decimal, decimal>
     TestDateMap : map<date, date>
     TestDateTimeMap : map<datetime, datetime>
+    TestLocalDateMap : map<localdate, localdate>
     TestLocalDateTimeMap : map<localdatetime, localdatetime>
     TestMapMap : map<map<string, string>, map<string, string>>
     TestSetMap : map<set<string>, set<string>>
@@ -25,6 +26,7 @@ type collections.Maps {
     TestOptionalDecimalMap : map<optional decimal, optional decimal>
     TestOptionalDateSetMap : map<optional date, optional date>
     TestOptionalDatetimeMap : map<optional datetime, optional datetime>
+    TestOptionalLocalDateMap : map<optional localdate, optional localdate>
     TestOptionalLocalDateTimeMap : map<optional localdatetime, optional localdatetime>
     TestOptionalMapMap : map<optional map<string, string>, optional map<string, string>>
     TestOptionalSetMap : map<optional set<string>, optional set<string>>

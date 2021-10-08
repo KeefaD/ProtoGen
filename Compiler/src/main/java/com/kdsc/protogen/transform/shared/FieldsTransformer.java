@@ -150,6 +150,7 @@ public class FieldsTransformer {
             case com.kdsc.protogen.parsetreenodes.fieldtypenodes.DecimalFieldTypeNode ignored -> new DecimalFieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetreenodes.fieldtypenodes.DateFieldTypeNode ignored -> new DateFieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetreenodes.fieldtypenodes.DateTimeFieldTypeNode ignored -> new DateTimeFieldTypeNode(isOptional);
+            case com.kdsc.protogen.parsetreenodes.fieldtypenodes.LocalDateFieldTypeNode ignored -> new LocalDateFieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetreenodes.fieldtypenodes.LocalDateTimeFieldTypeNode ignored -> new LocalDateTimeFieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetreenodes.fieldtypenodes.BytesFieldTypeNode ignored -> new BytesFieldTypeNode(isOptional);
             case com.kdsc.protogen.parsetreenodes.fieldtypenodes.TypeFieldTypeNode typeFieldTypeNode -> new TypeFieldTypeNode(

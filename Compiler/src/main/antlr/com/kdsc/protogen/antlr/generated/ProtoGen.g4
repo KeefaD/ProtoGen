@@ -80,6 +80,7 @@ non_array_field_type:
         'decimal' |
         'date' |
         'datetime' |
+        'localdate' |
         'localdatetime' |
         map |
         set |

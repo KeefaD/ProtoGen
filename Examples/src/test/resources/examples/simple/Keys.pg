@@ -9,6 +9,7 @@
 //    testDecimal : decimal
 //    testDate : date
 //    testDateTime : datetime
+//    testLocalDate : localdate
 //    testLocalDateTime : localdatetime
 //    testMap : map<string, string>
 //    testSet : set<string>
@@ -26,6 +27,7 @@
 //    testOptionalDecimal : optional decimal
 //    testOptionalDate : optional date
 //    testOptionalDateTime : optional datetime
+//    testOptionalLocalDate : optional localdate
 //    testOptionalLocalDateTime : optional localdatetime
 //    testOptionalMap : optional map<string, string>
 //    testOptionalSet : optional set<string>

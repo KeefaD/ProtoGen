@@ -9,6 +9,7 @@ type collections.Sets {
     TestDecimalSet : set<decimal>
     TestDateSet : set<date>
     TestDateTimeSet : set<datetime>
+    TestLocalDateSet : set<localdate>
     TestLocalDateTimeSet : set<localdatetime>
     TestMapSet : set<map<string, string>>
     TestSetSet : set<set<string>>
@@ -25,6 +26,7 @@ type collections.Sets {
     TestOptionalDecimalSet : set<optional decimal>
     TestOptionalDateSet : set<optional date>
     TestOptionalDatetimeSet : set<optional datetime>
+    TestOptionalLocalDateSet : set<optional localdate>
     TestOptionalLocalDateTimeSet : set<optional localdatetime>
     TestOptionalMapSet : set<optional map<string, string>>
     TestOptionalSetSet : set<optional set<string>>

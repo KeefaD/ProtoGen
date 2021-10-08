@@ -219,6 +219,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                 case DecimalFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.Decimal>";
                 case DateFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.Date>";
                 case DateTimeFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.DateTime>";
+                case LocalDateFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.LocalDate>";
                 case LocalDateTimeFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.LocalDateTime>";
                 case TypeFieldTypeNode typeFieldTypeNode -> "Optional<" + typeFieldTypeNode.getFullyQualifiedName() + ">";
                 case ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode -> "Optional<com.kdsc.protogen.runtime.types.ValueOrError<" + generateFieldType(codeGeneratorContext, valueOrErrorFieldTypeNode.getFieldTypeNode(), true) + ">>";
@@ -240,6 +241,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                     case DecimalFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.Decimal";
                     case DateFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.Date";
                     case DateTimeFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.DateTime";
+                    case LocalDateFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.LocalDate";
                     case LocalDateTimeFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.LocalDateTime";
                     case TypeFieldTypeNode typeFieldTypeNode -> typeFieldTypeNode.getFullyQualifiedName();
                     case ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode -> "com.kdsc.protogen.runtime.types.ValueOrError<" + generateFieldType(codeGeneratorContext, valueOrErrorFieldTypeNode.getFieldTypeNode(), true) + ">";
@@ -260,6 +262,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                     case DecimalFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.Decimal";
                     case DateFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.Date";
                     case DateTimeFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.DateTime";
+                    case LocalDateFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.LocalDate";
                     case LocalDateTimeFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.LocalDateTime";
                     case TypeFieldTypeNode typeFieldTypeNode -> typeFieldTypeNode.getFullyQualifiedName();
                     case ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode -> "com.kdsc.protogen.runtime.types.ValueOrError<" + generateFieldType(codeGeneratorContext, valueOrErrorFieldTypeNode.getFieldTypeNode(), true) + ">";

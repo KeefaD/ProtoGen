@@ -21,6 +21,7 @@ public class TestGettersForSimpleExample {
         var testDecimal = new Decimal();
         var testDate = new Date();
         var testDateTime = new DateTime();
+        var testLocalDate = new LocalDate();
         var testLocalDateTime = new LocalDateTime();
         var testMap = new Map<Integer, Integer>();
         var testSet = new Set<Integer>();
@@ -37,6 +38,7 @@ public class TestGettersForSimpleExample {
         var testOptionalDecimal = Optional.of(new Decimal());
         var testOptionalDate = Optional.of(new Date());
         var testOptionalDateTime = Optional.of(new DateTime());
+        var testOptionalLocalDate = Optional.of(new LocalDate());
         var testOptionalLocalDateTime = Optional.of(new LocalDateTime());
         var testOptionalMap = Optional.of(new Map<Integer, Integer>());
         var testOptionalSet = Optional.of(new Set<Integer>());
@@ -54,6 +56,7 @@ public class TestGettersForSimpleExample {
             testDecimal,
             testDate,
             testDateTime,
+            testLocalDate,
             testLocalDateTime,
             testMap,
             testSet,
@@ -70,6 +73,7 @@ public class TestGettersForSimpleExample {
             testOptionalDecimal,
             testOptionalDate,
             testOptionalDateTime,
+            testOptionalLocalDate,
             testOptionalLocalDateTime,
             testOptionalMap,
             testOptionalSet,

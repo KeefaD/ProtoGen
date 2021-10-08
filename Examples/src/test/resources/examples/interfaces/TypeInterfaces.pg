@@ -21,6 +21,7 @@ type interface interfaces.TypeInterface : interfaces.BaseInterface1, interfaces.
     TestDecimal : decimal
     TestDate : date
     TestDateTime : datetime
+    TestLocalDate : localdate
     TestLocalDateTime : localdatetime
     TestMap : map<int32, int32>
     TestSet : set<int32>
@@ -37,6 +38,7 @@ type interface interfaces.TypeInterface : interfaces.BaseInterface1, interfaces.
     TestOptionalDecimal : optional decimal
     TestOptionalDate : optional date
     TestOptionalDatetime : optional datetime
+    TestOptionalLocalDate : optional localdate
     TestOptionalLocalDateTime : optional localdatetime
     TestOptionalMap : optional map<int32, int32>
     TestOptionalSet : optional set<int32>
