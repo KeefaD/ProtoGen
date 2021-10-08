@@ -17,7 +17,7 @@ public class UndetectableNodeReplacer {
 
     public List<FileNode> replaceUndetectableNodes(final ParserResults parserResults) {
 
-        var topLevelObjects = parserResults.getFileNodes()
+        var topLevelObjects = parserResults.fileNodes()
             .stream()
             .flatMap(
                 fn -> Stream.of(
@@ -46,7 +46,7 @@ public class UndetectableNodeReplacer {
             .map(tlo -> ParseTreeUtils.getNamespaceNameString(tlo.getNamespaceNameNode()))
             .collect(Collectors.toSet());
 
-        return replaceUndetectableNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, parserResults.getFileNodes());
+        return replaceUndetectableNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, parserResults.fileNodes());
     }
 
     private List<FileNode> replaceUndetectableNodes(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final List<FileNode> fileNodes) {

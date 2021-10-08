@@ -10,8 +10,4 @@ public record TransformerContext(
     public static final String javaBasePackage = "";
     public static final String javaFileExtension = ".java";
 
-    public String getBaseNamespace() {
-        return baseNamespace;
-    }
-
 }

@@ -169,7 +169,7 @@ public class ProtoGen {
         if(parserResults.hasParserErrorOccurred()) {
             System.out.println("//Parser Errors");
             parserResults
-                .getParserErrors()
+                .parserErrors()
                 .forEach(pe -> System.out.println("    " + pe));
             //TODO:KMD Don't like the fact this doesn't start at -1
             return -2;
@@ -178,7 +178,7 @@ public class ProtoGen {
         if(showParseTree) {
             System.out.println();
             System.out.println("//Parse Tree");
-            parserResults.getFileNodes()
+            parserResults.fileNodes()
                 .forEach(pf -> System.out.println(pf.toFormattedString(1)));
         }
 

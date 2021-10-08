@@ -14,16 +14,8 @@ public record ParserResults(
         Objects.requireNonNull(fileNodes);
     }
 
-    public List<ParserError> getParserErrors() {
-        return parserErrors;
-    }
-
     public boolean hasParserErrorOccurred() {
         return !parserErrors.isEmpty();
-    }
-
-    public List<FileNode> getFileNodes() {
-        return fileNodes;
     }
 
 }

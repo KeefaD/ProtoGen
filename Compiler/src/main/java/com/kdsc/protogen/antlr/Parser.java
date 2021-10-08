@@ -11,11 +11,14 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 public class Parser {
 
     public ParserResults parse(final List<String> pathsToParse) {
+
+        Objects.requireNonNull(pathsToParse);
 
         var parserErrors = new ArrayList<ParserError>();
         var fileNodes = new ArrayList<FileNode>();
