@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestGenericParameterNode extends BaseTestNode {
+public final class TestGenericParameterNode extends BaseTestNode {
 
     @Test
     public void testCreateMinimal() {

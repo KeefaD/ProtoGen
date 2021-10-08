@@ -2,7 +2,7 @@ package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 
-public class DecimalFieldTypeNode extends FieldTypeNode {
+public final class DecimalFieldTypeNode extends FieldTypeNode {
 
     public DecimalFieldTypeNode(
         final boolean isOptional

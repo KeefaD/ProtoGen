@@ -9,7 +9,7 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.REDEFINITION_
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class TestSemanticErrorFactory {
+public final class TestSemanticErrorFactory {
 
     @Test
     public void testCreateSemanticError() {

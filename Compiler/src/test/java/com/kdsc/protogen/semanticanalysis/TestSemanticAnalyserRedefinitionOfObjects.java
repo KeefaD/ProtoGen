@@ -8,7 +8,7 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.REDEFINITION_
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest {
+public final class TestSemanticAnalyserRedefinitionOfObjects extends BaseCompilerTest {
 
     @Test
     public void testRedefinitionOfType() {

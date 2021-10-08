@@ -2,8 +2,7 @@ package com.kdsc.protogen.codegeneration;
 
 import java.io.File;
 
-//TODO:KMD Stick with my style, it works
-public class CodeGeneratorContext {
+public final class CodeGeneratorContext {
 
     private final String javaOutputDirectory;
     private final String protoOutputDirectory;

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestVersionNumberNode extends BaseTestNode {
+public final class TestVersionNumberNode extends BaseTestNode {
 
     @Test
     public void testCreateMinimal() {

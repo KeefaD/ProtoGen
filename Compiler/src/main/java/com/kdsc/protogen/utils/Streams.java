@@ -2,7 +2,7 @@ package com.kdsc.protogen.utils;
 
 import java.util.stream.Stream;
 
-public class Streams {
+public final class Streams {
 
     //TODO:KMD What is this possible heap pollution from parameterised vararg types
     public static <T> Stream<T> concat(Stream<T>... streams) {

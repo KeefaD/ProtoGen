@@ -2,7 +2,7 @@ package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 
-public class FloatFieldTypeNode extends FieldTypeNode {
+public final class FloatFieldTypeNode extends FieldTypeNode {
 
     public FloatFieldTypeNode(
         final boolean isOptional

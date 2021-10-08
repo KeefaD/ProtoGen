@@ -1,6 +1,6 @@
 package com.kdsc.protogen.runtime.types;
 
-public class ValueOrError<T> {
+public final class ValueOrError<T> {
 
     public ValueOrError(T value) {
 //        if(value instanceof ProtoGenType) {

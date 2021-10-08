@@ -6,7 +6,7 @@ import static com.kdsc.protogen.semanticanalysis.SemanticError.SEMANTIC_ERROR_ME
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.REDEFINITION_OF_OBJECT;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestSemanticError {
+public final class TestSemanticError {
 
     public static final String TEST_FILE_NAME = "TestFileName";
 

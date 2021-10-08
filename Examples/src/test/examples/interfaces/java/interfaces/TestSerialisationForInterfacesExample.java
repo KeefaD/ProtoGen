@@ -2,10 +2,11 @@ package interfaces;
 
 import org.junit.jupiter.api.Test;
 
-public class TestSerialisationForInterfacesExample {
+public final class TestSerialisationForInterfacesExample {
 
     @Test
     public void testSerialisation() {
 
     }
+
 }

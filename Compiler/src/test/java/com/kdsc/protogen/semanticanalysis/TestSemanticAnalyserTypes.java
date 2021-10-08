@@ -8,7 +8,7 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class TestSemanticAnalyserTypes extends BaseCompilerTest {
+public final class TestSemanticAnalyserTypes extends BaseCompilerTest {
 
     @Test
     public void testDirectInheritanceLoop() {

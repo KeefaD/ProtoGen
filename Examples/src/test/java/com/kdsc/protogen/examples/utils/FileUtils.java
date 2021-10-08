@@ -7,7 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Comparator;
 
-public class FileUtils {
+public final class FileUtils {
 
     public static void deleteDirectoryRecursively(String pathToDirectory) {
         var path = Paths.get(pathToDirectory);

@@ -1,6 +1,6 @@
 package com.kdsc.protogen.utils.parameterchecking;
 
-public class Strings {
+public final class Strings {
 
     public static void requireNonBlank(final String inputString) {
         if(inputString == null || inputString.isBlank()) {

@@ -2,7 +2,7 @@ package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 
-public class BoolFieldTypeNode extends FieldTypeNode {
+public final class BoolFieldTypeNode extends FieldTypeNode {
 
     public BoolFieldTypeNode(
         final boolean isOptional

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestNamespaceNode extends BaseTestNode {
+public final class TestNamespaceNode extends BaseTestNode {
 
     @Test
     public void testCreateMinimal() {

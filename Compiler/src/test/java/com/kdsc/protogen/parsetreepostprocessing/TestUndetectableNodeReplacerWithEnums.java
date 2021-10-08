@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
+public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTest {
 
     @Test
     public void testReplaceOneNonNestedType() {

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestStrings extends BaseTestNode {
+public final class TestStrings extends BaseTestNode {
 
     @Test
     public void TestRequireNonBlankNull() {

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class MessageFileNode extends ProtoFileNode {
+public final class MessageFileNode extends ProtoFileNode {
 
     private final String packageName;
     private final String name;

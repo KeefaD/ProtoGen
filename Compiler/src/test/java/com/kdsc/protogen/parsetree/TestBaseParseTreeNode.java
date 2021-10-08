@@ -5,7 +5,7 @@ import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestBaseParseTreeNode extends BaseTestNode {
+public final class TestBaseParseTreeNode extends BaseTestNode {
 
     @Test
     public void testSuperToFormattedStringSuperWithNoBaseClassThrowsException() {

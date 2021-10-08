@@ -3,7 +3,7 @@ package com.kdsc.protogen.transform;
 import java.util.HashSet;
 import java.util.Set;
 
-public class FileContext {
+public final class FileContext {
 
     private final Set<String> javaImportStatements = new HashSet<>();
     private final Set<String> protoImportStatements = new HashSet<>();

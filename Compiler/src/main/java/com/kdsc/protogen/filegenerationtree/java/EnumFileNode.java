@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class EnumFileNode extends JavaFileNode {
+public final class EnumFileNode extends JavaFileNode {
 
     private final String namespace;
     private final String name;

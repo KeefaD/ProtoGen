@@ -2,10 +2,11 @@ package enums;
 
 import org.junit.jupiter.api.Test;
 
-public class TestSerialisationForEnumExample {
+public final class TestSerialisationForEnumExample {
 
     @Test
     public void testSerialisation() {
 
     }
+
 }

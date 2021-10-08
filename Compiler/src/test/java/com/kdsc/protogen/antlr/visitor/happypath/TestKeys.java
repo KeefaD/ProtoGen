@@ -3,7 +3,7 @@ package com.kdsc.protogen.antlr.visitor.happypath;
 import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;
 
-public class TestKeys extends BaseCompilerTest {
+public final class TestKeys extends BaseCompilerTest {
 
     @Test
     void testSingleKey() {

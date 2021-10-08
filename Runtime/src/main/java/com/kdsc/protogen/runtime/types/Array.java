@@ -1,4 +1,4 @@
 package com.kdsc.protogen.runtime.types;
 
-public class Array<T> {
+public final class Array<T> {
 }

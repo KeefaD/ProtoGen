@@ -7,7 +7,7 @@ import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Objects;
 
-public class FieldNode extends BaseFileGenerationTreeNode {
+public final class FieldNode extends BaseFileGenerationTreeNode {
 
     private final String name;
     private final FieldTypeNode fieldTypeNode;

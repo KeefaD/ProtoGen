@@ -1,6 +1,6 @@
 package com.kdsc.protogen.utils.parameterchecking;
 
-public class Numbers {
+public final class Numbers {
 
     public static void requireZeroOrGreater(final long inputNumber) {
         if(inputNumber < 0) {

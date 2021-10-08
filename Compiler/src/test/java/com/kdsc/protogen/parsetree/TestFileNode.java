@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestFileNode extends BaseTestNode {
+public final class TestFileNode extends BaseTestNode {
 
     @Test
     public void testCreateMinimal() {

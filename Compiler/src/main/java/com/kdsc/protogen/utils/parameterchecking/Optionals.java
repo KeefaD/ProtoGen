@@ -3,7 +3,7 @@ package com.kdsc.protogen.utils.parameterchecking;
 import java.util.Arrays;
 import java.util.Optional;
 
-public class Optionals {
+public final class Optionals {
 
     public static void requireOne(final Optional<?>... optionals) {
         if(optionals == null) {

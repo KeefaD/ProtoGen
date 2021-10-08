@@ -3,7 +3,7 @@ package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.utils.parameterchecking.Strings;
 
-public class TypeFieldTypeNode extends FieldTypeNode {
+public final class TypeFieldTypeNode extends FieldTypeNode {
 
     private final String namespace;
     private final String name;

@@ -2,7 +2,7 @@ package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 
-public class BytesFieldTypeNode extends FieldTypeNode {
+public final class BytesFieldTypeNode extends FieldTypeNode {
 
     public BytesFieldTypeNode(
         final boolean isOptional

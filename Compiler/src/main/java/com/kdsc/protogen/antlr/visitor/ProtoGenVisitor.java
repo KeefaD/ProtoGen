@@ -8,7 +8,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenBaseVisitor<Object> {
+public final class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.ProtoGenBaseVisitor<Object> {
 
     private static final String INTERFACE = "interface";
     private static final String OPTIONAL = "optional";

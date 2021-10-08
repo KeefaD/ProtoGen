@@ -1,5 +1,5 @@
 package com.kdsc.protogen.codegenerator;
 
 //TODO:KMD Populate me
-public class TestCodeGenerate {
+public final class TestCodeGenerate {
 }

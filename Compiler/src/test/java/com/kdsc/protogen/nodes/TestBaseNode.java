@@ -13,7 +13,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
-public class TestBaseNode {
+public final class TestBaseNode {
 
     @Spy
     BaseNode baseNodeMock;

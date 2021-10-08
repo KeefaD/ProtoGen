@@ -3,7 +3,7 @@ package com.kdsc.protogen.antlr;
 import com.kdsc.protogen.utils.parameterchecking.Numbers;
 import com.kdsc.protogen.utils.parameterchecking.Strings;
 
-public record ParserError(
+public final record ParserError(
     String sourceFileName,
     long line,
     long charPosition,

@@ -8,7 +8,7 @@ import org.antlr.v4.runtime.Recognizer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParserErrorListener extends BaseErrorListener {
+public final class ParserErrorListener extends BaseErrorListener {
 
     private final String sourceFileName;
 

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestInt32FieldTypeNode extends BaseTestNode {
+public final class TestInt32FieldTypeNode extends BaseTestNode {
 
     @Test
     public void testCreateMinimal() {

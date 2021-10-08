@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class TestUnhappyPathFoundCases extends BaseCompilerTest {
+public final class TestUnhappyPathFoundCases extends BaseCompilerTest {
 
     @Test
     void testMissingNameBlowsUpParser() {

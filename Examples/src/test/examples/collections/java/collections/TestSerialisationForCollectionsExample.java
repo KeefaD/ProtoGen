@@ -2,10 +2,11 @@ package collections;
 
 import org.junit.jupiter.api.Test;
 
-public class TestSerialisationForCollectionsExample {
+public final class TestSerialisationForCollectionsExample {
 
     @Test
     public void testSerialisation() {
 
     }
+
 }

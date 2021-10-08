@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestNamespaceNameGenericParametersNode extends BaseTestNode {
+public final class TestNamespaceNameGenericParametersNode extends BaseTestNode {
 
     @Test
     public void testCreateMinimal() {

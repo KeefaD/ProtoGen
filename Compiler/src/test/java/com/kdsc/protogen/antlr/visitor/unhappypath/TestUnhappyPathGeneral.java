@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class TestUnhappyPathGeneral extends BaseCompilerTest {
+public final class TestUnhappyPathGeneral extends BaseCompilerTest {
 
     @Test
     void testSingleCharacter() {

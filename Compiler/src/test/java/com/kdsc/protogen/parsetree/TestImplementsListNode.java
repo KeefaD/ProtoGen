@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestImplementsListNode extends BaseTestNode {
+public final class TestImplementsListNode extends BaseTestNode {
 
     @Test
     public void testCreateMinimal() {

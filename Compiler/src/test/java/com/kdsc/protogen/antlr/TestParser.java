@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestParser {
+public final class TestParser {
 
     private String fullPathToSourceCodeDirectory = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "parsertest" + File.separator;
 

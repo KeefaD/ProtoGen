@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-public class TypeInterfaceFileNode extends JavaFileNode {
+public final class TypeInterfaceFileNode extends JavaFileNode {
 
     private final String packageName;
     private final String name;

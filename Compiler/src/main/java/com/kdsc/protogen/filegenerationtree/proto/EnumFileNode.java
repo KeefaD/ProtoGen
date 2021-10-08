@@ -7,7 +7,7 @@ import com.kdsc.protogen.utils.parameterchecking.Strings;
 import java.util.Collections;
 import java.util.List;
 
-public class EnumFileNode extends ProtoFileNode {
+public final class EnumFileNode extends ProtoFileNode {
 
     private final List<EnumCaseNode> enumCaseNodes;
     private final String packageName;

@@ -2,10 +2,11 @@ package enums;
 
 import org.junit.jupiter.api.Test;
 
-public class TestEqualsAndHashCodeForEnumExample {
+public final class TestEqualsAndHashCodeForEnumExample {
 
     @Test
     public void testEqualsAndHashCode() {
 
     }
+
 }

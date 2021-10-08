@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestParserErrorListener {
+public final class TestParserErrorListener {
 
     public static final String TEST_FILE_NAME = "TestFileName.pg";
     public static final String TEST_MESSAGE = "Test Message";

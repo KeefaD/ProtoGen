@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestCompilerResults {
+public final class TestCompilerResults {
 
     private String fullPathToSourceCodeDirectory = System.getProperty("user.dir") + File.separator + "src" + File.separator + "test" + File.separator + "resources" + File.separator + "compilerresultstest" + File.separator;
 

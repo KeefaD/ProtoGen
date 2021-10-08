@@ -6,8 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 //TODO:KMD This needs a close look at
-//TODO:KMD Need to think about charsets, perhaps write a program in a funny charset, it has to be totally reliable
-public class CodeGenerateUtils {
+public final class CodeGenerateUtils {
 
     public static void writeStringToPath(final String pathAndFileName, final String textToWrite) {
         var path = Paths.get(pathAndFileName);
@@ -16,7 +15,7 @@ public class CodeGenerateUtils {
 
         if(!parentFile.exists()) {
 
-            //TODO:KMD Why am I getting a warning here in the code analysis
+            //noinspection ResultOfMethodCallIgnored
             parentFile.mkdirs();
         }
 
@@ -33,6 +32,7 @@ public class CodeGenerateUtils {
     public static String readTemplateFromClasspath(String pathToTemplate) {
         var clazz = CodeGenerateUtils.class;
         var inputStream = clazz.getResourceAsStream(pathToTemplate);
+        if(inputStream == null) throw new RuntimeException("getResourceAsStream with parameter " + pathToTemplate + " returned null unexpectedly");
         try {
             var bytes = inputStream.readAllBytes();
             if(bytes == null) {

@@ -2,10 +2,11 @@ package empty;
 
 import org.junit.jupiter.api.Test;
 
-public class TestEqualsAndHashCodeForEmptyExample {
+public final class TestEqualsAndHashCodeForEmptyExample {
 
     @Test
     public void testEqualsAndHashCode() {
 
     }
+
 }

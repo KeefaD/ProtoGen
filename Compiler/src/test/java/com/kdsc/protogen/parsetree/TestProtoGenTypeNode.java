@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestProtoGenTypeNode extends BaseTestNode {
+public final class TestProtoGenTypeNode extends BaseTestNode {
 
     @Test
     public void testCreateMinimal() {

@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TestEnumCasesNode extends BaseTestNode {
+public final class TestEnumCasesNode extends BaseTestNode {
 
     @Test
     public void testCreateMinimal() {

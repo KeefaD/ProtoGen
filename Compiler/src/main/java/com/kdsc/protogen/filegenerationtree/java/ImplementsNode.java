@@ -4,7 +4,7 @@ import com.kdsc.protogen.filegenerationtree.BaseFileGenerationTreeNode;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.utils.parameterchecking.Strings;
 
-public class ImplementsNode extends BaseFileGenerationTreeNode {
+public final class ImplementsNode extends BaseFileGenerationTreeNode {
 
     private final String packageName;
     private final String name;

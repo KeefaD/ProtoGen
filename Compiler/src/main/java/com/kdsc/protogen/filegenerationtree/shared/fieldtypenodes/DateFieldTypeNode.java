@@ -2,7 +2,7 @@ package com.kdsc.protogen.filegenerationtree.shared.fieldtypenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 
-public class DateFieldTypeNode extends FieldTypeNode {
+public final class DateFieldTypeNode extends FieldTypeNode {
 
     public DateFieldTypeNode(
         final boolean isOptional

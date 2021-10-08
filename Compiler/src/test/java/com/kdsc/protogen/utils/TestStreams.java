@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestStreams {
+public final class TestStreams {
 
     @Test
     public void testConcatTwoStreams() {

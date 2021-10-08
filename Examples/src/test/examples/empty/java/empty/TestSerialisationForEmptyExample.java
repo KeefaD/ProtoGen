@@ -2,10 +2,11 @@ package empty;
 
 import org.junit.jupiter.api.Test;
 
-public class TestSerialisationForEmptyExample {
+public final class TestSerialisationForEmptyExample {
 
     @Test
     public void testSerialisation() {
 
     }
+
 }

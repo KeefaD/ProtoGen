@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestLocalDateTimeFieldTypeNode extends BaseTestNode {
+public final class TestLocalDateTimeFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testCreateMinimal() {

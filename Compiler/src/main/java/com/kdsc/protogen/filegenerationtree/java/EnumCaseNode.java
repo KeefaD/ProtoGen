@@ -3,7 +3,7 @@ package com.kdsc.protogen.filegenerationtree.java;
 import com.kdsc.protogen.filegenerationtree.BaseFileGenerationTreeNode;
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 
-public class EnumCaseNode extends BaseFileGenerationTreeNode {
+public final class EnumCaseNode extends BaseFileGenerationTreeNode {
 
     private final String name;
 

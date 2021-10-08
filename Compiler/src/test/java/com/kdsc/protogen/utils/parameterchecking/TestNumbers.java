@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestNumbers extends BaseTestNode {
+public final class TestNumbers extends BaseTestNode {
 
     @Test
     public void TestRequireZeroOrGreaterZero() {

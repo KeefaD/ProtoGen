@@ -1,6 +1,6 @@
 package com.kdsc.protogen.transform;
 
-public record TransformerContext(
+public final record TransformerContext(
     String baseNamespace
 ) {
 

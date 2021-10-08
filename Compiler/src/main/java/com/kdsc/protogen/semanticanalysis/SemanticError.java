@@ -4,7 +4,7 @@ import com.kdsc.protogen.utils.parameterchecking.Numbers;
 
 import java.util.Objects;
 
-public record SemanticError(
+public final record SemanticError(
     SemanticErrorType semanticErrorType,
     String sourceFileName,
     long line,

@@ -4,7 +4,7 @@ import com.kdsc.protogen.parsetree.FileNode;
 
 import java.util.*;
 
-public record ParserResults(
+public final record ParserResults(
     List<ParserError> parserErrors,
     List<FileNode> fileNodes
 ) {

@@ -7,7 +7,7 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestOptionals extends BaseTestNode {
+public final class TestOptionals extends BaseTestNode {
 
     @Test
     public void TestRequireOneEmpty() {

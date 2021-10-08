@@ -8,7 +8,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class TestLists extends BaseTestNode {
+public final class TestLists extends BaseTestNode {
 
     @Test
     public void TestRequireAtLeastOneZero() {

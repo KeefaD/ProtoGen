@@ -4,7 +4,7 @@ import com.kdsc.protogen.nodes.FormattedStringOptions;
 
 import java.util.Objects;
 
-public class ArrayFieldTypeNode extends FieldTypeNode {
+public final class ArrayFieldTypeNode extends FieldTypeNode {
 
     private final FieldTypeNode fieldTypeNode;
 

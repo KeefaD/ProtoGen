@@ -2,7 +2,7 @@ package com.kdsc.protogen.utils.parameterchecking;
 
 import java.util.List;
 
-public class Lists {
+public final class Lists {
 
     public static void requireAtLeastOne(final List<?> inputList) {
         if(inputList == null) {

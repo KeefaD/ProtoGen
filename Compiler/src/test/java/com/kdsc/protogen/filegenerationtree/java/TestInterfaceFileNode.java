@@ -2,5 +2,6 @@
 package com.kdsc.protogen.filegenerationtree.java;
 
 //TODO:KMD Populate me
-public class TestInterfaceFileNode {
+public final class TestInterfaceFileNode {
+
 }

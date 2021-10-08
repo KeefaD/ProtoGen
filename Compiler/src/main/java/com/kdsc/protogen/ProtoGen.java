@@ -50,7 +50,9 @@ import java.util.stream.Collectors;
 //TODO:KMD Think about the names ProtoGenType etc, not happy with it
 //TODO:KMD Have a think about file contexts and proto and java, we have to share them or come up with something clever because of the shared FieldTypeNodes
 //TODO:KMD Make file generation tree nodes consistent with parse tree nodes
-public class ProtoGen {
+//TODO:KMD Need to think about charsets, perhaps write a program in a funny charset, it has to be totally reliable
+//TODO:KMD I think we need to add verbose to the compiler and logging
+public final class ProtoGen {
 
     public static final char OPTION_MARKER = '-';
     public static final String BASE_NAMESPACE = OPTION_MARKER + "basenamespace";

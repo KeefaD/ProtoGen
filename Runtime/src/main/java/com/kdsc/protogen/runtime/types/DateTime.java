@@ -1,4 +1,4 @@
 package com.kdsc.protogen.runtime.types;
 
-public class DateTime {
+public final class DateTime {
 }

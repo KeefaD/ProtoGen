@@ -6,9 +6,8 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class TestTransformer  extends BaseCompilerTest {
+public final class TestTransformer  extends BaseCompilerTest {
 
-    //TODO:KMD I think we need to add verbose to the compiler and logging
     @Test
     public void testBasicEnum() {
         var testProgram = """            
