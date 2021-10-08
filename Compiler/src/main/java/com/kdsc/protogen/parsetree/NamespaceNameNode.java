@@ -2,6 +2,7 @@ package com.kdsc.protogen.parsetree;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.utils.parameterchecking.Lists;
+import com.kdsc.protogen.utils.parameterchecking.Strings;
 
 import java.util.Collections;
 import java.util.List;

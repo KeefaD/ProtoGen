@@ -1,5 +1,6 @@
 package com.kdsc.protogen.parsetree;
 
+import com.kdsc.protogen.parsetree.fieldtypenodes.TestFieldTypeNode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -15,7 +16,7 @@ public final class TestFieldsNode extends BaseTestNode {
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            Collections.emptyList()
+            List.of(TestFieldNode.createPopulatedTestNode())
         );
     }
 
@@ -36,11 +37,22 @@ public final class TestFieldsNode extends BaseTestNode {
                 null
             )
         );
+
+        assertThrows(IllegalArgumentException.class,
+            () ->
+            new FieldsNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                Collections.emptyList()
+            )
+        );
+
     }
 
     @Test
     public void testGetters() {
-        List<FieldNode> fieldNodes = Collections.emptyList();
+        var fieldNodes = List.of(TestFieldNode.createPopulatedTestNode());
         var node = new FieldsNode(
             BaseTestNode.fileName,
             BaseTestNode.line,

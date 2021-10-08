@@ -15,7 +15,7 @@ public final class TestGenericParametersWithBoundsNode extends BaseTestNode {
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            Collections.emptyList()
+            List.of(TestGenericParameterWithBoundsNode.createPopulatedTestNode())
         );
     }
 
@@ -36,11 +36,22 @@ public final class TestGenericParametersWithBoundsNode extends BaseTestNode {
                 null
             )
         );
+
+        assertThrows(IllegalArgumentException.class,
+            () ->
+            new GenericParametersWithBoundsNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                Collections.emptyList()
+            )
+        );
+
     }
 
     @Test
     public void testGetters() {
-        List<GenericParameterWithBoundsNode> genericParameterWithBoundsNodes = Collections.emptyList();
+        var genericParameterWithBoundsNodes = List.of(TestGenericParameterWithBoundsNode.createPopulatedTestNode());
         var node = new GenericParametersWithBoundsNode(
             BaseTestNode.fileName,
             BaseTestNode.line,

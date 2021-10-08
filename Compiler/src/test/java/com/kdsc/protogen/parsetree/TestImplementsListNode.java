@@ -15,7 +15,7 @@ public final class TestImplementsListNode extends BaseTestNode {
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            Collections.emptyList()
+            List.of(TestNamespaceNameGenericParametersNode.createPopulatedTestNode())
         );
     }
 
@@ -36,16 +36,27 @@ public final class TestImplementsListNode extends BaseTestNode {
                 null
             )
         );
+
+        assertThrows(IllegalArgumentException.class,
+            () ->
+            new ImplementsListNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                Collections.emptyList()
+            )
+        );
+
     }
 
     @Test
     public void testGetters() {
-        List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes = Collections.emptyList();
+        var namespaceNameGenericParametersNodes = List.of(TestNamespaceNameGenericParametersNode.createPopulatedTestNode());
         var node = new ImplementsListNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-                namespaceNameGenericParametersNodes
+            namespaceNameGenericParametersNodes
         );
         assertEquals(namespaceNameGenericParametersNodes, node.getNamespaceNameGenericParametersNodes(), "Created and retrieved objects don't match");
     }

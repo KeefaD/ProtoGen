@@ -15,7 +15,7 @@ public final class TestVersionsNode extends BaseTestNode {
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            Collections.emptyList()
+            List.of(TestVersionNode.createPopulatedTestNode())
         );
     }
 
@@ -36,11 +36,22 @@ public final class TestVersionsNode extends BaseTestNode {
                 null
             )
         );
+
+        assertThrows(IllegalArgumentException.class,
+            () ->
+            new VersionsNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                Collections.emptyList()
+            )
+        );
+
     }
 
     @Test
     public void testGetters() {
-        List<VersionNode> versionNodes = Collections.emptyList();
+        var versionNodes = List.of(TestVersionNode.createPopulatedTestNode());
         var node = new VersionsNode(
             BaseTestNode.fileName,
             BaseTestNode.line,

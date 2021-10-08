@@ -19,6 +19,7 @@ public final class GenericParametersWithBoundsNode extends BaseParseTreeNode {
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(genericParameterWithBoundsNodes);
+        com.kdsc.protogen.utils.parameterchecking.Lists.requireAtLeastOne(genericParameterWithBoundsNodes);
         this.genericParameterWithBoundsNodes = Collections.unmodifiableList(genericParameterWithBoundsNodes);
     }
 

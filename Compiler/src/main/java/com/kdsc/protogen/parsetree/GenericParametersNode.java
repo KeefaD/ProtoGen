@@ -20,6 +20,7 @@ public final class GenericParametersNode extends BaseParseTreeNode {
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(fieldTypeNodes);
+        com.kdsc.protogen.utils.parameterchecking.Lists.requireAtLeastOne(fieldTypeNodes);
         this.fieldTypeNodes = Collections.unmodifiableList(fieldTypeNodes);
     }
 

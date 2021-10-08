@@ -19,6 +19,7 @@ public final class VersionsNode extends BaseParseTreeNode {
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(versionNodes);
+        com.kdsc.protogen.utils.parameterchecking.Lists.requireAtLeastOne(versionNodes);
         this.versionNodes = Collections.unmodifiableList(versionNodes);
     }
 

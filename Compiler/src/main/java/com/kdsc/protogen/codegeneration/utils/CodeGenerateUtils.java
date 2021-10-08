@@ -14,7 +14,6 @@ public final class CodeGenerateUtils {
         var parentFile = path.getParent().toFile();
 
         if(!parentFile.exists()) {
-
             //noinspection ResultOfMethodCallIgnored
             parentFile.mkdirs();
         }

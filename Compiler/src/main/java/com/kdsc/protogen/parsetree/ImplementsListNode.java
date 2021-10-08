@@ -19,6 +19,7 @@ public final class ImplementsListNode extends BaseParseTreeNode {
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(namespaceNameGenericParametersNodes);
+        com.kdsc.protogen.utils.parameterchecking.Lists.requireAtLeastOne(namespaceNameGenericParametersNodes);
         this.namespaceNameGenericParametersNodes = Collections.unmodifiableList(namespaceNameGenericParametersNodes);
     }
 

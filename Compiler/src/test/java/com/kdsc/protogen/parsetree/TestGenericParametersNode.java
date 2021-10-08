@@ -1,6 +1,5 @@
 package com.kdsc.protogen.parsetree;
 
-import com.kdsc.protogen.parsetree.fieldtypenodes.FieldTypeNode;
 import com.kdsc.protogen.parsetree.fieldtypenodes.TestFieldTypeNode;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +16,7 @@ public final class TestGenericParametersNode extends BaseTestNode {
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
-            Collections.emptyList()
+            List.of(TestFieldTypeNode.createPopulatedTestNode())
         );
     }
 
@@ -38,11 +37,22 @@ public final class TestGenericParametersNode extends BaseTestNode {
                 null
             )
         );
+
+        assertThrows(IllegalArgumentException.class,
+            () ->
+            new GenericParametersNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                Collections.emptyList()
+            )
+        );
+
     }
 
     @Test
     public void testGetters() {
-        List<FieldTypeNode> fieldTypeNodes = Collections.emptyList();
+        var fieldTypeNodes = List.of(TestFieldTypeNode.createPopulatedTestNode());
         var node = new GenericParametersNode(
             BaseTestNode.fileName,
             BaseTestNode.line,

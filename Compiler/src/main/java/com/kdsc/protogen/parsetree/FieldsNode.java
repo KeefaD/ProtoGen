@@ -19,6 +19,7 @@ public final class FieldsNode extends BaseParseTreeNode {
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(fieldNodes);
+        com.kdsc.protogen.utils.parameterchecking.Lists.requireAtLeastOne(fieldNodes);
         this.fieldNodes = Collections.unmodifiableList(fieldNodes);
     }
 
