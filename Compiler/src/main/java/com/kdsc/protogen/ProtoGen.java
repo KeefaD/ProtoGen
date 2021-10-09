@@ -62,6 +62,7 @@ public final class ProtoGen {
     public static final String SHOW_PARSE_TREE = OPTION_MARKER + "showparsetree";
     public static final String SHOW_REPLACED_PARSE_TREE = OPTION_MARKER + "showreplacedparsetree";
     public static final String SHOW_FILE_GENERATION_TREE = OPTION_MARKER + "showfilegenerationtree";
+    public static final String SHOW_PARSE_TREE_NODE_DETAILS = OPTION_MARKER + "showparsetreenodedetails";
     public static final String ARGUMENT_VALUE_SEPARATOR = "=";
 
     //TODO:KMD This class is a mess at the moment, obviously clean it all up
@@ -83,10 +84,14 @@ public final class ProtoGen {
         var showParseTree = false;
         var showReplacedParseTree = false;
         var showFileGenerationTree = false;
+        var showParseTreeNodeDetails = false;
         for(var arg : args) {
             if(arg.length() > 0 && arg.charAt(0) == OPTION_MARKER) {
                 var lowerCaseArg = arg.toLowerCase();
-                if(lowerCaseArg.startsWith(BASE_NAMESPACE)) {
+                if(lowerCaseArg.split("=").length == 2) {
+                    lowerCaseArg = lowerCaseArg.split("=")[0];
+                }
+                if(lowerCaseArg.equals(BASE_NAMESPACE)) {
                     useBaseNamespace = true;
                     var splitArg = arg.split(ARGUMENT_VALUE_SEPARATOR);
                     if(splitArg.length != 2) {
@@ -94,7 +99,7 @@ public final class ProtoGen {
                         return -1;
                     }
                     baseNamespace = splitArg[1];
-                } else if(lowerCaseArg.startsWith(JAVA_OUTPUT_DIRECTORY)) {
+                } else if(lowerCaseArg.equals(JAVA_OUTPUT_DIRECTORY)) {
                     useJavaOutputDirectory = true;
                     var splitArg = arg.split(ARGUMENT_VALUE_SEPARATOR);
                     if(splitArg.length != 2) {
@@ -102,7 +107,7 @@ public final class ProtoGen {
                         return -1;
                     }
                     javaOutputDirectory = splitArg[1];
-                } else if(lowerCaseArg.startsWith(PROTO_OUTPUT_DIRECTORY)) {
+                } else if(lowerCaseArg.equals(PROTO_OUTPUT_DIRECTORY)) {
                     useProtoOutputDirectory = true;
                     var splitArg = arg.split(ARGUMENT_VALUE_SEPARATOR);
                     if(splitArg.length != 2) {
@@ -110,27 +115,27 @@ public final class ProtoGen {
                         return -1;
                     }
                     protoOutputDirectory = splitArg[1];
-                } else if(lowerCaseArg.startsWith(SHOW_PARSE_TREE)) {
+                } else if(lowerCaseArg.equals(SHOW_PARSE_TREE)) {
                     showParseTree = true;
-                    continue;
-                } else if(lowerCaseArg.startsWith(SHOW_REPLACED_PARSE_TREE)) {
+                } else if(lowerCaseArg.equals(SHOW_REPLACED_PARSE_TREE)) {
                     showReplacedParseTree = true;
-                    continue;
-                } else if(lowerCaseArg.startsWith(SHOW_FILE_GENERATION_TREE)) {
+                } else if(lowerCaseArg.equals(SHOW_FILE_GENERATION_TREE)) {
                     showFileGenerationTree = true;
-                    continue;
+                } else if(lowerCaseArg.equals(SHOW_PARSE_TREE_NODE_DETAILS)) {
+                    showParseTreeNodeDetails = true;
                 } else if(arg.contains("=")) {
                     printUsage();
                     return -1;
                 }
+                continue;
             }
             sourceFileList.add(arg);
         }
 
-        return compileProgram(sourceFileList, useBaseNamespace, baseNamespace, useJavaOutputDirectory, javaOutputDirectory, useProtoOutputDirectory, protoOutputDirectory, showParseTree, showReplacedParseTree, showFileGenerationTree);
+        return compileProgram(sourceFileList, useBaseNamespace, baseNamespace, useJavaOutputDirectory, javaOutputDirectory, useProtoOutputDirectory, protoOutputDirectory, showParseTree, showReplacedParseTree, showFileGenerationTree, showParseTreeNodeDetails);
     }
 
-    private static int compileProgram(final List<String> sourceFileList, final boolean useBaseNamespace, final String baseNamespace, final boolean useJavaOutputDirectory, final String javaOutputDirectory, final boolean useProtoOutputDirectory, final String protoOutputDirectory, final boolean showParseTree, final boolean showReplacedParseTree, final boolean showFileGenerationTree) {
+    private static int compileProgram(final List<String> sourceFileList, final boolean useBaseNamespace, final String baseNamespace, final boolean useJavaOutputDirectory, final String javaOutputDirectory, final boolean useProtoOutputDirectory, final String protoOutputDirectory, final boolean showParseTree, final boolean showReplacedParseTree, final boolean showFileGenerationTree, final boolean showParseTreeNodeDetails) {
 
         //TODO:KMD Assume one directory argument for now, can't be bothered to do files
 //        sourceFileList
@@ -148,6 +153,11 @@ public final class ProtoGen {
 //                    }
 //                }
 //            );
+
+        //TODO:KMD This is a bit odd
+        var parseTreeFormattedStringOptions = showParseTreeNodeDetails
+            ? ParseTreeFormattedStringOptions.defaultParseTreeFormattedStringOptions
+            : ParseTreeFormattedStringOptions.hideBaseParseTreeNode;
 
         var directory = sourceFileList.get(0);
         List<String> filePaths;
@@ -182,7 +192,7 @@ public final class ProtoGen {
             System.out.println();
             System.out.println("//Parse Tree");
             parserResults.fileNodes()
-                .forEach(pf -> System.out.println(pf.toFormattedString(1, ParseTreeFormattedStringOptions.hideBaseParseTreeNode)));
+                .forEach(pf -> System.out.println(pf.toFormattedString(1, parseTreeFormattedStringOptions)));
         }
 
         var undetectableNodeReplacer = new UndetectableNodeReplacer();
@@ -193,7 +203,7 @@ public final class ProtoGen {
             System.out.println("//Replaced Parse Tree");
             compilerResults
                 .getFileNodes()
-                .forEach(pf -> System.out.println(pf.toFormattedString(1,  ParseTreeFormattedStringOptions.hideBaseParseTreeNode)));
+                .forEach(pf -> System.out.println(pf.toFormattedString(1,  parseTreeFormattedStringOptions)));
         }
 
         var semanticAnalyser = new SemanticAnalyser();
@@ -231,7 +241,7 @@ public final class ProtoGen {
     private static void printUsage() {
         var usageMessage = """
         
-        ProtoGen sourceFiles -baseNamespace=com.test -javaOutputDirectory=/directory -protoOutputDirectory=/directory -showParseTree -showReplacedParseTree -showFileGenerationTree
+        ProtoGen sourceFiles -baseNamespace=com.test -javaOutputDirectory=/directory -protoOutputDirectory=/directory -showParseTree -showReplacedParseTree -showFileGenerationTree -showParseTreeNodeDetails
         """;
         System.out.println(usageMessage);
     }

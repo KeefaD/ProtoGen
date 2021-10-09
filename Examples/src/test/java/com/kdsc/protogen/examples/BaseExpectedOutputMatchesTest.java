@@ -71,6 +71,7 @@ public class BaseExpectedOutputMatchesTest {
         commandLineArgumentsList.add("-showParseTree");
         commandLineArgumentsList.add("-showReplacedParseTree");
         commandLineArgumentsList.add("-showFileGenerationTree");
+//        commandLineArgumentsList.add("-showParseTreeNodeDetails");
         var commandLineArgumentsArray = commandLineArgumentsList.toArray(new String[0]);
 
         if(ProtoGen.main(commandLineArgumentsArray) != 0) {
