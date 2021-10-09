@@ -25,6 +25,9 @@
         <ImportPathEntry>
           <option name="location" value="file://$PROJECT_DIR$/Examples/src/main/examples/petstore/proto" />
         </ImportPathEntry>
+        <ImportPathEntry>
+          <option name="location" value="file://$PROJECT_DIR$/Examples/src/main/examples/limits/proto" />
+        </ImportPathEntry>
       </list>
     </option>
     <option name="descriptorPath" value="google/protobuf/descriptor.proto" />
