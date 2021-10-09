@@ -13,10 +13,10 @@ public final class LocalDateFieldTypeNode extends NonArrayFieldTypeNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
+    public String toFormattedString(final FormattedStringOptions formattedStringOptions, final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, LocalDateFieldTypeNode.class);
-        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), NonArrayFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), NonArrayFieldTypeNode.class);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 

@@ -55,7 +55,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -121,7 +121,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -175,7 +175,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -229,7 +229,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -281,7 +281,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -374,7 +374,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -499,7 +499,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -600,7 +600,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -701,7 +701,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -798,7 +798,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -874,7 +874,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -982,7 +982,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1066,7 +1066,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1150,7 +1150,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1230,7 +1230,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     //TODO:KMD Perhaps you should use T in the test type versions, it would be less confusing
@@ -1368,7 +1368,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1569,7 +1569,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1722,7 +1722,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1875,7 +1875,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -2020,7 +2020,7 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                     //EnumNameNode
                         EnumName : testCase1
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
 }

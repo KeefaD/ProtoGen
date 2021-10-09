@@ -39,11 +39,11 @@ public abstract class BaseParseTreeNode extends BaseNode implements Cloneable {
 
     @Override
     public String toFormattedString(final int indentationLevel) {
-        return toFormattedString(indentationLevel, defaultParseTreeFormattedStringOptions);
+        return toFormattedString(defaultParseTreeFormattedStringOptions, indentationLevel);
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
+    public String toFormattedString(final FormattedStringOptions formattedStringOptions, final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "SourceFileName", sourceFileName);

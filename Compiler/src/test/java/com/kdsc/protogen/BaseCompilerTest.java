@@ -52,7 +52,7 @@ public abstract class BaseCompilerTest {
         var fileNode = (FileNode) visitor.visit(parseTree);
 
         System.out.println("//Parse Tree");
-        System.out.println(fileNode.toFormattedString(1, ParseTreeFormattedStringOptions.hideBaseParseTreeNode));
+        System.out.println(fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 1));
 
         return fileNode;
     }
@@ -86,7 +86,7 @@ public abstract class BaseCompilerTest {
         var returnFileNode = undetectableNodeReplacer.replaceUndetectableNodes(parserResult).get(0);
 
         System.out.println("//Replaced Parse Tree");
-        System.out.println(returnFileNode.toFormattedString(1, ParseTreeFormattedStringOptions.hideBaseParseTreeNode));
+        System.out.println(returnFileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 1));
 
         return returnFileNode;
     }

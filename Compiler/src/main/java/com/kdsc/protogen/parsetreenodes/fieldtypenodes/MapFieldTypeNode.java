@@ -32,10 +32,10 @@ public final class MapFieldTypeNode extends NonArrayFieldTypeNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
+    public String toFormattedString(final FormattedStringOptions formattedStringOptions, final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, MapFieldTypeNode.class);
-        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), NonArrayFieldTypeNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), NonArrayFieldTypeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Key", keyFieldTypeNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Value", valueFieldTypeNode);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);

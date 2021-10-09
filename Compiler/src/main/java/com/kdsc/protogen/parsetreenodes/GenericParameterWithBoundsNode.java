@@ -37,10 +37,10 @@ public final class GenericParameterWithBoundsNode extends BaseParseTreeNode {
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
+    public String toFormattedString(final FormattedStringOptions formattedStringOptions, final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, GenericParameterWithBoundsNode.class);
-        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), BaseParseTreeNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Identifier", identifier);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNameGenericParametersNodes);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);

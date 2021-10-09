@@ -9,11 +9,11 @@ public abstract class BaseFileGenerationTreeNode extends BaseNode {
 
     @Override
     public String toFormattedString(final int indentationLevel) {
-        return toFormattedString(indentationLevel, defaultFileGenerationTreeFormattedStringOptions);
+        return toFormattedString(defaultFileGenerationTreeFormattedStringOptions, indentationLevel);
     }
 
     @Override
-    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
+    public String toFormattedString(final FormattedStringOptions formattedStringOptions, final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, BaseFileGenerationTreeNode.class);
         return indentString(stringBuilder, formattedStringOptions, indentationLevel);

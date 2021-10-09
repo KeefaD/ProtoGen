@@ -43,12 +43,11 @@ public final class FileNode extends BaseParseTreeNode {
         return enumNodes;
     }
 
-    //TODO:KMD I think we need to swap these parameters round for indentation level and formattedStringOptions
     @Override
-    public String toFormattedString(final int indentationLevel, final FormattedStringOptions formattedStringOptions) {
+    public String toFormattedString(final FormattedStringOptions formattedStringOptions, final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, FileNode.class);
-        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(0, formattedStringOptions), BaseParseTreeNode.class);
+        superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, typeNodes);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, keyNodes);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, enumNodes);

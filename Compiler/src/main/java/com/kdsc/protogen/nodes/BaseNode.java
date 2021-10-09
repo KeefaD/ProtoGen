@@ -20,30 +20,30 @@ public abstract class BaseNode {
 
     public abstract String toFormattedString(final int indentationLevel);
 
-    public abstract String toFormattedString(final int indentationLevel, FormattedStringOptions formattedStringOptions);
+    public abstract String toFormattedString(final FormattedStringOptions formattedStringOptions, final int indentationLevel);
 
-    public void classToFormattedStringTitle(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final Class clazz) {
+    public void classToFormattedStringTitle(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final Class clazz) {
         stringBuilder.append("//" + clazz.getSimpleName() + "\n");
     }
 
-    public void superToFormattedStringSuper(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final String superFormattedToString) {
+    public void superToFormattedStringSuper(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final String superFormattedToString) {
         var outputString = "//Super -> " + superFormattedToString;
         stringBuilder.append(outputString.indent(INDENTATION_SPACE_COUNT));
     }
 
-    public void fieldToFormattedStringField(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final String fieldName, final String fieldValue) {
+    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final String fieldName, final String fieldValue) {
         stringBuilder.append(oneIndent() + fieldName + " : " + fieldValue + "\n");
     }
 
-    public void fieldToFormattedStringField(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final String fieldName, final int fieldValue) {
+    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final String fieldName, final int fieldValue) {
         stringBuilder.append(oneIndent() + fieldName + " : " + fieldValue + "\n");
     }
 
-    public void fieldToFormattedStringField(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final String fieldName, final long fieldValue) {
+    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final String fieldName, final long fieldValue) {
         stringBuilder.append(oneIndent() + fieldName + " : " + fieldValue + "\n");
     }
 
-    public void fieldToFormattedStringField(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final String fieldName, final boolean fieldValue) {
+    public void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final String fieldName, final boolean fieldValue) {
         stringBuilder.append(oneIndent() + fieldName + " : " + fieldValue + "\n");
     }
 
@@ -54,7 +54,7 @@ public abstract class BaseNode {
     public void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final String fieldName, final BaseNode baseNode, final int indentationLevel) {
         var outputString = (fieldName + "\n").indent(indentationLevel * INDENTATION_SPACE_COUNT);
         stringBuilder.append(outputString);
-        stringBuilder.append(baseNode.toFormattedString(indentationLevel + 1, formattedStringOptions));
+        stringBuilder.append(baseNode.toFormattedString(formattedStringOptions, indentationLevel + 1));
     }
 
     public void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final BaseNode baseNode) {
@@ -62,7 +62,7 @@ public abstract class BaseNode {
     }
 
     public void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final BaseNode baseNode, final int indentationLevel) {
-        stringBuilder.append(baseNode.toFormattedString(indentationLevel, formattedStringOptions));
+        stringBuilder.append(baseNode.toFormattedString(formattedStringOptions, indentationLevel));
     }
 
     public <T extends BaseNode> void  fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final Optional<T> baseNode) {
@@ -70,7 +70,7 @@ public abstract class BaseNode {
     }
 
     public <T extends BaseNode> void  fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final Optional<T> baseNode, int indentationLevel) {
-        baseNode.ifPresent(bn -> stringBuilder.append(bn.toFormattedString(indentationLevel, formattedStringOptions)));
+        baseNode.ifPresent(bn -> stringBuilder.append(bn.toFormattedString(formattedStringOptions, indentationLevel)));
     }
 
     public <T extends BaseNode> void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final List<T> baseNodes) {
@@ -78,11 +78,11 @@ public abstract class BaseNode {
     }
 
     public <T extends BaseNode> void fieldToFormattedStringField(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final List<T> baseNodes, final int indentationLevel) {
-        baseNodes.forEach(bn -> stringBuilder.append(bn.toFormattedString(indentationLevel, formattedStringOptions)));
+        baseNodes.forEach(bn -> stringBuilder.append(bn.toFormattedString(formattedStringOptions, indentationLevel)));
     }
 
     //TODO:KMD This seems a bit inconsistent
-    public String indentString(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final int indentationLevel) {
+    public String indentString(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final int indentationLevel) {
         return stringBuilder.toString().indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
 

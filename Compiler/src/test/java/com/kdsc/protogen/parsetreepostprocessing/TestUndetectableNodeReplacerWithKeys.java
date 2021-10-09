@@ -62,7 +62,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                         //NameNode
                                             Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -135,7 +135,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                     //NameNode
                                                         Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -196,7 +196,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                 //NameNode
                                                     Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -257,7 +257,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                 //NameNode
                                                     Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -316,7 +316,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                 Name : KeyToReplace
                                 Dimensions : 2
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -416,7 +416,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                         //NameNode
                                             Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -548,7 +548,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                     //NameNode
                                                         Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -656,7 +656,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                 //NameNode
                                                     Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -764,7 +764,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                 //NameNode
                                                     Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -868,7 +868,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                 Name : KeyToReplace
                                 Dimensions : 2
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -951,7 +951,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                 //NameNode
                                                     Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1066,7 +1066,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                             //NameNode
                                                                 Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1157,7 +1157,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                         //NameNode
                                                             Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1248,7 +1248,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                         //NameNode
                                                             Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1335,7 +1335,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                         Name : KeyToReplace
                                         Dimensions : 2
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1479,7 +1479,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                 //NameNode
                                                     Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1617,7 +1617,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                             //NameNode
                                                                 Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1777,7 +1777,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                         //NameNode
                                                             Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -1937,7 +1937,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                         //NameNode
                                                             Name : KeyToReplace
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
     @Test
@@ -2089,7 +2089,7 @@ public final class TestUndetectableNodeReplacerWithKeys extends BaseCompilerTest
                                                         Name : KeyToReplace
                                         Dimensions : 2
         """;
-        assertEquals(expectedToStringOutput, fileNode.toFormattedString(0, ParseTreeFormattedStringOptions.hideBaseParseTreeNode), "Unexpected toString output");
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
 }

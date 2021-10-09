@@ -192,7 +192,7 @@ public final class ProtoGen {
             System.out.println();
             System.out.println("//Parse Tree");
             parserResults.fileNodes()
-                .forEach(pf -> System.out.println(pf.toFormattedString(1, parseTreeFormattedStringOptions)));
+                .forEach(pf -> System.out.println(pf.toFormattedString(parseTreeFormattedStringOptions, 1)));
         }
 
         var undetectableNodeReplacer = new UndetectableNodeReplacer();
@@ -203,7 +203,7 @@ public final class ProtoGen {
             System.out.println("//Replaced Parse Tree");
             compilerResults
                 .getFileNodes()
-                .forEach(pf -> System.out.println(pf.toFormattedString(1,  parseTreeFormattedStringOptions)));
+                .forEach(pf -> System.out.println(pf.toFormattedString(parseTreeFormattedStringOptions, 1)));
         }
 
         var semanticAnalyser = new SemanticAnalyser();
