@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package limits;
+
+import "protogentypes.proto";
+
+message NestedSets {
+    protogentypes.Set TestField = 1;
+}
