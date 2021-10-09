@@ -33,11 +33,7 @@ public class Parser {
                     ProtoGenLexer protoGenLexer;
 
                     try (var inputStream = new FileInputStream(p)) {
-                        try {
-                            antlrInputStream = new ANTLRInputStream(inputStream);
-                        } catch (IOException ioException) {
-                            throw new RuntimeException(ioException);
-                        }
+                        antlrInputStream = new ANTLRInputStream(inputStream);
                     } catch (IOException ioException) {
                         throw new RuntimeException(ioException);
                     }
