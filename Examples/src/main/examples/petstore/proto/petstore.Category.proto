@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package petstore;
+
+import "petstore.CategoryId.proto";
+
+message Category {
+    petstore.CategoryId ParentCategoryId = 1;
+    petstore.CategoryId CategoryId = 2;
+    string Name = 3;
+    string Description = 4;
+}

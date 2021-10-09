@@ -1,13 +1,30 @@
+type petstore.CategoryId {
+    Id : int64
+}
+
+type petstore.Category {
+    ParentCategoryId : optional petstore.CategoryId
+    CategoryId : petstore.CategoryId
+    Name : string
+    Description : string
+}
+
 type petstore.SellableItemId {
     Id : int64
 }
 
-type petstore.SellableItem {
+//TODO:KMD Cludge for now, don't want this to be an interface, fix tomorrow
+type interface petstore.SellableItem {
     Id : petstore.SellableItemId
+    CategoryIds : set<petstore.CategoryId>
     SmallPicture : bytes
     LargePicture : bytes
     Name : string
     Description : string
+}
+
+type petstore.Book : petstore.SellableItem {
+    ISBN : string
 }
 
 type petstore.LineItem {

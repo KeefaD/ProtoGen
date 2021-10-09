@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package petstore;
+
+import "petstore.SellableItem.proto";
+
+message Book {
+    petstore.SellableItem __interface__petstore_SellableItem = 1;
+    string ISBN = 2;
+}

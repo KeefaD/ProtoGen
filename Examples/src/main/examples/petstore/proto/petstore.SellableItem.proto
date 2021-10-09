@@ -3,12 +3,14 @@ syntax = "proto3";
 package petstore;
 
 import "petstore.SellableItemId.proto";
+import "petstore.CategoryId.proto";
 import "protogentypes.proto";
 
 message SellableItem {
     petstore.SellableItemId Id = 1;
-    protogentypes.Bytes SmallPicture = 2;
-    protogentypes.Bytes LargePicture = 3;
-    string Name = 4;
-    string Description = 5;
+    protogentypes.Set CategoryIds = 2;
+    protogentypes.Bytes SmallPicture = 3;
+    protogentypes.Bytes LargePicture = 4;
+    string Name = 5;
+    string Description = 6;
 }
