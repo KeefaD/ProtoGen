@@ -240,6 +240,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                 case LocalDateFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.LocalDate>";
                 case LocalDateTimeFieldTypeNode ignored -> "Optional<com.kdsc.protogen.runtime.types.LocalDateTime>";
                 case TypeFieldTypeNode typeFieldTypeNode -> "Optional<" + typeFieldTypeNode.getFullyQualifiedName() + ">";
+                case EnumFieldTypeNode enumFieldTypeNode -> "Optional<" + enumFieldTypeNode.getFullyQualifiedName() + ">";
                 case ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode -> "Optional<com.kdsc.protogen.runtime.types.ValueOrError<" + generateFieldType(codeGeneratorContext, valueOrErrorFieldTypeNode.getFieldTypeNode(), true) + ">>";
                 case SetFieldTypeNode setFieldTypeNode -> "Optional<com.kdsc.protogen.runtime.types.Set<" + generateFieldType(codeGeneratorContext, setFieldTypeNode.getFieldTypeNode(), true) + ">>";
                 case ListFieldTypeNode listFieldTypeNode -> "Optional<com.kdsc.protogen.runtime.types.List<" + generateFieldType(codeGeneratorContext, listFieldTypeNode.getFieldTypeNode(), true) + ">>";
@@ -263,6 +264,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                     case LocalDateFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.LocalDate";
                     case LocalDateTimeFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.LocalDateTime";
                     case TypeFieldTypeNode typeFieldTypeNode -> typeFieldTypeNode.getFullyQualifiedName();
+                    case EnumFieldTypeNode enumFieldTypeNode -> enumFieldTypeNode.getFullyQualifiedName();
                     case ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode -> "com.kdsc.protogen.runtime.types.ValueOrError<" + generateFieldType(codeGeneratorContext, valueOrErrorFieldTypeNode.getFieldTypeNode(), true) + ">";
                     case SetFieldTypeNode setFieldTypeNode -> "com.kdsc.protogen.runtime.types.Set<" + generateFieldType(codeGeneratorContext, setFieldTypeNode.getFieldTypeNode(), true) + ">";
                     case ListFieldTypeNode listFieldTypeNode -> "com.kdsc.protogen.runtime.types.List<" + generateFieldType(codeGeneratorContext, listFieldTypeNode.getFieldTypeNode(), true) + ">";
@@ -285,6 +287,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                     case LocalDateFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.LocalDate";
                     case LocalDateTimeFieldTypeNode ignored -> "com.kdsc.protogen.runtime.types.LocalDateTime";
                     case TypeFieldTypeNode typeFieldTypeNode -> typeFieldTypeNode.getFullyQualifiedName();
+                    case EnumFieldTypeNode enumFieldTypeNode -> enumFieldTypeNode.getFullyQualifiedName();
                     case ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode -> "com.kdsc.protogen.runtime.types.ValueOrError<" + generateFieldType(codeGeneratorContext, valueOrErrorFieldTypeNode.getFieldTypeNode(), true) + ">";
                     case SetFieldTypeNode setFieldTypeNode -> "com.kdsc.protogen.runtime.types.Set<" + generateFieldType(codeGeneratorContext, setFieldTypeNode.getFieldTypeNode(), true) + ">";
                     case ListFieldTypeNode listFieldTypeNode -> "com.kdsc.protogen.runtime.types.List<" + generateFieldType(codeGeneratorContext, listFieldTypeNode.getFieldTypeNode(), true) + ">";

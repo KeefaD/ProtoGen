@@ -145,6 +145,9 @@ public class FieldsTransformer {
         if(fieldTypeNode instanceof com.kdsc.protogen.parsetreenodes.fieldtypenodes.TypeFieldTypeNode typeFieldTypeNode) {
             fileContext.addProtoImport(ParseTreeUtils.getNamespaceNameString(typeFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()));
         }
+        if(fieldTypeNode instanceof com.kdsc.protogen.parsetreenodes.fieldtypenodes.EnumFieldTypeNode enumFieldTypeNode1) {
+            fileContext.addProtoImport(ParseTreeUtils.getNamespaceNameString(enumFieldTypeNode1.getNamespaceNameGenericParametersNode().getNamespaceNameNode()));
+        }
         if(protogenTypes.contains(fieldTypeNode.getClass())) {
             fileContext.addProtoImport("protogentypes");
         }
@@ -165,6 +168,11 @@ public class FieldsTransformer {
                 isOptional,
                 ParseTreeUtils.getNamespaceString(typeFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()), //TODO:KMD Perhaps add some helper methods here on the has namespace name interface
                 typeFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode().getNameNode().getName()
+            );
+            case com.kdsc.protogen.parsetreenodes.fieldtypenodes.EnumFieldTypeNode enumFieldTypeNode -> new EnumFieldTypeNode(
+                isOptional,
+                ParseTreeUtils.getNamespaceString(enumFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode()),
+                enumFieldTypeNode.getNamespaceNameGenericParametersNode().getNamespaceNameNode().getNameNode().getName()
             );
             case com.kdsc.protogen.parsetreenodes.fieldtypenodes.ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode -> new ValueOrErrorFieldTypeNode(
                 isOptional,

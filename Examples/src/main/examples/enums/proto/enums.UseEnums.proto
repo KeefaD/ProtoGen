@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package enums;
+
+import "enums.Enum.proto";
+
+message UseEnums {
+    enums.Enum TestField1 = 1;
+}

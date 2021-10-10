@@ -15,7 +15,7 @@ enum enums.Enum {
 //    }
 //}
 
-//type enums.UseEnums {
-//    testField1 : enums.Enum
-//    testField2 : enums.VersionedEnum
-//}
+type enums.UseEnums {
+    TestField1 : enums.Enum
+//    TestField2 : enums.VersionedEnum
+}
