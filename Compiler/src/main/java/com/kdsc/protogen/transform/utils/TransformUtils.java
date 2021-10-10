@@ -6,7 +6,6 @@ import com.kdsc.protogen.parsetreenodes.NamespaceNode;
 import java.io.File;
 import java.util.stream.Collectors;
 
-//TODO:KMD Needs test
 public final class TransformUtils {
 
     public static final String NAMESPACE_IN_FILENAME_SEPARATOR = ".";

@@ -1,3 +1,8 @@
+//
+//   ╔═╗┬─┐┌─┐┌┬┐┌─┐╔═╗┌─┐┌┐┌
+//   ╠═╝├┬┘│ │ │ │ │║ ╦├┤ │││
+//   ╩  ┴└─└─┘ ┴ └─┘╚═╝└─┘┘└┘   v0.0 2021
+//
 package interfaces;
 
 import com.kdsc.protogen.runtime.options.EqualsHashCodeOptions;

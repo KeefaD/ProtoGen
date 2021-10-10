@@ -55,4 +55,14 @@ public final class CodeGenerateUtils {
         return template.replace(stringToReplace + "\n\n", replaceWithString);
     }
 
+    //This banner is from the site https://www.patorjk.com/software/taag/ using the Calvin S font
+    public static String getBanner() {
+        return """
+        //
+        //   ╔═╗┬─┐┌─┐┌┬┐┌─┐╔═╗┌─┐┌┐┌
+        //   ╠═╝├┬┘│ │ │ │ │║ ╦├┤ │││
+        //   ╩  ┴└─└─┘ ┴ └─┘╚═╝└─┘┘└┘   v0.0 2021
+        //""";
+    }
+
 }

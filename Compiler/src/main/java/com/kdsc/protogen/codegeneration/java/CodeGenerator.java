@@ -37,8 +37,8 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
     private void generateEnumNode(final CodeGeneratorContext codeGeneratorContext, final EnumFileNode enumFileNode) {
         System.out.println("Writing " + codeGeneratorContext.getJavaOutputDirectory() + enumFileNode.getPathAndFileName());
         var output = CodeGenerateUtils.readTemplateFromClasspath(ENUM_TEMPLATE_CLASSPATH);
-        output = CodeGenerateUtils.replace(output, "[NAMESPACE]", enumFileNode.getNamespace());
-        output = CodeGenerateUtils.replaceAndCollapseTwo(output, "[IMPORTS]", "");
+        output = CodeGenerateUtils.replace(output, "[BANNER]", CodeGenerateUtils.getBanner());
+        output = CodeGenerateUtils.replace(output, "[PACKAGE_NAME]", enumFileNode.getNamespace());
         output = CodeGenerateUtils.replace(output, "[ENUM_NAME]", enumFileNode.getName());
         output = CodeGenerateUtils.replaceAndCollapse(output, "[ENUM_CASES]", generateEnumCases(codeGeneratorContext, enumFileNode.getEnumCaseNodes()));
         CodeGenerateUtils.writeStringToPath(codeGeneratorContext.getJavaOutputDirectory() + enumFileNode.getPathAndFileName(), output);
@@ -47,6 +47,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
     private void generateTypeNode(final CodeGeneratorContext codeGeneratorContext, final TypeFileNode typeFileNode) {
         System.out.println("Writing " + codeGeneratorContext.getJavaOutputDirectory() + typeFileNode.getPathAndFileName());
         var output = CodeGenerateUtils.readTemplateFromClasspath(TYPE_TEMPLATE_CLASSPATH);
+        output = CodeGenerateUtils.replace(output, "[BANNER]", CodeGenerateUtils.getBanner());
         output = CodeGenerateUtils.replace(output, "[PACKAGE_NAME]", typeFileNode.getPackageName());
         output = CodeGenerateUtils.replaceAndCollapseTwo(output, "[IMPORTS]", generateImportStatements(codeGeneratorContext, typeFileNode.getImportStatements()));
         output = CodeGenerateUtils.replace(output, "[TYPE_NAME]", typeFileNode.getName());
@@ -62,6 +63,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
     private void generateTypeInterfaceNode(final CodeGeneratorContext codeGeneratorContext, final TypeInterfaceFileNode typeInterfaceFileNode) {
         System.out.println("Writing " + codeGeneratorContext.getJavaOutputDirectory() + typeInterfaceFileNode.getPathAndFileName());
         var output = CodeGenerateUtils.readTemplateFromClasspath(TYPE_INTERFACE_TEMPLATE_CLASSPATH);
+        output = CodeGenerateUtils.replace(output, "[BANNER]", CodeGenerateUtils.getBanner());
         output = CodeGenerateUtils.replace(output, "[PACKAGE_NAME]", typeInterfaceFileNode.getPackageName());
         output = CodeGenerateUtils.replaceAndCollapseTwo(output, "[IMPORTS]", generateImportStatements(codeGeneratorContext, typeInterfaceFileNode.getImportStatements()));
         output = CodeGenerateUtils.replace(output, "[TYPE_NAME]", typeInterfaceFileNode.getName());

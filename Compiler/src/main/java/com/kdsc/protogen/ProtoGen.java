@@ -19,20 +19,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 //TODO:KMD Test running Gradle on the command line to build everything
+//TODO:KMD Test building on Windows
 //TODO:KMD I think you can end up with optional optional as a field type optional T where T is optional, close this down
 //TODO:KMD We need to see if we can categorise the unit tests and make them show up in those categories in the unit test results
 //TODO:KMD We need to run protobuf on the examples
 //TODO:KMD How are we going to represent versions in Proto
 //TODO:KMD We need to do proto name escaping
 //TODO:KMD We need to to do name escaping in general or prevent keywords, need to make up your mind soon, keywords is going to be annoying once you add more languages, as long as the types come out with the right name it is ok
-//TODO:KMD Have a proper look at the parse tree and decide what to do about optionals and lists before it is too late
 //TODO:KMD Think about capitalisation of fields
 //TODO:KMD Check isProtoGen type for types that have generic parameters, it's all going to go to shit if they are not
 //TODO:KMD Need to test moving all the directories around
 //TODO:KMD Need to think about capitalisation for namespaces, should we allow uppercase packages, investigate
-//TODO:KMD Test building on Windows
 //TODO:KMD Maybe don't do versioning or type libraries yet, but leave it open to it
-//TODO:KMD Ascii art in the generated code
 //TODO:KMD Continuous calculations
 //TODO:KDM Clone in generated objects
 //TODO:KMD Builders in generated objects?
@@ -43,9 +41,8 @@ import java.util.stream.Collectors;
 //TODO:KMD Perhaps use Guava for immutable stuff
 //TODO:KMD Follow google style guide
 //TODO:KMD Deal with Double/Float NAN and equals
-//TODO:KMD Make a reflection test for equals and hashcode in nodes
+//TODO:KMD Make a reflection test for equals and hashcode in nodes, ParseTree equals and hash code, how are we going to know if a field gets added, perhaps we should add a reflection test, or make equals hashcode reflection
 //TODO:KMD Need to do a day just working on TODO:KMD's to keep the numbers down otherwise it is going ot get out of control
-//TODO:KMD ParseTree equals and hash code, how are we going to know if a field gets added, perhaps we should add a reflection test, or make equals hashcode reflection
 //TODO:KMD Generate standard example tests
 //TODO:KMD Have a think about file contexts and proto and java, we have to share them or come up with something clever because of the shared FieldTypeNodes
 //TODO:KMD Make file generation tree nodes consistent with parse tree nodes

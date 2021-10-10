@@ -1,3 +1,8 @@
+//
+//   ╔═╗┬─┐┌─┐┌┬┐┌─┐╔═╗┌─┐┌┐┌
+//   ╠═╝├┬┘│ │ │ │ │║ ╦├┤ │││
+//   ╩  ┴└─└─┘ ┴ └─┘╚═╝└─┘┘└┘   v0.0 2021
+//
 package petstore;
 
 import com.kdsc.protogen.runtime.ProtoGenType;

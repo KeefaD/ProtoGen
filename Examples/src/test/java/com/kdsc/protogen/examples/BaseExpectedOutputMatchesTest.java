@@ -58,7 +58,6 @@ public class BaseExpectedOutputMatchesTest {
 
         FileUtils.deleteDirectoryRecursively(fullPathToOutputDirectory);
 
-        //TODO:KMD Not sure about this
         FileUtils.makeDirectory(fullPathToOutputDirectory);
 
         var commandLineArgumentsList = new ArrayList<String>();

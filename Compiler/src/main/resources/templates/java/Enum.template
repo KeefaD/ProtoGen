@@ -1,6 +1,5 @@
-package [NAMESPACE];
-
-[IMPORTS]
+[BANNER]
+package [PACKAGE_NAME];
 
 public enum [ENUM_NAME] {
 [ENUM_CASES]

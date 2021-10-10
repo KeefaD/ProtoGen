@@ -39,7 +39,8 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
     private void generateEnumNode(final CodeGeneratorContext codeGeneratorContext, final EnumFileNode enumFileNode) {
         System.out.println("Writing " + codeGeneratorContext.getProtoOutputDirectory() + enumFileNode.getPathAndFileName());
         var output = CodeGenerateUtils.readTemplateFromClasspath(ENUM_TEMPLATE_CLASSPATH);
-        output = CodeGenerateUtils.replaceAndCollapse(output, "[PACKAGE]", "package " + enumFileNode.getPackageName() + ";\n");
+        output = CodeGenerateUtils.replace(output, "[BANNER]", CodeGenerateUtils.getBanner());
+        output = CodeGenerateUtils.replaceAndCollapse(output, "[PACKAGE_NAME]", "package " + enumFileNode.getPackageName() + ";\n");
         output = CodeGenerateUtils.replace(output, "[ENUM_NAME]", enumFileNode.getEnumName());
         output = CodeGenerateUtils.replaceAndCollapse(output, "[ENUM_CASES]", generateEnumCases(codeGeneratorContext, enumFileNode.getEnumCaseNodes()));
         CodeGenerateUtils.writeStringToPath(codeGeneratorContext.getProtoOutputDirectory() + enumFileNode.getPathAndFileName(), output);
@@ -48,7 +49,8 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
     private void generateTypeNode(final CodeGeneratorContext codeGeneratorContext, final MessageFileNode messageFileNode) {
         System.out.println("Writing " + codeGeneratorContext.getProtoOutputDirectory() + messageFileNode.getPathAndFileName());
         var output = CodeGenerateUtils.readTemplateFromClasspath(MESSAGE_TEMPLATE_CLASSPATH);
-        output = CodeGenerateUtils.replaceAndCollapse(output, "[PACKAGE]", "package " + messageFileNode.getPackageName() + ";\n");
+        output = CodeGenerateUtils.replace(output, "[BANNER]", CodeGenerateUtils.getBanner());
+        output = CodeGenerateUtils.replaceAndCollapse(output, "[PACKAGE_NAME]", "package " + messageFileNode.getPackageName() + ";\n");
         output = CodeGenerateUtils.replaceAndCollapseTwo(output, "[IMPORTS]", generateImportStatements(codeGeneratorContext, messageFileNode.getImportStatements()));
         output = CodeGenerateUtils.replace(output, "[MESSAGE_NAME]", messageFileNode.getName());
         output = CodeGenerateUtils.replaceAndCollapse(output, "[FIELDS]", generateFields(codeGeneratorContext, messageFileNode.getFieldNodes()));

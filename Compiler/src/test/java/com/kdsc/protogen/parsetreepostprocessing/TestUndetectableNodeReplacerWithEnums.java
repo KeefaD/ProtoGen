@@ -1233,7 +1233,6 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
         assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
-    //TODO:KMD Perhaps you should use T in the test type versions, it would be less confusing
     @Test
     public void testReplaceOneNonNestedTypeInImplementsListInVersions() {
 

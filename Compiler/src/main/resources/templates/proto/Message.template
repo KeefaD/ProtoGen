@@ -1,6 +1,7 @@
+[BANNER]
 syntax = "proto3";
 
-[PACKAGE]
+[PACKAGE_NAME]
 
 [IMPORTS]
 
