@@ -3,6 +3,7 @@ package com.kdsc.protogen.parsetreenodes;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public final class TestVersionNumberNode extends BaseTestNode {
 
@@ -19,6 +20,33 @@ public final class TestVersionNumberNode extends BaseTestNode {
     @Test
     public void testCreatePopulated() {
         createPopulatedTestNode();
+    }
+
+    @Test
+    public void testInvalidConstructorCall() {
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () ->
+            new VersionNumberNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                0
+            )
+        );
+
+        assertThrows(
+            IllegalArgumentException.class,
+            () ->
+            new VersionNumberNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                -1
+            )
+        );
+
     }
 
     @Test

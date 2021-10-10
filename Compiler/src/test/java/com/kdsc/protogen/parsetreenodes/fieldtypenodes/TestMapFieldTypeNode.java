@@ -26,7 +26,8 @@ public final class TestMapFieldTypeNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new MapFieldTypeNode(
                 BaseTestNode.fileName,
@@ -37,7 +38,8 @@ public final class TestMapFieldTypeNode extends BaseTestNode {
             )
         );
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new MapFieldTypeNode(
                 BaseTestNode.fileName,

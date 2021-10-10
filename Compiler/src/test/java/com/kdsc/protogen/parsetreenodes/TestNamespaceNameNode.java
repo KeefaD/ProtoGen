@@ -28,7 +28,8 @@ public final class TestNamespaceNameNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new NamespaceNameNode(
                 BaseTestNode.fileName,
@@ -39,7 +40,8 @@ public final class TestNamespaceNameNode extends BaseTestNode {
             )
         );
 
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(
+            IllegalArgumentException.class,
             () ->
             new NamespaceNameNode(
                 BaseTestNode.fileName,

@@ -30,7 +30,8 @@ public final class TestKeyNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new KeyNode(
                 BaseTestNode.fileName,
@@ -44,21 +45,8 @@ public final class TestKeyNode extends BaseTestNode {
             )
         );
 
-        assertThrows(NullPointerException.class,
-            () ->
-            new KeyNode(
-                BaseTestNode.fileName,
-                BaseTestNode.line,
-                BaseTestNode.charPosition,
-                false,
-                TestNamespaceNameGenericParametersWithBoundsNode.createPopulatedTestNode(),
-                null,
-                Optional.empty(),
-                Optional.empty()
-            )
-        );
-
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new KeyNode(
                 BaseTestNode.fileName,
@@ -66,13 +54,29 @@ public final class TestKeyNode extends BaseTestNode {
                 BaseTestNode.charPosition,
                 false,
                 TestNamespaceNameGenericParametersWithBoundsNode.createPopulatedTestNode(),
+                null,
+                Optional.empty(),
+                Optional.empty()
+            )
+        );
+
+        assertThrows(
+            NullPointerException.class,
+            () ->
+            new KeyNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                false,
+                TestNamespaceNameGenericParametersWithBoundsNode.createPopulatedTestNode(),
                 Optional.empty(),
                 null,
                 Optional.empty()
             )
         );
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new KeyNode(
                 BaseTestNode.fileName,

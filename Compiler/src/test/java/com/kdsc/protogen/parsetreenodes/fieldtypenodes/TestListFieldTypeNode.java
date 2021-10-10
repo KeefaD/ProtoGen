@@ -26,7 +26,8 @@ public final class TestListFieldTypeNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new ListFieldTypeNode(
                 BaseTestNode.fileName,

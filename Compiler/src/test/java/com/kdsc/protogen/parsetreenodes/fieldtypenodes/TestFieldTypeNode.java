@@ -41,7 +41,8 @@ public final class TestFieldTypeNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new FieldTypeNode(
                 BaseTestNode.fileName,
@@ -53,7 +54,8 @@ public final class TestFieldTypeNode extends BaseTestNode {
             )
         );
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new FieldTypeNode(
                 BaseTestNode.fileName,
@@ -65,7 +67,8 @@ public final class TestFieldTypeNode extends BaseTestNode {
             )
         );
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new FieldTypeNode(
                 BaseTestNode.fileName,
@@ -77,7 +80,8 @@ public final class TestFieldTypeNode extends BaseTestNode {
             )
         );
 
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(
+            IllegalArgumentException.class,
             () ->
             new FieldTypeNode(
                 BaseTestNode.fileName,

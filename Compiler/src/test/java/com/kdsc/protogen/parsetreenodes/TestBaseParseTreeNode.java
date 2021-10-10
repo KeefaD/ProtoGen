@@ -14,7 +14,8 @@ public final class TestBaseParseTreeNode extends BaseTestNode {
 
         assertThrows(
             UnsupportedOperationException.class,
-            () -> baseParseTreeNodeMock.superToFormattedStringSuper(null, null, null)
+            () ->
+            baseParseTreeNodeMock.superToFormattedStringSuper(null, null, null)
         );
     }
 

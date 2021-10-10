@@ -28,18 +28,20 @@ public final class TestGenericParameterWithBoundsNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
-                new GenericParameterWithBoundsNode(
-                    BaseTestNode.fileName,
-                    BaseTestNode.line,
-                    BaseTestNode.charPosition,
-                    null,
-                    Collections.emptyList()
-                )
+            new GenericParameterWithBoundsNode(
+                BaseTestNode.fileName,
+                BaseTestNode.line,
+                BaseTestNode.charPosition,
+                null,
+                Collections.emptyList()
+            )
         );
 
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(
+            IllegalArgumentException.class,
             () ->
             new GenericParameterWithBoundsNode(
                 BaseTestNode.fileName,

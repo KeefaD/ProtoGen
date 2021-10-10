@@ -28,7 +28,8 @@ public final class TestEnumNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new EnumNode(
                 BaseTestNode.fileName,
@@ -40,7 +41,8 @@ public final class TestEnumNode extends BaseTestNode {
             )
         );
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new EnumNode(
                 BaseTestNode.fileName,
@@ -52,7 +54,8 @@ public final class TestEnumNode extends BaseTestNode {
             )
         );
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new EnumNode(
                 BaseTestNode.fileName,
@@ -64,7 +67,8 @@ public final class TestEnumNode extends BaseTestNode {
             )
         );
 
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(
+            IllegalArgumentException.class,
             () ->
             new EnumNode(
                 BaseTestNode.fileName,

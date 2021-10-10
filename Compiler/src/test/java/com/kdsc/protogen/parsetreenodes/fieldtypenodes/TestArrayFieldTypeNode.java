@@ -26,7 +26,8 @@ public final class TestArrayFieldTypeNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new ArrayFieldTypeNode(
                 BaseTestNode.fileName,
@@ -41,7 +42,8 @@ public final class TestArrayFieldTypeNode extends BaseTestNode {
     @Test
     public void testZeroOrNegativeDimensionsInConstructor() {
 
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(
+            IllegalArgumentException.class,
             () ->
             new ArrayFieldTypeNode(
                 BaseTestNode.fileName,
@@ -52,7 +54,8 @@ public final class TestArrayFieldTypeNode extends BaseTestNode {
             )
         );
 
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(
+            IllegalArgumentException.class,
             () ->
             new ArrayFieldTypeNode(
                 BaseTestNode.fileName,

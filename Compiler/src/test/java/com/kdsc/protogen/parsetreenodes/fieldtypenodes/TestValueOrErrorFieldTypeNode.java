@@ -25,7 +25,8 @@ public final class TestValueOrErrorFieldTypeNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new ValueOrErrorFieldTypeNode(
                 BaseTestNode.fileName,

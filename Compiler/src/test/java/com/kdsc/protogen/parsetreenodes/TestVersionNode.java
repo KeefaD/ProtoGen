@@ -29,7 +29,8 @@ public final class TestVersionNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new VersionNode(
                 BaseTestNode.fileName,
@@ -42,7 +43,8 @@ public final class TestVersionNode extends BaseTestNode {
             )
         );
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new VersionNode(
                 BaseTestNode.fileName,

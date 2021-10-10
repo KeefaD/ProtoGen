@@ -26,7 +26,8 @@ public final class TestEnumFieldTypeNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new EnumFieldTypeNode(
                 BaseTestNode.fileName,

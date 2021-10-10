@@ -26,7 +26,8 @@ public final class TestEnumVersionsNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new EnumVersionsNode(
                 BaseTestNode.fileName,

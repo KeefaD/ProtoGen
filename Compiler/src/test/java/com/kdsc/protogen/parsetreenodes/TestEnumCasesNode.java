@@ -25,7 +25,8 @@ public final class TestEnumCasesNode extends BaseTestNode {
 
     @Test
     public void testInvalidConstructorCall() {
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new EnumCasesNode(
                 BaseTestNode.fileName,

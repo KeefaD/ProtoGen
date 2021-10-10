@@ -71,7 +71,7 @@ public abstract class BaseCompilerTest {
             System.out.println("None".indent(4));
         }
         errorListener.getErrors()
-            .forEach(e -> System.out.println(e.toString().indent(4)));
+            .forEach(e -> System.out.print(e.toString().indent(4)));
 
         return errorListener.getErrors();
     }
@@ -162,7 +162,7 @@ public abstract class BaseCompilerTest {
 
         if(semanticErrors.size() != 0) {
             semanticErrors
-                .forEach(System.out::println);
+                .forEach(System.out::print);
             fail("Unexpected semantic errors");
         }
 

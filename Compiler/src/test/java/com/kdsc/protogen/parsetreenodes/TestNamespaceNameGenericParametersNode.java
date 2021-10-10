@@ -27,7 +27,8 @@ public final class TestNamespaceNameGenericParametersNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new NamespaceNameGenericParametersNode(
                 BaseTestNode.fileName,
@@ -38,7 +39,8 @@ public final class TestNamespaceNameGenericParametersNode extends BaseTestNode {
             )
         );
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new NamespaceNameGenericParametersNode(
                 BaseTestNode.fileName,

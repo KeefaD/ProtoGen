@@ -24,7 +24,8 @@ public final class TestNameNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new NameNode(
                 BaseTestNode.fileName,
@@ -34,7 +35,8 @@ public final class TestNameNode extends BaseTestNode {
             )
         );
 
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(
+            IllegalArgumentException.class,
             () ->
             new NameNode(
                 BaseTestNode.fileName,

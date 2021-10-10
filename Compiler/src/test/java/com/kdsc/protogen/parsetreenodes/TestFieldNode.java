@@ -26,7 +26,8 @@ public final class TestFieldNode extends BaseTestNode {
     @Test
     public void testInvalidConstructorCall() {
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new FieldNode(
                 BaseTestNode.fileName,
@@ -37,7 +38,8 @@ public final class TestFieldNode extends BaseTestNode {
             )
         );
 
-        assertThrows(NullPointerException.class,
+        assertThrows(
+            NullPointerException.class,
             () ->
             new FieldNode(
                 BaseTestNode.fileName,
