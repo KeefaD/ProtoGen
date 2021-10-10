@@ -19,6 +19,7 @@ public class Sets implements ProtoGenType {
     private final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocalDateTimeSet;
     private final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapSet;
     private final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Set<String>> TestSetSet;
+    private final com.kdsc.protogen.runtime.types.List<com.kdsc.protogen.runtime.types.Set<String>> TestListSet;
     private final com.kdsc.protogen.runtime.types.Set<collections.InnerType> TestObjectSet;
     private final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Array<String>> TestArraySet;
     private final com.kdsc.protogen.runtime.types.Set<Optional<Integer>> TestOptionalInt32Set;
@@ -33,6 +34,7 @@ public class Sets implements ProtoGenType {
     private final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocalDateTimeSet;
     private final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapSet;
     private final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetSet;
+    private final com.kdsc.protogen.runtime.types.List<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalListSet;
     private final com.kdsc.protogen.runtime.types.Set<Optional<collections.InnerType>> TestOptionalObjectSet;
     private final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArraySet;
 
@@ -49,6 +51,7 @@ public class Sets implements ProtoGenType {
         final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocalDateTimeSet,
         final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapSet,
         final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Set<String>> TestSetSet,
+        final com.kdsc.protogen.runtime.types.List<com.kdsc.protogen.runtime.types.Set<String>> TestListSet,
         final com.kdsc.protogen.runtime.types.Set<collections.InnerType> TestObjectSet,
         final com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Array<String>> TestArraySet,
         final com.kdsc.protogen.runtime.types.Set<Optional<Integer>> TestOptionalInt32Set,
@@ -63,6 +66,7 @@ public class Sets implements ProtoGenType {
         final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocalDateTimeSet,
         final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapSet,
         final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetSet,
+        final com.kdsc.protogen.runtime.types.List<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalListSet,
         final com.kdsc.protogen.runtime.types.Set<Optional<collections.InnerType>> TestOptionalObjectSet,
         final com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArraySet
     ) {
@@ -78,6 +82,7 @@ public class Sets implements ProtoGenType {
         this.TestLocalDateTimeSet = TestLocalDateTimeSet;
         this.TestMapSet = TestMapSet;
         this.TestSetSet = TestSetSet;
+        this.TestListSet = TestListSet;
         this.TestObjectSet = TestObjectSet;
         this.TestArraySet = TestArraySet;
         this.TestOptionalInt32Set = TestOptionalInt32Set;
@@ -92,6 +97,7 @@ public class Sets implements ProtoGenType {
         this.TestOptionalLocalDateTimeSet = TestOptionalLocalDateTimeSet;
         this.TestOptionalMapSet = TestOptionalMapSet;
         this.TestOptionalSetSet = TestOptionalSetSet;
+        this.TestOptionalListSet = TestOptionalListSet;
         this.TestOptionalObjectSet = TestOptionalObjectSet;
         this.TestOptionalArraySet = TestOptionalArraySet;
     }
@@ -142,6 +148,10 @@ public class Sets implements ProtoGenType {
 
     public com.kdsc.protogen.runtime.types.Set<com.kdsc.protogen.runtime.types.Set<String>> getTestSetSet() {
         return TestSetSet;
+    }
+
+    public com.kdsc.protogen.runtime.types.List<com.kdsc.protogen.runtime.types.Set<String>> getTestListSet() {
+        return TestListSet;
     }
 
     public com.kdsc.protogen.runtime.types.Set<collections.InnerType> getTestObjectSet() {
@@ -198,6 +208,10 @@ public class Sets implements ProtoGenType {
 
     public com.kdsc.protogen.runtime.types.Set<Optional<com.kdsc.protogen.runtime.types.Set<String>>> getTestOptionalSetSet() {
         return TestOptionalSetSet;
+    }
+
+    public com.kdsc.protogen.runtime.types.List<Optional<com.kdsc.protogen.runtime.types.Set<String>>> getTestOptionalListSet() {
+        return TestOptionalListSet;
     }
 
     public com.kdsc.protogen.runtime.types.Set<Optional<collections.InnerType>> getTestOptionalObjectSet() {

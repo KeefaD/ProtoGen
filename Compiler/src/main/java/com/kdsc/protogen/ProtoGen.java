@@ -51,7 +51,6 @@ import java.util.stream.Collectors;
 //TODO:KMD Make file generation tree nodes consistent with parse tree nodes
 //TODO:KMD Need to think about charsets, perhaps write a program in a funny charset, it has to be totally reliable
 //TODO:KMD I think we need to add verbose to the compiler and logging
-//TODO:KMD Wow I missed list, comedy
 //TODO:KMD When you use an incorrectly spelled primitive type it thinks it is a type parameter even through that type parameter is not specified, improve that error message
 public final class ProtoGen {
 

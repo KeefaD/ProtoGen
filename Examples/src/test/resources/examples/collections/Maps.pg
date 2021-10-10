@@ -13,6 +13,7 @@ type collections.Maps {
     TestLocalDateTimeMap : map<localdatetime, localdatetime>
     TestMapMap : map<map<string, string>, map<string, string>>
     TestSetMap : map<set<string>, set<string>>
+    TestListMap : map<list<string>, list<string>>
 //    TestValueOrErrorMap : map<valueorerror<decimal>, valueorerror<decimal>> //Hmm what does this mean if there is an error
     TestObjectMap : map<collections.InnerType, collections.InnerType>
     TestArrayMap : map<string[], string[]>
@@ -30,6 +31,7 @@ type collections.Maps {
     TestOptionalLocalDateTimeMap : map<optional localdatetime, optional localdatetime>
     TestOptionalMapMap : map<optional map<string, string>, optional map<string, string>>
     TestOptionalSetMap : map<optional set<string>, optional set<string>>
+    TestOptionalListMap : map<optional list<string>, optional list<string>>
 //    TestOptionalValueOrErrorMap : map<optional valueorerror<decimal>, optional valueorerror<decimal>>
     TestOptionalObjectMap : map<optional collections.InnerType, optional collections.InnerType>
     TestOptionalArrayMap : map<optional string[], optional string[]>

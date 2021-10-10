@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package collections;
+
+import "collections.InnerType.proto";
+import "protogentypes.proto";
+
+message Lists {
+    protogentypes.List TestDoubleList = 1;
+    protogentypes.List TestFloatList = 2;
+    protogentypes.List TestInt32List = 3;
+    protogentypes.List TestInt64List = 4;
+    protogentypes.List TestBoolList = 5;
+    protogentypes.List TestStringList = 6;
+    protogentypes.List TestBytesList = 7;
+    protogentypes.List TestDecimalList = 8;
+    protogentypes.List TestDateList = 9;
+    protogentypes.List TestDateTimeList = 10;
+    protogentypes.List TestLocalDateList = 11;
+    protogentypes.List TestLocalDateTimeList = 12;
+    protogentypes.List TestMapList = 13;
+    protogentypes.List TestListSet = 14;
+    protogentypes.List TestListList = 15;
+    protogentypes.List TestValueOrErrorList = 16;
+    protogentypes.List TestObjectList = 17;
+    protogentypes.List TestArrayList = 18;
+    protogentypes.List TestOptionalDoubleList = 19;
+    protogentypes.List TestOptionalFloatList = 20;
+    protogentypes.List TestOptionalInt32List = 21;
+    protogentypes.List TestOptionalInt64List = 22;
+    protogentypes.List TestOptionalBoolList = 23;
+    protogentypes.List TestOptionalStringList = 24;
+    protogentypes.List TestOptionalBytesList = 25;
+    protogentypes.List TestOptionalDecimalList = 26;
+    protogentypes.List TestOptionalDateList = 27;
+    protogentypes.List TestOptionalDatetimeList = 28;
+    protogentypes.List TestOptionalLocalDateList = 29;
+    protogentypes.List TestOptionalLocalDateTimeList = 30;
+    protogentypes.List TestOptionalMapList = 31;
+    protogentypes.List TestOptionalListSet = 32;
+    protogentypes.List TestOptionalListList = 33;
+    protogentypes.List TestOptionalValueOrErrorList = 34;
+    protogentypes.List TestOptionalObjectList = 35;
+    protogentypes.List TestOptionalArrayList = 36;
+}

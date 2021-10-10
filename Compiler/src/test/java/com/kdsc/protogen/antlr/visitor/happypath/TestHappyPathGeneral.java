@@ -27,9 +27,12 @@ public final class TestHappyPathGeneral extends BaseCompilerTest {
                 testByteField : optional bytes
                 testDecimalField : optional decimal
                 testDateField : optional date
-                testDatetimeField : optional datetime
+                testDateTimeField : optional datetime
+                testLocalDateField : optional localdate
+                testLocalDateTimeField : optional localdatetime
                 testMapField : optional map<int32, int32>
                 testSetField : optional set<int32>
+                testListField : optional list<int32>
                 testValueOrErrorField : optional  valueorerror<int32>
                 testArrayField : optional int32[]
                 testTypeField : optional TestNamespace.TestType
@@ -47,9 +50,12 @@ public final class TestHappyPathGeneral extends BaseCompilerTest {
                 testByteField : optional bytes
                 testDecimalField : optional decimal
                 testDateField : optional date
-                testDatetimeField : optional datetime
+                testDateTimeField : optional datetime
+                testLocalDateField : optional localdate
+                testLocalDateTimeField : optional localdatetime
                 testMapField : optional map<int32, int32>
                 testSetField : optional set<int32>
+                testListField : optional list<int32>
                 testValueOrErrorField : optional  valueorerror<int32>
                 testArrayField : optional int32[]
                 testKeyField : optional TestNamespace.TestKey

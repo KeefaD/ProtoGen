@@ -301,6 +301,15 @@ public class UndetectableNodeReplacer {
             );
         }
 
+        if(nonArrayFieldTypeNode instanceof ListFieldTypeNode listFieldTypeNode) {
+            return new ListFieldTypeNode(
+                nonArrayFieldTypeNode.getSourceFileName(),
+                nonArrayFieldTypeNode.getLine(),
+                nonArrayFieldTypeNode.getCharPosition(),
+                replaceUndetectableNodesForFieldTypeNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, listFieldTypeNode.getFieldTypeNode())
+            );
+        }
+
         if(nonArrayFieldTypeNode instanceof ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode) {
             return new ValueOrErrorFieldTypeNode(
                 nonArrayFieldTypeNode.getSourceFileName(),

@@ -21,6 +21,7 @@ public class Type implements ProtoGenType {
     private final com.kdsc.protogen.runtime.types.LocalDateTime TestLocalDateTime;
     private final com.kdsc.protogen.runtime.types.Map<Integer, Integer> TestMap;
     private final com.kdsc.protogen.runtime.types.Set<Integer> TestSet;
+    private final com.kdsc.protogen.runtime.types.List<Integer> TestList;
     private final com.kdsc.protogen.runtime.types.ValueOrError<Integer> TestValueOrError;
     private final simple.InnerType TestType;
     private final com.kdsc.protogen.runtime.types.Array<Integer> TestArray;
@@ -38,6 +39,7 @@ public class Type implements ProtoGenType {
     private final Optional<com.kdsc.protogen.runtime.types.LocalDateTime> TestOptionalLocalDateTime;
     private final Optional<com.kdsc.protogen.runtime.types.Map<Integer, Integer>> TestOptionalMap;
     private final Optional<com.kdsc.protogen.runtime.types.Set<Integer>> TestOptionalSet;
+    private final Optional<com.kdsc.protogen.runtime.types.List<Integer>> TestOptionalList;
     private final Optional<com.kdsc.protogen.runtime.types.ValueOrError<Integer>> TestOptionalValueOrError;
     private final Optional<simple.InnerType> TestOptionalType;
     private final Optional<com.kdsc.protogen.runtime.types.Array<Integer>> TestOptionalArray;
@@ -57,6 +59,7 @@ public class Type implements ProtoGenType {
         final com.kdsc.protogen.runtime.types.LocalDateTime TestLocalDateTime,
         final com.kdsc.protogen.runtime.types.Map<Integer, Integer> TestMap,
         final com.kdsc.protogen.runtime.types.Set<Integer> TestSet,
+        final com.kdsc.protogen.runtime.types.List<Integer> TestList,
         final com.kdsc.protogen.runtime.types.ValueOrError<Integer> TestValueOrError,
         final simple.InnerType TestType,
         final com.kdsc.protogen.runtime.types.Array<Integer> TestArray,
@@ -74,6 +77,7 @@ public class Type implements ProtoGenType {
         final Optional<com.kdsc.protogen.runtime.types.LocalDateTime> TestOptionalLocalDateTime,
         final Optional<com.kdsc.protogen.runtime.types.Map<Integer, Integer>> TestOptionalMap,
         final Optional<com.kdsc.protogen.runtime.types.Set<Integer>> TestOptionalSet,
+        final Optional<com.kdsc.protogen.runtime.types.List<Integer>> TestOptionalList,
         final Optional<com.kdsc.protogen.runtime.types.ValueOrError<Integer>> TestOptionalValueOrError,
         final Optional<simple.InnerType> TestOptionalType,
         final Optional<com.kdsc.protogen.runtime.types.Array<Integer>> TestOptionalArray
@@ -92,6 +96,7 @@ public class Type implements ProtoGenType {
         this.TestLocalDateTime = TestLocalDateTime;
         this.TestMap = TestMap;
         this.TestSet = TestSet;
+        this.TestList = TestList;
         this.TestValueOrError = TestValueOrError;
         this.TestType = TestType;
         this.TestArray = TestArray;
@@ -109,6 +114,7 @@ public class Type implements ProtoGenType {
         this.TestOptionalLocalDateTime = TestOptionalLocalDateTime;
         this.TestOptionalMap = TestOptionalMap;
         this.TestOptionalSet = TestOptionalSet;
+        this.TestOptionalList = TestOptionalList;
         this.TestOptionalValueOrError = TestOptionalValueOrError;
         this.TestOptionalType = TestOptionalType;
         this.TestOptionalArray = TestOptionalArray;
@@ -168,6 +174,10 @@ public class Type implements ProtoGenType {
 
     public com.kdsc.protogen.runtime.types.Set<Integer> getTestSet() {
         return TestSet;
+    }
+
+    public com.kdsc.protogen.runtime.types.List<Integer> getTestList() {
+        return TestList;
     }
 
     public com.kdsc.protogen.runtime.types.ValueOrError<Integer> getTestValueOrError() {
@@ -236,6 +246,10 @@ public class Type implements ProtoGenType {
 
     public Optional<com.kdsc.protogen.runtime.types.Set<Integer>> getTestOptionalSet() {
         return TestOptionalSet;
+    }
+
+    public Optional<com.kdsc.protogen.runtime.types.List<Integer>> getTestOptionalList() {
+        return TestOptionalList;
     }
 
     public Optional<com.kdsc.protogen.runtime.types.ValueOrError<Integer>> getTestOptionalValueOrError() {

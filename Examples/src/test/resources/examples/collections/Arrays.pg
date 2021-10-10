@@ -13,6 +13,7 @@ type collections.Arrays {
     TestLocalDateTimeArray : localdatetime[]
     TestMapArray : map<string, string>[]
     TestSetArray : set<string>[]
+    TestListArray : list<string>[]
     TestValueOrErrorArray : valueorerror<decimal>[]
     TestObjectArray : collections.InnerType[]
     TestArrayArray : string[][]
@@ -30,6 +31,7 @@ type collections.Arrays {
     TestOptionalLocalDateTimeArray : optional localdatetime[]
     TestOptionalMapArray : optional map<string, string>[]
     TestOptionalSetArray : optional set<string>[]
+    TestOptionalListArray : optional list<string>[]
     TestOptionalValueOrErrorArray : optional valueorerror<decimal>[] //TODO:KMD Is this an optional valueorerror<decimal> array or an array of optional valueorerror, make consistent with java
     TestOptionalObjectArray : optional collections.InnerType[]
     TestOptionalArrayArray : optional string[][]

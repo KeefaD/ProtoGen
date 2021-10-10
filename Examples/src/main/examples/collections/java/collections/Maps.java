@@ -19,6 +19,7 @@ public class Maps implements ProtoGenType {
     private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.LocalDateTime, com.kdsc.protogen.runtime.types.LocalDateTime> TestLocalDateTimeMap;
     private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Map<String, String>, com.kdsc.protogen.runtime.types.Map<String, String>> TestMapMap;
     private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Set<String>, com.kdsc.protogen.runtime.types.Set<String>> TestSetMap;
+    private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.List<String>, com.kdsc.protogen.runtime.types.List<String>> TestListMap;
     private final com.kdsc.protogen.runtime.types.Map<collections.InnerType, collections.InnerType> TestObjectMap;
     private final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Array<String>, com.kdsc.protogen.runtime.types.Array<String>> TestArrayMap;
     private final com.kdsc.protogen.runtime.types.Map<Optional<Integer>, Optional<Integer>> TestOptionalInt32Map;
@@ -33,6 +34,7 @@ public class Maps implements ProtoGenType {
     private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>, Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocalDateTimeMap;
     private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>, Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapMap;
     private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Set<String>>, Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetMap;
+    private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.List<String>>, Optional<com.kdsc.protogen.runtime.types.List<String>>> TestOptionalListMap;
     private final com.kdsc.protogen.runtime.types.Map<Optional<collections.InnerType>, Optional<collections.InnerType>> TestOptionalObjectMap;
     private final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Array<String>>, Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArrayMap;
 
@@ -49,6 +51,7 @@ public class Maps implements ProtoGenType {
         final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.LocalDateTime, com.kdsc.protogen.runtime.types.LocalDateTime> TestLocalDateTimeMap,
         final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Map<String, String>, com.kdsc.protogen.runtime.types.Map<String, String>> TestMapMap,
         final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Set<String>, com.kdsc.protogen.runtime.types.Set<String>> TestSetMap,
+        final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.List<String>, com.kdsc.protogen.runtime.types.List<String>> TestListMap,
         final com.kdsc.protogen.runtime.types.Map<collections.InnerType, collections.InnerType> TestObjectMap,
         final com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Array<String>, com.kdsc.protogen.runtime.types.Array<String>> TestArrayMap,
         final com.kdsc.protogen.runtime.types.Map<Optional<Integer>, Optional<Integer>> TestOptionalInt32Map,
@@ -63,6 +66,7 @@ public class Maps implements ProtoGenType {
         final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>, Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocalDateTimeMap,
         final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>, Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapMap,
         final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Set<String>>, Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetMap,
+        final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.List<String>>, Optional<com.kdsc.protogen.runtime.types.List<String>>> TestOptionalListMap,
         final com.kdsc.protogen.runtime.types.Map<Optional<collections.InnerType>, Optional<collections.InnerType>> TestOptionalObjectMap,
         final com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Array<String>>, Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArrayMap
     ) {
@@ -78,6 +82,7 @@ public class Maps implements ProtoGenType {
         this.TestLocalDateTimeMap = TestLocalDateTimeMap;
         this.TestMapMap = TestMapMap;
         this.TestSetMap = TestSetMap;
+        this.TestListMap = TestListMap;
         this.TestObjectMap = TestObjectMap;
         this.TestArrayMap = TestArrayMap;
         this.TestOptionalInt32Map = TestOptionalInt32Map;
@@ -92,6 +97,7 @@ public class Maps implements ProtoGenType {
         this.TestOptionalLocalDateTimeMap = TestOptionalLocalDateTimeMap;
         this.TestOptionalMapMap = TestOptionalMapMap;
         this.TestOptionalSetMap = TestOptionalSetMap;
+        this.TestOptionalListMap = TestOptionalListMap;
         this.TestOptionalObjectMap = TestOptionalObjectMap;
         this.TestOptionalArrayMap = TestOptionalArrayMap;
     }
@@ -142,6 +148,10 @@ public class Maps implements ProtoGenType {
 
     public com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.Set<String>, com.kdsc.protogen.runtime.types.Set<String>> getTestSetMap() {
         return TestSetMap;
+    }
+
+    public com.kdsc.protogen.runtime.types.Map<com.kdsc.protogen.runtime.types.List<String>, com.kdsc.protogen.runtime.types.List<String>> getTestListMap() {
+        return TestListMap;
     }
 
     public com.kdsc.protogen.runtime.types.Map<collections.InnerType, collections.InnerType> getTestObjectMap() {
@@ -198,6 +208,10 @@ public class Maps implements ProtoGenType {
 
     public com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.Set<String>>, Optional<com.kdsc.protogen.runtime.types.Set<String>>> getTestOptionalSetMap() {
         return TestOptionalSetMap;
+    }
+
+    public com.kdsc.protogen.runtime.types.Map<Optional<com.kdsc.protogen.runtime.types.List<String>>, Optional<com.kdsc.protogen.runtime.types.List<String>>> getTestOptionalListMap() {
+        return TestOptionalListMap;
     }
 
     public com.kdsc.protogen.runtime.types.Map<Optional<collections.InnerType>, Optional<collections.InnerType>> getTestOptionalObjectMap() {

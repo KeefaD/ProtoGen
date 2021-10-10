@@ -242,6 +242,8 @@ public final class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.Pro
             return (NonArrayFieldTypeNode) visit(ctx.map());
         } else if(ctx.set() != null) {
             return (NonArrayFieldTypeNode)visit(ctx.set());
+        } else if(ctx.list() != null) {
+            return (NonArrayFieldTypeNode)visit(ctx.list());
         } else if(ctx.value_or_error() != null) {
             return (NonArrayFieldTypeNode)visit(ctx.value_or_error());
         } else if(ctx.object_field_type() != null) {
@@ -341,6 +343,16 @@ public final class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.Pro
     @Override
     public SetFieldTypeNode visitSet(ProtoGenParser.SetContext ctx) {
         return new SetFieldTypeNode(
+            sourceFileName,
+            ctx.getStart().getLine(),
+            ctx.getStart().getCharPositionInLine(),
+            (FieldTypeNode) visit(ctx.field_type())
+        );
+    }
+
+    @Override
+    public ListFieldTypeNode visitList(ProtoGenParser.ListContext ctx) {
+        return new ListFieldTypeNode(
             sourceFileName,
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),

@@ -13,6 +13,7 @@
 //    testLocalDateTime : localdatetime
 //    testMap : map<string, string>
 //    testSet : set<string>
+//    testList : list<string>
 ////    testValueOrError : valueorerror<decimal>
 //    testObject : com.kdsc.protogen.examples.simple.Type
 //    testGenericType : T //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time
@@ -31,6 +32,7 @@
 //    testOptionalLocalDateTime : optional localdatetime
 //    testOptionalMap : optional map<string, string>
 //    testOptionalSet : optional set<string>
+//    testOptionalList : optional list<string>
 ////    testOptionalValueOrError : optional valueorerror<decimal>
 //    testOptionalObject : optional com.kdsc.protogen.examples.simple.Type
 //    testOptionalGenericType : optional T //Not sure about this, T needs to be protogen type, how do we enforce this, I think we will have to put protogen type as bounds all the time

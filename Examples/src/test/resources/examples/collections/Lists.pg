@@ -1,0 +1,38 @@
+type collections.Lists {
+    TestDoubleList : list<double>
+    TestFloatList : list<float>
+    TestInt32List : list<int32>
+    TestInt64List : list<int64>
+    TestBoolList : list<bool>
+    TestStringList : list<string>
+    TestBytesList : list<bytes>
+    TestDecimalList : list<decimal>
+    TestDateList : list<date>
+    TestDateTimeList : list<datetime>
+    TestLocalDateList : list<localdate>
+    TestLocalDateTimeList : list<localdatetime>
+    TestMapList : list<map<string, string>>
+    TestListSet : list<set<string>>
+    TestListList : list<list<string>>
+    TestValueOrErrorList : list<valueorerror<decimal>> //Hmm what does this mean if there is an error
+    TestObjectList : list<collections.InnerType>
+    TestArrayList : list<string[]>
+    TestOptionalDoubleList : list<optional double>
+    TestOptionalFloatList : list<optional float>
+    TestOptionalInt32List : list<optional int32>
+    TestOptionalInt64List : list<optional int64>
+    TestOptionalBoolList : list<optional bool>
+    TestOptionalStringList : list<optional string>
+    TestOptionalBytesList : list<optional bytes>
+    TestOptionalDecimalList : list<optional decimal>
+    TestOptionalDateList : list<optional date>
+    TestOptionalDatetimeList : list<optional datetime>
+    TestOptionalLocalDateList : list<optional localdate>
+    TestOptionalLocalDateTimeList : list<optional localdatetime>
+    TestOptionalMapList : list<optional map<string, string>>
+    TestOptionalListSet : list<optional set<string>>
+    TestOptionalListList : list<optional list<string>>
+    TestOptionalValueOrErrorList : list<optional valueorerror<decimal>>
+    TestOptionalObjectList : list<optional collections.InnerType>
+    TestOptionalArrayList : list<optional string[]>
+}

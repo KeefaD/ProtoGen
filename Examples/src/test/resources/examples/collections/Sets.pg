@@ -13,6 +13,7 @@ type collections.Sets {
     TestLocalDateTimeSet : set<localdatetime>
     TestMapSet : set<map<string, string>>
     TestSetSet : set<set<string>>
+    TestListSet : list<set<string>>
 //    TestValueOrErrorSet : set<valueorerror<decimal>> //Hmm what does this mean if there is an error
     TestObjectSet : set<collections.InnerType>
     TestArraySet : set<string[]>
@@ -30,6 +31,7 @@ type collections.Sets {
     TestOptionalLocalDateTimeSet : set<optional localdatetime>
     TestOptionalMapSet : set<optional map<string, string>>
     TestOptionalSetSet : set<optional set<string>>
+    TestOptionalListSet : list<optional set<string>>
 //    TestOptionalValueOrErrorSet : set<optional valueorerror<decimal>>
     TestOptionalObjectSet : set<optional collections.InnerType>
     TestOptionalArraySet : set<optional string[]>

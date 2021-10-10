@@ -87,6 +87,7 @@ non_array_field_type:
         'localdatetime' |
         map |
         set |
+        list |
         value_or_error |
         object_field_type |
         generic_object_field_type
@@ -97,6 +98,9 @@ map:
 
 set:
     'set' '<' field_type '>';
+
+list:
+    'list' '<' field_type '>';
 
 value_or_error:
     'valueorerror' '<' field_type '>';

@@ -23,6 +23,9 @@ message ValueOrError {
 message Set {
 }
 
+message List {
+}
+
 message Map {
 }
 

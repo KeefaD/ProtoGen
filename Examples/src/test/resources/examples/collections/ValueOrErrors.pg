@@ -13,6 +13,7 @@ type collections.ValueOrErrors {
     TestLocalDateTimeValueOrError : valueorerror<localdatetime>
     TestMapValueOrError : valueorerror<map<string, string>>
     TestSetValueOrError : valueorerror<set<string>>
+    TestListValueOrError : valueorerror<list<string>>
     TestValueOrErrorValueOrError : valueorerror<valueorerror<decimal>> //Hmm what does this mean if there is an error
     TestObjectValueOrError : valueorerror<collections.ValueOrErrors>
     TestArrayValueOrError : valueorerror<string[]>
@@ -30,6 +31,7 @@ type collections.ValueOrErrors {
     TestOptionalLocalDateTimeValueOrError : valueorerror<optional localdatetime>
     TestOptionalMapValueOrError : valueorerror<optional map<string, string>>
     TestOptionalSetValueOrError : valueorerror<optional set<string>>
+    TestOptionalListValueOrError : valueorerror<optional list<string>>
     TestOptionalValueOrErrorValueOrError : valueorerror<optional valueorerror<decimal>>
     TestOptionalObjectValueOrError : valueorerror<optional collections.ValueOrErrors>
     TestOptionalArrayValueOrError : valueorerror<optional string[]>

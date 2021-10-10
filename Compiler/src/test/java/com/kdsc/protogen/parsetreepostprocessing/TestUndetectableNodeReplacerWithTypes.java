@@ -200,6 +200,67 @@ public final class TestUndetectableNodeReplacerWithTypes extends BaseCompilerTes
     }
 
     @Test
+    public void testReplaceOneNestedListType() {
+
+        var testProgram = """
+            type TestNamespace.TypeToReplace {
+                testField : int32
+            }
+            
+            type TestNamespace.TestType {
+                testField : list<TestNamespace.TypeToReplace>
+            }
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TypeToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //Int32FieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //ListFieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+                                //FieldTypeNode
+                                    Optional : false
+                                    //TypeFieldTypeNode
+                                        //Super -> //NonArrayFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : TypeToReplace
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
     public void testReplaceOneNestedValueOrErrorType() {
 
         var testProgram = """
@@ -644,6 +705,114 @@ public final class TestUndetectableNodeReplacerWithTypes extends BaseCompilerTes
                         //FieldTypeNode
                             Optional : false
                             //SetFieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+                                //FieldTypeNode
+                                    Optional : false
+                                    //TypeFieldTypeNode
+                                        //Super -> //NonArrayFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : TypeToReplace
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedListTypeInImplementsList() {
+
+        var testProgram = """
+            type TestNamespace.TypeToReplace {
+                testField : int32
+            }
+            
+            type interface TestNamespace.TestTypeInterface<T> {
+                testInterfaceField : T
+            }
+            
+            type TestNamespace.TestType : TestNamespace.TestTypeInterface<list<TestNamespace.TypeToReplace>> {
+                testField : list<TestNamespace.TypeToReplace>
+            }
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TypeToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //Int32FieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+            //TypeNode
+                IsInterface : true
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestTypeInterface
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testInterfaceField
+                        //FieldTypeNode
+                            Optional : false
+                            //GenericObjectFieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+                                //GenericParameterNode
+                                    Identifier : T
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                //ImplementsListNode
+                    //NamespaceNameGenericParametersNode
+                        //NamespaceNameNode
+                            //NamespaceNode
+                                Namespace : TestNamespace
+                            //NameNode
+                                Name : TestTypeInterface
+                        //GenericParametersNode
+                            //FieldTypeNode
+                                Optional : false
+                                //ListFieldTypeNode
+                                    //Super -> //NonArrayFieldTypeNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //TypeFieldTypeNode
+                                            //Super -> //NonArrayFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : TypeToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //ListFieldTypeNode
                                 //Super -> //NonArrayFieldTypeNode
                                 //FieldTypeNode
                                     Optional : false
@@ -1159,6 +1328,98 @@ public final class TestUndetectableNodeReplacerWithTypes extends BaseCompilerTes
         """;
         assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
+
+    @Test
+    public void testReplaceOneNestedListTypeInVersions() {
+
+        var testProgram = """
+            type TestNamespace.TypeToReplace {
+                testField : int32
+            }
+            
+            type TestNamespace.TestType {
+                version 1 {
+                    testField : list<TestNamespace.TypeToReplace>
+                }
+                version 2 {
+                    testField : list<TestNamespace.TypeToReplace>
+                }
+            }
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TypeToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //Int32FieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                //VersionsNode
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 1
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ListFieldTypeNode
+                                        //Super -> //NonArrayFieldTypeNode
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //Super -> //NonArrayFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 2
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ListFieldTypeNode
+                                        //Super -> //NonArrayFieldTypeNode
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //Super -> //NonArrayFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
 
     @Test
     public void testReplaceOneNestedValueOrErrorTypeInVersions() {
@@ -1835,6 +2096,166 @@ public final class TestUndetectableNodeReplacerWithTypes extends BaseCompilerTes
                                 //FieldTypeNode
                                     Optional : false
                                     //SetFieldTypeNode
+                                        //Super -> //NonArrayFieldTypeNode
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //Super -> //NonArrayFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedListTypeInImplementsListInVersions() {
+
+        var testProgram = """
+            type TestNamespace.TypeToReplace {
+                testField : int32
+            }
+            
+            type interface TestNamespace.TestTypeInterface<T> {
+                testInterfaceField : T
+            }
+            
+            type TestNamespace.TestType {
+                version 1 : TestNamespace.TestTypeInterface<list<TestNamespace.TypeToReplace>> {
+                    testField : list<TestNamespace.TypeToReplace>
+                }
+                version 2 : TestNamespace.TestTypeInterface<list<TestNamespace.TypeToReplace>> {
+                    testField : list<TestNamespace.TypeToReplace>
+                }
+            }
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TypeToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //Int32FieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+            //TypeNode
+                IsInterface : true
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestTypeInterface
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testInterfaceField
+                        //FieldTypeNode
+                            Optional : false
+                            //GenericObjectFieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+                                //GenericParameterNode
+                                    Identifier : T
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                //VersionsNode
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 1
+                        //ImplementsListNode
+                            //NamespaceNameGenericParametersNode
+                                //NamespaceNameNode
+                                    //NamespaceNode
+                                        Namespace : TestNamespace
+                                    //NameNode
+                                        Name : TestTypeInterface
+                                //GenericParametersNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //ListFieldTypeNode
+                                            //Super -> //NonArrayFieldTypeNode
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //TypeFieldTypeNode
+                                                    //Super -> //NonArrayFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : TypeToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ListFieldTypeNode
+                                        //Super -> //NonArrayFieldTypeNode
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //Super -> //NonArrayFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
+                    //VersionNode
+                        //VersionNumberNode
+                            VersionNumber : 2
+                        //ImplementsListNode
+                            //NamespaceNameGenericParametersNode
+                                //NamespaceNameNode
+                                    //NamespaceNode
+                                        Namespace : TestNamespace
+                                    //NameNode
+                                        Name : TestTypeInterface
+                                //GenericParametersNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //ListFieldTypeNode
+                                            //Super -> //NonArrayFieldTypeNode
+                                            //FieldTypeNode
+                                                Optional : false
+                                                //TypeFieldTypeNode
+                                                    //Super -> //NonArrayFieldTypeNode
+                                                    //NamespaceNameGenericParametersNode
+                                                        //NamespaceNameNode
+                                                            //NamespaceNode
+                                                                Namespace : TestNamespace
+                                                            //NameNode
+                                                                Name : TypeToReplace
+                        //FieldsNode
+                            //FieldNode
+                                //FieldNameNode
+                                    FieldName : testField
+                                //FieldTypeNode
+                                    Optional : false
+                                    //ListFieldTypeNode
                                         //Super -> //NonArrayFieldTypeNode
                                         //FieldTypeNode
                                             Optional : false

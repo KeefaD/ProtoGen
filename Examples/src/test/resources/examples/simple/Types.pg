@@ -17,6 +17,7 @@ type simple.Type {
     TestLocalDateTime : localdatetime
     TestMap : map<int32, int32>
     TestSet : set<int32>
+    TestList : list<int32>
     TestValueOrError : valueorerror<int32>
     TestType : simple.InnerType
     TestArray : int32[]
@@ -34,6 +35,7 @@ type simple.Type {
     TestOptionalLocalDateTime : optional localdatetime
     TestOptionalMap : optional map<int32, int32>
     TestOptionalSet : optional set<int32>
+    TestOptionalList : optional list<int32>
     TestOptionalValueOrError : optional valueorerror<int32>
     TestOptionalType : optional simple.InnerType
     TestOptionalArray : optional int32[]

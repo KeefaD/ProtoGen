@@ -23,6 +23,7 @@ public class FieldsTransformer {
         protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.DateTimeFieldTypeNode.class);
         protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.LocalDateTimeFieldTypeNode.class);
         protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.SetFieldTypeNode.class);
+        protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.ListFieldTypeNode.class);
         protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.MapFieldTypeNode.class);
         protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.ArrayFieldTypeNode.class);
         protogenTypes.add(com.kdsc.protogen.parsetreenodes.fieldtypenodes.LocalDateFieldTypeNode.class);
@@ -172,6 +173,10 @@ public class FieldsTransformer {
             case com.kdsc.protogen.parsetreenodes.fieldtypenodes.SetFieldTypeNode setFieldTypeNode -> new SetFieldTypeNode(
                 isOptional,
                 transformFieldTypeNode(compilerResults, transformerContext, fileContext, setFieldTypeNode.getFieldTypeNode())
+            );
+            case com.kdsc.protogen.parsetreenodes.fieldtypenodes.ListFieldTypeNode listFieldTypeNode -> new ListFieldTypeNode(
+                isOptional,
+                transformFieldTypeNode(compilerResults, transformerContext, fileContext, listFieldTypeNode.getFieldTypeNode())
             );
             case com.kdsc.protogen.parsetreenodes.fieldtypenodes.MapFieldTypeNode mapFieldTypeNode -> new MapFieldTypeNode(
                 isOptional,

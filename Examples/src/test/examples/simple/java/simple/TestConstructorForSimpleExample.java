@@ -25,6 +25,7 @@ public final class TestConstructorForSimpleExample {
             new LocalDateTime(),
             new Map<>(),
             new Set<>(),
+            new List<>(),
             new ValueOrError<>(1),
             new InnerType(1),
             new Array<>(),
@@ -42,6 +43,7 @@ public final class TestConstructorForSimpleExample {
             Optional.of(new LocalDateTime()),
             Optional.of(new Map<>()),
             Optional.of(new Set<>()),
+            Optional.of(new List<>()),
             Optional.of(new ValueOrError<>(1)),
             Optional.of(new InnerType(1)),
             Optional.of(new Array<>())

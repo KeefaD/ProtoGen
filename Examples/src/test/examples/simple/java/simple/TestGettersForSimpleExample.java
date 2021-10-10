@@ -25,6 +25,7 @@ public class TestGettersForSimpleExample {
         var testLocalDateTime = new LocalDateTime();
         var testMap = new Map<Integer, Integer>();
         var testSet = new Set<Integer>();
+        var testList = new List<Integer>();
         var testValueOrError = new ValueOrError<>(1);
         var testType = new InnerType(1);
         var testArray = new Array<Integer>();
@@ -42,6 +43,7 @@ public class TestGettersForSimpleExample {
         var testOptionalLocalDateTime = Optional.of(new LocalDateTime());
         var testOptionalMap = Optional.of(new Map<Integer, Integer>());
         var testOptionalSet = Optional.of(new Set<Integer>());
+        var testOptionalList = Optional.of(new List<Integer>());
         var testOptionalValueOrError = Optional.of(new ValueOrError<>(1));
         var testOptionalType = Optional.of(new InnerType(1));
         var testOptionalArray = Optional.of(new Array<Integer>());
@@ -60,6 +62,7 @@ public class TestGettersForSimpleExample {
             testLocalDateTime,
             testMap,
             testSet,
+            testList,
             testValueOrError,
             testType,
             testArray,
@@ -77,6 +80,7 @@ public class TestGettersForSimpleExample {
             testOptionalLocalDateTime,
             testOptionalMap,
             testOptionalSet,
+            testOptionalList,
             testOptionalValueOrError,
             testOptionalType,
             testOptionalArray
@@ -87,8 +91,7 @@ public class TestGettersForSimpleExample {
         assertEquals(testInt64Value, type.getTestInt64(), "Unexpected value returned from getter");
         assertEquals(testBoolValue, type.getTestBool(), "Unexpected value returned from getter");
         assertEquals(testStringValue, type.getTestString(), "Unexpected value returned from getter");
-        //TODO:KMD No point testing Decimal, Date, DateTime, LocalDate time at the moment
-        //TODO:KMD None of these will work until we implement equals hashcode properly
+        //TODO:KMD No point testing Decimal, Date, DateTime, LocalDate time at the moment, none of these will work until we implement equals hashcode properly
 //        assertEquals(testType, type.getTestType(), "Unexpected value returned from getter");
 //        assertEquals(testOptionalDouble, type.getTestOptionalDouble(), "Unexpected value returned from getter");
 //        assertEquals(testOptionalFloat, type.getTestOptionalFloat(), "Unexpected value returned from getter");

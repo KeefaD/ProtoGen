@@ -25,6 +25,7 @@ type interface interfaces.TypeInterface : interfaces.BaseInterface1, interfaces.
     TestLocalDateTime : localdatetime
     TestMap : map<int32, int32>
     TestSet : set<int32>
+    TestList : list<int32>
     TestValueOrError : valueorerror<int32>
     TestType : interfaces.InnerType
     TestArray : int32[]
@@ -42,6 +43,7 @@ type interface interfaces.TypeInterface : interfaces.BaseInterface1, interfaces.
     TestOptionalLocalDateTime : optional localdatetime
     TestOptionalMap : optional map<int32, int32>
     TestOptionalSet : optional set<int32>
+    TestOptionalList : optional list<int32>
     TestOptionalValueOrError : optional valueorerror<int32>
     TestOptionalType : optional interfaces.InnerType
     TestOptionalArray : optional int32[]

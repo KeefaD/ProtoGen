@@ -21,6 +21,7 @@ public class ValueOrErrors implements ProtoGenType {
     private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocalDateTimeValueOrError;
     private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapValueOrError;
     private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Set<String>> TestSetValueOrError;
+    private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.List<String>> TestListValueOrError;
     private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueOrErrorValueOrError;
     private final com.kdsc.protogen.runtime.types.ValueOrError<collections.ValueOrErrors> TestObjectValueOrError;
     private final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Array<String>> TestArrayValueOrError;
@@ -38,6 +39,7 @@ public class ValueOrErrors implements ProtoGenType {
     private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocalDateTimeValueOrError;
     private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapValueOrError;
     private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetValueOrError;
+    private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.List<String>>> TestOptionalListValueOrError;
     private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueOrErrorValueOrError;
     private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<collections.ValueOrErrors>> TestOptionalObjectValueOrError;
     private final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArrayValueOrError;
@@ -57,6 +59,7 @@ public class ValueOrErrors implements ProtoGenType {
         final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.LocalDateTime> TestLocalDateTimeValueOrError,
         final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Map<String, String>> TestMapValueOrError,
         final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Set<String>> TestSetValueOrError,
+        final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.List<String>> TestListValueOrError,
         final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> TestValueOrErrorValueOrError,
         final com.kdsc.protogen.runtime.types.ValueOrError<collections.ValueOrErrors> TestObjectValueOrError,
         final com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Array<String>> TestArrayValueOrError,
@@ -74,6 +77,7 @@ public class ValueOrErrors implements ProtoGenType {
         final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.LocalDateTime>> TestOptionalLocalDateTimeValueOrError,
         final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Map<String, String>>> TestOptionalMapValueOrError,
         final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Set<String>>> TestOptionalSetValueOrError,
+        final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.List<String>>> TestOptionalListValueOrError,
         final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> TestOptionalValueOrErrorValueOrError,
         final com.kdsc.protogen.runtime.types.ValueOrError<Optional<collections.ValueOrErrors>> TestOptionalObjectValueOrError,
         final com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Array<String>>> TestOptionalArrayValueOrError
@@ -92,6 +96,7 @@ public class ValueOrErrors implements ProtoGenType {
         this.TestLocalDateTimeValueOrError = TestLocalDateTimeValueOrError;
         this.TestMapValueOrError = TestMapValueOrError;
         this.TestSetValueOrError = TestSetValueOrError;
+        this.TestListValueOrError = TestListValueOrError;
         this.TestValueOrErrorValueOrError = TestValueOrErrorValueOrError;
         this.TestObjectValueOrError = TestObjectValueOrError;
         this.TestArrayValueOrError = TestArrayValueOrError;
@@ -109,6 +114,7 @@ public class ValueOrErrors implements ProtoGenType {
         this.TestOptionalLocalDateTimeValueOrError = TestOptionalLocalDateTimeValueOrError;
         this.TestOptionalMapValueOrError = TestOptionalMapValueOrError;
         this.TestOptionalSetValueOrError = TestOptionalSetValueOrError;
+        this.TestOptionalListValueOrError = TestOptionalListValueOrError;
         this.TestOptionalValueOrErrorValueOrError = TestOptionalValueOrErrorValueOrError;
         this.TestOptionalObjectValueOrError = TestOptionalObjectValueOrError;
         this.TestOptionalArrayValueOrError = TestOptionalArrayValueOrError;
@@ -168,6 +174,10 @@ public class ValueOrErrors implements ProtoGenType {
 
     public com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Set<String>> getTestSetValueOrError() {
         return TestSetValueOrError;
+    }
+
+    public com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.List<String>> getTestListValueOrError() {
+        return TestListValueOrError;
     }
 
     public com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>> getTestValueOrErrorValueOrError() {
@@ -236,6 +246,10 @@ public class ValueOrErrors implements ProtoGenType {
 
     public com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.Set<String>>> getTestOptionalSetValueOrError() {
         return TestOptionalSetValueOrError;
+    }
+
+    public com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.List<String>>> getTestOptionalListValueOrError() {
+        return TestOptionalListValueOrError;
     }
 
     public com.kdsc.protogen.runtime.types.ValueOrError<Optional<com.kdsc.protogen.runtime.types.ValueOrError<com.kdsc.protogen.runtime.types.Decimal>>> getTestOptionalValueOrErrorValueOrError() {
