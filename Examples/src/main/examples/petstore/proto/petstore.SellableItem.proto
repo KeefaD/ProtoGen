@@ -7,8 +7,8 @@ syntax = "proto3";
 
 package petstore;
 
-import "petstore.SellableItemId.proto";
 import "petstore.CategoryId.proto";
+import "petstore.SellableItemId.proto";
 import "protogentypes.proto";
 
 message SellableItem {

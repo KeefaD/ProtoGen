@@ -7,9 +7,9 @@ syntax = "proto3";
 
 package interfaces;
 
-import "interfaces.InnerType.proto";
-import "interfaces.BaseInterface2.proto";
 import "interfaces.BaseInterface1.proto";
+import "interfaces.BaseInterface2.proto";
+import "interfaces.InnerType.proto";
 import "protogentypes.proto";
 
 message TypeInterface {

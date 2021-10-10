@@ -5,8 +5,8 @@
 //
 package empty;
 
-import com.kdsc.protogen.runtime.options.EqualsHashCodeOptions;
 import com.kdsc.protogen.runtime.ProtoGenType;
+import com.kdsc.protogen.runtime.options.EqualsHashCodeOptions;
 import com.kdsc.protogen.runtime.options.ToStringOptions;
 
 public class EmptyType implements empty.EmptyTypeInterface, ProtoGenType {

@@ -60,8 +60,10 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
     private String generateImportStatements(final CodeGeneratorContext codeGeneratorContext, final Set<String> importStatements) {
         var stringBuilder = new StringBuilder();
         importStatements
+            .stream()
+            .sorted()
             .forEach(
-                //TODO:KMD This .proto in here is wrong
+                //TODO:KMD This .proto in here is wrong, should we have it both the transformercontext and codegenerationcontext?
                 is -> stringBuilder.append("import \"" + is + ".proto\";\n")
             );
         if(importStatements.size() > 0) {

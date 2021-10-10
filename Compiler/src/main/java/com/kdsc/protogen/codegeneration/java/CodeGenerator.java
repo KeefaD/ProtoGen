@@ -96,6 +96,8 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
     private String generateImportStatements(final CodeGeneratorContext codeGeneratorContext, final Set<String> importStatements) {
         var stringBuilder = new StringBuilder();
         importStatements
+            .stream()
+            .sorted()
             .forEach(
                 is -> stringBuilder.append("import " + is + ";\n")
             );

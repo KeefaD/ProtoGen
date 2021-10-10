@@ -5,10 +5,10 @@
 //
 package interfaces;
 
-import com.kdsc.protogen.runtime.options.EqualsHashCodeOptions;
 import com.kdsc.protogen.runtime.ProtoGenType;
-import java.util.Optional;
+import com.kdsc.protogen.runtime.options.EqualsHashCodeOptions;
 import com.kdsc.protogen.runtime.options.ToStringOptions;
+import java.util.Optional;
 
 public class UseInterface implements interfaces.TypeInterface, ProtoGenType {
 

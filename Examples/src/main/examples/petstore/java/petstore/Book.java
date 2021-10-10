@@ -5,8 +5,8 @@
 //
 package petstore;
 
-import com.kdsc.protogen.runtime.options.EqualsHashCodeOptions;
 import com.kdsc.protogen.runtime.ProtoGenType;
+import com.kdsc.protogen.runtime.options.EqualsHashCodeOptions;
 import com.kdsc.protogen.runtime.options.ToStringOptions;
 
 public class Book implements petstore.SellableItem, ProtoGenType {
