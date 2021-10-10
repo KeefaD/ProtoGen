@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//TODO:KMD Make ProtoGenType an abstract type and create ProtoGenInterface as well
 //TODO:KMD Test running Gradle on the command line to build everything
 //TODO:KMD Test building on Windows
 //TODO:KMD I think you can end up with optional optional as a field type optional T where T is optional, close this down
