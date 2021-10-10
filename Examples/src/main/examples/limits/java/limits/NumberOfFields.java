@@ -1,7 +1,12 @@
+//
+//   ╔═╗┬─┐┌─┐┌┬┐┌─┐╔═╗┌─┐┌┐┌
+//   ╠═╝├┬┘│ │ │ │ │║ ╦├┤ │││
+//   ╩  ┴└─└─┘ ┴ └─┘╚═╝└─┘┘└┘   v0.0 2021
+//
 package limits;
 
-import com.kdsc.protogen.runtime.options.EqualsHashCodeOptions;
 import com.kdsc.protogen.runtime.ProtoGenType;
+import com.kdsc.protogen.runtime.options.EqualsHashCodeOptions;
 import com.kdsc.protogen.runtime.options.ToStringOptions;
 
 public class NumberOfFields implements ProtoGenType {
