@@ -49,6 +49,7 @@ import java.util.stream.Collectors;
 //TODO:KMD Need to think about charsets, perhaps write a program in a funny charset, it has to be totally reliable
 //TODO:KMD I think we need to add verbose to the compiler and logging
 //TODO:KMD When you use an incorrectly spelled primitive type it thinks it is a type parameter even through that type parameter is not specified, improve that error message
+//TODO:KMD Put line numbers when printing ProtoGen input files in tests
 public final class ProtoGen {
 
     public static final char OPTION_MARKER = '-';
