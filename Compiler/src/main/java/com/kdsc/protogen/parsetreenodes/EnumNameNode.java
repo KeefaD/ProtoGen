@@ -31,7 +31,7 @@ public final class EnumNameNode extends BaseParseTreeNode {
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, EnumNameNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "EnumName", enumName);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

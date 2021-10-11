@@ -81,8 +81,7 @@ public abstract class BaseNode {
         baseNodes.forEach(bn -> stringBuilder.append(bn.toFormattedString(formattedStringOptions, indentationLevel)));
     }
 
-    //TODO:KMD This seems a bit inconsistent
-    public String indentString(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final int indentationLevel) {
+    public String indentAndReturnString(final StringBuilder stringBuilder, final FormattedStringOptions formattedStringOptions, final int indentationLevel) {
         return stringBuilder.toString().indent(indentationLevel * INDENTATION_SPACE_COUNT);
     }
 

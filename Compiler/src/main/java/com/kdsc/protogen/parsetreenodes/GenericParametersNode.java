@@ -34,7 +34,7 @@ public final class GenericParametersNode extends BaseParseTreeNode {
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, GenericParametersNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldTypeNodes);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

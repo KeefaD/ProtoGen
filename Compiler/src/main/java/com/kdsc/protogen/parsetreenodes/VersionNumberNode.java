@@ -30,7 +30,7 @@ public final class VersionNumberNode extends BaseParseTreeNode {
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, VersionNumberNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "VersionNumber", versionNumber);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

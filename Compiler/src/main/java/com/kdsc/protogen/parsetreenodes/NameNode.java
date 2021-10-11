@@ -31,7 +31,7 @@ public final class NameNode extends BaseParseTreeNode {
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, NameNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Name", name);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

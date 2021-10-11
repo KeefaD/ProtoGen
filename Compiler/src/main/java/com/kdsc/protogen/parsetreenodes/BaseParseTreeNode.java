@@ -49,7 +49,7 @@ public abstract class BaseParseTreeNode extends BaseNode implements Cloneable {
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "SourceFileName", sourceFileName);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Line", line);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "CharPosition", charPosition);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     public void superToFormattedStringSuper(final StringBuilder stringBuilder, FormattedStringOptions formattedStringOptions, final String superFormattedToString, final Class baseClass) {

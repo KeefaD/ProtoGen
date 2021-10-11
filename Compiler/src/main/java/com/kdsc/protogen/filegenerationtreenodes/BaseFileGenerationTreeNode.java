@@ -16,7 +16,7 @@ public abstract class BaseFileGenerationTreeNode extends BaseNode {
     public String toFormattedString(final FormattedStringOptions formattedStringOptions, final int indentationLevel) {
         var stringBuilder = new StringBuilder();
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, BaseFileGenerationTreeNode.class);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

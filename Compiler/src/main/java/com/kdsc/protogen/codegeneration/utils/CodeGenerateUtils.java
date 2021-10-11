@@ -1,5 +1,6 @@
 package com.kdsc.protogen.codegeneration.utils;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -63,6 +64,12 @@ public final class CodeGenerateUtils {
         //   ╠═╝├┬┘│ │ │ │ │║ ╦├┤ │││
         //   ╩  ┴└─└─┘ ┴ └─┘╚═╝└─┘┘└┘   v0.0 2021
         //""";
+    }
+
+    public static String getNormalisedDirectoryPath(String javaOutputDirectory) {
+        return javaOutputDirectory.endsWith(File.separator)
+            ? javaOutputDirectory
+            : javaOutputDirectory + File.separator;
     }
 
 }

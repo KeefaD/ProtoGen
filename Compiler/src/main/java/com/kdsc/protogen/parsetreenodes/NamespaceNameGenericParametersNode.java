@@ -50,7 +50,7 @@ public final class NamespaceNameGenericParametersNode extends BaseParseTreeNode 
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNameNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, genericParametersNode);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

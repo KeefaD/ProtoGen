@@ -24,7 +24,7 @@ public final class EnumCaseNode extends BaseFileGenerationTreeNode {
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, EnumCaseNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0));
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Name", name);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

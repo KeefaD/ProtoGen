@@ -108,6 +108,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
     }
 
     private String generatePrivateFields(final CodeGeneratorContext codeGeneratorContext, final TypeFileNode typeFileNode) {
+
         if(typeFileNode.getFieldNodes().isEmpty()) {
             return "\n";
         }
@@ -121,6 +122,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                 fn -> stringBuilder.append("\tprivate final " + generateFieldType(codeGeneratorContext, fn.getFieldTypeNode()) + " " + fn.getName() + ";\n")
             );
         stringBuilder.append("\n");
+
         return stringBuilder.toString();
     }
 
@@ -147,6 +149,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                 fn -> stringBuilder.append("\t\tthis." + fn.getName() + " = " + fn.getName() + ";\n")
             );
         stringBuilder.append("\t}\n");
+
         return stringBuilder.toString();
     }
 
@@ -167,6 +170,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
                     stringBuilder.append("\n");
                 }
             );
+
         return stringBuilder.toString();
     }
 
@@ -180,6 +184,7 @@ public class CodeGenerator implements com.kdsc.protogen.codegeneration.CodeGener
             .getFieldNodes()
             .forEach(tifn -> stringBuilder.append("\t" + generateFieldType(codeGeneratorContext, tifn.getFieldTypeNode()) + " get" + tifn.getName() + "();\n"));
         stringBuilder.append("\n");
+
         return stringBuilder.toString();
     }
 

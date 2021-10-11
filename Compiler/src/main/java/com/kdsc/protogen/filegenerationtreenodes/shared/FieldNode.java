@@ -37,7 +37,7 @@ public final class FieldNode extends BaseFileGenerationTreeNode {
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0));
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Name", name);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldTypeNode);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

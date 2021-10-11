@@ -39,7 +39,7 @@ public final class FieldNode extends BaseParseTreeNode {
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldNameNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldTypeNode);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

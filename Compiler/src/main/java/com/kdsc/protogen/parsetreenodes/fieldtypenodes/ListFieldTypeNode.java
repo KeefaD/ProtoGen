@@ -29,7 +29,7 @@ public final class ListFieldTypeNode extends NonArrayFieldTypeNode {
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, ListFieldTypeNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), NonArrayFieldTypeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldTypeNode);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

@@ -66,7 +66,7 @@ public final class EnumNode extends BaseParseTreeNode implements TopLevelObject,
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNameNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, enumVersionsNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, enumCasesNode);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

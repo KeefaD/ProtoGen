@@ -58,7 +58,7 @@ public final class VersionNode extends BaseParseTreeNode {
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, genericParametersWithBoundsNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, implementsListNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldsNode);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

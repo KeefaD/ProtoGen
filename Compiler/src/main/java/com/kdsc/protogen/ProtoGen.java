@@ -51,6 +51,8 @@ import java.util.stream.Collectors;
 //TODO:KMD I think we need to add verbose to the compiler and logging
 //TODO:KMD When you use an incorrectly spelled primitive type it thinks it is a type parameter even through that type parameter is not specified, improve that error message
 //TODO:KMD Put line numbers when printing ProtoGen input files in tests
+//TODO:KMD In Proto if a field is redefined ignore it in the superclass, as in strip it out, otherwise problems
+//TODO:KMD Try and exclude antlr generated code from test coverage
 public final class ProtoGen {
 
     public static final char OPTION_MARKER = '-';

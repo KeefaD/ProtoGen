@@ -1,6 +1,6 @@
 package com.kdsc.protogen.codegeneration;
 
-import java.io.File;
+import static com.kdsc.protogen.codegeneration.utils.CodeGenerateUtils.getNormalisedDirectoryPath;
 
 public final class CodeGeneratorContext {
 
@@ -8,14 +8,9 @@ public final class CodeGeneratorContext {
     private final String protoOutputDirectory;
 
     public CodeGeneratorContext(final String javaOutputDirectory, final String protoOutputDirectory) {
-
-        //TODO:KMD Extract into private method, or put in CodeGeneratorUtils
-        var normalisedJavaOutputDirectory = javaOutputDirectory.endsWith(File.separator)
-            ? javaOutputDirectory
-            : javaOutputDirectory + File.separator;
-        var normalisedProtoOutputDirectory = protoOutputDirectory.endsWith(File.separator)
-            ? protoOutputDirectory
-            : protoOutputDirectory + File.separator;
+        //TODO:KMD Pre-conditions
+        String normalisedJavaOutputDirectory = getNormalisedDirectoryPath(javaOutputDirectory);
+        String normalisedProtoOutputDirectory = getNormalisedDirectoryPath(protoOutputDirectory);
         this.javaOutputDirectory = normalisedJavaOutputDirectory;
         this.protoOutputDirectory = normalisedProtoOutputDirectory;
     }

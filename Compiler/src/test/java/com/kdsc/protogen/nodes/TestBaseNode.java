@@ -183,7 +183,7 @@ public final class TestBaseNode {
         """;
         var stringBuilder = new StringBuilder();
         stringBuilder.append("ExpectedOutput");
-        var outputString = baseNodeMock.indentString(stringBuilder, ParseTreeFormattedStringOptions.defaultParseTreeFormattedStringOptions, 4);
+        var outputString = baseNodeMock.indentAndReturnString(stringBuilder, ParseTreeFormattedStringOptions.defaultParseTreeFormattedStringOptions, 4);
         assertEquals(expectedOutput, outputString, "Unexpected super to formatted string super");
     }
 

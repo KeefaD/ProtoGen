@@ -35,7 +35,7 @@ public final class ImplementsNode extends BaseFileGenerationTreeNode {
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0));
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "PackageName", name);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Name", name);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

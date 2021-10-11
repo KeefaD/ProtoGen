@@ -30,7 +30,7 @@ public final class GenericObjectFieldTypeNode extends NonArrayFieldTypeNode {
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, GenericObjectFieldTypeNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), NonArrayFieldTypeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, genericParameterNode);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

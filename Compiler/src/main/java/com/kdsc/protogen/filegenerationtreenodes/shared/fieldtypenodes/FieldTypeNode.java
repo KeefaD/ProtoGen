@@ -23,7 +23,7 @@ public abstract class FieldTypeNode extends BaseFileGenerationTreeNode {
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, FieldTypeNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0));
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "IsOptional", isOptional);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

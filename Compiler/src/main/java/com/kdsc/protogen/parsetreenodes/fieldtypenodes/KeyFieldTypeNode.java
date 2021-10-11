@@ -47,7 +47,7 @@ public final class KeyFieldTypeNode extends NonArrayFieldTypeNode implements Has
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, KeyFieldTypeNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), NonArrayFieldTypeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNameGenericParametersNode);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

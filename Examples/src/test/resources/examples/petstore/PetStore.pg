@@ -35,3 +35,5 @@ type petstore.LineItem {
 type petstore.Basket {
     LineItems : set<petstore.LineItem>
 }
+
+//TODO:KMD Really need generics to start making this work

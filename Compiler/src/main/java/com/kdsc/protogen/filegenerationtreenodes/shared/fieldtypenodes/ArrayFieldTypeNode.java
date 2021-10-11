@@ -27,7 +27,7 @@ public final class ArrayFieldTypeNode extends FieldTypeNode {
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, ArrayFieldTypeNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0));
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldTypeNode);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

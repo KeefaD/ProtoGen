@@ -36,7 +36,7 @@ public final class MapFieldTypeNode extends FieldTypeNode {
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0));
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, keyFieldTypeNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, valueFieldTypeNode);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }

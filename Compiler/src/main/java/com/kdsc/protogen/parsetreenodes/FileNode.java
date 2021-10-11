@@ -51,7 +51,7 @@ public final class FileNode extends BaseParseTreeNode {
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, typeNodes);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, keyNodes);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, enumNodes);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

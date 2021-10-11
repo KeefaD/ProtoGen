@@ -50,7 +50,7 @@ public final class FieldTypeNode extends BaseParseTreeNode {
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Optional", optional);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, arrayFieldTypeNode);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, nonArrayFieldTypeNode);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
     @Override

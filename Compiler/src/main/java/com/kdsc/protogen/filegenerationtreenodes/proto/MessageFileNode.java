@@ -59,7 +59,7 @@ public final class MessageFileNode extends ProtoFileNode {
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "PackageName", packageName);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Name", name);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldNodes);
-        return indentString(stringBuilder, formattedStringOptions, indentationLevel);
+        return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
 }
