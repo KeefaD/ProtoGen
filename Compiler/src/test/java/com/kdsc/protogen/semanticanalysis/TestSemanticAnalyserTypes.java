@@ -21,7 +21,7 @@ public final class TestSemanticAnalyserTypes extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type->TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type->TestNamespace.Type", "TestNamespace.Type")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -38,12 +38,12 @@ public final class TestSemanticAnalyserTypes extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type1->TestNamespace.Type->TestNamespace.Type1")),
+            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type1->TestNamespace.Type->TestNamespace.Type1", "TestNamespace.Type1")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type->TestNamespace.Type1->TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type->TestNamespace.Type1->TestNamespace.Type", "TestNamespace.Type")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -62,17 +62,17 @@ public final class TestSemanticAnalyserTypes extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(3, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type1->TestNamespace.Type->TestNamespace.Type2->TestNamespace.Type1")),
+            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type1->TestNamespace.Type->TestNamespace.Type2->TestNamespace.Type1", "TestNamespace.Type1")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type2->TestNamespace.Type1->TestNamespace.Type->TestNamespace.Type2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type2->TestNamespace.Type1->TestNamespace.Type->TestNamespace.Type2", "TestNamespace.Type2")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type->TestNamespace.Type2->TestNamespace.Type1->TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type->TestNamespace.Type2->TestNamespace.Type1->TestNamespace.Type", "TestNamespace.Type")),
             semanticErrors.get(2).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -95,127 +95,22 @@ public final class TestSemanticAnalyserTypes extends BaseCompilerTest {
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(4, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type2->TestNamespace.Type->TestNamespace.Type3->TestNamespace.Type2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type2->TestNamespace.Type->TestNamespace.Type3->TestNamespace.Type2", "TestNamespace.Type2")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type3->TestNamespace.Type2->TestNamespace.Type->TestNamespace.Type3")),
+            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type3->TestNamespace.Type2->TestNamespace.Type->TestNamespace.Type3", "TestNamespace.Type3")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 7, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type4->TestNamespace.Type3->TestNamespace.Type2->TestNamespace.Type->TestNamespace.Type3")),
+            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 7, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type4->TestNamespace.Type3->TestNamespace.Type2->TestNamespace.Type->TestNamespace.Type3", "TestNamespace.Type4")),
             semanticErrors.get(2).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 9, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type->TestNamespace.Type3->TestNamespace.Type2->TestNamespace.Type")),
-            semanticErrors.get(3).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testImplementsListOnOuterTypeAndVersions() {
-        var testProgram = """
-            type TestNamespace.Type1
-            
-            type TestNamespace.Type : TestNamespace.Type1 {
-                version 1 : TestNamespace.Type1
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 20, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type1")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testImplementsListOnOuterTypeAndVersionsTwice() {
-        var testProgram = """
-            type TestNamespace.Type1
-            type interface TestNamespace.Type2
-            
-            type TestNamespace.Type : TestNamespace.Type1, TestNamespace.Type2 {
-                version 1 : TestNamespace.Type1, TestNamespace.Type2
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 20, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type1")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 41, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type2")),
-            semanticErrors.get(1).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testImplementsListOnOuterTypeAndVersionsTwoVersions() {
-        var testProgram = """
-            type TestNamespace.Type1
-            
-            type TestNamespace.Type : TestNamespace.Type1 {
-                version 1 : TestNamespace.Type1
-                version 2 : TestNamespace.Type1
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 20, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type1")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 20, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type1")),
-            semanticErrors.get(1).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testImplementsListOnOuterTypeAndVersionsTwoVersionsTwice() {
-        var testProgram = """
-            type TestNamespace.Type1
-            type interface TestNamespace.Type2
-            
-            type TestNamespace.Type : TestNamespace.Type1, TestNamespace.Type2 {
-                version 1 : TestNamespace.Type1, TestNamespace.Type2
-                version 2 : TestNamespace.Type1, TestNamespace.Type2
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(4, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 20, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type1")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 41, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type2")),
-            semanticErrors.get(1).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 20, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type1")),
-            semanticErrors.get(2).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 41, CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME.getMessage("TestNamespace.Type2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(INHERITANCE_LOOP_DETECTED.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 9, 4, INHERITANCE_LOOP_DETECTED.getMessage("TestNamespace.Type->TestNamespace.Type3->TestNamespace.Type2->TestNamespace.Type", "TestNamespace.Type")),
             semanticErrors.get(3).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -338,191 +233,6 @@ public final class TestSemanticAnalyserTypes extends BaseCompilerTest {
         );
         assertEquals(
             SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 83, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
-            semanticErrors.get(1).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testMissingObjectInVersionField() {
-        var testProgram = """
-            type TestNamespace.Type {
-                version 1 {
-                    testField : TestNamespace.TestType1
-                }
-                version 2 {
-                    testField : TestNamespace.TestType1
-                }
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 24, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 24, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
-            semanticErrors.get(1).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testMissingObjectInNestedVersionField() {
-        var testProgram = """
-            type TestNamespace.Type {
-                version 1 {
-                    testField : map<TestNamespace.TestType1, TestNamespace.TestType2>
-                }
-                version 2 {
-                    testField : map<TestNamespace.TestType1, TestNamespace.TestType2>
-                }
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(4, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 28, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 53, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
-            semanticErrors.get(1).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 28, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType1")),
-            semanticErrors.get(2).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 53, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
-            semanticErrors.get(3).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testMissingObjectInVersionImplementsListField() {
-        var testProgram = """
-            type TestNamespace.TestType1<T>
-            
-            type TestNamespace.Type {
-                version 1 : TestNamespace.TestType1<TestNamespace.TestType2>
-                version 2 : TestNamespace.TestType1<TestNamespace.TestType3>
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 44, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 44, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType3")),
-            semanticErrors.get(1).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testMissingObjectInVersionImplementsListNestedField() {
-        var testProgram = """
-            type TestNamespace.TestType1<T>
-            
-            type TestNamespace.Type {
-                version 1 : TestNamespace.TestType1<map<TestNamespace.TestType2, TestNamespace.TestType3>>
-                version 2 : TestNamespace.TestType1<map<TestNamespace.TestType3, TestNamespace.TestType4>>
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(4, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 48, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType2")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 73, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType3")),
-            semanticErrors.get(1).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 48, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType3")),
-            semanticErrors.get(2).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 73, UNKNOWN_OBJECT.getMessage("TestNamespace.TestType4")),
-            semanticErrors.get(3).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testRedefinitionOfVersionNumberOneForType() {
-        var testProgram = """
-            type TestNamespace.Type {
-                version 1
-                version 1
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_TYPE_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 16, REDEFINITION_OF_TYPE_VERSION.getMessage(1)),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testRedefinitionOfVersionNumberTwoForType() {
-        var testProgram = """
-            type TestNamespace.Enum {
-                version 2
-                version 2
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_TYPE_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 16, REDEFINITION_OF_TYPE_VERSION.getMessage(2)),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testRedefinitionOfVersionNumberThreeForType() {
-        var testProgram = """
-            type TestNamespace.Enum {
-                version 1
-                version 3
-                version 3
-                version 3
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_TYPE_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 16, REDEFINITION_OF_TYPE_VERSION.getMessage(3)),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(REDEFINITION_OF_TYPE_VERSION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 16, REDEFINITION_OF_TYPE_VERSION.getMessage(3)),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -859,134 +569,6 @@ public final class TestSemanticAnalyserTypes extends BaseCompilerTest {
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
             SEMANTIC_ERROR_MESSAGE.formatted(EXTENDING_INTERFACE_WITH_NON_INTERFACE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 61, EXTENDING_INTERFACE_WITH_NON_INTERFACE.getMessage("TestNamespace.Type", "TestNamespace.Type2")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testExtendNonInterfaceTypeWithInterfaceInVersion1() {
-        var testProgram = """
-            type TestNamespace.Type1
-            type interface TestNamespace.Type {
-                version 1 : TestNamespace.Type1
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(EXTENDING_INTERFACE_WITH_NON_INTERFACE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 20, EXTENDING_INTERFACE_WITH_NON_INTERFACE.getMessage("TestNamespace.Type", "TestNamespace.Type1")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testExtendNonInterfaceTypeWithInterfaceTwiceInVersion1() {
-        var testProgram = """
-            type TestNamespace.Type1
-            type TestNamespace.Type2
-            type interface TestNamespace.Type {
-                version 1 : TestNamespace.Type1, TestNamespace.Type2
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(EXTENDING_INTERFACE_WITH_NON_INTERFACE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 20, EXTENDING_INTERFACE_WITH_NON_INTERFACE.getMessage("TestNamespace.Type", "TestNamespace.Type1")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(EXTENDING_INTERFACE_WITH_NON_INTERFACE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 41, EXTENDING_INTERFACE_WITH_NON_INTERFACE.getMessage("TestNamespace.Type", "TestNamespace.Type2")),
-            semanticErrors.get(1).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testExtendNonInterfaceTypeWithInterfaceSecondInListInVersion1() {
-        var testProgram = """
-            type interface TestNamespace.Type1
-            type TestNamespace.Type2
-            type interface TestNamespace.Type {
-                version 1 : TestNamespace.Type1, TestNamespace.Type2 {
-                }
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(EXTENDING_INTERFACE_WITH_NON_INTERFACE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 41, EXTENDING_INTERFACE_WITH_NON_INTERFACE.getMessage("TestNamespace.Type", "TestNamespace.Type2")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testExtendNonInterfaceTypeWithInterfaceInVersion2() {
-        var testProgram = """
-            type TestNamespace.Type1
-            type interface TestNamespace.Type{
-                version 1
-                version 2 : TestNamespace.Type1
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(EXTENDING_INTERFACE_WITH_NON_INTERFACE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 20, EXTENDING_INTERFACE_WITH_NON_INTERFACE.getMessage("TestNamespace.Type", "TestNamespace.Type1")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testExtendNonInterfaceTypeWithInterfaceTwiceInVersion2() {
-        var testProgram = """
-            type TestNamespace.Type1
-            type TestNamespace.Type2
-            type interface TestNamespace.Type {
-                version 1
-                version 2 : TestNamespace.Type1, TestNamespace.Type2
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(EXTENDING_INTERFACE_WITH_NON_INTERFACE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 20, EXTENDING_INTERFACE_WITH_NON_INTERFACE.getMessage("TestNamespace.Type", "TestNamespace.Type1")),
-            semanticErrors.get(0).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(EXTENDING_INTERFACE_WITH_NON_INTERFACE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 5, 41, EXTENDING_INTERFACE_WITH_NON_INTERFACE.getMessage("TestNamespace.Type", "TestNamespace.Type2")),
-            semanticErrors.get(1).getFullErrorMessage(),
-            "Unexpected semantic error message"
-        );
-    }
-
-    @Test
-    public void testExtendNonInterfaceTypeWithInterfaceSecondInListInVersion2() {
-        var testProgram = """
-            type interface TestNamespace.Type1
-            type TestNamespace.Type2
-            type interface TestNamespace.Type {
-                version 1 {
-                }
-                version 2 : TestNamespace.Type1, TestNamespace.Type2 {
-                }
-            }
-        """;
-        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
-        assertNotNull(semanticErrors, "SemanticErrors list is null");
-        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
-        assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(EXTENDING_INTERFACE_WITH_NON_INTERFACE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 41, EXTENDING_INTERFACE_WITH_NON_INTERFACE.getMessage("TestNamespace.Type", "TestNamespace.Type2")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
