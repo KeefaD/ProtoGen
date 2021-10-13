@@ -6,19 +6,22 @@ import com.kdsc.protogen.parsetreenodes.utils.ParseTreeUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorFactory.createSemanticError;
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 
-//TODO:KMD Redefinition of field in interface with different type
 //TODO:KMD This really needs to be refactored to be super neat
 //TODO:KMD Obviously we need to make this work for keys but there is no point until Types are done
-//TODO:KMD Test disallowed map / set key types
 //TODO:KMD Test disallowed key types
+//TODO:KMD Redefinition of field in interface with different type
+//TODO:KMD Test disallowed map / set key types
+//TODO:KMD What about bounds like map<T1 : TestInterfaces.TestInterface1, T2 : TestInterfaces.TestInterface2>, this is possible in Java, need to make it work
 public class SemanticAnalyser {
 
     private record VersionNumberImplementsList(Optional<Long> versionNumber, Optional<ImplementsListNode> implementsList) {}
+
     private final String typeNameAndVersionStringTemplate = "%s(Version %d)";
 
     public List<SemanticError> runSemanticAnalysis(final CompilerResults compilerResults) {
@@ -208,8 +211,7 @@ public class SemanticAnalyser {
                     var namespaceNameAsString = ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode());
                     if (!compilerResults.getAllTypeNodeMap().containsKey(namespaceNameAsString)) {
                         semanticErrors.add(createSemanticError(TYPE_REFERS_TO_NON_EXISTENT_TYPE_IN_IMPLEMENTS_LIST, nngp, typeName, namespaceNameAsString));
-                    } else {
-                        checkGenericParameters(compilerResults, semanticErrors, nngp);
+                        return;
                     }
                     var usedGenericParameterIdentifiers = nngp
                         .getGenericParametersNode()
@@ -217,14 +219,15 @@ public class SemanticAnalyser {
                         .flatMap(gp -> gp.getFieldTypeNodes().stream())
                         .flatMap(ftn -> getGenericParametersFieldTypeNode(ftn).stream())
                         .collect(Collectors.toList());
-                    usedGenericParameterIdentifiers
-                        .forEach(
-                            i -> {
-                                if (!genericParametersSet.contains(i.getGenericParameterNode().getIdentifier())) {
-                                    semanticErrors.add(createSemanticError(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE, i, i.getGenericParameterNode().getIdentifier(), typeName));
-                                }
-                            }
-                        );
+                    var unusedGenericParameterIdentifiers = usedGenericParameterIdentifiers
+                        .stream()
+                        .filter(ugp -> !genericParametersSet.contains(ugp.getGenericParameterNode().getIdentifier()))
+                        .collect(Collectors.toList());
+                    if(!unusedGenericParameterIdentifiers.isEmpty()) {
+                        unusedGenericParameterIdentifiers
+                            .forEach(ugp -> semanticErrors.add(createSemanticError(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE, ugp, ugp.getGenericParameterNode().getIdentifier(), typeName)));
+                    }
+                    checkGenericParameters(compilerResults, semanticErrors, nngp);
                 }
             );
 
@@ -315,15 +318,14 @@ public class SemanticAnalyser {
             checkFieldType(compilerResults, semanticErrors, mapFieldTypeNode.getKeyFieldTypeNode());
             checkFieldType(compilerResults, semanticErrors, mapFieldTypeNode.getValueFieldTypeNode());
         }
-        //TODO:KMD Put this to the bottom
-        if (nonArrayFieldTypeNode instanceof ObjectFieldTypeNode objectFieldTypeNode) {
-            semanticErrors.add(createSemanticError(UNKNOWN_OBJECT, objectFieldTypeNode, ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameNode())));
-        }
         if (nonArrayFieldTypeNode instanceof SetFieldTypeNode setFieldTypeNode) {
             checkFieldType(compilerResults, semanticErrors, setFieldTypeNode.getFieldTypeNode());
         }
         if (nonArrayFieldTypeNode instanceof ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode) {
             checkFieldType(compilerResults, semanticErrors, valueOrErrorFieldTypeNode.getFieldTypeNode());
+        }
+        if (nonArrayFieldTypeNode instanceof ObjectFieldTypeNode objectFieldTypeNode) {
+            semanticErrors.add(createSemanticError(UNKNOWN_OBJECT, objectFieldTypeNode, ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameNode())));
         }
     }
 
@@ -368,14 +370,14 @@ public class SemanticAnalyser {
     private void checkGenericParameters(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final NamespaceNameGenericParametersNode implementsTypeNamespaceNameGenericParametersNode) {
 
         var numberOfGenericParametersOnImplementsListDefinition = implementsTypeNamespaceNameGenericParametersNode.getGenericParametersNode().isPresent()
-            ? implementsTypeNamespaceNameGenericParametersNode
-                .getGenericParametersNode()
-                .get()
-                .getFieldTypeNodes()
-                .stream()
-                .flatMap(ftn -> Stream.of(ftn.getArrayFieldTypeNode().stream(), ftn.getNonArrayFieldTypeNode().stream()))
-                .flatMap(s -> s)
-                .count()
+            ? (int) implementsTypeNamespaceNameGenericParametersNode
+            .getGenericParametersNode()
+            .get()
+            .getFieldTypeNodes()
+            .stream()
+            .flatMap(ftn -> Stream.of(ftn.getArrayFieldTypeNode().stream(), ftn.getNonArrayFieldTypeNode().stream()))
+            .flatMap(s -> s)
+            .count()
             : 0;
 
         var implementsTypeDefinition = compilerResults.getAllTypeNodeMap().get(ParseTreeUtils.getNamespaceNameString(implementsTypeNamespaceNameGenericParametersNode.getNamespaceNameNode()));
@@ -385,11 +387,80 @@ public class SemanticAnalyser {
 
         if (numberOfGenericParametersOnImplementsListDefinition != numberOfGenericParametersOnTypeDefinition) {
             semanticErrors.add(createSemanticError(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION, implementsTypeNamespaceNameGenericParametersNode, ParseTreeUtils.getNamespaceNameString(implementsTypeNamespaceNameGenericParametersNode.getNamespaceNameNode()), numberOfGenericParametersOnImplementsListDefinition, numberOfGenericParametersOnTypeDefinition));
-        } else {
-            if (numberOfGenericParametersOnImplementsListDefinition > 0) {
-                //TODO:KMD Check all the bounds
-            }
+            return;
         }
+
+        if(numberOfGenericParametersOnTypeDefinition > 0) {
+            IntStream
+                .range(0, numberOfGenericParametersOnTypeDefinition)
+                .forEach(
+                    i -> {
+                        var implementsListFieldTypeNode = implementsTypeNamespaceNameGenericParametersNode
+                            .getGenericParametersNode()
+                            .get()
+                            .getFieldTypeNodes()
+                            .get(i);
+
+                        var typeDefinitionGenericParameterWithBoundsNode = implementsTypeDefinition
+                            .getNamespaceNameGenericParametersWithBoundsNode()
+                            .getGenericParametersWithBoundsNode()
+                            .get()
+                            .getGenericParameterWithBoundsNodes()
+                            .get(i);
+
+                        checkBounds(compilerResults, semanticErrors, implementsListFieldTypeNode, typeDefinitionGenericParameterWithBoundsNode);
+                    }
+                );
+        }
+    }
+
+    private void checkBounds(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final FieldTypeNode fieldTypeNode, final GenericParameterWithBoundsNode genericParameterWithBoundsNode) {
+        if(fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
+            return;
+        }
+        if(fieldTypeNode.getNonArrayFieldTypeNode().isPresent() && fieldTypeNode.getNonArrayFieldTypeNode().get() instanceof GenericObjectFieldTypeNode) {
+            return;
+        }
+        var nonArrayFieldType = fieldTypeNode.getNonArrayFieldTypeNode().get();
+        genericParameterWithBoundsNode
+            .getNamespaceNameGenericParametersNodes()
+            .forEach(
+                nngp -> {
+                    if(!(nonArrayFieldType instanceof TypeFieldTypeNode typeFieldTypeNode)) {
+                        semanticErrors.add(createSemanticError(SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS, fieldTypeNode, getFieldTypeAsStringForGenericBoundsErrorMessage(nonArrayFieldType), ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode())));
+                        return;
+                    }
+                    var allSuperClassesAndInterfacesForType = getAllSuperClassesAndInterfacesForType(compilerResults, typeFieldTypeNode);
+                    if(!allSuperClassesAndInterfacesForType.contains(ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode()))) {
+                        semanticErrors.add(createSemanticError(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS, fieldTypeNode, ParseTreeUtils.getNamespaceNameString(typeFieldTypeNode.getNamespaceNameNode()), ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode())));
+                    }
+                }
+            );
+    }
+
+    private Set<String> getAllSuperClassesAndInterfacesForType(final CompilerResults compilerResults, final TypeFieldTypeNode typeFieldTypeNode) {
+        var returnSet = new HashSet<String>();
+        var lookedUpType = compilerResults
+            .getAllTypeNodeMap()
+            .get(ParseTreeUtils.getNamespaceNameString(typeFieldTypeNode.getNamespaceNameNode()));
+        getAllSuperClassesAndInterfacesForType(returnSet, compilerResults, lookedUpType);
+        return returnSet;
+    }
+
+    private void getAllSuperClassesAndInterfacesForType(final Set<String> setSoFar, final CompilerResults compilerResults, final TypeNode typeNode) {
+        typeNode
+            .getImplementsListNode()
+            .stream()
+            .flatMap(iln -> iln.getNamespaceNameGenericParametersNodes().stream())
+            .forEach(
+                nngp -> {
+                    setSoFar.add(ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode()));
+                    var implementsListItemType = compilerResults
+                        .getAllTypeNodeMap()
+                        .get(ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode()));
+                    getAllSuperClassesAndInterfacesForType(setSoFar, compilerResults, implementsListItemType);
+                }
+            );
     }
 
     private void checkEnums(final CompilerResults compilerResults, final List<SemanticError> semanticErrors) {
@@ -440,6 +511,30 @@ public class SemanticAnalyser {
                     }
                 }
             );
+    }
+
+    private String getFieldTypeAsStringForGenericBoundsErrorMessage(final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
+        return switch (nonArrayFieldTypeNode) {
+            case DoubleFieldTypeNode ignored -> "double";
+            case FloatFieldTypeNode ignored -> "float";
+            case Int32FieldTypeNode ignored -> "int32";
+            case Int64FieldTypeNode ignored -> "int64";
+            case BoolFieldTypeNode ignored -> "bool";
+            case StringFieldTypeNode ignored -> "string";
+            case BytesFieldTypeNode ignored -> "bytes";
+            case DecimalFieldTypeNode ignored -> "decimal";
+            case DateFieldTypeNode ignored -> "date";
+            case DateTimeFieldTypeNode ignored -> "datetime";
+            case LocalDateFieldTypeNode ignored -> "localdate";
+            case LocalDateTimeFieldTypeNode ignored -> "localdatetime";
+            case TypeFieldTypeNode ignored -> throw new IllegalStateException("Types should be excluded from this case statement");
+            case EnumFieldTypeNode ignored -> "enum";
+            case ValueOrErrorFieldTypeNode ignored -> "valueorerror";
+            case SetFieldTypeNode ignored -> "set";
+            case ListFieldTypeNode ignored -> "list";
+            case MapFieldTypeNode ignored -> "map";
+            default -> throw new IllegalStateException("Unexpected value: " + nonArrayFieldTypeNode);
+        };
     }
 
 }

@@ -20,7 +20,9 @@ public enum SemanticErrorType {
     CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME(13, "Cannot have implements list on outer type and version at the same time %s for type %s"),
     CANNOT_HAVE_GENERIC_PARAMETERS_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME(14, "Cannot have generic parameters on outer type and version at the same time %s for type %s"),
     INHERITANCE_LOOP_DETECTED(15, "Inheritance loop detected %s for type %s"),
-    EXTENDING_INTERFACE_WITH_NON_INTERFACE(16, "Attempt to extend interface type %s with non interface %s");
+    EXTENDING_INTERFACE_WITH_NON_INTERFACE(16, "Attempt to extend interface type %s with non interface %s"),
+    SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS(17, "Specified generic parameter %s does not satisfy type bounds, it does not implement or extend type or interface %s"),
+    SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS(18, "Specified generic parameter %s must be a type as the the parameter has bounds %s");
 
     private final long number;
     private final String message;
