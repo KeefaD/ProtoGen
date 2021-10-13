@@ -12,13 +12,10 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorFactory.createSema
 import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 
 //TODO:KMD Redefinition of field in interface with different type
-//TODO:KMD Generic parameters on outer type and versions
 //TODO:KMD This really needs to be refactored to be super neat
 //TODO:KMD Obviously we need to make this work for keys but there is no point until Types are done
-//TODO:KMD Test unordered versions, should this be an error?
 //TODO:KMD Test disallowed map / set key types
 //TODO:KMD Test disallowed key types
-//TODO:KMD Check we have contiguous ordered version numbers
 public class SemanticAnalyser {
 
     private record VersionNumberImplementsList(Optional<Long> versionNumber, Optional<ImplementsListNode> implementsList) {}
@@ -91,7 +88,19 @@ public class SemanticAnalyser {
                 .flatMap(il -> il.getNamespaceNameGenericParametersNodes().stream())
                 .collect(Collectors.toList());
             versionsImplementsListNodes
-                .forEach(nngp -> semanticErrors.add(createSemanticError(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME, nngp, ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode()))));
+                .forEach(nngp -> semanticErrors.add(createSemanticError(CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME, nngp, ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode()), typeName)));
+        }
+
+        if (typeNode.getNamespaceNameGenericParametersWithBoundsNode().getGenericParametersWithBoundsNode().isPresent()) {
+            var genericParameterWithBoundsNodes = typeNode
+                .getVersionsNode()
+                .stream()
+                .flatMap(vn -> vn.getVersionNodes().stream())
+                .flatMap(vn -> vn.getGenericParametersWithBoundsNode().stream())
+                .flatMap(il -> il.getGenericParameterWithBoundsNodes().stream())
+                .collect(Collectors.toList());
+            genericParameterWithBoundsNodes
+                .forEach(gp -> semanticErrors.add(createSemanticError(CANNOT_HAVE_GENERIC_PARAMETERS_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME, gp, gp.getIdentifier(), typeName)));
         }
 
         checkTypeVersion(compilerResults, semanticErrors, typeNode, typeName, typeName, typeNode.isInterface(), typeNode.getImplementsListNode(), typeNode.getNamespaceNameGenericParametersWithBoundsNode().getGenericParametersWithBoundsNode(), typeNode.getFieldsNode());
