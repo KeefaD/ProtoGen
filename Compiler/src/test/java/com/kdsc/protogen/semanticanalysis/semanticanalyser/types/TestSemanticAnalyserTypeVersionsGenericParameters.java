@@ -762,4 +762,384 @@ public final class TestSemanticAnalyserTypeVersionsGenericParameters extends Bas
         );
     }
 
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionZeroOnDefinitionOneInImplementsList() {
+        var testProgram = """
+            type TestNamespace.Type1
+            type TestNamespace.Type {
+                version 1 <T> : TestNamespace.Type1<T>
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 24, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage("TestNamespace.Type1", 1, 0)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionOneOnDefinitionZeroInImplementsList() {
+        var testProgram = """
+            type TestNamespace.Type1<T>
+            type TestNamespace.Type {
+                version 1 <T> : TestNamespace.Type1
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 24, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage("TestNamespace.Type1", 0, 1)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionTwoOnDefinitionZeroInImplementsList() {
+        var testProgram = """
+            type TestNamespace.Type1<T1, T2>
+            type TestNamespace.Type {
+                version 1 <T> : TestNamespace.Type1
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 24, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage("TestNamespace.Type1", 0, 2)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionThreeOnDefinitionTwoInImplementsList() {
+        var testProgram = """
+            type TestNamespace.Type1<T1, T2, T3>
+            type TestNamespace.Type {
+                version 1 <T1, T2> : TestNamespace.Type1<T1, T2>
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 29, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage("TestNamespace.Type1", 2, 3)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionZeroOnDefinitionOneInImplementsListSecondImplements() {
+        var testProgram = """
+            type interface TestNamespace.Type1
+            type TestNamespace.Type2
+            type TestNamespace.Type {
+                version 1 <T> : TestNamespace.Type1, TestNamespace.Type2<T>
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 45, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage("TestNamespace.Type2", 1, 0)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionOneOnDefinitionZeroInImplementsListSecondImplements() {
+        var testProgram = """
+            type interface TestNamespace.Type1<T>
+            type TestNamespace.Type2<T>
+            type TestNamespace.Type {
+                version 1 <T> : TestNamespace.Type1<T>, TestNamespace.Type2
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4,48, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage("TestNamespace.Type2", 0, 1)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionTwoOnDefinitionZeroInImplementsListSecondImplements() {
+        var testProgram = """
+            type interface TestNamespace.Type1<T1, T2>
+            type TestNamespace.Type2<T1, T2>
+            type TestNamespace.Type {
+                version 1 <T1, T2> : TestNamespace.Type1<T1, T2>, TestNamespace.Type2
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 58, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage("TestNamespace.Type2", 0, 2)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionThreeOnDefinitionTwoInImplementsListSecondImplements() {
+        var testProgram = """
+            type interface TestNamespace.Type1<T1, T2, T3>
+            type TestNamespace.Type2<T1, T2, T3>
+            type TestNamespace.Type {
+                version 1 <T1, T2, T3> : TestNamespace.Type1<T1, T2, T3>, TestNamespace.Type2<T1, T2>
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 4, 66, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage("TestNamespace.Type2", 2, 3)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionOneNestedSetOnDefinitionTwoInImplementsList() {
+        var testProgram = """
+            type TestNamespace.Type1<T1, T2, T3>
+            type TestNamespace.Type {
+                version 1 <T1, T2> : TestNamespace.Type1<set<T1>, T2>
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 29, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage("TestNamespace.Type1", 2, 3)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionOneNestedMapOnDefinitionTwoInImplementsList() {
+        var testProgram = """
+            type TestNamespace.Type1<T1, T2, T3, T4>
+            type TestNamespace.Type {
+                version 1 <T1, T2, T3> : TestNamespace.Type1<map<T1, T1>, T2, T3>
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 33, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage("TestNamespace.Type1", 3, 4)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testNumberOfGenericParametersInImplementsListItemDoesNotMatchTypeDefinitionOneNestedMapOnDefinitionTwoInImplementsListReusedParameters() {
+        var testProgram = """
+            type TestNamespace.Type1<T1, T2, T3>
+            type TestNamespace.Type {
+                version 1 <T1, T2> : TestNamespace.Type1<map<T1, T1>, T2>
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 29, NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION.getMessage("TestNamespace.Type1", 2, 3)),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testGenericParameterUsageDoesNotSatisfyTypeBounds() {
+        var testProgram = """
+            type interface TestNamespace.TypeInterface
+            
+            type TestNamespace.Type1<T1 : TestNamespace.TypeInterface>
+            
+            type TestNamespace.Type2
+            
+            type TestNamespace.Type {
+                version 1 : TestNamespace.Type1<TestNamespace.Type2>
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 40, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("TestNamespace.Type2", "TestNamespace.TypeInterface")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testGenericParameterUsageDoesNotSatisfyTypeBoundsTwice() {
+        var testProgram = """
+            type interface TestNamespace.TypeInterface
+            
+            type interface TestNamespace.Type1<T1 : TestNamespace.TypeInterface>
+            
+            type TestNamespace.Type2
+            
+            type TestNamespace.Type3
+            
+            type TestNamespace.Type {
+                version 1 : TestNamespace.Type1<TestNamespace.Type2>, TestNamespace.Type1<TestNamespace.Type3>
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 10, 40, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("TestNamespace.Type2", "TestNamespace.TypeInterface")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 10, 82, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("TestNamespace.Type3", "TestNamespace.TypeInterface")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testGenericParameterUsageDoesNotSatisfyTypeBoundsAsItIsNotATypeFieldTypeNode() {
+        var testProgram = """
+            type interface TestNamespace.TypeInterface
+            
+            type TestNamespace.Type1<T1 : TestNamespace.TypeInterface>
+            
+            type TestNamespace.Type {
+                version 1: TestNamespace.Type1<int32>
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 39, SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getMessage("int32", "TestNamespace.TypeInterface")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testGenericParameterUsageDoesNotSatisfyTwoTypeBounds() {
+        var testProgram = """
+            type interface TestNamespace.TypeInterface1
+            
+            type interface TestNamespace.TypeInterface2
+            
+            type TestNamespace.Type1<T1 : TestNamespace.TypeInterface1 & TestNamespace.TypeInterface2>
+            
+            type TestNamespace.Type2
+            
+            type TestNamespace.Type {
+                version 1 : TestNamespace.Type1<TestNamespace.Type2>
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 10, 40, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("TestNamespace.Type2", "TestNamespace.TypeInterface1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 10, 40, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("TestNamespace.Type2", "TestNamespace.TypeInterface2")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testGenericParameterUsageDoesNotSatisfyTwoTypeBoundsTwice() {
+        var testProgram = """
+            type interface TestNamespace.TypeInterface1
+            
+            type interface TestNamespace.TypeInterface2
+            
+            type interface TestNamespace.Type1<T1 : TestNamespace.TypeInterface1 & TestNamespace.TypeInterface2>
+            
+            type TestNamespace.Type2
+            
+            type TestNamespace.Type3
+            
+            type TestNamespace.Type {
+                version 1: TestNamespace.Type1<TestNamespace.Type2>, TestNamespace.Type1<TestNamespace.Type3>
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertEquals(4, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 12, 39, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("TestNamespace.Type2", "TestNamespace.TypeInterface1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 12, 39, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("TestNamespace.Type2", "TestNamespace.TypeInterface2")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 12, 81, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("TestNamespace.Type3", "TestNamespace.TypeInterface1")),
+            semanticErrors.get(2).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 12, 81, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("TestNamespace.Type3", "TestNamespace.TypeInterface2")),
+            semanticErrors.get(3).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testGenericParameterUsageDoesNotSatisfyTwoTypeBoundsAsTheyAreNotATypeFieldTypeNode() {
+        var testProgram = """
+            type interface TestNamespace.TypeInterface1
+            
+            type interface TestNamespace.TypeInterface2
+            
+            type interface TestNamespace.Type1<T1 : TestNamespace.TypeInterface1 & TestNamespace.TypeInterface2>
+            
+            type TestNamespace.Type {
+                version 1 : TestNamespace.Type1<int32>, TestNamespace.Type1<string>
+            }
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertEquals(4, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 40, SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getMessage("int32", "TestNamespace.TypeInterface1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 40, SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getMessage("int32", "TestNamespace.TypeInterface2")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 68, SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getMessage("string", "TestNamespace.TypeInterface1")),
+            semanticErrors.get(2).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 68, SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getMessage("string", "TestNamespace.TypeInterface2")),
+            semanticErrors.get(3).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
 }
