@@ -1,4 +1,4 @@
-package com.kdsc.protogen.semanticanalysis;
+package com.kdsc.protogen.semanticanalysis.semanticanalyser.types;
 
 import com.kdsc.protogen.BaseCompilerTest;
 import org.junit.jupiter.api.Test;
