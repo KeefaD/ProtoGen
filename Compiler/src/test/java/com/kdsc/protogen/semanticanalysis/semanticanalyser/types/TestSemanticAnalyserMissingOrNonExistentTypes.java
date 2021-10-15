@@ -166,13 +166,13 @@ public final class TestSemanticAnalyserMissingOrNonExistentTypes extends BaseCom
     @Test
     public void testTypeParameterBoundsRefersToNonExistentTypeOnce() {
         var testProgram = """
-            type TestNamespace.Type<T & TestNamespace.Type1>
+            type TestNamespace.Type<T : TestNamespace.Type1>
         """;
         var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_BOUNDS_REFERS_TO_NON_EXISTENT_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 32, GENERIC_PARAMETER_BOUNDS_REFERS_TO_NON_EXISTENT_TYPE.getMessage("T", "TestNamespace.Type1")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 32, UNKNOWN_OBJECT.getMessage("TestNamespace.Type1")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -181,18 +181,18 @@ public final class TestSemanticAnalyserMissingOrNonExistentTypes extends BaseCom
     @Test
     public void testTypeParameterBoundsRefersToNonExistentTypeTwice() {
         var testProgram = """
-            type TestNamespace.Type<T & TestNamespace.Type1 & TestNamespace.Type2>
+            type TestNamespace.Type<T : TestNamespace.Type1 & TestNamespace.Type2>
         """;
         var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_BOUNDS_REFERS_TO_NON_EXISTENT_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 32, GENERIC_PARAMETER_BOUNDS_REFERS_TO_NON_EXISTENT_TYPE.getMessage("T", "TestNamespace.Type1")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 32, UNKNOWN_OBJECT.getMessage("TestNamespace.Type1")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_BOUNDS_REFERS_TO_NON_EXISTENT_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 54, GENERIC_PARAMETER_BOUNDS_REFERS_TO_NON_EXISTENT_TYPE.getMessage("T", "TestNamespace.Type2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_OBJECT.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 54, UNKNOWN_OBJECT.getMessage("TestNamespace.Type2")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );

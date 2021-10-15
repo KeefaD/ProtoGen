@@ -292,6 +292,16 @@ public final class TestKeys extends BaseCompilerTest {
     }
 
     @Test
+    void testGenericKeyWithNestedBounds() {
+        var testProgram = """
+            key TestNamespace.TestGenericType<T : set<TestNamespace.TestType>> {
+                testField : T
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
     void testGenericKeyWithTwoBounds() {
         var testProgram = """
             key TestNamespace.TestGenericKey<T : TestNamespace.TestKey1 & TestNamespace.TestKey2 > {
@@ -412,6 +422,51 @@ public final class TestKeys extends BaseCompilerTest {
                     testField : int32
                 }
                 version 2 <T : TestNamespace.TestKey1 & TestNamespace.TestKey2> : TestNamespace.TestKey, TestNamespace.OtherKey2 {
+                    testField : int32
+                }
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
+    void testGenericVersionedKeyWithSingleGenericParametersWithNestedBoundsGeneric() {
+        var testProgram = """
+            key TestNamespace.TestVersionedGenericType<T : set<T>> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
+    void testGenericVersionedKeyWithSingleGenericParametersWithNestedBoundsType() {
+        var testProgram = """
+            key TestNamespace.TestVersionedGenericType<T : set<TestNamespace.TestType>> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
+    void testGenericVersionedKeyWithSingleGenericParametersWithDoubleNestedBoundsType() {
+        var testProgram = """
+            key TestNamespace.TestVersionedGenericType<T : set<set<TestNamespace.TestType>>> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
                     testField : int32
                 }
             }

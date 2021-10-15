@@ -53,6 +53,10 @@ import java.util.stream.Collectors;
 //TODO:KMD Put line numbers when printing ProtoGen input files in tests
 //TODO:KMD In Proto if a field is redefined ignore it in the superclass, as in strip it out, otherwise problems
 //TODO:KMD Try and exclude antlr generated code from test coverage
+//TODO:KMD Make it the default not to show line and column details
+//TODO:KMD Add CHECK_ALL_FIELD_TYPES_PRESENT
+//TODO:KMD Custom constraints with lambdas
+//TODO:KMD Make all vars final
 public final class ProtoGen {
 
     public static final char OPTION_MARKER = '-';

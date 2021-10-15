@@ -1040,4 +1040,358 @@ public final class TestUndetectableNodeReplacerWithTypes extends BaseCompilerTes
         assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
     }
 
+    @Test
+    public void testReplaceOneNonNestedTypeInGenericParameterBounds() {
+
+        var testProgram = """
+            type TestNamespace.TypeToReplace {
+                testField : int32
+            }
+            
+            type TestNamespace.TestType<T : TestNamespace.TypeToReplace>
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TypeToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //Int32FieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                            //FieldTypeNode
+                                Optional : false
+                                //TypeFieldTypeNode
+                                    //Super -> //NonArrayFieldTypeNode
+                                    //NamespaceNameGenericParametersNode
+                                        //NamespaceNameNode
+                                            //NamespaceNode
+                                                Namespace : TestNamespace
+                                            //NameNode
+                                                Name : TypeToReplace
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedMapTypeInGenericParameterBounds() {
+
+        var testProgram = """
+            type TestNamespace.TypeToReplace {
+                testField : int32
+            }
+            
+            type TestNamespace.Type<T : map<TestNamespace.TypeToReplace, TestNamespace.TypeToReplace>>
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TypeToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //Int32FieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : Type
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                            //FieldTypeNode
+                                Optional : false
+                                //MapFieldTypeNode
+                                    //Super -> //NonArrayFieldTypeNode
+                                    Key
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //Super -> //NonArrayFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
+                                    Value
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //TypeFieldTypeNode
+                                                //Super -> //NonArrayFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : TypeToReplace
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedSetTypeInGenericParameterBounds() {
+
+        var testProgram = """
+            type TestNamespace.TypeToReplace {
+                testField : int32
+            }
+            
+            type TestNamespace.TestType<T : set<TestNamespace.TypeToReplace>>
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TypeToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //Int32FieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                            //FieldTypeNode
+                                Optional : false
+                                //SetFieldTypeNode
+                                    //Super -> //NonArrayFieldTypeNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //TypeFieldTypeNode
+                                            //Super -> //NonArrayFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : TypeToReplace
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedListTypeInGenericParameterBounds() {
+
+        var testProgram = """
+            type TestNamespace.TypeToReplace {
+                testField : int32
+            }
+            
+            type TestNamespace.TestType<T : list<TestNamespace.TypeToReplace>>
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TypeToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //Int32FieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                            //FieldTypeNode
+                                Optional : false
+                                //ListFieldTypeNode
+                                    //Super -> //NonArrayFieldTypeNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //TypeFieldTypeNode
+                                            //Super -> //NonArrayFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : TypeToReplace
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedValueOrErrorTypeInGenericParameterBounds() {
+
+        var testProgram = """
+            type TestNamespace.TypeToReplace {
+                testField : int32
+            }
+            
+            type TestNamespace.TestType<T : valueorerror<TestNamespace.TypeToReplace>>
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TypeToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //Int32FieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                            //FieldTypeNode
+                                Optional : false
+                                //ValueOrErrorFieldTypeNode
+                                    //Super -> //NonArrayFieldTypeNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //TypeFieldTypeNode
+                                            //Super -> //NonArrayFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : TypeToReplace
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedArrayTypeInGenericParameterBounds() {
+
+        var testProgram = """
+            type TestNamespace.TypeToReplace {
+                testField : int32
+            }
+            
+            type TestNamespace.TestType<T : TestNamespace.TypeToReplace[][]>
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TypeToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //Int32FieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                            //FieldTypeNode
+                                Optional : false
+                                //ArrayFieldTypeNode
+                                    //TypeFieldTypeNode
+                                        //Super -> //NonArrayFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : TypeToReplace
+                                    Dimensions : 2
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
 }

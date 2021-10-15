@@ -9,7 +9,7 @@ public final class TestLocalDateFieldTypeNode extends BaseTestNode {
 
     @Test
     public void testCreateMinimal() {
-        new LocalDateTimeFieldTypeNode(
+        new LocalDateFieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition
@@ -25,7 +25,7 @@ public final class TestLocalDateFieldTypeNode extends BaseTestNode {
     public void testToString() {
         var node = createPopulatedTestNode();
         var expectedToStringOutput = """
-        //LocalDateTimeFieldTypeNode
+        //LocalDateFieldTypeNode
             //Super -> //NonArrayFieldTypeNode
                 //Super -> //BaseParseTreeNode
                     SourceFileName : TestFileName.pg
@@ -59,8 +59,8 @@ public final class TestLocalDateFieldTypeNode extends BaseTestNode {
         assertEquals(node1.toString(), node2.toString(), "Expected cloned objects toString to be equal");
     }
 
-    public static LocalDateTimeFieldTypeNode createPopulatedTestNode() {
-        return new LocalDateTimeFieldTypeNode(
+    public static LocalDateFieldTypeNode createPopulatedTestNode() {
+        return new LocalDateFieldTypeNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition

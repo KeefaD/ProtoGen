@@ -292,6 +292,16 @@ public final class TestTypes extends BaseCompilerTest {
     }
 
     @Test
+    void testGenericTypeWithNestedBounds() {
+        var testProgram = """
+            type TestNamespace.TestGenericType<T : set<TestNamespace.TestType>> {
+                testField : T
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
     void testGenericTypeWithTwoBounds() {
         var testProgram = """
             type TestNamespace.TestGenericType<T : TestNamespace.TestType1 & TestNamespace.TestType2 > {
@@ -335,6 +345,51 @@ public final class TestTypes extends BaseCompilerTest {
     void testGenericVersionedTypeWithSingleGenericParametersWithTwoBounds() {
         var testProgram = """
             type TestNamespace.TestVersionedGenericType<T : TestNamespace.TestType1 & TestNamespace.TestType2> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
+    void testGenericVersionedTypeWithSingleGenericParametersWithNestedBoundsGeneric() {
+        var testProgram = """
+            type TestNamespace.TestVersionedGenericType<T : set<T>> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
+    void testGenericVersionedTypeWithSingleGenericParametersWithNestedBoundsType() {
+        var testProgram = """
+            type TestNamespace.TestVersionedGenericType<T : set<TestNamespace.TestType>> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
+    void testGenericVersionedTypeWithSingleGenericParametersWithDoubleNestedBoundsType() {
+        var testProgram = """
+            type TestNamespace.TestVersionedGenericType<T : set<set<TestNamespace.TestType>>> {
                 version 1 {
                     testField : int32
                 }

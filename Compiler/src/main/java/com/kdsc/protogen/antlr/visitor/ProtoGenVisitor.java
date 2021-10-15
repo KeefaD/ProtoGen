@@ -427,7 +427,7 @@ public final class ProtoGenVisitor extends com.kdsc.protogen.antlr.generated.Pro
             ctx.getStart().getLine(),
             ctx.getStart().getCharPositionInLine(),
             ctx.IDENTIFIER().getText(),
-            ctx.namespace_name_generic_parameters().stream().map(nngpwb -> (NamespaceNameGenericParametersNode) visit(nngpwb)).collect(Collectors.toList())
+            ctx.field_type().stream().map(naftn -> (FieldTypeNode) visit(naftn)).collect(Collectors.toList())
         );
     }
 

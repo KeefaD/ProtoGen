@@ -179,6 +179,60 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
     }
 
     @Test
+    public void testReplaceOneNestedListType() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type TestNamespace.TestType {
+                testField : list<TestNamespace.EnumToReplace>
+            }
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //ListFieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+                                //FieldTypeNode
+                                    Optional : false
+                                    //EnumFieldTypeNode
+                                        //Super -> //NonArrayFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : EnumToReplace
+            //EnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
     public void testReplaceOneNestedValueOrErrorType() {
 
         var testProgram = """
@@ -604,6 +658,107 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
     }
 
     @Test
+    public void testReplaceOneNestedListTypeInImplementsList() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type interface TestNamespace.TestTypeInterface<T> {
+                testInterfaceField : T
+            }
+            
+            type TestNamespace.TestType : TestNamespace.TestTypeInterface<list<TestNamespace.EnumToReplace>> {
+                testField : list<TestNamespace.EnumToReplace>
+            }
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : true
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestTypeInterface
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testInterfaceField
+                        //FieldTypeNode
+                            Optional : false
+                            //GenericObjectFieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+                                //GenericParameterNode
+                                    Identifier : T
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                //ImplementsListNode
+                    //NamespaceNameGenericParametersNode
+                        //NamespaceNameNode
+                            //NamespaceNode
+                                Namespace : TestNamespace
+                            //NameNode
+                                Name : TestTypeInterface
+                        //GenericParametersNode
+                            //FieldTypeNode
+                                Optional : false
+                                //ListFieldTypeNode
+                                    //Super -> //NonArrayFieldTypeNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //EnumFieldTypeNode
+                                            //Super -> //NonArrayFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : EnumToReplace
+                //FieldsNode
+                    //FieldNode
+                        //FieldNameNode
+                            FieldName : testField
+                        //FieldTypeNode
+                            Optional : false
+                            //ListFieldTypeNode
+                                //Super -> //NonArrayFieldTypeNode
+                                //FieldTypeNode
+                                    Optional : false
+                                    //EnumFieldTypeNode
+                                        //Super -> //NonArrayFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : EnumToReplace
+            //EnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
     public void testReplaceOneNestedValueOrErrorTypeInImplementsList() {
 
         var testProgram = """
@@ -788,6 +943,318 @@ public final class TestUndetectableNodeReplacerWithEnums extends BaseCompilerTes
                                             //NameNode
                                                 Name : EnumToReplace
                                 Dimensions : 2
+            //EnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNonNestedTypeInGenericParameterBounds() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type TestNamespace.TestType<T : TestNamespace.EnumToReplace>
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                            //FieldTypeNode
+                                Optional : false
+                                //EnumFieldTypeNode
+                                    //Super -> //NonArrayFieldTypeNode
+                                    //NamespaceNameGenericParametersNode
+                                        //NamespaceNameNode
+                                            //NamespaceNode
+                                                Namespace : TestNamespace
+                                            //NameNode
+                                                Name : EnumToReplace
+            //EnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedMapTypeInGenericParameterBounds() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type TestNamespace.Type<T : map<TestNamespace.EnumToReplace, TestNamespace.EnumToReplace>>
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : Type
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                            //FieldTypeNode
+                                Optional : false
+                                //MapFieldTypeNode
+                                    //Super -> //NonArrayFieldTypeNode
+                                    Key
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //EnumFieldTypeNode
+                                                //Super -> //NonArrayFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : EnumToReplace
+                                    Value
+                                        //FieldTypeNode
+                                            Optional : false
+                                            //EnumFieldTypeNode
+                                                //Super -> //NonArrayFieldTypeNode
+                                                //NamespaceNameGenericParametersNode
+                                                    //NamespaceNameNode
+                                                        //NamespaceNode
+                                                            Namespace : TestNamespace
+                                                        //NameNode
+                                                            Name : EnumToReplace
+            //EnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedSetTypeInGenericParameterBounds() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type TestNamespace.TestType<T : set<TestNamespace.EnumToReplace>>
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                            //FieldTypeNode
+                                Optional : false
+                                //SetFieldTypeNode
+                                    //Super -> //NonArrayFieldTypeNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //EnumFieldTypeNode
+                                            //Super -> //NonArrayFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : EnumToReplace
+            //EnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedListTypeInGenericParameterBounds() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type TestNamespace.TestType<T : list<TestNamespace.EnumToReplace>>
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                            //FieldTypeNode
+                                Optional : false
+                                //ListFieldTypeNode
+                                    //Super -> //NonArrayFieldTypeNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //EnumFieldTypeNode
+                                            //Super -> //NonArrayFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : EnumToReplace
+            //EnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedValueOrErrorTypeInGenericParameterBounds() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type TestNamespace.TestType <T : valueorerror<TestNamespace.EnumToReplace>>
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                            //FieldTypeNode
+                                Optional : false
+                                //ValueOrErrorFieldTypeNode
+                                    //Super -> //NonArrayFieldTypeNode
+                                    //FieldTypeNode
+                                        Optional : false
+                                        //EnumFieldTypeNode
+                                            //Super -> //NonArrayFieldTypeNode
+                                            //NamespaceNameGenericParametersNode
+                                                //NamespaceNameNode
+                                                    //NamespaceNode
+                                                        Namespace : TestNamespace
+                                                    //NameNode
+                                                        Name : EnumToReplace
+            //EnumNode
+                //NamespaceNameNode
+                    //NamespaceNode
+                        Namespace : TestNamespace
+                    //NameNode
+                        Name : EnumToReplace
+                //EnumCasesNode
+                    //EnumNameNode
+                        EnumName : testCase1
+        """;
+        assertEquals(expectedToStringOutput, fileNode.toFormattedString(ParseTreeFormattedStringOptions.hideBaseParseTreeNode, 0), "Unexpected toString output");
+    }
+
+    @Test
+    public void testReplaceOneNestedArrayTypeInGenericParameterBounds() {
+
+        var testProgram = """
+            enum TestNamespace.EnumToReplace {
+                testCase1
+            }
+            
+            type TestNamespace.TestType <T : TestNamespace.EnumToReplace[][]>
+        """;
+        var fileNode = runCompilerToParseTreePostProcessReturnFileNode(testProgram);
+        var expectedToStringOutput = """
+        //FileNode
+            //TypeNode
+                IsInterface : false
+                //NamespaceNameGenericParametersWithBoundsNode
+                    //NamespaceNameNode
+                        //NamespaceNode
+                            Namespace : TestNamespace
+                        //NameNode
+                            Name : TestType
+                    //GenericParametersWithBoundsNode
+                        //GenericParameterWithBoundsNode
+                            Identifier : T
+                            //FieldTypeNode
+                                Optional : false
+                                //ArrayFieldTypeNode
+                                    //EnumFieldTypeNode
+                                        //Super -> //NonArrayFieldTypeNode
+                                        //NamespaceNameGenericParametersNode
+                                            //NamespaceNameNode
+                                                //NamespaceNode
+                                                    Namespace : TestNamespace
+                                                //NameNode
+                                                    Name : EnumToReplace
+                                    Dimensions : 2
             //EnumNode
                 //NamespaceNameNode
                     //NamespaceNode

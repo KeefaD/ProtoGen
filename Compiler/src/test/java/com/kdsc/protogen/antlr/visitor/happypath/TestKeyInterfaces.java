@@ -292,6 +292,16 @@ public final class TestKeyInterfaces extends BaseCompilerTest {
     }
 
     @Test
+    void testGenericKeyInterfaceWithNestedBounds() {
+        var testProgram = """
+            key interface TestNamespace.TestGenericType<T : set<TestNamespace.TestType>> {
+                testField : T
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
     void testGenericKeyInterfaceWithTwoBounds() {
         var testProgram = """
             key interface TestNamespace.TestGenericKeyInterface<T : TestNamespace.TestKeyInterface1 & TestNamespace.TestKeyInterface2 > {
@@ -374,6 +384,7 @@ public final class TestKeyInterfaces extends BaseCompilerTest {
         runCompilerToParserCheckNoErrors(testProgram);
     }
 
+
     @Test
     void testGenericVersionedKeyInterfaceWithIndividualGenericParametersAndDifferentOneImplements() {
         var testProgram = """
@@ -412,6 +423,51 @@ public final class TestKeyInterfaces extends BaseCompilerTest {
                     testField : int32
                 }
                 version 2 <T : TestNamespace.TestKeyInterface1 & TestNamespace.TestKeyInterface2> : TestNamespace.TestKeyInterface, TestNamespace.OtherKeyInterface2 {
+                    testField : int32
+                }
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
+    void testGenericVersionedKeyInterfaceWithSingleGenericParametersWithNestedBoundsGeneric() {
+        var testProgram = """
+            key interface TestNamespace.TestVersionedGenericType<T : set<T>> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
+    void testGenericVersionedKeyInterfaceWithSingleGenericParametersWithNestedBoundsType() {
+        var testProgram = """
+            key interface TestNamespace.TestVersionedGenericType<T : set<TestNamespace.TestType>> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
+    void testGenericVersionedKeyInterfaceWithSingleGenericParametersWithDoubleNestedBoundsType() {
+        var testProgram = """
+            key interface TestNamespace.TestVersionedGenericType<T : set<set<TestNamespace.TestType>>> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
                     testField : int32
                 }
             }

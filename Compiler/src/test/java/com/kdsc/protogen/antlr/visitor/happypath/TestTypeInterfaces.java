@@ -292,6 +292,16 @@ public final class TestTypeInterfaces extends BaseCompilerTest {
     }
 
     @Test
+    void testGenericTypeInterfaceWithNestedBounds() {
+        var testProgram = """
+            type interface TestNamespace.TestGenericType<T : set<TestNamespace.TestType>> {
+                testField : T
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
     void testGenericTypeInterfaceWithTwoBounds() {
         var testProgram = """
             type interface TestNamespace.TestGenericTypeInterface<T : TestNamespace.TestTypeInterface1 & TestNamespace.TestTypeInterface2 > {
@@ -335,6 +345,51 @@ public final class TestTypeInterfaces extends BaseCompilerTest {
     void testGenericVersionedTypeInterfaceWithSingleGenericParametersWithTwoBounds() {
         var testProgram = """
             type interface TestNamespace.TestVersionedGenericTypeInterface<T : TestNamespace.TestTypeInterface1 & TestNamespace.TestTypeInterface2> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
+    void testGenericVersionedTypeInterfaceWithSingleGenericParametersWithNestedBoundsGeneric() {
+        var testProgram = """
+            type interface TestNamespace.TestVersionedGenericType<T : set<T>> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
+    void testGenericVersionedTypeInterfaceWithSingleGenericParametersWithNestedBoundsType() {
+        var testProgram = """
+            type interface TestNamespace.TestVersionedGenericType<T : set<TestNamespace.TestType>> {
+                version 1 {
+                    testField : int32
+                }
+                version 2 {
+                    testField : int32
+                }
+            }
+        """;
+        runCompilerToParserCheckNoErrors(testProgram);
+    }
+
+    @Test
+    void testGenericVersionedTypeInterfaceWithSingleGenericParametersWithDoubleNestedBoundsType() {
+        var testProgram = """
+            type interface TestNamespace.TestVersionedGenericType<T : set<set<TestNamespace.TestType>>> {
                 version 1 {
                     testField : int32
                 }

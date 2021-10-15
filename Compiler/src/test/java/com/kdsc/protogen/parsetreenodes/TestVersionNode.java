@@ -131,45 +131,18 @@ public final class TestVersionNode extends BaseTestNode {
                         Line : 1
                         CharPosition : 0
                     Identifier : T
-                    //NamespaceNameGenericParametersNode
+                    //FieldTypeNode
                         //Super -> //BaseParseTreeNode
                             SourceFileName : TestFileName.pg
                             Line : 1
                             CharPosition : 0
-                        //NamespaceNameNode
-                            //Super -> //BaseParseTreeNode
-                                SourceFileName : TestFileName.pg
-                                Line : 1
-                                CharPosition : 0
-                            //NamespaceNode
+                        Optional : false
+                        //BoolFieldTypeNode
+                            //Super -> //NonArrayFieldTypeNode
                                 //Super -> //BaseParseTreeNode
                                     SourceFileName : TestFileName.pg
                                     Line : 1
                                     CharPosition : 0
-                                Namespace : Namespace
-                            //NameNode
-                                //Super -> //BaseParseTreeNode
-                                    SourceFileName : TestFileName.pg
-                                    Line : 1
-                                    CharPosition : 0
-                                Name : Name
-                        //GenericParametersNode
-                            //Super -> //BaseParseTreeNode
-                                SourceFileName : TestFileName.pg
-                                Line : 1
-                                CharPosition : 0
-                            //FieldTypeNode
-                                //Super -> //BaseParseTreeNode
-                                    SourceFileName : TestFileName.pg
-                                    Line : 1
-                                    CharPosition : 0
-                                Optional : false
-                                //BoolFieldTypeNode
-                                    //Super -> //NonArrayFieldTypeNode
-                                        //Super -> //BaseParseTreeNode
-                                            SourceFileName : TestFileName.pg
-                                            Line : 1
-                                            CharPosition : 0
             //ImplementsListNode
                 //Super -> //BaseParseTreeNode
                     SourceFileName : TestFileName.pg

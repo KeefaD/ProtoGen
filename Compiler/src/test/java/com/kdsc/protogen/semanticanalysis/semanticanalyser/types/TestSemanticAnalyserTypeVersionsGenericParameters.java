@@ -1029,7 +1029,7 @@ public final class TestSemanticAnalyserTypeVersionsGenericParameters extends Bas
         var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 39, SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getMessage("int32", "TestNamespace.TypeInterface")),
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 6, 39, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("int32", "TestNamespace.TypeInterface")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -1121,22 +1121,22 @@ public final class TestSemanticAnalyserTypeVersionsGenericParameters extends Bas
         var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
         assertEquals(4, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 40, SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getMessage("int32", "TestNamespace.TypeInterface1")),
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 40, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("int32", "TestNamespace.TypeInterface1")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 40, SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getMessage("int32", "TestNamespace.TypeInterface2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 40, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("int32", "TestNamespace.TypeInterface2")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 68, SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getMessage("string", "TestNamespace.TypeInterface1")),
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 68, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("string", "TestNamespace.TypeInterface1")),
             semanticErrors.get(2).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 68, SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS.getMessage("string", "TestNamespace.TypeInterface2")),
+            SEMANTIC_ERROR_MESSAGE.formatted(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 8, 68, SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS.getMessage("string", "TestNamespace.TypeInterface2")),
             semanticErrors.get(3).getFullErrorMessage(),
             "Unexpected semantic error message"
         );

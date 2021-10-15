@@ -1,6 +1,7 @@
 package com.kdsc.protogen.parsetreenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
+import com.kdsc.protogen.parsetreenodes.fieldtypenodes.FieldTypeNode;
 import com.kdsc.protogen.parsetreenodes.utils.clone.Lists;
 import com.kdsc.protogen.utils.parameterchecking.Strings;
 
@@ -11,29 +12,29 @@ import java.util.Objects;
 public final class GenericParameterWithBoundsNode extends BaseParseTreeNode {
 
     private final String identifier;
-    private final List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes;
+    private final List<FieldTypeNode> fieldTypeNodes;
 
     public GenericParameterWithBoundsNode(
         final String sourceFileName,
         final long line,
         final long charPosition,
         final String identifier,
-        final List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes
+        final List<FieldTypeNode> fieldTypeNodes
     ) {
         super(sourceFileName, line, charPosition);
         Objects.requireNonNull(identifier);
         Strings.requireNonBlank(identifier);
-        Objects.requireNonNull(namespaceNameGenericParametersNodes);
+        Objects.requireNonNull(fieldTypeNodes);
         this.identifier = identifier;
-        this.namespaceNameGenericParametersNodes = Collections.unmodifiableList(namespaceNameGenericParametersNodes);
+        this.fieldTypeNodes = Collections.unmodifiableList(fieldTypeNodes);
     }
 
     public String getIdentifier() {
         return identifier;
     }
 
-    public List<NamespaceNameGenericParametersNode> getNamespaceNameGenericParametersNodes() {
-        return namespaceNameGenericParametersNodes;
+    public List<FieldTypeNode> getFieldTypeNodes() {
+        return fieldTypeNodes;
     }
 
     @Override
@@ -42,7 +43,7 @@ public final class GenericParameterWithBoundsNode extends BaseParseTreeNode {
         classToFormattedStringTitle(stringBuilder, formattedStringOptions, GenericParameterWithBoundsNode.class);
         superToFormattedStringSuper(stringBuilder, formattedStringOptions, super.toFormattedString(formattedStringOptions, 0), BaseParseTreeNode.class);
         fieldToFormattedStringField(stringBuilder, formattedStringOptions, "Identifier", identifier);
-        fieldToFormattedStringField(stringBuilder, formattedStringOptions, namespaceNameGenericParametersNodes);
+        fieldToFormattedStringField(stringBuilder, formattedStringOptions, fieldTypeNodes);
         return indentAndReturnString(stringBuilder, formattedStringOptions, indentationLevel);
     }
 
@@ -53,7 +54,7 @@ public final class GenericParameterWithBoundsNode extends BaseParseTreeNode {
             getLine(),
             getCharPosition(),
             identifier,
-            Lists.clone(namespaceNameGenericParametersNodes)
+            Lists.clone(fieldTypeNodes)
         );
     }
 
@@ -63,12 +64,12 @@ public final class GenericParameterWithBoundsNode extends BaseParseTreeNode {
         if (object == null || getClass() != object.getClass()) return false;
         if (!super.equals(object)) return false;
         GenericParameterWithBoundsNode that = (GenericParameterWithBoundsNode) object;
-        return identifier.equals(that.identifier) && namespaceNameGenericParametersNodes.equals(that.namespaceNameGenericParametersNodes);
+        return identifier.equals(that.identifier) && fieldTypeNodes.equals(that.fieldTypeNodes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), identifier, namespaceNameGenericParametersNodes);
+        return Objects.hash(super.hashCode(), identifier, fieldTypeNodes);
     }
 
 }

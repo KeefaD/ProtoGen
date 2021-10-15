@@ -84,10 +84,50 @@ public class UndetectableNodeReplacer {
             typeNode.getLine(),
             typeNode.getCharPosition(),
             typeNode.isInterface(),
-            typeNode.getNamespaceNameGenericParametersWithBoundsNode().clone(),
+            replaceUndetectableNodesForNamespaceNameGenericParametersWithBoundsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, typeNode.getNamespaceNameGenericParametersWithBoundsNode()),
             replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, typeNode.getImplementsListNode()),
             replaceUndetectableNodesForOptionalVersionsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, typeNode.getVersionsNode()),
             replaceUndetectableNodesForOptionalFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, typeNode.getFieldsNode())
+        );
+    }
+
+    private NamespaceNameGenericParametersWithBoundsNode replaceUndetectableNodesForNamespaceNameGenericParametersWithBoundsNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final NamespaceNameGenericParametersWithBoundsNode namespaceNameGenericParametersWithBoundsNode) {
+        return new NamespaceNameGenericParametersWithBoundsNode(
+            namespaceNameGenericParametersWithBoundsNode.getSourceFileName(),
+            namespaceNameGenericParametersWithBoundsNode.getLine(),
+            namespaceNameGenericParametersWithBoundsNode.getCharPosition(),
+            namespaceNameGenericParametersWithBoundsNode.getNamespaceNameNode().clone(),
+            replaceUndetectableNodesForOptionalGenericParametersWithBoundsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, namespaceNameGenericParametersWithBoundsNode.getGenericParametersWithBoundsNode())
+        );
+    }
+
+    private Optional<GenericParametersWithBoundsNode> replaceUndetectableNodesForOptionalGenericParametersWithBoundsNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode) {
+        return genericParametersWithBoundsNode.isEmpty() ? Optional.empty() : Optional.of(replaceUndetectableNodesForGenericParametersWithBoundsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, genericParametersWithBoundsNode.get()));
+    }
+
+    private GenericParametersWithBoundsNode replaceUndetectableNodesForGenericParametersWithBoundsNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final GenericParametersWithBoundsNode genericParametersWithBoundsNode) {
+        return new GenericParametersWithBoundsNode(
+            genericParametersWithBoundsNode.getSourceFileName(),
+            genericParametersWithBoundsNode.getLine(),
+            genericParametersWithBoundsNode.getCharPosition(),
+            replaceUndetectableNodesForGenericParameterWithBoundsNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, genericParametersWithBoundsNode.getGenericParameterWithBoundsNodes())
+        );
+    }
+
+    private List<GenericParameterWithBoundsNode> replaceUndetectableNodesForGenericParameterWithBoundsNodes(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, final List<GenericParameterWithBoundsNode> genericParameterWithBoundsNodes) {
+        return genericParameterWithBoundsNodes
+            .stream()
+            .map(gpwbn -> replaceUndetectableNodesForGenericParameterWithBoundsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, gpwbn))
+            .collect(Collectors.toList());
+    }
+
+    private GenericParameterWithBoundsNode replaceUndetectableNodesForGenericParameterWithBoundsNode(final Set<String> typesToSearchForAsStrings, final Set<String> keysToSearchForAsStrings, final Set<String> enumsToSearchForAsStrings, GenericParameterWithBoundsNode genericParameterWithBoundsNode) {
+        return new GenericParameterWithBoundsNode(
+            genericParameterWithBoundsNode.getSourceFileName(),
+            genericParameterWithBoundsNode.getLine(),
+            genericParameterWithBoundsNode.getCharPosition(),
+            genericParameterWithBoundsNode.getIdentifier(),
+            replaceUndetectableNodesForFieldTypeNodes(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, genericParameterWithBoundsNode.getFieldTypeNodes())
         );
     }
 
@@ -117,7 +157,7 @@ public class UndetectableNodeReplacer {
             versionNode.getLine(),
             versionNode.getCharPosition(),
             versionNode.getVersionNumberNode().clone(),
-            Optionals.clone(versionNode.getGenericParametersWithBoundsNode()),
+            replaceUndetectableNodesForOptionalGenericParametersWithBoundsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, versionNode.getGenericParametersWithBoundsNode()),
             replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, versionNode.getImplementsListNode()),
             replaceUndetectableNodesForOptionalFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, versionNode.getFieldsNode())
         );
@@ -187,7 +227,7 @@ public class UndetectableNodeReplacer {
             keyNode.getLine(),
             keyNode.getCharPosition(),
             keyNode.isInterface(),
-            keyNode.getNamespaceNameGenericParametersWithBoundsNode().clone(),
+            replaceUndetectableNodesForNamespaceNameGenericParametersWithBoundsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, keyNode.getNamespaceNameGenericParametersWithBoundsNode()),
             replaceUndetectableNodesForOptionalImplementsListNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, keyNode.getImplementsListNode()),
             replaceUndetectableNodesForOptionalVersionsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, keyNode.getVersionsNode()),
             replaceUndetectableNodesForOptionalFieldsNode(typesToSearchForAsStrings, keysToSearchForAsStrings, enumsToSearchForAsStrings, keyNode.getFieldsNode())

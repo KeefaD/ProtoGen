@@ -1,5 +1,7 @@
 package com.kdsc.protogen.parsetreenodes;
 
+import com.kdsc.protogen.parsetreenodes.fieldtypenodes.FieldTypeNode;
+import com.kdsc.protogen.parsetreenodes.fieldtypenodes.TestFieldTypeNode;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
@@ -67,16 +69,16 @@ public final class TestGenericParameterWithBoundsNode extends BaseTestNode {
     @Test
     public void testGetters() {
         var identifier = "T";
-        List<NamespaceNameGenericParametersNode> namespaceNameGenericParametersNodes = Collections.emptyList();
+        List<FieldTypeNode> fieldTypeNodes = Collections.emptyList();
         var node = new GenericParameterWithBoundsNode(
             BaseTestNode.fileName,
             BaseTestNode.line,
             BaseTestNode.charPosition,
             identifier,
-            namespaceNameGenericParametersNodes
+            fieldTypeNodes
         );
         assertEquals(identifier, node.getIdentifier(), "Created and retrieved objects don't match");
-        assertEquals(namespaceNameGenericParametersNodes, node.getNamespaceNameGenericParametersNodes(), "Created and retrieved objects don't match");
+        assertEquals(fieldTypeNodes, node.getFieldTypeNodes(), "Created and retrieved objects don't match");
     }
 
     @Test
@@ -89,45 +91,18 @@ public final class TestGenericParameterWithBoundsNode extends BaseTestNode {
                 Line : 1
                 CharPosition : 0
             Identifier : T
-            //NamespaceNameGenericParametersNode
+            //FieldTypeNode
                 //Super -> //BaseParseTreeNode
                     SourceFileName : TestFileName.pg
                     Line : 1
                     CharPosition : 0
-                //NamespaceNameNode
-                    //Super -> //BaseParseTreeNode
-                        SourceFileName : TestFileName.pg
-                        Line : 1
-                        CharPosition : 0
-                    //NamespaceNode
+                Optional : false
+                //BoolFieldTypeNode
+                    //Super -> //NonArrayFieldTypeNode
                         //Super -> //BaseParseTreeNode
                             SourceFileName : TestFileName.pg
                             Line : 1
                             CharPosition : 0
-                        Namespace : Namespace
-                    //NameNode
-                        //Super -> //BaseParseTreeNode
-                            SourceFileName : TestFileName.pg
-                            Line : 1
-                            CharPosition : 0
-                        Name : Name
-                //GenericParametersNode
-                    //Super -> //BaseParseTreeNode
-                        SourceFileName : TestFileName.pg
-                        Line : 1
-                        CharPosition : 0
-                    //FieldTypeNode
-                        //Super -> //BaseParseTreeNode
-                            SourceFileName : TestFileName.pg
-                            Line : 1
-                            CharPosition : 0
-                        Optional : false
-                        //BoolFieldTypeNode
-                            //Super -> //NonArrayFieldTypeNode
-                                //Super -> //BaseParseTreeNode
-                                    SourceFileName : TestFileName.pg
-                                    Line : 1
-                                    CharPosition : 0
         """;
         assertEquals(expectedToStringOutput, node.toString(), "Unexpected toString output");
     }
@@ -162,7 +137,7 @@ public final class TestGenericParameterWithBoundsNode extends BaseTestNode {
             BaseTestNode.line,
             BaseTestNode.charPosition,
             "T",
-            List.of(TestNamespaceNameGenericParametersNode.createPopulatedTestNode())
+            List.of(TestFieldTypeNode.createPopulatedTestNode())
         );
     }
 

@@ -73,24 +73,24 @@ field_type:
 
 non_array_field_type:
     (
+        'bool' |
+        'bytes' |
+        'date' |
+        'datetime' |
+        'decimal' |
         'double' |
         'float' |
         'int32' |
         'int64' |
-        'bool' |
-        'string' |
-        'bytes' |
-        'decimal' |
-        'date' |
-        'datetime' |
         'localdate' |
         'localdatetime' |
-        map |
-        set |
+        'string' |
+        generic_object_field_type |
         list |
-        value_or_error |
+        map |
         object_field_type |
-        generic_object_field_type
+        set |
+        value_or_error
     );
 
 map:
@@ -115,7 +115,7 @@ generic_object_field_type:
     generic_parameter;
 
 generic_parameter_with_bounds:
-    IDENTIFIER (':' namespace_name_generic_parameters)? ('&' namespace_name_generic_parameters)*;
+    IDENTIFIER ((':' field_type)+ ('&' field_type)*)?;
 
 generic_parameter:
     IDENTIFIER;
