@@ -6,11 +6,12 @@ import com.kdsc.protogen.parsetreenodes.NamespaceNameGenericParametersNode;
 import com.kdsc.protogen.parsetreenodes.NamespaceNameNode;
 import com.kdsc.protogen.parsetreenodes.NamespaceNode;
 import com.kdsc.protogen.parsetreenodes.commoninterfaces.HasNamespaceName;
+import com.kdsc.protogen.parsetreenodes.commoninterfaces.KeyOrTypeFieldTypeNode;
 
 import java.util.List;
 import java.util.Objects;
 
-public final class TypeFieldTypeNode extends NonArrayFieldTypeNode implements HasNamespaceName {
+public final class TypeFieldTypeNode extends NonArrayFieldTypeNode implements KeyOrTypeFieldTypeNode, HasNamespaceName {
 
     private final NamespaceNameGenericParametersNode namespaceNameGenericParametersNode;
 

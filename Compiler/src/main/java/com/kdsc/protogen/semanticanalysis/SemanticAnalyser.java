@@ -1,6 +1,8 @@
 package com.kdsc.protogen.semanticanalysis;
 import com.kdsc.protogen.compilerresults.CompilerResults;
 import com.kdsc.protogen.parsetreenodes.*;
+import com.kdsc.protogen.parsetreenodes.commoninterfaces.KeyOrTypeFieldTypeNode;
+import com.kdsc.protogen.parsetreenodes.commoninterfaces.KeyOrTypeNode;
 import com.kdsc.protogen.parsetreenodes.fieldtypenodes.*;
 import com.kdsc.protogen.parsetreenodes.utils.ParseTreeUtils;
 
@@ -604,7 +606,7 @@ public class SemanticAnalyser {
                     semanticErrors.add(createSemanticError(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS, nonArrayFieldTypeNode, ParseTreeUtils.convertFieldTypeToString(nonArrayFieldTypeNode), ParseTreeUtils.convertFieldTypeToString(genericBoundsNonArrayFieldTypeNode)));
                     return;
                 }
-                var allSuperClassesAndInterfacesForType = getAllSuperClassesAndInterfacesForType(compilerResults, typeFieldTypeNode);
+                var allSuperClassesAndInterfacesForType = getAllSuperClassesAndInterfacesForKeyOrTypeFieldTypeNode(compilerResults, typeFieldTypeNode);
                 if(!allSuperClassesAndInterfacesForType.contains(ParseTreeUtils.getNamespaceNameString(typeFieldTypeNode.getNamespaceNameNode()))) {
                     semanticErrors.add(createSemanticError(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS, typeFieldTypeNode, ParseTreeUtils.convertFieldTypeToString(nonArrayFieldTypeNode), ParseTreeUtils.convertFieldTypeToString(genericBoundsNonArrayFieldTypeNode)));
                 }
@@ -614,11 +616,10 @@ public class SemanticAnalyser {
                     semanticErrors.add(createSemanticError(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS, nonArrayFieldTypeNode, ParseTreeUtils.convertFieldTypeToString(nonArrayFieldTypeNode), ParseTreeUtils.convertFieldTypeToString(genericBoundsNonArrayFieldTypeNode)));
                     return;
                 }
-                //TODO:KMD Fill me in
-//                var allSuperClassesAndInterfacesForType = getAllSuperClassesAndInterfacesForType(compilerResults, keyFieldTypeNode);
-//                if(!allSuperClassesAndInterfacesForType.contains(ParseTreeUtils.getNamespaceNameString(keyFieldTypeNode.getNamespaceNameNode()))) {
-//                    semanticErrors.add(createSemanticError(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS, keyFieldTypeNode, ParseTreeUtils.convertFieldTypeToString(nonArrayFieldTypeNode), ParseTreeUtils.convertFieldTypeToString(genericBoundsNonArrayFieldTypeNode)));
-//                }
+                var allSuperClassesAndInterfacesForKey = getAllSuperClassesAndInterfacesForKeyOrTypeFieldTypeNode(compilerResults, keyFieldTypeNode);
+                if(!allSuperClassesAndInterfacesForKey.contains(ParseTreeUtils.getNamespaceNameString(keyFieldTypeNode.getNamespaceNameNode()))) {
+                    semanticErrors.add(createSemanticError(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS, keyFieldTypeNode, ParseTreeUtils.convertFieldTypeToString(nonArrayFieldTypeNode), ParseTreeUtils.convertFieldTypeToString(genericBoundsNonArrayFieldTypeNode)));
+                }
             }
             case EnumFieldTypeNode enumFieldTypeNode -> {
                 if(!(genericBoundsNonArrayFieldTypeNode instanceof EnumFieldTypeNode genericBoundsNonArrayFieldTypeNodeAsEnumFieldTypeNode)) {
@@ -663,17 +664,17 @@ public class SemanticAnalyser {
         }
     }
 
-    private Set<String> getAllSuperClassesAndInterfacesForType(final CompilerResults compilerResults, final TypeFieldTypeNode typeFieldTypeNode) {
+    private Set<String> getAllSuperClassesAndInterfacesForKeyOrTypeFieldTypeNode(final CompilerResults compilerResults, final KeyOrTypeFieldTypeNode keyOrTypeFieldTypeNode) {
         var returnSet = new HashSet<String>();
         var lookedUpType = compilerResults
             .getAllTypeNodeMap()
-            .get(ParseTreeUtils.getNamespaceNameString(typeFieldTypeNode.getNamespaceNameNode()));
-        getAllSuperClassesAndInterfacesForType(returnSet, compilerResults, lookedUpType);
+            .get(ParseTreeUtils.getNamespaceNameString(keyOrTypeFieldTypeNode.getNamespaceNameNode()));
+        getAllSuperClassesAndInterfacesForKeyOrTypeFieldTypeNode(returnSet, compilerResults, lookedUpType);
         return returnSet;
     }
 
-    private void getAllSuperClassesAndInterfacesForType(final Set<String> setSoFar, final CompilerResults compilerResults, final TypeNode typeNode) {
-        typeNode
+    private void getAllSuperClassesAndInterfacesForKeyOrTypeFieldTypeNode(final Set<String> setSoFar, final CompilerResults compilerResults, final KeyOrTypeNode keyOrTypeNode) {
+        keyOrTypeNode
             .getImplementsListNode()
             .stream()
             .flatMap(iln -> iln.getNamespaceNameGenericParametersNodes().stream())
@@ -683,7 +684,7 @@ public class SemanticAnalyser {
                     var implementsListItemType = compilerResults
                         .getAllTypeNodeMap()
                         .get(ParseTreeUtils.getNamespaceNameString(nngp.getNamespaceNameNode()));
-                    getAllSuperClassesAndInterfacesForType(setSoFar, compilerResults, implementsListItemType);
+                    getAllSuperClassesAndInterfacesForKeyOrTypeFieldTypeNode(setSoFar, compilerResults, implementsListItemType);
                 }
             );
     }

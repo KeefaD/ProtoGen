@@ -2,13 +2,14 @@ package com.kdsc.protogen.parsetreenodes;
 
 import com.kdsc.protogen.nodes.FormattedStringOptions;
 import com.kdsc.protogen.parsetreenodes.commoninterfaces.HasNamespaceName;
+import com.kdsc.protogen.parsetreenodes.commoninterfaces.KeyOrTypeNode;
 import com.kdsc.protogen.parsetreenodes.commoninterfaces.TopLevelObject;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-public final class TypeNode extends BaseParseTreeNode implements TopLevelObject, HasNamespaceName {
+public final class TypeNode extends BaseParseTreeNode implements TopLevelObject, KeyOrTypeNode, HasNamespaceName {
 
     private final boolean isInterface;
     private final NamespaceNameGenericParametersWithBoundsNode namespaceNameGenericParametersWithBoundsNode;
