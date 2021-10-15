@@ -226,7 +226,7 @@ public class SemanticAnalyser {
                         semanticErrors.add(createSemanticError(TYPE_REFERS_TO_NON_EXISTENT_TYPE_IN_IMPLEMENTS_LIST, nngp, typeDescription, namespaceNameAsString));
                         return;
                     }
-                    checkGenericParametersForImplementsListItem(compilerResults, semanticErrors, nngp);
+                    checkGenericParametersForImplementsListItem(compilerResults, semanticErrors, allGenericParameterIdentifiers, nngp);
                 }
             );
 
@@ -253,14 +253,6 @@ public class SemanticAnalyser {
                     );
             }
         }
-
-        implementsListNode
-            .stream()
-            .flatMap(iln -> iln.getNamespaceNameGenericParametersNodes().stream())
-            .map(NamespaceNameGenericParametersNode::getGenericParametersNode)
-            .flatMap(Optional::stream)
-            .flatMap(gpn -> gpn.getFieldTypeNodes().stream())
-            .forEach(ftn -> checkFieldType(compilerResults, semanticErrors, allGenericParameterIdentifiers, ftn));
     }
 
     private void checkFields(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Set<String> allGenericParameterIdentifiers, final Optional<FieldsNode> fieldsNode) {
@@ -441,7 +433,7 @@ public class SemanticAnalyser {
         getGenericParametersNonArrayFieldTypeNode(foundGenericParameters, arrayFieldTypeNode.getNonArrayFieldTypeNode());
     }
 
-    private void checkGenericParametersForImplementsListItem(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final NamespaceNameGenericParametersNode implementsTypeNamespaceNameGenericParametersNode) {
+    private void checkGenericParametersForImplementsListItem(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Set<String> allGenericParameterIdentifiers, final NamespaceNameGenericParametersNode implementsTypeNamespaceNameGenericParametersNode) {
 
         var numberOfGenericParametersOnImplementsListDefinition = implementsTypeNamespaceNameGenericParametersNode.getGenericParametersNode().isPresent()
             ? (int) implementsTypeNamespaceNameGenericParametersNode
@@ -481,7 +473,7 @@ public class SemanticAnalyser {
                             .get()
                             .getGenericParameterWithBoundsNodes()
                             .get(i);
-
+                        checkFieldType(compilerResults, semanticErrors, allGenericParameterIdentifiers, implementsListFieldTypeNode);
                         checkBounds(compilerResults, semanticErrors, implementsListFieldTypeNode, typeDefinitionGenericParameterWithBoundsNode);
                     }
                 );
