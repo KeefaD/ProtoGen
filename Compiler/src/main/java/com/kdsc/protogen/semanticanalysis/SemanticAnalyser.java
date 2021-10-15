@@ -25,6 +25,7 @@ import static com.kdsc.protogen.semanticanalysis.SemanticErrorType.*;
 //TODO:KMD Test generic parameters on outer type and implements list on versions and visa versa
 //TODO:KMD Test generics with optionals
 //TODO:KMD Need to check generics to make sure they don't have clashing fields, java does this obviously
+//TODO:KMD TemporaryGenericsJavaTest<T1 : Integer, T2 : Map<T1, T2>> is valid, need to check for this
 public class SemanticAnalyser {
 
     private record VersionNumberImplementsList(Optional<Long> versionNumber, Optional<ImplementsListNode> implementsList) {}
@@ -147,10 +148,15 @@ public class SemanticAnalyser {
     }
 
     private void checkTypeVersion(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final TypeNode outerTypeNode, final String typeName, final String typeDescription, final boolean isInterface, final Optional<ImplementsListNode> implementsListNode, final Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode, Optional<FieldsNode> fieldsNode) {
+        var allGenericParameterIdentifiers = genericParametersWithBoundsNode
+            .stream()
+            .flatMap(gpwb -> gpwb.getGenericParameterWithBoundsNodes().stream())
+            .map(GenericParameterWithBoundsNode::getIdentifier)
+            .collect(Collectors.toSet());
         checkInheritanceLoop(compilerResults, semanticErrors, implementsListNode, new HashSet<>(), "", outerTypeNode, typeDescription, typeName, typeDescription);
         checkGenericParameters(compilerResults, semanticErrors, genericParametersWithBoundsNode, typeDescription);
-        checkImplementsList(compilerResults, semanticErrors, typeDescription, isInterface, genericParametersWithBoundsNode, implementsListNode);
-        checkFields(compilerResults, semanticErrors, fieldsNode);
+        checkImplementsList(compilerResults, semanticErrors, allGenericParameterIdentifiers, typeDescription, isInterface, genericParametersWithBoundsNode, implementsListNode);
+        checkFields(compilerResults, semanticErrors, allGenericParameterIdentifiers, fieldsNode);
     }
 
     private void checkInheritanceLoop(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Optional<ImplementsListNode> implementsListNode, final Set<String> alreadyVisitedTypes, final String path, final TypeNode outerTypeNode, final String outerTypeDescription, final String typeName, final String typeNameDescription) {
@@ -192,25 +198,21 @@ public class SemanticAnalyser {
             .flatMap(gpwb -> gpwb.getGenericParameterWithBoundsNodes().stream())
             .forEach(
                 gp -> {
-
                     if (genericParameterSet.contains(gp.getIdentifier())) {
                         semanticErrors.add(createSemanticError(REDEFINITION_OF_GENERIC_PARAMETER, gp, typeDescription, gp.getIdentifier()));
                     } else {
                         genericParameterSet.add(gp.getIdentifier());
                     }
-
-                    checkGenericParameterBoundsFieldTypes(compilerResults, semanticErrors, gp, gp.getFieldTypeNodes());
                 }
             );
-    }
 
-    private void checkImplementsList(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final String typeDescription, final boolean isInterface, final Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode, final Optional<ImplementsListNode> implementsListNode) {
-
-        var genericParametersSet = genericParametersWithBoundsNode
+        genericParametersWithBoundsNode
             .stream()
             .flatMap(gpwb -> gpwb.getGenericParameterWithBoundsNodes().stream())
-            .map(GenericParameterWithBoundsNode::getIdentifier)
-            .collect(Collectors.toSet());
+            .forEach(gp -> checkGenericParameterBoundsFieldTypes(compilerResults, semanticErrors, genericParameterSet, gp, gp.getFieldTypeNodes()));
+    }
+
+    private void checkImplementsList(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Set<String> allGenericParameterIdentifiers, final String typeDescription, final boolean isInterface, final Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode, final Optional<ImplementsListNode> implementsListNode) {
 
         if(implementsListNode.isEmpty()) return;
 
@@ -223,20 +225,6 @@ public class SemanticAnalyser {
                     if (!compilerResults.getAllTypeNodeMap().containsKey(namespaceNameAsString)) {
                         semanticErrors.add(createSemanticError(TYPE_REFERS_TO_NON_EXISTENT_TYPE_IN_IMPLEMENTS_LIST, nngp, typeDescription, namespaceNameAsString));
                         return;
-                    }
-                    var usedGenericParameterIdentifiers = nngp
-                        .getGenericParametersNode()
-                        .stream()
-                        .flatMap(gp -> gp.getFieldTypeNodes().stream())
-                        .flatMap(ftn -> getGenericParametersFieldTypeNode(ftn).stream())
-                        .collect(Collectors.toList());
-                    var unusedGenericParameterIdentifiers = usedGenericParameterIdentifiers
-                        .stream()
-                        .filter(ugp -> !genericParametersSet.contains(ugp.getGenericParameterNode().getIdentifier()))
-                        .collect(Collectors.toList());
-                    if(!unusedGenericParameterIdentifiers.isEmpty()) {
-                        unusedGenericParameterIdentifiers
-                            .forEach(ugp -> semanticErrors.add(createSemanticError(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE, ugp, ugp.getGenericParameterNode().getIdentifier(), typeDescription)));
                     }
                     checkGenericParametersForImplementsListItem(compilerResults, semanticErrors, nngp);
                 }
@@ -272,21 +260,21 @@ public class SemanticAnalyser {
             .map(NamespaceNameGenericParametersNode::getGenericParametersNode)
             .flatMap(Optional::stream)
             .flatMap(gpn -> gpn.getFieldTypeNodes().stream())
-            .forEach(ftn -> checkFieldType(compilerResults, semanticErrors, ftn));
+            .forEach(ftn -> checkFieldType(compilerResults, semanticErrors, allGenericParameterIdentifiers, ftn));
     }
 
-    private void checkFields(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Optional<FieldsNode> fieldsNode) {
+    private void checkFields(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Set<String> allGenericParameterIdentifiers, final Optional<FieldsNode> fieldsNode) {
         fieldsNode
             .stream()
             .flatMap(fn -> fn.getFieldNodes().stream())
             .map(FieldNode::getFieldTypeNode)
-            .forEach(fn -> checkFieldType(compilerResults, semanticErrors, fn));
+            .forEach(fn -> checkFieldType(compilerResults, semanticErrors, allGenericParameterIdentifiers, fn));
     }
 
-    private void checkGenericParameterBoundsFieldTypes(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final GenericParameterWithBoundsNode genericParameter, final List<FieldTypeNode> fieldTypeNodes) {
+    private void checkGenericParameterBoundsFieldTypes(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Set<String> allGenericParameterIdentifiers, final GenericParameterWithBoundsNode genericParameter, final List<FieldTypeNode> fieldTypeNodes) {
 
         fieldTypeNodes
-            .forEach(ftn -> checkFieldType(compilerResults, semanticErrors, ftn));
+            .forEach(ftn -> checkFieldType(compilerResults, semanticErrors, allGenericParameterIdentifiers, ftn));
 
         var fieldTypeNodesCount = fieldTypeNodes.size();
         for(var lhsToCheckIndex = 0; lhsToCheckIndex < fieldTypeNodesCount - 1; lhsToCheckIndex++) {
@@ -379,31 +367,39 @@ public class SemanticAnalyser {
         return false;
     }
 
-    private void checkFieldType(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final FieldTypeNode fieldTypeNode) {
+    private void checkFieldType(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Set<String> allGenericParameterIdentifiers, final FieldTypeNode fieldTypeNode) {
         if (fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
-            checkArrayFieldType(compilerResults, semanticErrors, fieldTypeNode.getArrayFieldTypeNode().get());
+            checkArrayFieldType(compilerResults, semanticErrors, allGenericParameterIdentifiers, fieldTypeNode.getArrayFieldTypeNode().get());
         } else if (fieldTypeNode.getNonArrayFieldTypeNode().isPresent()) {
-            checkNonArrayFieldType(compilerResults, semanticErrors, fieldTypeNode.getNonArrayFieldTypeNode().get());
+            checkNonArrayFieldType(compilerResults, semanticErrors, allGenericParameterIdentifiers, fieldTypeNode.getNonArrayFieldTypeNode().get());
         }
     }
 
-    private void checkArrayFieldType(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final ArrayFieldTypeNode arrayFieldTypeNode) {
-        checkNonArrayFieldType(compilerResults, semanticErrors, arrayFieldTypeNode.getNonArrayFieldTypeNode());
+    private void checkArrayFieldType(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Set<String> allGenericParameterIdentifiers, final ArrayFieldTypeNode arrayFieldTypeNode) {
+        checkNonArrayFieldType(compilerResults, semanticErrors, allGenericParameterIdentifiers, arrayFieldTypeNode.getNonArrayFieldTypeNode());
     }
 
-    private void checkNonArrayFieldType(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
+    private void checkNonArrayFieldType(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Set<String> allGenericParameterIdentifiers, final NonArrayFieldTypeNode nonArrayFieldTypeNode) {
         if (nonArrayFieldTypeNode instanceof MapFieldTypeNode mapFieldTypeNode) {
-            checkFieldType(compilerResults, semanticErrors, mapFieldTypeNode.getKeyFieldTypeNode());
-            checkFieldType(compilerResults, semanticErrors, mapFieldTypeNode.getValueFieldTypeNode());
+            checkFieldType(compilerResults, semanticErrors, allGenericParameterIdentifiers, mapFieldTypeNode.getKeyFieldTypeNode());
+            checkFieldType(compilerResults, semanticErrors, allGenericParameterIdentifiers, mapFieldTypeNode.getValueFieldTypeNode());
         }
         if (nonArrayFieldTypeNode instanceof SetFieldTypeNode setFieldTypeNode) {
-            checkFieldType(compilerResults, semanticErrors, setFieldTypeNode.getFieldTypeNode());
+            checkFieldType(compilerResults, semanticErrors, allGenericParameterIdentifiers, setFieldTypeNode.getFieldTypeNode());
+        }
+        if (nonArrayFieldTypeNode instanceof ListFieldTypeNode listFieldTypeNode) {
+            checkFieldType(compilerResults, semanticErrors, allGenericParameterIdentifiers, listFieldTypeNode.getFieldTypeNode());
         }
         if (nonArrayFieldTypeNode instanceof ValueOrErrorFieldTypeNode valueOrErrorFieldTypeNode) {
-            checkFieldType(compilerResults, semanticErrors, valueOrErrorFieldTypeNode.getFieldTypeNode());
+            checkFieldType(compilerResults, semanticErrors, allGenericParameterIdentifiers, valueOrErrorFieldTypeNode.getFieldTypeNode());
         }
         if (nonArrayFieldTypeNode instanceof ObjectFieldTypeNode objectFieldTypeNode) {
             semanticErrors.add(createSemanticError(UNKNOWN_OBJECT, objectFieldTypeNode, ParseTreeUtils.getNamespaceNameString(objectFieldTypeNode.getNamespaceNameNode())));
+        }
+        if (nonArrayFieldTypeNode instanceof GenericObjectFieldTypeNode genericObjectFieldTypeNode) {
+            if(!allGenericParameterIdentifiers.contains(genericObjectFieldTypeNode.getGenericParameterNode().getIdentifier())) {
+                semanticErrors.add(createSemanticError(UNKNOWN_GENERIC_PARAMETER, genericObjectFieldTypeNode, genericObjectFieldTypeNode.getGenericParameterNode().getIdentifier()));
+            }
         }
     }
 

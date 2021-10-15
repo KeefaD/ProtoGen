@@ -13,16 +13,15 @@ public enum SemanticErrorType {
     REDEFINITION_OF_GENERIC_PARAMETER(6, "Type %s redefines generic parameter %s"),
     GENERIC_PARAMETER_BOUNDS_REFERS_TO_NON_EXISTENT_TYPE(7, "Generic parameter bounds for type parameter %s refers to non existent type %s"),
     GENERIC_PARAMETER_BOUNDS_REFERS_TO_TYPE_MULTIPLE_TIMES(8, "Generic parameter bounds for type parameter %s refers to type %s more than once"),
-    GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE(9, "Generic parameter %s has not been defined in type %s"),
-    MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE(10, "More than one non interface type specified in implements list for type %s non interface type %s"),
-    NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION(11, "Number of type parameters in implements list for item %s - %d does not match type definition %d"),
-    UNKNOWN_OBJECT(12, "Unknown object %s"),
-    CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME(13, "Cannot have implements list on outer type and version at the same time %s for type %s"),
-    CANNOT_HAVE_GENERIC_PARAMETERS_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME(14, "Cannot have generic parameters on outer type and version at the same time %s for type %s"),
-    INHERITANCE_LOOP_DETECTED(15, "Inheritance loop detected %s for type %s"),
-    EXTENDING_INTERFACE_WITH_NON_INTERFACE(16, "Attempt to extend interface type %s with non interface %s"),
-    SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS(17, "Specified generic parameter %s does not satisfy type bounds, it does not implement or extend type or interface %s"),
-    SPECIFIED_GENERIC_PARAMETER_MUST_BE_A_TYPE_AS_THE_PARAMETER_HAS_BOUNDS(18, "Specified generic parameter %s must be a type as the the parameter has bounds %s");
+    MORE_THAN_ONE_NON_INTERFACE_SPECIFIED_IN_IMPLEMENTS_LIST_FOR_TYPE(9, "More than one non interface type specified in implements list for type %s non interface type %s"),
+    NUMBER_OF_TYPE_PARAMETERS_IN_IMPLEMENTS_ITEM_DOES_NOT_MATCH_TYPE_DEFINITION(10, "Number of type parameters in implements list for item %s - %d does not match type definition %d"),
+    UNKNOWN_OBJECT(11, "Unknown object %s"),
+    CANNOT_HAVE_IMPLEMENTS_LIST_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME(12, "Cannot have implements list on outer type and version at the same time %s for type %s"),
+    CANNOT_HAVE_GENERIC_PARAMETERS_ON_OUTER_TYPE_AND_VERSION_AT_THE_SAME_TIME(13, "Cannot have generic parameters on outer type and version at the same time %s for type %s"),
+    INHERITANCE_LOOP_DETECTED(14, "Inheritance loop detected %s for type %s"),
+    EXTENDING_INTERFACE_WITH_NON_INTERFACE(15, "Attempt to extend interface type %s with non interface %s"),
+    SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS(16, "Specified generic parameter %s does not satisfy type bounds, it does not implement or extend type or interface %s"),
+    UNKNOWN_GENERIC_PARAMETER(17, "Unknown generic parameter %s");
 
     private final long number;
     private final String message;

@@ -46,6 +46,41 @@ public final class TestSemanticAnalyserTypesGenericParameters extends BaseCompil
     }
 
     @Test
+    public void testTypeParameterUsedInBoundsDoesNotExist() {
+        var testProgram = """
+            type TestNamespace.Type<T : list<T1>>
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 37, UNKNOWN_GENERIC_PARAMETER.getMessage("T1")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
+    public void testTypeParameterUsedInBoundsDoesNotExistNested() {
+        var testProgram = """
+            type TestNamespace.Type<T1, T2, T3, T4 : map<T1, map<T2, map<T3, map<T4, map<T5, T6>>>>>>
+        """;
+        var semanticErrors = runCompilerToSemanticAnalyserReturnSemanticErrors(testProgram);
+        assertNotNull(semanticErrors, "SemanticErrors list is null");
+        assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 81, UNKNOWN_GENERIC_PARAMETER.getMessage("T5")),
+            semanticErrors.get(0).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+        assertEquals(
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 1, 85, UNKNOWN_GENERIC_PARAMETER.getMessage("T6")),
+            semanticErrors.get(1).getFullErrorMessage(),
+            "Unexpected semantic error message"
+        );
+    }
+
+    @Test
     public void testTypeParameterBoundsRefersToSameTypeTwice() {
         var testProgram = """
             type TestNamespace.Type1
@@ -207,7 +242,7 @@ public final class TestSemanticAnalyserTypesGenericParameters extends BaseCompil
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(1, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 2, 53, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T2", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 2, 53, UNKNOWN_GENERIC_PARAMETER.getMessage("T2")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -223,12 +258,12 @@ public final class TestSemanticAnalyserTypesGenericParameters extends BaseCompil
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 2, 53, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T2", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 2, 53, UNKNOWN_GENERIC_PARAMETER.getMessage("T2")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 2, 57, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T3", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 2, 57, UNKNOWN_GENERIC_PARAMETER.getMessage("T3")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -245,12 +280,12 @@ public final class TestSemanticAnalyserTypesGenericParameters extends BaseCompil
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(2, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 53, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T2", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 53, UNKNOWN_GENERIC_PARAMETER.getMessage("T2")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 78, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T2", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 78, UNKNOWN_GENERIC_PARAMETER.getMessage("T2")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -267,22 +302,22 @@ public final class TestSemanticAnalyserTypesGenericParameters extends BaseCompil
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(4, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 53, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T2", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 53, UNKNOWN_GENERIC_PARAMETER.getMessage("T2")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 57, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T3", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 57, UNKNOWN_GENERIC_PARAMETER.getMessage("T3")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 82, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T2", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 82, UNKNOWN_GENERIC_PARAMETER.getMessage("T2")),
             semanticErrors.get(2).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 86, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T4", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 86, UNKNOWN_GENERIC_PARAMETER.getMessage("T4")),
             semanticErrors.get(3).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -299,42 +334,42 @@ public final class TestSemanticAnalyserTypesGenericParameters extends BaseCompil
         assertNotNull(semanticErrors, "SemanticErrors list is null");
         assertEquals(8, semanticErrors.size(), "Unexpected parser errors size");
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 57, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T2", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 57, UNKNOWN_GENERIC_PARAMETER.getMessage("T2")),
             semanticErrors.get(0).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 61, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T2", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 61, UNKNOWN_GENERIC_PARAMETER.getMessage("T2")),
             semanticErrors.get(1).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 70, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T3", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 70, UNKNOWN_GENERIC_PARAMETER.getMessage("T3")),
             semanticErrors.get(2).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 74, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T3", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 74, UNKNOWN_GENERIC_PARAMETER.getMessage("T3")),
             semanticErrors.get(3).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 104, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T2", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 104, UNKNOWN_GENERIC_PARAMETER.getMessage("T2")),
             semanticErrors.get(4).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 108, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T2", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 108, UNKNOWN_GENERIC_PARAMETER.getMessage("T2")),
             semanticErrors.get(5).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 117, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T4", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 117, UNKNOWN_GENERIC_PARAMETER.getMessage("T4")),
             semanticErrors.get(6).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
         assertEquals(
-            SEMANTIC_ERROR_MESSAGE.formatted(GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 121, GENERIC_PARAMETER_HAS_NOT_BEEN_DEFINED_IN_TYPE.getMessage("T4", "TestNamespace.Type")),
+            SEMANTIC_ERROR_MESSAGE.formatted(UNKNOWN_GENERIC_PARAMETER.getNumber(), FAKE_SOURCE_FILE_NAME_AND_PATH, 3, 121, UNKNOWN_GENERIC_PARAMETER.getMessage("T4")),
             semanticErrors.get(7).getFullErrorMessage(),
             "Unexpected semantic error message"
         );
@@ -769,7 +804,6 @@ public final class TestSemanticAnalyserTypesGenericParameters extends BaseCompil
 
     @Test
     public void testGenericParameterUsageDoesNotSatisfyTypeBoundsNestedTypeNonExistentGenericParameter() {
-        //TODO:KMD Create another test for this T1 isn't a type parameter
         var testProgram = """
             type interface TestNamespace.Type1<T : set<T>>
             
