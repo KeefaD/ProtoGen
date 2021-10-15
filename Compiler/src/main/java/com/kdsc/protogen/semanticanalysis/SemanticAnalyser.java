@@ -155,7 +155,7 @@ public class SemanticAnalyser {
             .collect(Collectors.toSet());
         checkInheritanceLoop(compilerResults, semanticErrors, implementsListNode, new HashSet<>(), "", outerTypeNode, typeDescription, typeName, typeDescription);
         checkGenericParameters(compilerResults, semanticErrors, genericParametersWithBoundsNode, typeDescription);
-        checkImplementsList(compilerResults, semanticErrors, allGenericParameterIdentifiers, typeDescription, isInterface, genericParametersWithBoundsNode, implementsListNode);
+        checkImplementsList(compilerResults, semanticErrors, allGenericParameterIdentifiers, typeDescription, isInterface, implementsListNode);
         checkFields(compilerResults, semanticErrors, allGenericParameterIdentifiers, fieldsNode);
     }
 
@@ -212,7 +212,7 @@ public class SemanticAnalyser {
             .forEach(gp -> checkGenericParameterBoundsFieldTypes(compilerResults, semanticErrors, genericParameterSet, gp, gp.getFieldTypeNodes()));
     }
 
-    private void checkImplementsList(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Set<String> allGenericParameterIdentifiers, final String typeDescription, final boolean isInterface, final Optional<GenericParametersWithBoundsNode> genericParametersWithBoundsNode, final Optional<ImplementsListNode> implementsListNode) {
+    private void checkImplementsList(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final Set<String> allGenericParameterIdentifiers, final String typeDescription, final boolean isInterface, final Optional<ImplementsListNode> implementsListNode) {
 
         if(implementsListNode.isEmpty()) return;
 
@@ -413,12 +413,6 @@ public class SemanticAnalyser {
         return latestVersion.map(versionNode -> new VersionNumberImplementsList(Optional.of(versionNode.getVersionNumberNode().getVersionNumber()), versionNode.getImplementsListNode())).orElseGet(() -> new VersionNumberImplementsList(Optional.empty(), Optional.empty()));
     }
 
-    private List<GenericObjectFieldTypeNode> getGenericParametersFieldTypeNode(final FieldTypeNode fieldTypeNode) {
-        var foundGenericParameters = new ArrayList<GenericObjectFieldTypeNode>();
-        getGenericParametersFieldTypeNode(foundGenericParameters, fieldTypeNode);
-        return foundGenericParameters;
-    }
-
     private void getGenericParametersFieldTypeNode(final List<GenericObjectFieldTypeNode> foundGenericParameters, final FieldTypeNode fieldTypeNode) {
         if (fieldTypeNode.getArrayFieldTypeNode().isPresent()) {
             getGenericParametersArrayFieldTypeNode(foundGenericParameters, fieldTypeNode.getArrayFieldTypeNode().get());
@@ -596,7 +590,9 @@ public class SemanticAnalyser {
                     semanticErrors.add(createSemanticError(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS, nonArrayFieldTypeNode, ParseTreeUtils.convertFieldTypeToString(nonArrayFieldTypeNode), ParseTreeUtils.convertFieldTypeToString(genericBoundsNonArrayFieldTypeNode)));
                 }
             }
-            case ObjectFieldTypeNode objectFieldTypeNode -> {}
+            case ObjectFieldTypeNode ignored -> {
+                //Do nothing this should be picked up elsewhere
+            }
             case TypeFieldTypeNode typeFieldTypeNode -> {
                 if(!(genericBoundsNonArrayFieldTypeNode instanceof TypeFieldTypeNode)) {
                     semanticErrors.add(createSemanticError(SPECIFIED_GENERIC_PARAMETER_DOES_NOT_SATISFY_TYPE_BOUNDS, nonArrayFieldTypeNode, ParseTreeUtils.convertFieldTypeToString(nonArrayFieldTypeNode), ParseTreeUtils.convertFieldTypeToString(genericBoundsNonArrayFieldTypeNode)));
