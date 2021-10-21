@@ -7,6 +7,8 @@ public class TemporaryGenericsJavaTest<T1 extends Integer, T2 extends Map<T1, Ma
 
     public interface InnerInterface2<T> extends InnerInterface1<T> {}
 
+    public interface InnerInterface3<T> {}
+
     public class InnerClass1<T> {}
 
     public class InnerClass2<T> {}
@@ -15,4 +17,9 @@ public class TemporaryGenericsJavaTest<T1 extends Integer, T2 extends Map<T1, Ma
 
     public class TestInnerClass2<T extends InnerClass1<T> & InnerInterface2<T>>{}
 
+    public class TestInnerClass3<T extends InnerInterface1<Integer[]> & InnerInterface3<Integer[][][][]>> {}
+
+    public void test() {
+        Integer[] test = null;
+    }
 }

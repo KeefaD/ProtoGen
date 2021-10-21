@@ -317,7 +317,7 @@ public class SemanticAnalyser {
     }
 
     private boolean checkGenericParameterBoundsForFieldTypePair(final CompilerResults compilerResults, final List<SemanticError> semanticErrors, final GenericParameterWithBoundsNode genericParameter, final ArrayFieldTypeNode lhsToCompare, final ArrayFieldTypeNode rhsToCompare) {
-        //TODO:KMD Not sure what to do here, not sure if you can have arrays as bounds at all
+        if(lhsToCompare.getDimensions() != rhsToCompare.getDimensions())  return false;
         return checkGenericParameterBoundsForFieldTypePair(compilerResults, semanticErrors, genericParameter, lhsToCompare.getNonArrayFieldTypeNode(), rhsToCompare.getNonArrayFieldTypeNode());
     }
 
